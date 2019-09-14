@@ -1,11 +1,14 @@
+from typing import Dict
 from typing import List
 from typing import Tuple
 
 # import ray
+from collections import defaultdict
 import matplotlib.pyplot as plt
 
 from configs import *
 from astart_search import AStarGraph
+from overcooked import *
 
 
 class BaseAgent:
@@ -45,21 +48,60 @@ class OvercookedAgent(BaseAgent):
         agent_id,
         world_state,
         barriers,
+        ingredients,
+        cooking_intermediate_states,
+        plating_intermediate_states,
         goals=None,
     ) -> None:
         super().__init__(agent_id, world_state)
         self.goals = goals
+        self.cooking_intermediate_states = cooking_intermediate_states
+        self.plating_intermediate_states = plating_intermediate_states
         self.get_astar_map(barriers)
+        self.update_world_state_with_ingredients(ingredients)
 
     def get_astar_map(self, barriers: List[List[Tuple[int,int]]]) -> None:
         self.astar_map = AStarGraph(barriers)
 
-    def calc_subgoals_cost(self, subgoals: List[str]):
-        subgoals_costs = {subgoal: self.AStarSearch(subgoal) for subgoal in subgoals}
+    def update_world_state_with_ingredients(self, ingredients: Dict[str, List[str]]):
+        for ingredient in ingredients['raw']:
+            self.world_state['r_'+ingredient] = []
+            self.world_state['rc_'+ingredient] = []
+            self.world_state['co_'+ingredient] = []
+        for ingredient in ingredients['fresh']:
+            self.world_state['f_'+ingredient] = []
+            self.world_state['fc_'+ingredient] = []
+    
+    def update_world_state_with_pots(self, pot_coords: List[Tuple[int,int]]):
+        for pot_num in range(len(pot_coords)):
+            self.world_state['pot_'+str(pot_num)] = Pot(pot_coords[pot_num])
 
-        return subgoals_costs
+    def calc_travel_cost(self, items: List[str]):
+        # get valid cells for each goal
+        item_valid_cell_states = defaultdict(list)
+        for item in items:
+            item_valid_cell_states[item] = self.find_valid_cell(item)
 
-    def AStarSearch(self, task):
+        travel_costs = defaultdict(tuple)
+        for item in items:
+            cur_item_instances = self.world_state[item]
+            for cur_item_instance in cur_item_instances:
+                try:
+                    valid_cells = item_valid_cell_states[item][cur_item_instance]
+                    for valid_cell in valid_cells:
+                        temp_item_instance = self.AStarSearch(valid_cell)
+                        if not travel_costs[item]:
+                            travel_costs[item] = temp_item_instance
+                        else:
+                            if travel_costs[item][1] > temp_item_instance[1]:
+                                travel_costs[item] = temp_item_instance
+                            continue
+                except KeyError:
+                    raise KeyError('No valid path to get to item!')
+
+        return travel_costs
+
+    def AStarSearch(self, dest_coords: Tuple[int,int]):
         """
         A* Path-finding algorithm
 
@@ -71,8 +113,8 @@ class OvercookedAgent(BaseAgent):
         will lead to A* searching through nodes that may not be the 'best' in terms of f value.
         """
  
-        start = self.world_state['agent']
-        end = self.world_state[task]
+        start = self.world_state['agent'][0]
+        end = dest_coords
         G = {}
         F = {} 
     
@@ -137,9 +179,10 @@ class OvercookedAgent(BaseAgent):
 
     def find_best_goal(self):
         """
-        Given goal and world state, to return best action in order to achieve it.
-
-        (?) Perform action which maximizes difference between costs of agent & observer
+        Finds action which maximizes utility given world state from possible action space
+        Returns
+        -------
+        action: Action that maximizes utility given world state -> str
         """
         return
 
@@ -147,29 +190,78 @@ class OvercookedAgent(BaseAgent):
         """
         Cooks dish and keeps track of timer.
         """
+        # Timer(10, cook, [args]).start()
         return
+
+    def find_valid_cell(self, item: str) -> Tuple[int,int]:
+        """
+        Items can only be accessible from Up-Down-Left-Right of item cell.
+        Get all cells agent can step on to access item.
+
+        Returns
+        -------
+        all_valid_cells: Dict[str,List[Tuple[int,int]]]
+        """
+        all_valid_cells = defaultdict(list)
+        # item_instance is Tuple[int,int]
+        for item_instance in self.world_state[item]:
+            if (item_instance[0], item_instance[1]+1) in self.world_state['valid_cells']:
+                all_valid_cells[item_instance].append((item_instance[0], item_instance[1]+1))
+            elif (item_instance[0], item_instance[1]-1) in self.world_state['valid_cells']:
+                all_valid_cells[item_instance].append((item_instance[0], item_instance[1]-1))
+            elif (item_instance[0]-1, item_instance[1]) in self.world_state['valid_cells']:
+                all_valid_cells[item_instance].append((item_instance[0]-1, item_instance[1]))
+            elif (item_instance[0]+1, item_instance[1]) in self.world_state['valid_cells']:
+                all_valid_cells[item_instance].append((item_instance[0]+1, item_instance[1]))
+
+        return all_valid_cells
+
+    def pick(self, item: str) -> None:
+        """
+        Prerequisite
+        ------------
+        - At grid with accessibility to item.
+        - Pick up item.
+        """
+        self.item = item
 
     def drop(self, item: str, coords: Tuple[int, int]) -> None:
         """
         Drop item <X>.
         """
+        self.world_state[item] = coords
 
-    def move_to(self, start_coord: Tuple[int, int], end_coord: Tuple[int, int]) -> None:
+    def move(self, start_coord: Tuple[int, int], end_coord: Tuple[int, int], path: List[Tuple[int,int]]) -> None:
+        """
+        - Finds item in world state.
+        - Go to grid with accessibility to item.
+
+        Parameters
+        ----------
+        path: for animation on grid to happen
+        """
         self.world_state[self.agent_id] = end_coord
 
 def main():
     # ray.init(num_cpus=4, include_webui=False, ignore_reinit_error=True)
     
-    oc_agent = OvercookedAgent('Agent', WORLD_STATE_1, BARRIERS)
+    oc_agent = OvercookedAgent(
+        'Agent',
+        WORLD_STATE_1,
+        BARRIERS_1,
+        INGREDIENTS_1,
+        RECIPES_COOKING_INTERMEDIATE_STATES_1,
+        RECIPES_PLATING_INTERMEDIATE_STATES_1)
 
-    results = oc_agent.calc_subgoals_cost(['board_1'])
+    results = oc_agent.calc_travel_cost(['c_plates'])
+    print(results)
     for subgoal in results:
         print("Goal -> ", subgoal)
         print("Route -> ", results[subgoal][0])
         print("Cost -> ", results[subgoal][1])
 
         plt.plot([v[0] for v in results[subgoal][0]], [v[1] for v in results[subgoal][0]])
-        for barrier in [BARRIERS]:
+        for barrier in [BARRIERS_1]:
             plt.plot([v[0] for v in barrier], [v[1] for v in barrier])
         plt.xlim(-1,13)
         plt.ylim(-1,9)
