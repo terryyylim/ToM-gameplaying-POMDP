@@ -129,6 +129,10 @@ observer: Location of observer
 To clear chopping board space, find nearest empty tabletop grid and shift it there
 """
 WORLD_STATE_1 = {
+    'valid_optimal_table_tops': [
+        (1,4), (2,4), (3,4), (4,4), (5,4), (6,4), (7,4), (8,4), (9,4)
+    ],
+    'invalid_optimal_table_tops': [],
     'valid_cells': [
         (1,1), (1,2), (1,3), (1,5), (1,6), (1,7),
         (2,1), (2,2), (2,3), (2,5), (2,6), (2,7),
