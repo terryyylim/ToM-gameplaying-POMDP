@@ -64,17 +64,12 @@ class OvercookedAgent(BaseAgent):
         self.astar_map = AStarGraph(barriers)
 
     def update_world_state_with_ingredients(self, ingredients: Dict[str, List[str]]):
-        for ingredient in ingredients['raw']:
-            self.world_state['r_'+ingredient] = []
-            self.world_state['rc_'+ingredient] = []
-            self.world_state['co_'+ingredient] = []
-        for ingredient in ingredients['fresh']:
-            self.world_state['f_'+ingredient] = []
-            self.world_state['fc_'+ingredient] = []
+        for ingredient in ingredients:
+            self.world_state['ingredient_'+ingredient] = []
     
     def update_world_state_with_pots(self, pot_coords: List[Tuple[int,int]]):
         for pot_num in range(len(pot_coords)):
-            self.world_state['pot_'+str(pot_num)] = Pot(pot_coords[pot_num])
+            self.world_state['pot_'+str(pot_num)] = Pot('utensil', pot_coords[pot_num])
 
     def calc_travel_cost(self, items: List[str]):
         # get valid cells for each goal
