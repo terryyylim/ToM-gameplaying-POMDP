@@ -99,6 +99,7 @@ class OvercookedAgent(BaseAgent):
     def AStarSearch(self, dest_coords: Tuple[int,int]):
         """
         A* Path-finding algorithm
+        Type: Heuristic-Search - Informed Search Algorithm
 
         F: Estimated movement cost of start to end going via this position
         G: Actual movement cost to each position from the start position
@@ -111,7 +112,7 @@ class OvercookedAgent(BaseAgent):
         start = self.world_state['agent'][0]
         end = dest_coords
         G = {}
-        F = {} 
+        F = {}
     
         # Initialize starting values
         G[start] = 0 
