@@ -262,11 +262,11 @@ def main():
     
     oc_agent = OvercookedAgent(
         'Agent',
-        WORLD_STATE_1,
-        BARRIERS_1,
-        INGREDIENTS_1,
-        RECIPES_COOKING_INTERMEDIATE_STATES_1,
-        RECIPES_PLATING_INTERMEDIATE_STATES_1)
+        WORLD_STATE,
+        BARRIERS,
+        INGREDIENTS,
+        RECIPES_COOKING_INTERMEDIATE_STATES,
+        RECIPES_PLATING_INTERMEDIATE_STATES)
 
     results = oc_agent.calc_travel_cost(['c_plates'])
     print(results)
