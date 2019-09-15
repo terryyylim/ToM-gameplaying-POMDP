@@ -216,14 +216,29 @@ class OvercookedAgent(BaseAgent):
 
         return all_valid_cells
 
-    def pick(self, item: str) -> None:
+    def pick(self, start_coord: Tuple[int, int], end_coord: Tuple[int, int], path: List[Tuple[int,int]], item: Item, item_coord: Tuple[int,int]) -> None:
         """
+        This action assumes agent has already done A* search and decided which goal state to achieve.
         Prerequisite
         ------------
-        - At grid with accessibility to item.
-        - Pick up item.
+        - Item object passed to argument should be item instance
+        - At grid with accessibility to item [GO-TO]
+        
+        Returns
+        -------
+        Pick up item
+        - Check what item is picked up [to determine if we need to update world state of item]
+
+        TO-CONSIDER: 
+        Do we need to check if agent is currently holding something?
+        Do we need to set item coord to agent coord when the item is picked up?
         """
-        self.item = item
+        self.move(start_coord, end_coord, path)
+        if type(item) == Ingredient:
+            if item.is_new:
+                item.is_new = False
+                self.world_state['ingredient_'+item.name].append(item) if item.is_raw else self.world_state['ingredient_'+item.name].append(item)
+            self.holding = item
 
     def drop(self, item: str, coords: Tuple[int, int]) -> None:
         """
