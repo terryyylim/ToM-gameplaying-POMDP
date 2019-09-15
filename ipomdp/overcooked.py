@@ -34,4 +34,34 @@ class Pot:
         return self.cooking_state
     
     def get_location(self) -> Tuple[str,str]:
-        return self.location
+        return self.locationclass Ingredient(Item):
+    def __init__(
+        self,
+        name: str,
+        state: str,
+        category: str,
+        is_raw: bool,
+        is_new: bool=True
+    ) -> None:
+        """
+        Parameters
+        ----------
+        state:
+            Whether the ingredient is unchopped/chopped/cooking/cooked
+        is_raw:
+            Whether the ingredient is raw/fresh
+        is_new:
+            Whether the ingredient is just taken from storage
+        """
+        super().__init__(id, category, state)
+        self.name = name
+        self.is_raw = is_raw
+        self.is_new = is_new
+        if is_new:
+            self.initialize_pos()
+
+    def initialize_pos(self):
+        if self.is_raw:
+            self.location = WORLD_STATE['r_'+self.name][0]
+        else:
+            self.location = WORLD_STATE['f_'+self.name][0]
