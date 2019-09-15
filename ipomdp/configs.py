@@ -57,8 +57,10 @@ BARRIERS_1 = [
 ]
 
 INGREDIENTS_1 = {
-    'raw': ['onion'],
-    'fresh': []
+    'onion': {
+        # properties of onion
+        'is_raw': True
+    }
 }
 
 INGREDIENTS_NAMING_CONVENTION = {
