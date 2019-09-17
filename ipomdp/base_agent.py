@@ -6,7 +6,7 @@ from typing import Tuple
 from collections import defaultdict
 import matplotlib.pyplot as plt
 
-from configs import *
+from agent_configs import *
 from astart_search import AStarGraph
 from overcooked import *
 
@@ -15,19 +15,19 @@ class BaseAgent:
     def __init__(
         self,
         agent_id,
-        world_state
+        location
     ) -> None:
         """
         Parameters
         ----------
         agent_id: str
             a unique id allowing the map to identify the agents
-        world_state:
-            a dictionary indicating world state (coordinates of items in map)
+        location: Tuple[int,int]
+            x-y coordinate of agent
         """
 
         self.agent_id = agent_id
-        self.world_state = world_state
+        self.location = location
 
     @property
     def action_space(self):
@@ -46,18 +46,19 @@ class OvercookedAgent(BaseAgent):
     def __init__(
         self,
         agent_id,
-        world_state,
+        location,
         barriers,
         ingredients,
         cooking_intermediate_states,
         plating_intermediate_states,
         goals=None,
     ) -> None:
-        super().__init__(agent_id, world_state)
+        super().__init__(agent_id, location)
         self.goals = goals
         self.cooking_intermediate_states = cooking_intermediate_states
         self.plating_intermediate_states = plating_intermediate_states
         self.get_astar_map(barriers)
+        self.initialize_world_state(ITEMS_INITIALIZATION)
         self.update_world_state_with_ingredients(ingredients)
 
     def get_astar_map(self, barriers: List[List[Tuple[int,int]]]) -> None:
@@ -70,26 +71,59 @@ class OvercookedAgent(BaseAgent):
     def update_world_state_with_pots(self, pot_coords: List[Tuple[int,int]]):
         for pot_num in range(len(pot_coords)):
             self.world_state['pot_'+str(pot_num)] = Pot('utensil', pot_coords[pot_num])
+    
+    # TO-DO: Shift to World Env
+    def initialize_world_state(self, items: Dict[str, List[Tuple]]):
+        """ 
+        world_state:
+            a dictionary indicating world state (coordinates of items in map)
+        """
+        self.world_state = defaultdict(list)
+        self.world_state['valid_cells'] = WORLD_STATE['valid_cells']
+        self.world_state['agent'] = WORLD_STATE['agent'] # to be removed
 
-    def calc_travel_cost(self, items: List[str]):
+        for item in items:
+            if item == 'chopping_boards':
+                for i_state in items[item]:
+                    new_item = ChoppingBoard('utensils', i_state)
+                    self.world_state[item].append(new_item)
+            elif item == 'extinguisher':
+                for i_state in items[item]:
+                    new_item = Extinguisher('safety', i_state)
+                    self.world_state[item].append(new_item)
+            elif item == 'plate':
+                for i_state in items[item]:
+                    new_item = Plate('utensils', i_state)
+                    self.world_state[item].append(new_item)
+            elif item == 'pot':
+                for i_state in items[item]:
+                    new_item = Pot('utensils', i_state)
+                    self.world_state[item].append(new_item)
+            elif item == 'stove':
+                for i_state in items[item]:
+                    new_item = Stove('utensils', i_state)
+                    self.world_state[item].append(new_item)
+
+    def calc_travel_cost(self, items: List[str], items_coords: List[List[Tuple[int,int]]]):
         # get valid cells for each goal
         item_valid_cell_states = defaultdict(list)
-        for item in items:
-            item_valid_cell_states[item] = self.find_valid_cell(item)
+        for item_idx in range(len(items)):
+            item_valid_cell_states[items[item_idx]] = self.find_valid_cell(items_coords[item_idx])
 
         travel_costs = defaultdict(tuple)
-        for item in items:
-            cur_item_instances = self.world_state[item]
+        for item_idx in range(len(items)):
+            cur_item_instances = items_coords[item_idx]
             for cur_item_instance in cur_item_instances:
                 try:
-                    valid_cells = item_valid_cell_states[item][cur_item_instance]
+                    valid_cells = item_valid_cell_states[items[item_idx]][cur_item_instance]
                     for valid_cell in valid_cells:
                         temp_item_instance = self.AStarSearch(valid_cell)
-                        if not travel_costs[item]:
-                            travel_costs[item] = temp_item_instance
+                        if not travel_costs[items[item_idx]]:
+                            travel_costs[items[item_idx]] = (temp_item_instance[0], temp_item_instance[1], cur_item_instance)
                         else:
-                            if travel_costs[item][1] > temp_item_instance[1]:
-                                travel_costs[item] = temp_item_instance
+                            # Only replace if existing travel cost is greater (ensure only 1 path is returned given same cost)
+                            if travel_costs[items[item_idx]][1] > temp_item_instance[1]:
+                                travel_costs[items[item_idx]] = (temp_item_instance[0], temp_item_instance[1], cur_item_instance)
                             continue
                 except KeyError:
                     raise KeyError('No valid path to get to item!')
@@ -258,13 +292,13 @@ def main():
     
     oc_agent = OvercookedAgent(
         'Agent',
-        WORLD_STATE,
+        (8,6),
         BARRIERS,
         INGREDIENTS,
         RECIPES_COOKING_INTERMEDIATE_STATES,
         RECIPES_PLATING_INTERMEDIATE_STATES)
 
-    results = oc_agent.calc_travel_cost(['c_plates'])
+    results = oc_agent.calc_travel_cost(['c_plates', 'e_boards'], [WORLD_STATE['c_plates'], WORLD_STATE['e_boards']])
     print(results)
     for subgoal in results:
         print("Goal -> ", subgoal)
