@@ -56,6 +56,14 @@ BARRIERS_1 = [
     (12,0), (12, 1), (12, 2), (12, 3), (12, 4), (12, 5), (12, 6), (12, 7), (12, 8)
 ]
 
+ITEMS_INITIALIZATION_1 = {
+    'chopping_board': [(3,0), (5,0)],
+    'extinguisher': [(12,7)],
+    'plate': [(9,0), (10,0)],
+    'pot': [(8,8)],
+    'stove': [(8,8)],
+}
+
 INGREDIENTS_1 = {
     'onion': {
         # properties of onion
@@ -185,6 +193,20 @@ Actions
 -------
 TO-DO: Actions that can be performed.
 """
+ACTIONS = {
+    0: 'MOVE_LEFT',
+    1: 'MOVE_RIGHT',
+    2: 'MOVE_UP',
+    3: 'MOVE_DOWN',
+    4: 'MOVE_DIAGONAL_LEFT_UP',
+    5: 'MOVE_DIAGONAL_RIGHT_UP',
+    6: 'MOVE_DIAGONAL_LEFT_DOWN',
+    7: 'MOVE_DIAGONAL_RIGHT_DOWN',
+    8: 'STAY',
+    9: 'PICK',
+    10: 'DROP'
+}
+
 
 """
 Rewards
@@ -201,5 +223,6 @@ TO-DO: More world states
 WORLD_STATE = WORLD_STATE_1
 BARRIERS = BARRIERS_1
 INGREDIENTS = INGREDIENTS_1
+ITEMS_INITIALIZATION = ITEMS_INITIALIZATION_1
 RECIPES_COOKING_INTERMEDIATE_STATES = RECIPES_COOKING_INTERMEDIATE_STATES_1
 RECIPES_PLATING_INTERMEDIATE_STATES = RECIPES_PLATING_INTERMEDIATE_STATES_1
