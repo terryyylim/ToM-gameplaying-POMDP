@@ -141,6 +141,8 @@ class OvercookedAgent(BaseAgent):
 
         It is important for heuristic to always be an underestimation of the total path, as an overestimation
         will lead to A* searching through nodes that may not be the 'best' in terms of f value.
+
+        TO-DO: Invert calculations
         """
  
         start = self.world_state['agent'][0]
