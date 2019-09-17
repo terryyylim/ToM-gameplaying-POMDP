@@ -213,6 +213,8 @@ class OvercookedAgent(BaseAgent):
         Returns
         -------
         action: Action that maximizes utility given world state -> str
+
+        TO-DO: Call `calc_travel_cost` multiple times for possible subgoals
         """
         return
 
@@ -223,7 +225,7 @@ class OvercookedAgent(BaseAgent):
         # Timer(10, cook, [args]).start()
         return
 
-    def find_valid_cell(self, item: str) -> Tuple[int,int]:
+    def find_valid_cell(self, item_coords: List[Tuple[int,int]]) -> Tuple[int,int]:
         """
         Items can only be accessible from Up-Down-Left-Right of item cell.
         Get all cells agent can step on to access item.
@@ -234,7 +236,7 @@ class OvercookedAgent(BaseAgent):
         """
         all_valid_cells = defaultdict(list)
         # item_instance is Tuple[int,int]
-        for item_instance in self.world_state[item]:
+        for item_instance in item_coords:
             if (item_instance[0], item_instance[1]+1) in self.world_state['valid_cells']:
                 all_valid_cells[item_instance].append((item_instance[0], item_instance[1]+1))
             elif (item_instance[0], item_instance[1]-1) in self.world_state['valid_cells']:
@@ -246,7 +248,7 @@ class OvercookedAgent(BaseAgent):
 
         return all_valid_cells
 
-    def pick(self, start_coord: Tuple[int, int], end_coord: Tuple[int, int], path: List[Tuple[int,int]], item: Item, item_coord: Tuple[int,int]) -> None:
+    def pick(self, path: List[Tuple[int,int]], item: Item) -> None:
         """
         This action assumes agent has already done A* search and decided which goal state to achieve.
         Prerequisite
@@ -263,20 +265,28 @@ class OvercookedAgent(BaseAgent):
         Do we need to check if agent is currently holding something?
         Do we need to set item coord to agent coord when the item is picked up?
         """
-        self.move(start_coord, end_coord, path)
+        self.move(path)
         if type(item) == Ingredient:
             if item.is_new:
                 item.is_new = False
                 self.world_state['ingredient_'+item.name].append(item) if item.is_raw else self.world_state['ingredient_'+item.name].append(item)
             self.holding = item
 
-    def drop(self, item: str, coords: Tuple[int, int]) -> None:
+
+    def drop(self, path: List[Tuple[int,int]], item: Item, drop_coord: Tuple[int,int]) -> None:
         """
+        This action assumes agent is currently holding an item.
+        Prerequisite
+        ------------
+        - At grid with accessibility to dropping coord.
         Drop item <X>.
         """
-        self.world_state[item] = coords
+        self.move(path)
+        if type(item) == Ingredient:
+            self.world_state['ingredient_'+item.name][item.id]['location'] = drop_coord
+            self.holding = None
 
-    def move(self, start_coord: Tuple[int, int], end_coord: Tuple[int, int], path: List[Tuple[int,int]]) -> None:
+    def move(self, path: List[Tuple[int,int]]) -> None:
         """
         - Finds item in world state.
         - Go to grid with accessibility to item.
@@ -285,7 +295,11 @@ class OvercookedAgent(BaseAgent):
         ----------
         path: for animation on grid to happen
         """
-        self.world_state[self.agent_id] = end_coord
+        for step in path:
+            # Do animation (sleep 0.5s?)
+            self.world_state[self.agent_id] = step
+        self.location = path[-1]
+
 
 def main():
     # ray.init(num_cpus=4, include_webui=False, ignore_reinit_error=True)
