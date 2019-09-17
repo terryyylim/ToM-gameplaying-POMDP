@@ -302,6 +302,21 @@ class OvercookedAgent(BaseAgent):
             self.world_state[self.agent_id] = step
         self.location = path[-1]
 
+    def chop(self, ingredient: str):
+        """
+        Agent needs to check if ingredient is lying around somewhere in the map and get the nearest one.
+        """
+        # If there is ingredient lying around
+        cur_ingredients = self.world_state['ingredient_'+ingredient]
+        if cur_ingredients:
+            valid_ingredients = [ingredient.location for ingredient in cur_ingredients if ingredient.state == 'unchopped']
+            nearest_valid_ingredient_cost = self.calc_travel_cost(['ingredient_'+ingredient], [valid_ingredients])
+            self.pick(nearest_valid_ingredient_cost['ingredient_'+ingredient][0], nearest_valid_ingredient_cost['ingredient_'+ingredient][2])
+            # find nearest empty chopping board (do something to always ensure its empty?)
+            # go nearest empty chopping board
+            # start chopping (add lockdown to agent - to prevent movement ability?)
+
+        # Else - go to an optimal spot and wait ?
 
 def main():
     # ray.init(num_cpus=4, include_webui=False, ignore_reinit_error=True)
