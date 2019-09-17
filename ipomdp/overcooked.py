@@ -1,7 +1,7 @@
 from typing import Optional
 from typing import Tuple
 
-from configs import *
+from agent_configs import *
 
 class Item:
     def __init__(
@@ -21,6 +21,36 @@ class Item:
     def get_state(self) -> str:
         return self.state
 
+class ChoppingBoard(Item):
+    def __init__(
+        self,
+        category: str,
+        location: Tuple[int,int],
+        placed_item: str=None,
+    ) -> None:
+        super().__init__(id, category, location)
+        self.placed_item = placed_item
+
+class Extinguisher(Item):
+    def __init__(
+        self,
+        category: str,
+        location: Tuple[int,int]
+    ) -> None:
+        super().__init__(id, category, location)
+
+class Plate(Item):
+    def __init__(
+        self,
+        category: str,
+        location: Tuple[int,int],
+        ready_to_serve: bool=False
+    ) -> None:
+        """
+        Only start plating dish when ingredient has been prepared (Chopped/Cooked etc.)
+        """
+        super().__init__(id, category, location)
+        self.ready_to_serve = ready_to_serve
 
 class Pot(Item):
     def __init__(
@@ -54,6 +84,16 @@ class Pot(Item):
     
     def get_location(self) -> Tuple[str,str]:
         return self.location
+
+class Stove(Item):
+    def __init__(
+        self,
+        category: str,
+        location: Tuple[int,int],
+        has_pot: bool=True
+    ) -> None:
+        super().__init__(id, category, location)
+        self.has_pot = has_pot
 
 class Ingredient(Item):
     def __init__(
