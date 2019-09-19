@@ -54,55 +54,14 @@ class OvercookedAgent(BaseAgent):
         goals=None,
     ) -> None:
         super().__init__(agent_id, location)
+        self.world_state = {}
         self.goals = goals
         self.cooking_intermediate_states = cooking_intermediate_states
         self.plating_intermediate_states = plating_intermediate_states
         self.get_astar_map(barriers)
-        self.initialize_world_state(ITEMS_INITIALIZATION)
-        self.update_world_state_with_ingredients(ingredients)
 
     def get_astar_map(self, barriers: List[List[Tuple[int,int]]]) -> None:
         self.astar_map = AStarGraph(barriers)
-
-    def update_world_state_with_ingredients(self, ingredients: Dict[str, List[str]]):
-        for ingredient in ingredients:
-            self.world_state['ingredient_'+ingredient] = []
-    
-    def update_world_state_with_pots(self, pot_coords: List[Tuple[int,int]]):
-        for pot_num in range(len(pot_coords)):
-            self.world_state['pot_'+str(pot_num)] = Pot('utensil', pot_coords[pot_num])
-    
-    # TO-DO: Shift to World Env
-    def initialize_world_state(self, items: Dict[str, List[Tuple]]):
-        """ 
-        world_state:
-            a dictionary indicating world state (coordinates of items in map)
-        """
-        self.world_state = defaultdict(list)
-        self.world_state['valid_cells'] = WORLD_STATE['valid_cells']
-        self.world_state['agent'] = WORLD_STATE['agent'] # to be removed
-
-        for item in items:
-            if item == 'chopping_boards':
-                for i_state in items[item]:
-                    new_item = ChoppingBoard('utensils', i_state)
-                    self.world_state[item].append(new_item)
-            elif item == 'extinguisher':
-                for i_state in items[item]:
-                    new_item = Extinguisher('safety', i_state)
-                    self.world_state[item].append(new_item)
-            elif item == 'plate':
-                for i_state in items[item]:
-                    new_item = Plate('utensils', i_state)
-                    self.world_state[item].append(new_item)
-            elif item == 'pot':
-                for i_state in items[item]:
-                    new_item = Pot('utensils', i_state)
-                    self.world_state[item].append(new_item)
-            elif item == 'stove':
-                for i_state in items[item]:
-                    new_item = Stove('utensils', i_state)
-                    self.world_state[item].append(new_item)
 
     def calc_travel_cost(self, items: List[str], items_coords: List[List[Tuple[int,int]]]):
         # get valid cells for each goal

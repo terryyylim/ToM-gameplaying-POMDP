@@ -33,7 +33,7 @@ class MapEnv(MultiAgentEnv):
         """
         self.base_map = self.ascii_to_numpy(ascii_map)
         self.world_map = self.base_map
-        # self.world_map = np.full((len(self.base_map), len(self.base_map[0])), ' ')
+        self.world_state = defaultdict(list)
         self.agent_initialization = agent_initialization
 
         self.num_agents = len(agent_initialization)
