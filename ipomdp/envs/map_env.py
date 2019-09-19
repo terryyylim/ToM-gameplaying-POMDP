@@ -116,29 +116,6 @@ class MapEnv(MultiAgentEnv):
             agent_action = self.agents[agent_id].action_map(action)
             agent_actions[agent_id] = agent_action
 
-    def get_map_with_agents(self):
-        """Gets a version of the environment map where generic
-        'P' characters have been replaced with specific agent IDs.
-        Returns:
-            2D array of strings representing the map.
-        """
-        grid = np.copy(self.world_map)
-
-        for agent_id, agent in self.agents.items():
-            char_id = str(int(agent_id[-1]) + 1)
-
-            # If agent is not within map, skip.
-            if not(agent.pos[0] >= 0 and agent.pos[0] < grid.shape[0] and
-                   agent.pos[1] >= 0 and agent.pos[1] < grid.shape[1]):
-                continue
-
-            grid[agent.pos[0], agent.pos[1]] = char_id
-
-        for beam_pos in self.beam_pos:
-            grid[beam_pos[0], beam_pos[1]] = beam_pos[2]
-
-        return grid
-
     def map_to_colors(self, map=None, color_map=None):
         """Converts a map to an array of RGB values.
         Parameters
