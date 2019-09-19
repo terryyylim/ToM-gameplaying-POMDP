@@ -1,4 +1,6 @@
-ACTIONS = {
+AGENTS_INITIALIZATION_1 = [(2,4), (2,8)] # (8,6), (6,6)
+
+ACTIONS_1 = {
     'MOVE_LEFT': [-1, 0],
     'MOVE_RIGHT': [0, 1],
     'MOVE_UP': [0, -1],
@@ -12,16 +14,16 @@ ACTIONS = {
     'DROP': [0, 0]
 }
 
-DEFAULT_COLOURS = {
+DEFAULT_COLOURS_1 = {
     ' ': [0, 0, 0],
     '@': [245, 245, 220],
-    'B': [240,248,255],
-    'C': [245,255,250],
+    'B': [0,0,255],
+    'C': [210,180,140],
     'D': [218,165,32],
     'E': [216, 30, 54],
     'P': [255,255,255],
     'S': [211,211,211],
-    'T': [210,180,140],
+    'T': [139,69,19],
 
     # Agent colours
     '1': [34,139,34],
@@ -53,3 +55,8 @@ OVERCOOKED_MAP_1 = [
     'S           T',
     '@@@C@C@@@PP@@'
 ]
+
+OVERCOOKED_MAP = OVERCOOKED_MAP_1
+AGENTS_INITIALIZATION = AGENTS_INITIALIZATION_1
+ACTIONS = ACTIONS_1
+DEFAULT_COLOURS = DEFAULT_COLOURS_1

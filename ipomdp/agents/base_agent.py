@@ -6,9 +6,9 @@ from typing import Tuple
 from collections import defaultdict
 import matplotlib.pyplot as plt
 
-from agent_configs import *
-from astart_search import AStarGraph
-from overcooked import *
+from ipomdp.agents.agent_configs import *
+from ipomdp.agents.astart_search import AStarGraph
+from ipomdp.overcooked import *
 
 
 class BaseAgent:

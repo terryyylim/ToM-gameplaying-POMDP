@@ -1,7 +1,7 @@
 from typing import Optional
 from typing import Tuple
 
-from agent_configs import *
+from ipomdp.agents.agent_configs import *
 
 class Item:
     def __init__(
