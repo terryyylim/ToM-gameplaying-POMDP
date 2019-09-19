@@ -1,7 +1,39 @@
+from typing import Dict
+from typing import List
 from typing import Optional
 from typing import Tuple
 
 from ipomdp.agents.agent_configs import *
+
+class TaskNode:
+    def __init__(
+        self,
+        task: str,
+        ingredient: str,
+        is_assigned: bool=False
+    ) -> None:
+        self.task = task
+        self.ingredient = ingredient
+        self.is_assigned = is_assigned
+        self.next = None
+
+class TaskList:
+    def __init__(
+        self,
+        dish: str,
+        task: List[str],
+        ingredient: str
+    ) -> None:
+        self.initialize_tasks(task, ingredient)
+
+    def initialize_tasks(self, task: List[str], ingredient: str):
+        task_list = TaskNode(task[0], ingredient)
+        head = task_list
+        temp_pointer = head
+        for sub_task in task[1:]:
+            temp_pointer.next = TaskNode(sub_task, ingredient)
+            temp_pointer = temp_pointer.next
+        self.head = head
 
 class Item:
     def __init__(
