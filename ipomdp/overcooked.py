@@ -10,11 +10,11 @@ class TaskNode:
         self,
         task: str,
         ingredient: str,
-        is_assigned: bool=False
+        state: str
     ) -> None:
         self.task = task
         self.ingredient = ingredient
-        self.is_assigned = is_assigned
+        self.state = state
         self.next = None
 
 class TaskList:
@@ -24,14 +24,16 @@ class TaskList:
         task: List[str],
         ingredient: str
     ) -> None:
+        self.task = task
+        self.ingredient = ingredient
         self.initialize_tasks(task, ingredient)
 
     def initialize_tasks(self, task: List[str], ingredient: str):
-        task_list = TaskNode(task[0], ingredient)
+        task_list = TaskNode(task[0][0], ingredient, task[0][1])
         head = task_list
         temp_pointer = head
         for sub_task in task[1:]:
-            temp_pointer.next = TaskNode(sub_task, ingredient)
+            temp_pointer.next = TaskNode(sub_task[0], ingredient, sub_task[1])
             temp_pointer = temp_pointer.next
         self.head = head
 
