@@ -15,7 +15,7 @@ class TaskThread(threading.Thread):
         self.controller = controller
     
     def run(self) -> None:
-        while not self.event.wait(10):
+        while not self.event.wait(3):
             self.controller.env.random_queue_order()
 
 class Controller(object):
@@ -45,11 +45,19 @@ def main(env: str, timer: int) -> None:
     thread.start()
 
     end_time = time.time() + 30
+    time_step_execution = False
     while time.time() < end_time:
 
-        # action_1 = c.env.agents[1].find_best_goal()
-        # action_2 = c.env.agents[2].find_best_goal()
-        # TO-DO Given action_1 and action_2: perform 1 time-step
+        # If goal space exist, else do nothing
+        if not time_step_execution and c.env.world_state['goal_space']:
+            best_goals = c.env.find_agents_best_goal()
+            print('best_goals')
+            print(best_goals)
+            time_step_execution = True
+
+        # TO-DO Given best_goals: perform 1 time-step
+        else:
+            continue
 
         if time.time() == end_time - 8:
             print(c.env.world_state)
