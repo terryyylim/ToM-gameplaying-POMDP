@@ -159,25 +159,65 @@ class OvercookedAgent(BaseAgent):
     
         raise RuntimeError("A* failed to find a solution")
 
-    # def generate_goals_as_dags(self, goal):
-    #     """
-    #     Given new goals, convert goals to subgoals in DAG structure.
-    #     """
-    #     goal_required_ws = 
-    #     dag = Graph(directed=True)
-    #     print(dag)
-
-
     def find_best_goal(self):
         """
-        Finds action which maximizes utility given world state from possible action space
-        Returns
-        -------
-        action: Action that maximizes utility given world state -> str
-
-        TO-DO: Call `calc_travel_cost` multiple times for possible subgoals
+        Finds all path and costs of give n possible action space.
         """
-        return
+        agent_goal_costs = defaultdict(dict)
+
+        for task_list in self.world_state['goal_space']:
+            wanted_ingredient = [
+                ingredient.location for ingredient in self.world_state['ingredients'] if \
+                    (ingredient.name == task_list.ingredient and ingredient.state == task_list.head.state)]
+            print(wanted_ingredient)
+            # Append lowest cost goal into agent_goal_costs
+            if task_list.head.task == 'pick':
+                print('entered pick')
+                # If no such ingredient exist
+                if not wanted_ingredient:
+                    # Just take fresh ones
+                    print(self.world_state['ingredient_'+task_list.ingredient])
+                    path_cost = self.calc_travel_cost(['ingredient_'+task_list.ingredient], [self.world_state['ingredient_'+task_list.ingredient]])
+                else:
+                    path_cost = self.calc_travel_cost(['ingredient_'+task_list.ingredient], [wanted_ingredient])
+            else:
+                print('entered other act')
+                print(task_list.head)
+                # Guaranteed to have ingredient to slice/cook
+                path_cost = self.calc_travel_cost(['ingredient_'+task_list.ingredient], [wanted_ingredient])
+            print('done with this task calc')
+            print(path_cost)
+            agent_goal_costs[id(task_list)] = {
+                'path': path_cost['ingredient_'+task_list.ingredient][0],
+                'cost': path_cost['ingredient_'+task_list.ingredient][1]
+            }
+
+        return agent_goal_costs
+
+    def perform_best_goal(self, goal_to_complete: Dict[str, Any]):
+        """
+        Execute best_goal and wait for visualization run to finish.
+        Params
+        ------
+        {'agent_1': { 'action': <TaskList object>, 'path': [], 'cost': 0 }}
+        """
+        print('executing goal')
+        print(goal_to_complete)
+        print(goal_to_complete['task'].head)
+        # if agents_goal_to_complete[agent]['action'] == 'pick':
+                
+        # After performing goal (should this even be here?)
+        # if not task_list.head.next and tasks_completion == 1:
+        #     dish = task_list.dish
+        #     ingredient = task_list.ingredient
+        #     self.world_state['goal_space'].append(TaskList(dish, ['serve'], ingredient))
+        #     self.world_state['goal_space'].remove(task_list)
+        #     tasks_completion -= 1
+        # elif not task_list.head.next:
+        #     self.world_state['goal_space'].remove(task_list)
+        #     tasks_completion -= 1
+        # else:
+        #     task_list.head = task_list.head.next
 
     def cook_ingredients(self):
         """
