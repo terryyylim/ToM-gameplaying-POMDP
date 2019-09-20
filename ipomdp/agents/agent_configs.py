@@ -47,14 +47,31 @@ RECIPES_PLATING_INTERMEDIATE_STATES_X = {
     }, etc.
 }
 """
+# BARRIERS_1 = [
+#     (0,8), (1,8), (2,8), (3,8), (4,8), (5,8), (6,8), (7,8), (8,8), (9,8), (10,8), (11,8), (12,8),
+#     (0,8), (0,7), (0,6), (0,5),
+#     (0,4), (1,4), (2,4), (3,4), (4,4), (5,4), (6,4), (7,4), (8,4), (9,4),
+#     (0,4), (0,3), (0,2), (0,1),
+#     (0,0), (1, 0), (2, 0), (3,0), (4, 0), (5, 0), (6,0), (7, 0), (8, 0), (9,0), (10, 0), (11, 0),
+#     (12,0), (12, 1), (12, 2), (12, 3), (12, 4), (12, 5), (12, 6), (12, 7), (12, 8)
+# ]
+
 BARRIERS_1 = [
-    (0,8), (1,8), (2,8), (3,8), (4,8), (5,8), (6,8), (7,8), (8,8), (9,8), (10,8), (11,8), (12,8),
-    (0,8), (0,7), (0,6), (0,5),
-    (0,4), (1,4), (2,4), (3,4), (4,4), (5,4), (6,4), (7,4), (8,4), (9,4),
-    (0,4), (0,3), (0,2), (0,1),
-    (0,0), (1, 0), (2, 0), (3,0), (4, 0), (5, 0), (6,0), (7, 0), (8, 0), (9,0), (10, 0), (11, 0),
-    (12,0), (12, 1), (12, 2), (12, 3), (12, 4), (12, 5), (12, 6), (12, 7), (12, 8)
+    (0,0), (0,1), (0,2), (0,3), (0,4), (0,5), (0,6), (0,7), (0,8), (0,9), (0,10), (0,11), (0,12),
+    (1,0), (1,12),
+    (2,0), (2,12),
+    (3,0), (3,12),
+    (4,0), (4,1), (4,2), (4,3), (4,4), (4,5), (4,6), (4,7), (4,8), (4,9), (4,12),
+    (5,0), (5,12),
+    (6,0), (6,12),
+    (7,0), (7,12),
+    (8,0), (8,1), (8,2), (8,3), (8,4), (8,5), (8,6), (8,7), (8,8), (8,9), (8,10), (8,11), (8,12)
 ]
+
+VISUALIZATION_COORDS_MAPPING_1 = {
+    'row_to_col': [8,7,6,5,4,3,2,1,0],
+    'col_to_row': [1,2,3,4,5,6,7,8,9,10,11,12]
+}
 
 ITEMS_INITIALIZATION_1 = {
     'chopping_board': [(3,0), (5,0)],
@@ -64,9 +81,12 @@ ITEMS_INITIALIZATION_1 = {
     'stove': [(8,8)],
 }
 
-INGREDIENTS_1 = {
+INGREDIENTS_INITIALIZATION_1 = {
+    # properties of ingredients
     'onion': {
-        # properties of onion
+        'location': [(0,3)],
+        'state': 'unsliced',
+        'category': 'ingredient',
         'is_raw': True
     }
 }
@@ -220,9 +240,10 @@ TO-DO: More world states
 
 
 # Current World State
+VISUALIZATION_COORDS_MAPPING = VISUALIZATION_COORDS_MAPPING_1
 WORLD_STATE = WORLD_STATE_1
 BARRIERS = BARRIERS_1
-INGREDIENTS = INGREDIENTS_1
 ITEMS_INITIALIZATION = ITEMS_INITIALIZATION_1
+INGREDIENTS_INITIALIZATION = INGREDIENTS_INITIALIZATION_1
 RECIPES_COOKING_INTERMEDIATE_STATES = RECIPES_COOKING_INTERMEDIATE_STATES_1
 RECIPES_PLATING_INTERMEDIATE_STATES = RECIPES_PLATING_INTERMEDIATE_STATES_1
