@@ -162,6 +162,9 @@ class OvercookedAgent(BaseAgent):
     def find_best_goal(self):
         """
         Finds all path and costs of give n possible action space.
+
+        For picking, keep track of `old` vs `new` because when performing action later on,
+        only `new` requires creation of new Ingredient object.
         """
         agent_goal_costs = defaultdict(dict)
 
@@ -169,27 +172,109 @@ class OvercookedAgent(BaseAgent):
             wanted_ingredient = [
                 ingredient.location for ingredient in self.world_state['ingredients'] if \
                     (ingredient.name == task_list.ingredient and ingredient.state == task_list.head.state)]
-            print(wanted_ingredient)
-            # Append lowest cost goal into agent_goal_costs
             if task_list.head.task == 'pick':
-                print('entered pick')
+                """
+                For `pick` action, append to path actions consist of 
+                'p': picking action
+                'is_new': True/False - whether to take from box and create new Ingredient object or not
+                'is_last': True/False - whether this action is last of everything - to update TaskList
+                task_coord: coordinate to perform task on eg. pick ingredient at task_coord
+                end_coord: coordinate where agent must be at before performing task at task_coord
+                """
+                print('@base_agent - Entered pick logic')
                 # If no such ingredient exist
                 if not wanted_ingredient:
                     # Just take fresh ones
-                    print(self.world_state['ingredient_'+task_list.ingredient])
                     path_cost = self.calc_travel_cost(['ingredient_'+task_list.ingredient], [self.world_state['ingredient_'+task_list.ingredient]])
+                    task_coord = path_cost['ingredient_'+task_list.ingredient][2]
+                    end_coord = path_cost['ingredient_'+task_list.ingredient][0][-1]
+                    path_actions = self.map_path_actions(path_cost['ingredient_'+task_list.ingredient][0])
+                    path_actions.append(['PICK', True, True, task_coord, end_coord])
                 else:
                     path_cost = self.calc_travel_cost(['ingredient_'+task_list.ingredient], [wanted_ingredient])
+                    task_coord = path_cost['ingredient_'+task_list.ingredient][2]
+                    end_coord = path_cost['ingredient_'+task_list.ingredient][0][-1]
+                    path_actions = self.map_path_actions(path_cost['ingredient_'+task_list.ingredient][0])
+                    path_actions.append(['PICK', False, True, task_coord, end_coord])
             else:
-                print('entered other act')
-                print(task_list.head)
                 # Guaranteed to have ingredient to slice/cook
-                path_cost = self.calc_travel_cost(['ingredient_'+task_list.ingredient], [wanted_ingredient])
-            print('done with this task calc')
-            print(path_cost)
+                print('@base_agent - Check for guaranteed presence of ingredient')
+                print(wanted_ingredient)
+
+                # Get all paths + task, paths + task into [path_actions] array and returning
+                if task_list.head.task == 'slice':
+                    print('@base_agent - Entered slice logic')
+                    # Go to ingredient, Do picking
+                    path_cost = self.calc_travel_cost(['ingredient_'+task_list.ingredient], [wanted_ingredient])
+                    task_coord = path_cost['ingredient_'+task_list.ingredient][2]
+                    end_coord = path_cost['ingredient_'+task_list.ingredient][0][-1]
+                    path_actions = self.map_path_actions(path_cost['ingredient_'+task_list.ingredient][0])
+                    path_actions.append(['PICK', False, False, task_coord, end_coord])
+
+                    # Go to chopping board, Do slicing
+                    chopping_board_cells = [chopping_board.location for chopping_board in self.world_state['chopping_board']]
+                    chopping_path_cost = self.calc_travel_cost(['chopping_board'], [chopping_board_cells])
+                    task_coord = chopping_path_cost['chopping_board'][2]
+                    end_coord = chopping_path_cost['chopping_board'][0][-1]
+                    chopping_path_actions = self.map_path_actions(chopping_path_cost['chopping_board'][0])
+                    path_actions += chopping_path_actions
+                    path_actions.append(['CHOP', True, task_coord, end_coord])
+                elif task_list.head.task == 'cook':
+                    print('@base_agent - Entered cook logic')
+                    # Go to ingredient, Do picking
+                    path_cost = self.calc_travel_cost(['ingredient_'+task_list.ingredient], [wanted_ingredient])
+                    task_coord = path_cost['ingredient_'+task_list.ingredient][2]
+                    end_coord = path_cost['ingredient_'+task_list.ingredient][0][-1]
+                    path_actions = self.map_path_actions(path_cost['ingredient_'+task_list.ingredient][0])
+                    path_actions.append(['PICK', False, False, task_coord, end_coord])
+
+                    # Go to pot, Do cooking
+                    pot_cells = [pot.location for pot in self.world_state['pot']]
+                    cooking_path_cost = self.calc_travel_cost(['pot'], [pot_cells])
+                    task_coord = cooking_path_cost['pot'][2]
+                    end_coord = cooking_path_cost['pot'][0][-1]
+                    cooking_path_actions = self.map_path_actions(cooking_path_cost['pot'][0])
+                    path_actions += cooking_path_actions
+                    path_actions.append(['COOK', True, task_coord, end_coord])
+                elif task_list.head.task == 'serve':
+                    print('@base_agent - Entered serve logic')
+                    # Go to plate, Do picking
+                    plate_board_cells = [plate.location for plate in self.world_state['plate']]
+                    plate_path_cost = self.calc_travel_cost(['plate'], [plate_board_cells])
+                    task_coord = cooking_path_cost['plate'][2]
+                    end_coord = cooking_path_cost['plate'][0][-1]
+                    path_actions = self.map_path_actions(plate_path_cost['plate'][0])
+                    path_actions.append(['PICK', False, False, task_coord, end_coord])
+
+                    # Go to pot, Do pouring
+                    # Only works for case with 1 pot
+                    pot_cells = [pot.location for pot in self.world_state['pot']]
+                    collection_path_cost = self.calc_travel_cost(['pot'], [pot_cells])
+                    task_coord = collection_path_cost['pot'][2]
+                    end_coord = collection_path_cost['pot'][0][-1]
+                    collection_path_actions = self.map_path_actions(collection_path_cost['pot'][0])
+                    path_actions += collection_path_actions
+                    path_actions.append(['COLLECT', True, task_coord, end_coord])
+
+                    # Go to counter, Do serving
+                    service_counter_cells = [service_counter.location for service_counter in self.world_state['service_counter']]
+                    service_path_cost = self.calc_travel_cost(['service_counter'], [service_counter_cells])
+                    task_coord = service_path_cost['service_counter'][2]
+                    end_coord = service_path_cost['service_counter'][0][-1]
+                    service_path_actions = self.map_path_actions(service_path_cost['service_counter'][0])
+                    path_actions += service_path_actions
+                    path_actions.append(['SERVE', True, task_coord, end_coord])
+
+            total_rewards = 0
+            for action in path_actions:
+                try:
+                    total_rewards += self.rewards[self.actions[action]]
+                except TypeError:
+                    action_abbrev = action[0]
+                    total_rewards += self.rewards[action_abbrev]
             agent_goal_costs[id(task_list)] = {
-                'path': path_cost['ingredient_'+task_list.ingredient][0],
-                'cost': path_cost['ingredient_'+task_list.ingredient][1]
+                'steps': path_actions,
+                'rewards': total_rewards
             }
 
         return agent_goal_costs
@@ -249,7 +334,43 @@ class OvercookedAgent(BaseAgent):
 
         return all_valid_cells
 
-    def pick(self, path: List[Tuple[int,int]], item: Item) -> None:
+    def update_agent_pos(self, new_coords: List[int]) -> None:
+        self.location = new_coords
+
+    def map_path_actions(self, path: List[Tuple[int,int]]):
+        path_actions_mapping = []
+        for step in range(len(path)-1):
+            cur_pos = path[step]
+            next_pos = path[step+1]
+            difference = tuple(np.subtract(next_pos, cur_pos))
+            if difference == (0, -1):
+                path_actions_mapping.append(0)
+            elif difference == (0, 1):
+                path_actions_mapping.append(1)
+            elif difference == (-1, 0):
+                path_actions_mapping.append(2)
+            elif difference == (1, 0):
+                path_actions_mapping.append(3)
+            elif difference == (-1, -1):
+                path_actions_mapping.append(4)
+            elif difference == (-1, 1):
+                path_actions_mapping.append(5)
+            elif difference == (1, -1):
+                path_actions_mapping.append(6)
+            elif difference == (1, 1):
+                path_actions_mapping.append(7)
+        return path_actions_mapping
+
+    def action_map(self, action_number: int) -> str:
+        return ACTIONS[action_number]
+
+    def stay(self) -> Optional[List]:
+        """
+        Stay at current position and do nothing.
+        """
+        return [[], 0]
+
+    def pick(self, task_id: int, is_new: bool, is_last: bool, task_coord: Tuple[int, int]) -> None:
         """
         This action assumes agent has already done A* search and decided which goal state to achieve.
         Prerequisite
