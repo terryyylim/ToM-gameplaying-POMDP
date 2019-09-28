@@ -74,11 +74,11 @@ VISUALIZATION_COORDS_MAPPING_1 = {
 }
 
 ITEMS_INITIALIZATION_1 = {
-    'chopping_board': [(3,0), (5,0)],
-    'extinguisher': [(12,7)],
-    'plate': [(9,0), (10,0)],
-    'pot': [(8,8)],
-    'stove': [(8,8)],
+    'chopping_board': [(8,3), (8,5)],
+    'extinguisher': [(1,12)],
+    'plate': [(8,9), (8,10)],
+    'pot': [(0,8)],
+    'stove': [(0,8)],
 }
 
 INGREDIENTS_INITIALIZATION_1 = {
@@ -174,7 +174,17 @@ WORLD_STATE_1 = {
         (10,1), (10,2), (10,3), (10,4), (10,5), (10,6), (10,7),
         (11,1), (11,2), (11,3), (11,4), (11,5), (11,6), (11,7)
     ],
+    'new_valid_cells': [
+        (1,1), (1,2), (1,3), (1,4), (1,5), (1,6), (1,7), (1,8), (1,9), (1,10), (1,11),
+        (2,1), (2,2), (2,3), (2,4), (2,5), (2,6), (2,7), (2,8), (2,9), (2,10), (2,11),
+        (3,1), (3,2), (3,3), (3,4), (3,5), (3,6), (3,7), (3,8), (3,9), (3,10), (3,11),
+        (4,10), (4,11),
+        (5,1), (5,2), (5,3), (5,4), (5,5), (5,6), (5,7), (5,8), (5,9), (5,10), (5,11),
+        (6,1), (6,2), (6,3), (6,4), (6,5), (6,6), (6,7), (6,8), (6,9), (6,10), (6,11),
+        (7,1), (7,2), (7,3), (7,4), (7,5), (7,6), (7,7), (7,8), (7,9), (7,10), (7,11),
+    ],
     'ingredient_onion': [(0,3)],
+    'service_counter': [(6,0), (7,0)],
     'agent': [(8,6)],
     'observer': [(6,6)],
     'board_1': [(3,0)],
@@ -234,6 +244,22 @@ Rewards
 -------
 TO-DO: Rewards that have floating values.
 """
+REWARDS_1 = {
+    'MOVE_LEFT': -1,
+    'MOVE_RIGHT': -1,
+    'MOVE_UP': -1,
+    'MOVE_DOWN': -1,
+    'MOVE_DIAGONAL_LEFT_UP': -1,
+    'MOVE_DIAGONAL_RIGHT_UP': -1,
+    'MOVE_DIAGONAL_LEFT_DOWN': -1,
+    'MOVE_DIAGONAL_RIGHT_DOWN': -1,
+    'STAY': -2,
+    'PICK': 15,
+    'CHOP': 10,
+    'COOK': 5,
+    'COLLECT': 10,
+    'SERVE': 100
+}
 
 """
 TO-DO: More world states
@@ -246,5 +272,8 @@ WORLD_STATE = WORLD_STATE_1
 BARRIERS = BARRIERS_1
 ITEMS_INITIALIZATION = ITEMS_INITIALIZATION_1
 INGREDIENTS_INITIALIZATION = INGREDIENTS_INITIALIZATION_1
+RECIPES_INGREDIENTS_COUNT = RECIPES_INGREDIENTS_COUNT_1
+RECIPES_SERVE_TASK = RECIPES_SERVE_TASK_1
 RECIPES_COOKING_INTERMEDIATE_STATES = RECIPES_COOKING_INTERMEDIATE_STATES_1
 RECIPES_PLATING_INTERMEDIATE_STATES = RECIPES_PLATING_INTERMEDIATE_STATES_1
+REWARDS = REWARDS_1
