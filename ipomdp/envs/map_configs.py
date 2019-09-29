@@ -1,17 +1,21 @@
 AGENTS_INITIALIZATION_1 = [(2,4), (2,8)] # (8,6), (6,6)
+RECIPES_1 = ['onion_soup']
+RECIPES_INGREDIENTS_TASK_1 = {
+    'onion_soup': {
+        'onion': [('pick', 'fresh'), ('slice', 'unchopped'), ('cook', 'chopped')]
+    }
+}
 
-ACTIONS_1 = {
-    'MOVE_LEFT': [-1, 0],
+MAP_ACTIONS_1 = {
+    'MOVE_LEFT': [0, -1],
     'MOVE_RIGHT': [0, 1],
-    'MOVE_UP': [0, -1],
-    'MOVE_DOWN': [0, 1],
+    'MOVE_UP': [-1, 0],
+    'MOVE_DOWN': [1, 0],
     'MOVE_DIAGONAL_LEFT_UP': [-1, -1],
-    'MOVE_DIAGONAL_RIGHT_UP': [1, -1],
-    'MOVE_DIAGONAL_LEFT_DOWN': [-1, 1],
+    'MOVE_DIAGONAL_RIGHT_UP': [-1, 1],
+    'MOVE_DIAGONAL_LEFT_DOWN': [1, -1],
     'MOVE_DIAGONAL_RIGHT_DOWN': [1, 1],
-    'STAY': [0, 0],
-    'PICK': [0, 0],
-    'DROP': [0, 0]
+    'STAY': [0,0]
 }
 
 DEFAULT_COLOURS_1 = {
@@ -58,5 +62,7 @@ OVERCOOKED_MAP_1 = [
 
 OVERCOOKED_MAP = OVERCOOKED_MAP_1
 AGENTS_INITIALIZATION = AGENTS_INITIALIZATION_1
-ACTIONS = ACTIONS_1
+MAP_ACTIONS = MAP_ACTIONS_1
+RECIPES_INGREDIENTS_TASK = RECIPES_INGREDIENTS_TASK_1
+RECIPES = RECIPES_1
 DEFAULT_COLOURS = DEFAULT_COLOURS_1
