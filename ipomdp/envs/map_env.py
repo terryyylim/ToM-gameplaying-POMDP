@@ -99,22 +99,216 @@ class MapEnv(MultiAgentEnv):
         """Takes in a dict of actions and converts them to a map update
         Parameters
         ----------
-        actions: dict {agent-id: int}
-            dict of actions, keyed by agent-id that are passed to the agent. The agent
-            interprets the int and converts it to a command
+        actions: dict {agent: action}
+            The agent interprets the action ([int - move action]/[list - explains task action])
+            and converts it to a command.
         Returns
         -------
         observations: dict of arrays representing agent observations
         rewards: dict of rewards for each agent
         dones: dict indicating whether each agent is done
         info: dict to pass extra info to gym
-        """
 
-        self.beam_pos = []
+        QUESTIONS TO CONSIDER:
+        1. What to return for observations? since we already have world_state
+        """
+        print('@map_env - step()')
         agent_actions = {}
-        for agent_id, action in actions.items():
-            agent_action = self.agents[agent_id].action_map(action)
-            agent_actions[agent_id] = agent_action
+        for agent, action in actions.items():
+            agent_action = agent.action_map(action)
+            agent_actions[agent] = agent_action
+        
+        orig_pos = {agent:agent.location for agent in self.world_state['agents']}
+
+        self.update_moves(agent_actions)
+
+        # Update invalid cells
+        curr_pos = {agent:agent.location for agent in self.world_state['agents']}
+        for agent in curr_pos:
+            if curr_pos[agent] != orig_pos[agent]:
+                self.world_state['valid_cells'].append(orig_pos[agent])
+                self.world_state['valid_cells'].remove(curr_pos[agent])
+
+                self.world_map[orig_pos[agent][0], orig_pos[agent][1]] = ' '
+                self.world_map[curr_pos[agent][0], curr_pos[agent][1]] = agent.agent_id
+        
+        print('after 1 cycle')
+        print(self.world_state['valid_cells'])
+        self.render('./image2')
+
+    # Undone (taking only 1 grid cell movement now)
+    def update_moves(self, agent_actions):
+        """
+        #Converts agent action tuples into a new map and new agent positions.
+        #Also resolves conflicts over multiple agents wanting a cell.
+        """
+        print('@map_env - update_moves()')
+
+        reserved_slots = []
+        agent_moves = {}
+        for agent, action in agent_actions.items():
+            selected_action = MAP_ACTIONS[action]
+            
+            new_pos = tuple([x + y for x, y in zip(list(agent.location), selected_action)])
+            new_pos = agent.return_valid_pos(new_pos)
+            agent_moves[agent] = new_pos
+            reserved_slots.append((new_pos, agent))
+
+        agent_by_pos = {tuple(agent.location): agent for agent in self.world_state['agents']}
+
+        # list of moves and their corresponding agents
+        move_slots = [slot[0] for slot in reserved_slots]
+        agent_to_slot = [slot[1] for slot in reserved_slots]
+
+        print('@map_env - Starting moves (if any)')
+        print(move_slots)
+        print(agent_to_slot)
+        print(agent_by_pos)
+        print(agent_moves)
+
+        # cut short computation if there are no moves (to be used if we consider rotation)
+        if len(agent_to_slot) > 0:
+            # shuffle so that a random agent has slot priority
+            shuffle_list = list(zip(agent_to_slot, move_slots))
+            np.random.shuffle(shuffle_list)
+            agent_to_slot, move_slots = zip(*shuffle_list)
+            # unique_move is the position the agents want to move to
+            # return_count is the number of times the unique_move is wanted
+            unique_move, indices, return_count = np.unique(move_slots, return_index=True,
+                                                           return_counts=True, axis=0)
+            search_list = np.array(move_slots)
+            print('@map_env - Starting fix (if any)')
+            print(unique_move)
+            print(indices)
+            print(return_count)
+            print(search_list)
+
+            # first go through and remove moves that can't possible happen. Three types
+            # 1. Trying to move into an agent that has been issued a stay command
+            # 2. Trying to move into the spot of an agent that doesn't have a move
+            # 3. Two agents trying to walk through one another
+
+            # Resolve all conflicts over a space
+            if np.any(return_count > 1):
+                for move, index, count in zip(unique_move, indices, return_count):
+                    if count > 1:
+                        # check that the cell you are fighting over doesn't currently
+                        # contain an agent that isn't going to move for one of the agents
+                        # If it does, all the agents commands should become STAY
+                        # since no moving will be possible
+                        conflict_indices = np.where((search_list == move).all(axis=1))[0]
+                        all_agents = [agent_to_slot[i] for i in conflict_indices]
+                        # all other agents now stay in place so update their moves
+                        # to reflect this
+                        conflict_cell_free = True
+                        for agent in all_agents:
+                            moves_copy = agent_moves.copy()
+                            # TODO(ev) code duplication, simplify
+                            if move.tolist() in self.agent_pos:
+                                # find the agent that is currently at that spot and make sure
+                                # that the move is possible. If it won't be, remove it.
+                                conflicting_agent = agent_by_pos[tuple(move)]
+                                curr_pos = agent.location.tolist()
+                                curr_conflict_pos = conflicting_agent.location.tolist()
+                                conflict_move = agent_moves.get(
+                                    conflicting_agent,
+                                    curr_conflict_pos)
+
+                                # Condition (1):
+                                # a STAY command has been issued
+                                if agent == conflicting_agent:
+                                    conflict_cell_free = False
+                                # Condition (2)
+                                # its command is to stay
+                                # or you are trying to move into an agent that hasn't
+                                # received a command
+                                elif conflicting_agent not in moves_copy.keys() or \
+                                        curr_conflict_pos == conflict_move:
+                                    conflict_cell_free = False
+
+                                # Condition (3)
+                                # It is trying to move into you and you are moving into it
+                                elif conflicting_agent in moves_copy.keys():
+                                    if conflicting_agent.location == curr_pos and \
+                                            move.tolist() == conflicting_agent.location.tolist():
+                                        conflict_cell_free = False
+
+                        # if the conflict cell is open, let one of the conflicting agents
+                        # move into it
+                        if conflict_cell_free:
+                            agent_idx = [idx for idx, agent_obj in enumerate(self.world_state['agents']) if id(agent_obj) == id(agent_to_slot[index])][0]
+                            self.world_state['agents'][agent_idx].update_agent_pos(move)
+                            agent_by_pos = {tuple(agent.location):
+                                            agent for agent in self.world_state['agents']}
+                        # ------------------------------------
+                        # remove all the other moves that would have conflicted
+                        remove_indices = np.where((search_list == move).all(axis=1))[0]
+                        all_agents = [agent_to_slot[i] for i in remove_indices]
+                        # all other agents now stay in place so update their moves
+                        # to stay in place
+                        for agent in all_agents:
+                            agent_moves[agent] = agent.location.tolist()
+            
+            print('@map_env - Ended fix (if any)')
+            print(move_slots)
+            print(agent_to_slot)
+            print(agent_by_pos)
+            print(agent_moves)
+
+            print('@map_env - Starting un-conflicted moves (if any)')
+            # make the remaining un-conflicted moves
+            while len(agent_moves.items()) > 0:
+                agent_by_pos = {tuple(agent.location): agent for agent in self.world_state['agents']}
+                num_moves = len(agent_moves.items())
+                moves_copy = agent_moves.copy()
+                del_keys = []
+                for agent, move in moves_copy.items():
+                    if agent in del_keys:
+                        continue
+                    if move in [agent.location for agent in self.world_state['agents']]:
+                        # find the agent that is currently at that spot and make sure
+                        # that the move is possible. If it won't be, remove it.
+                        conflicting_agent = agent_by_pos[tuple(move)]
+                        curr_pos = agent.location.tolist()
+                        curr_conflict_pos = conflicting_agent.location.tolist()
+                        conflict_move = agent_moves.get(conflicting_agent, curr_conflict_pos)
+                        # Condition (1):
+                        # a STAY command has been issued
+                        if agent == conflicting_agent:
+                            del agent_moves[agent]
+                            del_keys.append(agent)
+                        # Condition (2)
+                        # its command is to stay
+                        # or you are trying to move into an agent that hasn't received a command
+                        elif conflicting_agent not in moves_copy.keys() or \
+                                curr_conflict_pos == conflict_move:
+                            del agent_moves[agent]
+                            del_keys.append(agent)
+                        # Condition (3)
+                        # It is trying to move into you and you are moving into it
+                        elif conflicting_agent in moves_copy.keys():
+                            if agent_moves[conflicting_agent] == curr_pos and \
+                                    move == conflicting_agent.location.tolist():
+                                del agent_moves[conflicting_agent]
+                                del agent_moves[agent]
+                                del_keys.append(agent)
+                                del_keys.append(conflicting_agent)
+                    # this move is unconflicted so go ahead and move
+                    else:
+                        agent_idx = [idx for idx, agent_obj in enumerate(self.world_state['agents']) if id(agent_obj) == id(agent)][0]
+                        self.world_state['agents'][agent_idx].update_agent_pos(move)
+                        del agent_moves[agent]
+                        del_keys.append(agent)
+
+                # no agent is able to move freely, so just move them all
+                # no updates to hidden cells are needed since all the
+                # same cells will be covered
+                if len(agent_moves) == num_moves:
+                    for agent, move in agent_moves.items():
+                        self.world_state['agents'][agent].update_agent_pos(move)
+                    break
+
+        ## TO-DO: Add action handlers    
 
     def map_to_colors(self, map=None, color_map=None):
         """Converts a map to an array of RGB values.
@@ -147,6 +341,7 @@ class MapEnv(MultiAgentEnv):
             path: If a string is passed, will save the image
                 to disk at this location.
         """
+        print('@map_env - render()')
         rgb_arr = self.map_to_colors(self.world_map)
         plt.imshow(rgb_arr, interpolation='nearest')
         if filename is None:
