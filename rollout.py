@@ -38,6 +38,36 @@ class Controller(object):
         else:
             print('Error! Not a valid environment type')
 
+    # undone: lacking rewards, observation updates
+    def rollout(self, best_goals, horizon=50, save_path=None):
+        print('rollout@rollout')
+        rewards = []
+        observations = []
+        shape = self.env.world_map.shape
+        full_obs = [np.zeros(
+            (shape[0], shape[1], 3), dtype=np.uint8) for i in range(horizon)]
+        
+        action_mapping = {}
+        for agent in best_goals:
+            action_mapping[agent] = (
+                best_goals[agent][0],
+                best_goals[agent][1]['steps'][0]
+            )
+
+        print(action_mapping)
+        print('@rollout - Starting step function')
+        self.env.step(action_mapping)
+        print(f'@rollout - Currently at horizon - {horizon}')
+        self.env.render('./ipomdp/images/timestep'+str(horizon))
+        
+    def check_all_except_one_done(self, agent, agent_cur_step, agent_max_steps):
+        temp_agent_cur_step = {key for key in agent_cur_step if key != agent}
+        temp_agent_max_steps = {key for key in agent_max_steps if key != agent}
+
+        if temp_agent_cur_step == temp_agent_max_steps:
+            return True
+        return False
+
 
 @click.command()
 @click.option("--env", default='overcooked', help="input the env you want to initialize here")
