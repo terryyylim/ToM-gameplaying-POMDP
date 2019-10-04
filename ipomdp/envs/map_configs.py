@@ -1,4 +1,4 @@
-AGENTS_INITIALIZATION_1 = [(2,4), (2,8)] # (8,6), (6,6)
+AGENTS_INITIALIZATION_1 = [(2,4), (2,8)]
 RECIPES_1 = ['onion_soup']
 RECIPES_INGREDIENTS_TASK_1 = {
     'onion_soup': {
@@ -25,9 +25,11 @@ DEFAULT_COLOURS_1 = {
     'C': [210,180,140],
     'D': [218,165,32],
     'E': [216, 30, 54],
+    'O': [244,164,96],
     'P': [255,255,255],
     'S': [211,211,211],
     'T': [139,69,19],
+    'W': [119,136,153],
 
     # Agent colours
     '1': [34,139,34],
@@ -44,12 +46,14 @@ B - Basin
 C - Chopping Board
 D - Dirty Plate Return Point
 E - Extinguisher
+O - Onion
 P - Plate
 S - Serving Point
 T - Trash Bin
+W - Cooking Ware
 """
 OVERCOOKED_MAP_1 = [
-    '@@@@@@@@@@@@@',
+    '@@@O@@@@W@@@@',
     '@           E',
     '@   A   A   @',
     '@           B',
