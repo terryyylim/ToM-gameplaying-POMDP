@@ -178,130 +178,195 @@ class OvercookedAgent(BaseAgent):
 
         For picking, keep track of `old` vs `new` because when performing action later on,
         only `new` requires creation of new Ingredient object.
+
+        All actions return
+        ------------------
+        task_coord: coordinate to perform task on eg. pick ingredient at task_coord
+        end_coord: coordinate where agent must be at before performing task at task_coord
         """
         agent_goal_costs = defaultdict(dict)
 
         for task_list in self.world_state['goal_space']:
 
             path_actions = []
-            # If task is to serve, don't need to check for ingredients
-            if task_list.head.task == 'serve':
-                # Future Considerations: Plate doesn't consider dirty/clean state currently
-                print('@base_agent - Entered serve logic')
+            # If task is to plate/scoop/serve, to check for dish, not ingredients
+            if task_list.head.task == 'plate':
+                print('@base_agent - Entered plate logic')
                 if not isinstance(self.holding, Plate):
                     # Go to plate, Do picking
-                    plate_board_cells = [plate.location for plate in self.world_state['plate']]
-                    plate_path_cost = self.calc_travel_cost(['plate'], [plate_board_cells])
-                    task_coord = cooking_path_cost['plate'][2]
-                    end_coord = cooking_path_cost['plate'][0][-1]
-                    # path_actions = self.map_path_actions(plate_path_cost['plate'][0])
-                    path_actions.append(self.map_path_actions(plate_path_cost['plate'][0]))
-                    path_actions.append(['PICK', False, False, task_coord, end_coord])
+                    # In the case with multiple plates, a random one will be chosen
+                    try:
+                        plate_board_cells = [plate.location for plate in self.world_state['plate']]
+                        plate_path_cost = self.calc_travel_cost(['plate'], [plate_board_cells])
+                        task_coord = plate_path_cost['plate'][2]
+                        end_coord = plate_path_cost['plate'][0][-1]
+                        path_actions += self.map_path_actions(plate_path_cost['plate'][0])
 
-                # Go to pot, Do pouring
-                # Only works for case with 1 pot
-                pot_cells = [pot.location for pot in self.world_state['pot']]
-                collection_path_cost = self.calc_travel_cost(['pot'], [pot_cells])
-                task_coord = collection_path_cost['pot'][2]
-                end_coord = collection_path_cost['pot'][0][-1]
-                collection_path_actions = self.map_path_actions(collection_path_cost['pot'][0])
-                path_actions += collection_path_actions
-                path_actions.append(['COLLECT', True, task_coord, end_coord])
+                        path_actions.append([
+                            'PICK',
+                            {
+                                'is_new': False,
+                                'is_last': True,
+                                'pick_type': 'plate',
+                                'task_coord': task_coord
+                            },
+                            end_coord
+                        ])
+                    except IndexError:
+                        print('@base_agent - plate IndexError')
+                        # condition where agent is infront of plate
+                        # no need to move anymore
+                        end_coord = self.location
+                        task_coord = None
 
-                # Go to counter, Do serving
-                service_counter_cells = [service_counter.location for service_counter in self.world_state['service_counter']]
-                service_path_cost = self.calc_travel_cost(['service_counter'], [service_counter_cells])
-                task_coord = service_path_cost['service_counter'][2]
-                end_coord = service_path_cost['service_counter'][0][-1]
-                service_path_actions = self.map_path_actions(service_path_cost['service_counter'][0])
-                path_actions += service_path_actions
-                path_actions.append(['SERVE', True, task_coord, end_coord])
+                        plate_board_cells = [plate.location for plate in self.world_state['plate']]
+                        for plate_cell in plate_board_cells:
+                            if (self.location[0]+1, self.location[1]) == plate_cell or \
+                                    (self.location[0]-1, self.location[1]) == plate_cell or \
+                                        (self.location[0], self.location[1]+1) == plate_cell or \
+                                            (self.location[0], self.location[1]-1) == plate_cell:
+                                                task_coord = plate_cell
 
+                        path_actions.append([
+                            'PICK',
+                            {
+                                'is_new': False,
+                                'is_last': True,
+                                'pick_type': 'plate',
+                                'task_coord': task_coord
+                            },
+                            end_coord
+                        ])
+            elif task_list.head.task == 'scoop' or task_list.head.task == 'serve':
+                print('@base_agent - Entered scoop/serve logic')
+                if not isinstance(self.holding, Plate):
+                    try:
+                        # If plate exists in the map
+                        plate_board_cells = [plate.location for plate in self.world_state['plate']]
+                        plate_path_cost = self.calc_travel_cost(['plate'], [plate_board_cells])
+                        task_coord = plate_path_cost['plate'][2]
+                        end_coord = plate_path_cost['plate'][0][-1]
+                        path_actions += self.map_path_actions(plate_path_cost['plate'][0])
+
+                        path_actions.append([
+                            'PICK',
+                            {
+                                'is_new': False,
+                                'is_last': False,
+                                'pick_type': 'plate',
+                                'task_coord': task_coord
+                            },
+                            end_coord
+                        ])
+                        continue
+                    except IndexError:
+                        print('@base_agent - scoop/serve IndexError')
+                        continue
+                else:
+                    if task_list.head.task == 'scoop':
+                        print('@base_agent - Entered scoop logic')
+                        # If pot with dish exists, Do scooping
+                        try:
+                            pot_cells = [pot.location for pot in self.world_state['pot'] if pot.dish == task_list.dish]
+                            collection_path_cost = self.calc_travel_cost(['pot'], [pot_cells])
+                            task_coord = collection_path_cost['pot'][2]
+                            end_coord = collection_path_cost['pot'][0][-1]
+                            collection_path_actions = self.map_path_actions(collection_path_cost['pot'][0])
+                            path_actions += collection_path_actions
+
+                            path_actions.append([
+                                'SCOOP',
+                                {
+                                    'is_last': True,
+                                    'task_coord': task_coord
+                                },
+                                end_coord
+                            ])
+                        # If pot with dish does not exists
+                        except IndexError:
+                            continue
+                    elif task_list.head.task == 'serve':
+                        try:
+                            if self.holding.dish.name == task_list.dish:
+                                print('@base_agent - Entered serve logic')
+                                service_path_cost = self.calc_travel_cost(['service_counter'], [self.world_state['service_counter']])
+                                task_coord = service_path_cost['service_counter'][2]
+                                end_coord = service_path_cost['service_counter'][0][-1]
+                                service_path_actions = self.map_path_actions(service_path_cost['service_counter'][0])
+                                path_actions += service_path_actions
+
+                                path_actions.append([
+                                    'SERVE',
+                                    {
+                                        'is_last': True,
+                                        'task_coord': task_coord
+                                    },
+                                    end_coord
+                                ])
+                        except AttributeError:
+                            continue
+            # If task is not to plate/scoop/serve, to check for ingredients, not dish
             else:
                 wanted_ingredient = [
                     ingredient.location for ingredient in self.world_state['ingredients'] if \
                         (ingredient.name == task_list.ingredient and ingredient.state == task_list.head.state)]
 
                 if task_list.head.task == 'pick':
-                    """
-                    For `pick` action, append to path actions consist of 
-                    'p': picking action
-                    'is_new': True/False - whether to take from box and create new Ingredient object or not
-                    'is_last': True/False - whether this action is last of everything - to update TaskList
-                    task_coord: coordinate to perform task on eg. pick ingredient at task_coord
-                    end_coord: coordinate where agent must be at before performing task at task_coord
-                    """
+                    
                     print('@base_agent - Entered pick logic')
-
                     """
-                    To fix: if already holding ingredient, can still pick?
-                    If pick, what happens to the one in hand?
+                    To fix/implement: Drop
+                    - If already holding ingredient, can still pick?
+                    - If pick, what happens to the one in hand?
                     """
                     # If no such ingredient exist
                     if not wanted_ingredient:
                         # Just take fresh ones
                         path_cost = self.calc_travel_cost(['ingredient_'+task_list.ingredient], [self.world_state['ingredient_'+task_list.ingredient]])
-                        print('print path cost')
-                        print(path_cost)
-                        # task_coord = path_cost['ingredient_'+task_list.ingredient][2]
                         # no need to move anymore
                         task_coord = self.world_state['ingredient_'+task_list.ingredient][0]
                         end_coord = self.location
                         if path_cost:
                             end_coord = path_cost['ingredient_'+task_list.ingredient][0][-1]
                             path_actions += self.map_path_actions(path_cost['ingredient_'+task_list.ingredient][0])
-                            # path_actions = self.map_path_actions(path_cost['ingredient_'+task_list.ingredient][0])
-                        path_actions.append(['PICK', True, True, task_coord, end_coord])
+
+                        path_actions.append([
+                            'PICK',
+                            {
+                                'is_new': True,
+                                'is_last': True,
+                                'pick_type': 'ingredient',
+                                'task_coord': task_coord
+                            },
+                            end_coord
+                        ])
                     else:
                         path_cost = self.calc_travel_cost(['ingredient_'+task_list.ingredient], [wanted_ingredient])
                         task_coord = path_cost['ingredient_'+task_list.ingredient][2]
                         end_coord = path_cost['ingredient_'+task_list.ingredient][0][-1]
-                        # path_actions = self.map_path_actions(path_cost['ingredient_'+task_list.ingredient][0])
                         path_actions += self.map_path_actions(path_cost['ingredient_'+task_list.ingredient][0])
-                        path_actions.append(['PICK', False, True, task_coord, end_coord])
-                else:
-                    # Guaranteed to have ingredient to slice/cook
-                    print(f'@base_agent {id(self)} - Check for guaranteed presence of ingredient\n')
-                    """
-                    Have to check if ingredient object exist because agent1 may be holding ingredient and agent2 needs 
-                    to pick up a new ingredient again
-                    AND
-                    Have to ensure agent with ingredient already dont keep picking ingredient
-                    """
-                    # wanted_ingredient = [
-                    # ingredient.location for ingredient in self.world_state['ingredients'] if \
-                    #     (ingredient.name == task_list.ingredient and ingredient.state == task_list.head.state)]
-                    # print(wanted_ingredient)
 
-                    """
-                    BUGGY: causes task update to mess up (should be solved)
-                    Agent that wants to slice but has ingredient
-                    {5286903376: {'steps': [7, 1, 1, 1, 1, 7, 6, 0, 6, 0, 6, ['CHOP', True, (8, 5), (7, 5)]], 'rewards': 9}
-                    
-                    Agent that wants to slice but have no ingredient
-                    and updates task to 'cook' after picking (b'cos of head.next)
-                    {5286903376: {'steps': [['PICK', True, True, (0, 3), (1, 3)]], 'rewards': 10}
-                    """
+                        path_actions.append([
+                            'PICK',
+                            {
+                                'is_new': False,
+                                'is_last': True,
+                                'pick_type': 'ingredient',
+                                'task_coord': task_coord
+                            },
+                            end_coord
+                        ])
+                else:
+                    # Does not guaranteed to have ingredient to slice/cook
+                    print(f'@base_agent {id(self)} - Check for guaranteed presence of ingredient\n')
+
+                    # Edge case: No available ingredient, this task is invalid
                     if not wanted_ingredient and not isinstance(self.holding, Ingredient):
-                        # Just take fresh ones
-                        path_cost = self.calc_travel_cost(['ingredient_'+task_list.ingredient], [self.world_state['ingredient_'+task_list.ingredient]])
-                        print('print path cost')
-                        print(path_cost)
-                        # task_coord = path_cost['ingredient_'+task_list.ingredient][2]
-                        # no need to move anymore
-                        task_coord = self.world_state['ingredient_'+task_list.ingredient][0]
-                        end_coord = self.location
-                        if path_cost:
-                            end_coord = path_cost['ingredient_'+task_list.ingredient][0][-1]
-                            path_actions += self.map_path_actions(path_cost['ingredient_'+task_list.ingredient][0])
-                            # path_actions = self.map_path_actions(path_cost['ingredient_'+task_list.ingredient][0])
-                        path_actions.append(['PICK', True, True, task_coord, end_coord])
-                    
+                        continue
                     else:
                         # Get all paths + task, paths + task into [path_actions] array and returning
                         if task_list.head.task == 'slice':
                             print('@base_agent - Entered slice logic')
-                            print(self.holding)
 
                             # If not holding ingredient: Go to ingredient, Do picking
                             if not isinstance(self.holding, Ingredient):
@@ -311,18 +376,25 @@ class OvercookedAgent(BaseAgent):
                                 end_coord = self.location
                                 if path_cost:
                                     end_coord = path_cost['ingredient_'+task_list.ingredient][0][-1]
-                                    # path_actions = self.map_path_actions(path_cost['ingredient_'+task_list.ingredient][0])
                                     path_actions += self.map_path_actions(path_cost['ingredient_'+task_list.ingredient][0])
-                                path_actions.append(['PICK', False, False, task_coord, end_coord])
+
+                                path_actions.append([
+                                    'PICK',
+                                    {
+                                        'is_new': False,
+                                        'is_last': False,
+                                        'pick_type': 'ingredient',
+                                        'task_coord': task_coord
+                                    },
+                                    end_coord
+                                ])
 
                             # If holding ingredient: Go to chopping board, Do slicing
                             else:
                                 chopping_board_cells = [chopping_board.location for chopping_board in self.world_state['chopping_board'] if chopping_board.state == 'empty']
-                                # chopping_board_cells = [chopping_board.location for chopping_board in self.world_state['chopping_board']]
                                 chopping_path_cost = self.calc_travel_cost(['chopping_board'], [chopping_board_cells])
                                 # no need to move anymore ('might' have bug)
                                 task_coord = [board.location for board in self.world_state['chopping_board'] if board.state == 'empty'][0]
-                                # task_coord = self.world_state['chopping_board'][0]['location']
                                 end_coord = self.location
                                 if chopping_path_cost:
                                     task_coord = chopping_path_cost['chopping_board'][2]
@@ -332,11 +404,6 @@ class OvercookedAgent(BaseAgent):
                                 path_actions.append(['CHOP', True, task_coord, end_coord])
                         elif task_list.head.task == 'cook':
                             print('@base_agent - Entered cook logic')
-                            """
-                            BUGGY COOK CODE
-                            if agentL picks the chopped onions first agentR will face indexError 
-                            since no more chopped onions can be found
-                            """
 
                             # If not holding (chopped) ingredient: Go to ingredient, Do picking
                             if not isinstance(self.holding, Ingredient) or self.holding.state != 'chopped':
@@ -346,34 +413,20 @@ class OvercookedAgent(BaseAgent):
                                     task_coord = path_cost['ingredient_'+task_list.ingredient][2]
                                     end_coord = path_cost['ingredient_'+task_list.ingredient][0][-1]
                                     path_actions += self.map_path_actions(path_cost['ingredient_'+task_list.ingredient][0])
-                                    path_actions.append(['PICK', False, False, task_coord, end_coord])
+
+                                    path_actions.append([
+                                        'PICK',
+                                        {
+                                            'is_new': False,
+                                            'is_last': False,
+                                            'pick_type': 'ingredient',
+                                            'task_coord': task_coord
+                                        },
+                                        end_coord
+                                    ])
+                                # Edge case: No available chopped ingredient, this task is invalid
                                 except IndexError:
-                                    print('Missing chopped item in map')
-                                    if not self.holding:
-                                        path_cost = self.calc_travel_cost(['ingredient_'+task_list.ingredient], [self.world_state['ingredient_'+task_list.ingredient]])
-                                        print('print path cost')
-                                        print(path_cost)
-                                        # no need to move anymore
-                                        task_coord = self.world_state['ingredient_'+task_list.ingredient][0]
-                                        end_coord = self.location
-                                        if path_cost:
-                                            end_coord = path_cost['ingredient_'+task_list.ingredient][0][-1]
-                                            path_actions += self.map_path_actions(path_cost['ingredient_'+task_list.ingredient][0])
-                                        path_actions.append(['PICK', True, True, task_coord, end_coord])
-                                    elif self.holding.state != 'chopped':
-                                        print('OK - No chopped ingredient, but holding ingredient to chop')
-                                        chopping_board_cells = [chopping_board.location for chopping_board in self.world_state['chopping_board']]
-                                        chopping_path_cost = self.calc_travel_cost(['chopping_board'], [chopping_board_cells])
-                                        # no need to move anymore ('might' have bug)
-                                        task_coord = [board.location for board in self.world_state['chopping_board'] if board.state == 'empty'][0]
-                                        end_coord = self.location
-                                        if chopping_path_cost:
-                                            task_coord = chopping_path_cost['chopping_board'][2]
-                                            end_coord = chopping_path_cost['chopping_board'][0][-1]
-                                            chopping_path_actions = self.map_path_actions(chopping_path_cost['chopping_board'][0])
-                                            path_actions += chopping_path_actions
-                                        path_actions.append(['CHOP', True, task_coord, end_coord])
-                                # path_actions = self.map_path_actions(path_cost['ingredient_'+task_list.ingredient][0])
+                                    continue
 
                             # If holding (chopped) ingredient: Go to pot, Do cooking
                             else:
@@ -389,6 +442,7 @@ class OvercookedAgent(BaseAgent):
                                 path_actions.append(['COOK', True, task_coord, end_coord])
 
             total_rewards = 0
+            print('@base_agent - Calculate total rewards')
             for action in path_actions:
                 try:
                     total_rewards += self.rewards[self.actions[action]]
@@ -402,30 +456,16 @@ class OvercookedAgent(BaseAgent):
 
         return agent_goal_costs
 
-    def perform_best_goal(self, goal_to_complete: Dict[str, Any]):
+    def return_valid_pos(self, new_pos):
         """
-        Execute best_goal and wait for visualization run to finish.
-        Params
-        ------
-        {'agent_1': { 'action': <TaskList object>, 'path': [], 'cost': 0 }}
+        Checks that the next pos is legal, if not return current pos
         """
-        print('executing goal')
-        print(goal_to_complete)
-        print(goal_to_complete['task'].head)
-        # if agents_goal_to_complete[agent]['action'] == 'pick':
-                
-        # After performing goal (should this even be here?)
-        # if not task_list.head.next and tasks_completion == 1:
-        #     dish = task_list.dish
-        #     ingredient = task_list.ingredient
-        #     self.world_state['goal_space'].append(TaskList(dish, ['serve'], ingredient))
-        #     self.world_state['goal_space'].remove(task_list)
-        #     tasks_completion -= 1
-        # elif not task_list.head.next:
-        #     self.world_state['goal_space'].remove(task_list)
-        #     tasks_completion -= 1
-        # else:
-        #     task_list.head = task_list.head.next
+        if new_pos in self.world_state['valid_cells']:
+            return new_pos
+
+        # you can't walk through walls nor another agent
+        
+        return self.location
 
     def find_valid_cell(self, item_coords: List[Tuple[int,int]]) -> Tuple[int,int]:
         """
@@ -486,7 +526,7 @@ class OvercookedAgent(BaseAgent):
         """
         return [[], 0]
 
-    def pick(self, task_id: int, is_new: bool, is_last: bool, task_coord: Tuple[int, int]) -> None:
+    def pick(self, task_id: int, pick_info) -> None:
         """
         This action assumes agent has already done A* search and decided which goal state to achieve.
         Prerequisite
@@ -494,73 +534,87 @@ class OvercookedAgent(BaseAgent):
         - Item object passed to argument should be item instance
         - At grid with accessibility to item [GO-TO]
 
-        is_last: Checks if current TaskNode is the last one in TaskList
-        is_new: Checks if ingredient is new from the ingredient box
-        
-        Returns
-        -------
-        Pick up item
-        - Check what item is picked up [to determine if we need to update world state of item]
+        pick_info
+        ---------
+        'is_new': True/False - whether to take from box and create new Ingredient object or not
+        'is_last': True/False - whether this action is last of everything - to update TaskList
+        'task_coord': coordinate to perform task on eg. pick ingredient at task_coord
+        'end_coord': coordinate where agent must be at before performing task at task_coord
 
         TO-CONSIDER: 
         Do we need to check if agent is currently holding something?
         Do we need to set item coord to agent coord when the item is picked up?
         """
-        task = [task for task in self.world_state['goal_space'] if id(task) == task_id][0]
-        if is_new:
-            print('base_agent@pick - is_new - create new ingredient')
-            ingredient_name = task.ingredient
-            state = task.head.state
-            new_ingredient = Ingredient(
-                ingredient_name,
-                state,
-                'ingredient',
-                INGREDIENTS_INITIALIZATION[ingredient_name]
-            )
-            new_ingredient.location = tuple(self.location)
-            new_ingredient.state = 'unchopped'
-            # this is the line that will cause agentR to not pick up new one
-            # self.world_state['ingredients'].append(new_ingredient)
-            self.holding = new_ingredient
-            self.can_update = False
+        is_new = pick_info['is_new']
+        is_last = pick_info['is_last']
+        pick_type = pick_info['pick_type']
+        task_coord = pick_info['task_coord']
 
-        if is_last and task.head.task == 'pick':
-            print('is last')
-            print(task.head)
-            print(id(task))
-            task.head = task.head.next
-            print(task.head)
-        else:
-            print('base_agent@pick - not is_new')
-            print(is_new)
-            print(is_last)
-            print(task_coord)
-            ingredient_location = [ingredient.location for ingredient in self.world_state['ingredients']]
-            print(ingredient_location)
-            if task_coord in ingredient_location:
+        task = [task for task in self.world_state['goal_space'] if id(task) == task_id][0]
+
+        if pick_type == 'ingredient':
+            if is_new:
+                print('base_agent@pick - is_new - create new ingredient')
+                ingredient_name = task.ingredient
+                state = task.head.state
+                new_ingredient = Ingredient(
+                    ingredient_name,
+                    state,
+                    'ingredient',
+                    INGREDIENTS_INITIALIZATION[ingredient_name]
+                )
+                new_ingredient.location = tuple(self.location)
+                new_ingredient.state = 'unchopped'
+                self.holding = new_ingredient
+
+            if is_last and task.head.task == 'pick':
+                print('@base_agent@pick - last picked ingredient')
+                task.head = task.head.next
+            else:
+                print('base_agent@pick - picking not is_new ingredient')
+                ingredient_location = [ingredient.location for ingredient in self.world_state['ingredients']]
+
+                if task_coord in ingredient_location:
+                    # if another agent took it already and is now missing; do nothing
+                    old_ingredient = [
+                        ingredient for ingredient in self.world_state['ingredients'] if ingredient.location == task_coord
+                    ][0]
+
+                    # check if ingredient to be picked is on chopping_board
+                    cb = [chopping_board for chopping_board in self.world_state['chopping_board'] if chopping_board.location == old_ingredient.location]
+                    if len(cb) == 1:
+                        cb[0].state = 'empty'
+
+                    # update ingredient to be held by agent and in agent's current position
+                    old_ingredient.location = tuple(self.location)
+                    self.holding = old_ingredient
+
+                    # Need to remove from world state after agent has picked it
+                    self.world_state['ingredients'] = [ingredient for ingredient in self.world_state['ingredients'] if id(ingredient) != id(old_ingredient)]
+
+                    if is_last:
+                        task.head = task.head.next
+        
+        elif pick_type == 'plate':
+            print('base_agent@pick - plate')
+            plate_location = [plate.location for plate in self.world_state['plate']]
+
+            if task_coord in plate_location:
                 # if another agent took it already and is now missing; do nothing
-                old_ingredient = [
-                    ingredient for ingredient in self.world_state['ingredients'] if ingredient.location == task_coord
+                old_plate = [
+                    plate for plate in self.world_state['plate'] if plate.location == task_coord
                 ][0]
 
-                # check if ingredient to be picked is on chopping_board
-                cb = [chopping_board for chopping_board in self.world_state['chopping_board'] if chopping_board.location == old_ingredient.location]
-                if len(cb) == 1:
-                    cb[0].state = 'empty'
-
-                # update ingredient to be held by agent and in agent's current position
-                old_ingredient.location = tuple(self.location)
-                self.holding = old_ingredient
+                # update plate to be held by agent and in agent's current position
+                old_plate.location = tuple(self.location)
+                self.holding = old_plate
 
                 # Need to remove from world state after agent has picked it
-                self.world_state['ingredients'] = [ingredient for ingredient in self.world_state['ingredients'] if id(ingredient) != id(old_ingredient)]
-                print(old_ingredient)
+                self.world_state['plate'] = [plate for plate in self.world_state['plate'] if id(plate) != id(old_plate)]
 
-                if is_last:
-                    print('is last')
-                    print(task.head)
+                # Edge case: both agents pick a plate at the same time (prevent task from being updated twice)
+                if is_last and task.head.task == 'plate':
                     task.head = task.head.next
-                    print(task.head)
 
 
     def drop(self, path: List[Tuple[int,int]], item: Item, drop_coord: Tuple[int,int]) -> None:
@@ -598,23 +652,20 @@ class OvercookedAgent(BaseAgent):
         holding_ingredient = self.holding
         # only update location after reaching, since ingredient is in hand (?)
         holding_ingredient.location = task_coord
+
         # agent drops ingredient to chopping board
         self.holding = None
         holding_ingredient.state = 'chopped'
         self.world_state['ingredients'].append(holding_ingredient)
         used_chopping_board = [board for board in self.world_state['chopping_board'] if board.location == task_coord][0]
+
+        # update chopping board to be 'taken'
         used_chopping_board.state = 'taken'
-        print('this is at used chopping board')
-        print(used_chopping_board)
 
         # Edge case: task.head.next can point to None if agentR reaches here after agentL already in midst of performing next task
         if is_last and task.head.next:
-            print('entered here to update chopping task')
-            print(id(task))
-            print(task.head)
+            print('base_agent@chop - Remove chopping task')
             task.head = task.head.next
-            print(task.head)
-        self.can_update = True
 
     def cook(self, task_id: int, is_last: bool, task_coord: Tuple[int, int]):
         print('base_agent@cook')
@@ -623,23 +674,16 @@ class OvercookedAgent(BaseAgent):
         ingredient = task.head.ingredient
         ingredient_count = RECIPES_INGREDIENTS_COUNT[dish]
 
+        # Find the chosen pot - useful in maps with more than 1 pot
         pot = [pot for pot in self.world_state['pot'] if pot.location == task_coord][0]
-        print('print pot')
-        print(pot)
-        print(pot.ingredient_count)
-        print(ingredient_count)
-        print(task.head.ingredient)
-        print(task.head.state)
-        print('im holding')
-        print(self.holding)
 
         holding_ingredient = self.holding
         # only update location after reaching, since ingredient is in hand (?)
         holding_ingredient.location = task_coord
+
         # agent drops ingredient to pot
         pot.ingredient_count[ingredient] += 1
-        print(self.world_state['ingredients'])
-        print(id(holding_ingredient))
+
         # remove ingredient from world state since used for cooking
         for idx, ingredient in enumerate(self.world_state['ingredients']):
             if id(ingredient) == id(holding_ingredient):
@@ -648,25 +692,73 @@ class OvercookedAgent(BaseAgent):
         # remove ingredient from agent's hand since no longer holding
         self.holding = None
 
-        print(self.world_state['ingredients'])
         print('base_agent@cook - check for dish ingredients\' prep')
-        print(pot.ingredient_count)
-        print(ingredient_count)
         if pot.ingredient_count == ingredient_count:
-            print('done all tasks')
+            print('base_agent@cook - Add completed dish to pot')
+
             # Create new Dish Class object
-            self.world_state['cooked_dish'].append(dish)
-            # tasklist = TaskList(dish, RECIPES_SERVE_TASK[dish], dish, True)
+            new_dish = Dish(dish, pot.location)
+            self.world_state['cooked_dish'].append(new_dish)
             self.world_state['goal_space'].append(TaskList(dish, RECIPES_SERVE_TASK[dish], dish))
+            pot.dish = dish
+
         if is_last:
+            print('base_agent@cook - Remove cooking task')
             task.head = task.head.next
             if task.head == None:
                 for idx, task_no in enumerate(self.world_state['goal_space']):
                     if id(task_no) == task_id:
                         del self.world_state['goal_space'][idx]
                         break
-        self.can_update = True
+
+    def scoop(self, task_id: int, scoop_info):
+        """
+        Current logic flaw
+        ------------------
+        Only works for dishes with 1 ingredient
+        """
+        print('base_agent@scoop')
+        task = [task for task in self.world_state['goal_space'] if id(task) == task_id][0]
+        is_last = scoop_info['is_last']
+        task_coord = scoop_info['task_coord']
+        pot = [pot for pot in self.world_state['pot'] if pot.location == task_coord][0]
+
+        dish_to_plate = [dish for dish in self.world_state['cooked_dish'] if dish.location == task_coord][0]
+        # let the plate which agent is holding, hold the completed dish
+        self.holding.dish = dish_to_plate
+
+        # remove dish from world state since used for plating
+        for idx, cooked_dish in enumerate(self.world_state['cooked_dish']):
+            if id(cooked_dish) == id(dish_to_plate):
+                del self.world_state['cooked_dish'][idx]
+                break
+        if is_last and task.head.next:
+            print('base_agent@scoop - Update plate -> serve task')
+            task.head = task.head.next
+
+    def serve(self, task_id: int, serve_info):
+        print('base_agent@serve')
+        task = [task for task in self.world_state['goal_space'] if id(task) == task_id][0]
+        is_last = serve_info['is_last']
         
+        # plate returns to return point (in clean form for now)
+        self.holding.dish = None
+        self.holding.location = (5,0)
+        self.world_state['plate'].append(self.holding)
+
+        # remove dish from plate
+        self.holding = None
+
+        # remove order from TaskList
+        if is_last:
+            print('base_agent@serve - Remove serve task')
+            task.head = task.head.next
+            if task.head == None:
+                for idx, task_no in enumerate(self.world_state['goal_space']):
+                    if id(task_no) == task_id:
+                        del self.world_state['goal_space'][idx]
+                        break
+
     def get_action(self) -> None:
         """
         Return best action for agent to perform.
