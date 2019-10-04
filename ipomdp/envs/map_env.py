@@ -132,13 +132,32 @@ class MapEnv(MultiAgentEnv):
         print(self.world_state['valid_cells'])
         # TO-DO: Add mechanism to store past observations, rewards
 
-    # Undone (taking only 1 grid cell movement now)
-    def update_moves(self, agent_actions):
+    # Taking only 1 grid cell movement now (correct?)
+    def update_moves(self, actions):
         """
         #Converts agent action tuples into a new map and new agent positions.
         #Also resolves conflicts over multiple agents wanting a cell.
         """
         print('@map_env - update_moves()')
+        # Stores non-grid cells movement (if any)
+        agent_tasks = {}
+        agent_actions = {}
+
+        for agent, task_action in actions.items():
+            print(task_action)
+            task = task_action[0]
+            action = task_action[1]
+            if type(action) == int:
+                # Case: Just movements
+                print('map_env@update_moves - Movement found')
+                agent_action = agent.action_map(action)
+                agent_actions[agent] = agent_action
+            else:
+                # Case: Pick/Chop/Cook/Plate/Scoop/Serve actions
+                print('map_env@update_moves - Action found')
+                agent_tasks[agent] = [task, action]
+                agent_action = agent.action_map(8)
+                agent_actions[agent] = agent_action
 
         reserved_slots = []
         agent_moves = {}
@@ -200,12 +219,13 @@ class MapEnv(MultiAgentEnv):
                         for agent in all_agents:
                             moves_copy = agent_moves.copy()
                             # TODO(ev) code duplication, simplify
-                            if move.tolist() in self.agent_pos:
+                            locs = [list(agent.location) for agent in self.world_state['agents']]
+                            if move.tolist() in locs: #self.agent_pos
                                 # find the agent that is currently at that spot and make sure
                                 # that the move is possible. If it won't be, remove it.
                                 conflicting_agent = agent_by_pos[tuple(move)]
-                                curr_pos = agent.location.tolist()
-                                curr_conflict_pos = conflicting_agent.location.tolist()
+                                curr_pos = list(agent.location)
+                                curr_conflict_pos = list(conflicting_agent.location)
                                 conflict_move = agent_moves.get(
                                     conflicting_agent,
                                     curr_conflict_pos)
@@ -227,6 +247,7 @@ class MapEnv(MultiAgentEnv):
                                 elif conflicting_agent in moves_copy.keys():
                                     if conflicting_agent.location == curr_pos and \
                                             move.tolist() == conflicting_agent.location.tolist():
+                                        print('keep trying to move into each other')
                                         conflict_cell_free = False
 
                         # if the conflict cell is open, let one of the conflicting agents
@@ -243,7 +264,7 @@ class MapEnv(MultiAgentEnv):
                         # all other agents now stay in place so update their moves
                         # to stay in place
                         for agent in all_agents:
-                            agent_moves[agent] = agent.location.tolist()
+                            agent_moves[agent] = agent.location
             
             print('@map_env - Ended fix (if any)')
             print(move_slots)
@@ -259,14 +280,18 @@ class MapEnv(MultiAgentEnv):
                 moves_copy = agent_moves.copy()
                 del_keys = []
                 for agent, move in moves_copy.items():
+                    print('inside agent move')
+                    print(agent)
+                    print(move)
+                    print([agent.location for agent in self.world_state['agents']])
                     if agent in del_keys:
                         continue
-                    if move in [agent.location for agent in self.world_state['agents']]:
+                    if list(move) in [list(agent.location) for agent in self.world_state['agents']]:
                         # find the agent that is currently at that spot and make sure
                         # that the move is possible. If it won't be, remove it.
                         conflicting_agent = agent_by_pos[tuple(move)]
-                        curr_pos = agent.location.tolist()
-                        curr_conflict_pos = conflicting_agent.location.tolist()
+                        curr_pos = list(agent.location)
+                        curr_conflict_pos = list(conflicting_agent.location)
                         conflict_move = agent_moves.get(conflicting_agent, curr_conflict_pos)
                         # Condition (1):
                         # a STAY command has been issued
@@ -285,6 +310,7 @@ class MapEnv(MultiAgentEnv):
                         elif conflicting_agent in moves_copy.keys():
                             if agent_moves[conflicting_agent] == curr_pos and \
                                     move == conflicting_agent.location.tolist():
+                                print('keep trying to move into each other 2')
                                 del agent_moves[conflicting_agent]
                                 del agent_moves[agent]
                                 del_keys.append(agent)
