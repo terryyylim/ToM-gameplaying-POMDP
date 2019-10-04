@@ -4,6 +4,7 @@ from typing import Tuple
 
 from collections import defaultdict
 import itertools
+import logging
 import numpy as np
 import random
 
@@ -12,6 +13,7 @@ from ipomdp.envs.map_configs import *
 from ipomdp.agents.agent_configs import *
 from ipomdp.agents.base_agent import OvercookedAgent
 from ipomdp.overcooked import *
+from ipomdp.helpers import *
 
 class OvercookedEnv(MapEnv):
     def __init__(
