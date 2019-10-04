@@ -24,7 +24,7 @@ class AStarGraph():
         for dx, dy in [(1,0),(-1,0),(0,1),(0,-1),(1,1),(-1,1),(1,-1),(-1,-1)]:
             x2 = pos[0] + dx
             y2 = pos[1] + dy
-            if x2 < 0 or x2 > 12 or y2 < 0 or y2 > 8:
+            if x2 < 0 or x2 > 8 or y2 < 0 or y2 > 12:
                 continue
             n.append((x2, y2))
         return n
