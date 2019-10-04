@@ -215,4 +215,6 @@ def main() -> None:
 
 
 if __name__ == "__main__":
+    logger = helpers.get_logger()
+
     main()
