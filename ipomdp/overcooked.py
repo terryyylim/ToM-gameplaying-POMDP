@@ -3,6 +3,8 @@ from typing import List
 from typing import Optional
 from typing import Tuple
 
+from collections import defaultdict
+
 from ipomdp.agents.agent_configs import *
 
 class TaskNode:
@@ -24,6 +26,7 @@ class TaskList:
         task: List[str],
         ingredient: str
     ) -> None:
+        self.dish = dish
         self.task = task
         self.ingredient = ingredient
         self.initialize_tasks(task, ingredient)
@@ -60,10 +63,9 @@ class ChoppingBoard(Item):
         self,
         category: str,
         location: Tuple[int,int],
-        placed_item: str=None,
+        state: str,
     ) -> None:
-        super().__init__(id, category, location)
-        self.placed_item = placed_item
+        super().__init__(category, location, state)
 
 class Extinguisher(Item):
     def __init__(
@@ -78,12 +80,13 @@ class Plate(Item):
         self,
         category: str,
         location: Tuple[int,int],
+        state: str,
         ready_to_serve: bool=False
     ) -> None:
         """
         Only start plating dish when ingredient has been prepared (Chopped/Cooked etc.)
         """
-        super().__init__(id, category, location)
+        super().__init__(category, location, state)
         self.ready_to_serve = ready_to_serve
 
 class Pot(Item):
@@ -91,6 +94,8 @@ class Pot(Item):
         self,
         category: str,
         location: Tuple[int,int],
+        state: str,
+        ingredient_count: Dict[str,int]=defaultdict(int),
         intermediate_state: Optional[str] = None,
         on_stove: Optional[bool] = True,
     ) -> None:
@@ -104,7 +109,8 @@ class Pot(Item):
 
         TO-DO: Think of way to time the cooking process
         """
-        super().__init__(id, category, location)
+        super().__init__(category, location, state)
+        self.ingredient_count = ingredient_count
         self.intermediate_state = intermediate_state
         self.on_stove = on_stove
 
@@ -160,3 +166,12 @@ class Ingredient(Item):
             self.location = WORLD_STATE['r_'+self.name][0]
         else:
             self.location = WORLD_STATE['f_'+self.name][0]
+
+class Dish(Item):
+    def __init__(
+        self,
+        name,
+        location
+    ) -> None:
+        self.name = name
+        self.location = location
