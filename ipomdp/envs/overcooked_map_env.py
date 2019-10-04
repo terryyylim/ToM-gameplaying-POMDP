@@ -60,57 +60,112 @@ class OvercookedEnv(MapEnv):
 
     def find_agents_best_goal(self):
         """
-        Finds best action for each agent which maximizes utility.
-
-        Return
-        ------
-        {<ipomdp.agents.base_agent.OvercookedAgent object at 0x1380daed0>: {'path': [(2, 4), (1, 3)], 'cost': 1},
-        <ipomdp.agents.base_agent.OvercookedAgent object at 0x138a56910>: {'path': [(2, 8), (2, 7), (2, 6), (1, 5), (1, 4), (1, 3)], 'cost': 5}}
-        """
-        agents_possible_goals = self.find_agents_possible_goals()
-
-        all_agents = []
-        for agent in agents_possible_goals:
-            agent_temp = []
-            for goal in agents_possible_goals[agent]:
-                agent_temp.append((agent, goal, agents_possible_goals[agent][goal]['cost']))
-            all_agents.append(agent_temp)
-        if len(agents_possible_goals) == 2:
-            all_combi = list(itertools.product(all_agents[0], all_agents[1]))
-        elif len(agents_possible_goals) == 3:
-            all_combi = list(itertools.product(all_agents[0], all_agents[1], all_agents[2]))
-
-        min_cost = float('inf')
-        min_cost_idx = []
-        for combi_idx in range(len(all_combi)):
-            temp_cost = 0
-            for combi_goal in all_combi[combi_idx]:
-                temp_cost += combi_goal[2]
-            if temp_cost == min_cost:
-                min_cost_idx.append(combi_idx)
-            if temp_cost < min_cost:
-                min_cost = temp_cost
-                min_cost_idx = [combi_idx]
-        random_min_cost_idx = random.choice(min_cost_idx)
-        temp_best_goals = all_combi[random_min_cost_idx]
-
-        best_goals = {}
-        for best_goal_info in temp_best_goals:
-            best_goals[best_goal_info[0]] = agents_possible_goals[best_goal_info[0]][best_goal_info[1]]
+        Finds best action for each agent which maximizes utility, independent of other agents.
         
-        return best_goals
+        Returns
+        -------
+        Example - for 2 agents
+        assigned_best_goal = {
+            <ipomdp.agents.base_agent.OvercookedAgent object at 0x133b46490>: [
+                task_id,
+                {'path': [4, ['p', 'new', (1, 3)]], 'cost': 1}
+            ],
+            <ipomdp.agents.base_agent.OvercookedAgent object at 0x133b46210>: [
+                task_id,
+                {'path': [0, 0, 4, 0, 0, ['p', 'new', (1, 3)]], 'cost': 5}
+            ]
+        }
+        """
+        print('@overcooked_map_env - find_agents_best_goal()')
+        agents_possible_goals = self.find_agents_possible_goals()\
+
+        assigned_best_goal = {}
+        for agent in agents_possible_goals:
+            tasks_rewards = [agents_possible_goals[agent][task]['rewards'] for task in agents_possible_goals[agent]]
+            if tasks_rewards:
+                max_task_rewards = max(tasks_rewards)
+                max_rewards_task_idx = [idx for idx in range(len(tasks_rewards)) if tasks_rewards[idx] == max_task_rewards]
+
+                # If more than one task with the same cost
+                if len(max_rewards_task_idx) > 1:
+                    assigned_task_idx = random.choice(max_rewards_task_idx)
+                else:
+                    # not random
+                    assigned_task_idx = max_rewards_task_idx[0]
+                assigned_task = list(agents_possible_goals[agent])[assigned_task_idx]
+                assigned_best_goal[agent] = [assigned_task, agents_possible_goals[agent][assigned_task]]
+            else:
+                if agent.location in [(1,3), (1,8), (3,7), (3,5)]:
+                    assigned_best_goal[agent] = [-1, {'steps': [0], 'rewards': -2}]
+                else:
+                    assigned_best_goal[agent] = [-1, {'steps': [8], 'rewards': -2}]
+        return assigned_best_goal
+
+    # def find_agents_best_goal(self):
+    #     """
+    #     Finds best action for each agent which maximizes utility.
+
+    #     Return
+    #     ------
+    #     {<ipomdp.agents.base_agent.OvercookedAgent object at 0x1380daed0>: {'path': [(2, 4), (1, 3)], 'cost': 1},
+    #     <ipomdp.agents.base_agent.OvercookedAgent object at 0x138a56910>: {'path': [(2, 8), (2, 7), (2, 6), (1, 5), (1, 4), (1, 3)], 'cost': 5}}
+    #     """
+    #     agents_possible_goals = self.find_agents_possible_goals()
+
+    #     all_agents = []
+    #     for agent in agents_possible_goals:
+    #         agent_temp = []
+    #         for goal in agents_possible_goals[agent]:
+    #             agent_temp.append((agent, goal, agents_possible_goals[agent][goal]['cost']))
+    #         all_agents.append(agent_temp)
+    #     if len(agents_possible_goals) == 2:
+    #         all_combi = list(itertools.product(all_agents[0], all_agents[1]))
+    #     elif len(agents_possible_goals) == 3:
+    #         all_combi = list(itertools.product(all_agents[0], all_agents[1], all_agents[2]))
+
+    #     min_cost = float('inf')
+    #     min_cost_idx = []
+    #     for combi_idx in range(len(all_combi)):
+    #         temp_cost = 0
+    #         for combi_goal in all_combi[combi_idx]:
+    #             temp_cost += combi_goal[2]
+    #         if temp_cost == min_cost:
+    #             min_cost_idx.append(combi_idx)
+    #         if temp_cost < min_cost:
+    #             min_cost = temp_cost
+    #             min_cost_idx = [combi_idx]
+    #     random_min_cost_idx = random.choice(min_cost_idx)
+    #     temp_best_goals = all_combi[random_min_cost_idx]
+
+    #     best_goals = {}
+    #     for best_goal_info in temp_best_goals:
+    #         print('print best goal info')
+    #         print(best_goal_info)
+    #         best_goals[best_goal_info[0]] = agents_possible_goals[best_goal_info[0]][best_goal_info[1]]
+    #         best_goals[best_goal_info[0]]['task'] = best_goal_info[1]
+    #     self.assign_agents(best_goals)
+
+        # return best_goals
+
+    def assign_agents(self, best_goals):
+        """
+        Set agent's assignment to True so that it doesnt search for a new goal.
+        """
+        for agent in best_goals:
+            agent.is_assigned = True
 
     def initialize_world_state(self, items: Dict[str, List[Tuple]], ingredients: Dict[str, List[Tuple]]):
         """ 
         world_state:
             a dictionary indicating world state (coordinates of items in map)
         """
-        self.world_state['valid_cells'] = WORLD_STATE['valid_cells']
+        self.world_state['valid_cells'] = WORLD_STATE['new_valid_cells']
+        self.world_state['service_counter'] = WORLD_STATE['service_counter']
 
         for item in items:
-            if item == 'chopping_boards':
+            if item == 'chopping_board':
                 for i_state in items[item]:
-                    new_item = ChoppingBoard('utensils', i_state)
+                    new_item = ChoppingBoard('utensils', i_state, 'empty')
                     self.world_state[item].append(new_item)
             elif item == 'extinguisher':
                 for i_state in items[item]:
