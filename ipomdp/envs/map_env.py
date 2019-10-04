@@ -95,7 +95,7 @@ class MapEnv(MultiAgentEnv):
         return arr
 
     # Undone
-    def step(self, actions):
+    def step(self, agent_actions):
         """Takes in a dict of actions and converts them to a map update
         Parameters
         ----------
@@ -113,17 +113,13 @@ class MapEnv(MultiAgentEnv):
         1. What to return for observations? since we already have world_state
         """
         print('@map_env - step()')
-        agent_actions = {}
-        for agent, action in actions.items():
-            agent_action = agent.action_map(action)
-            agent_actions[agent] = agent_action
+        print(agent_actions)
         
         orig_pos = {agent:agent.location for agent in self.world_state['agents']}
 
         self.update_moves(agent_actions)
 
-        # Update invalid cells
-        curr_pos = {agent:agent.location for agent in self.world_state['agents']}
+        curr_pos = {agent: tuple(agent.location) for agent in self.world_state['agents']}
         for agent in curr_pos:
             if curr_pos[agent] != orig_pos[agent]:
                 self.world_state['valid_cells'].append(orig_pos[agent])
@@ -134,7 +130,7 @@ class MapEnv(MultiAgentEnv):
         
         print('after 1 cycle')
         print(self.world_state['valid_cells'])
-        self.render('./image2')
+        # TO-DO: Add mechanism to store past observations, rewards
 
     # Undone (taking only 1 grid cell movement now)
     def update_moves(self, agent_actions):
