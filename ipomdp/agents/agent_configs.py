@@ -85,10 +85,20 @@ INGREDIENTS_INITIALIZATION_1 = {
     # properties of ingredients
     'onion': {
         'location': [(0,3)],
-        'state': 'unsliced',
+        'state': 'fresh',
         'category': 'ingredient',
         'is_raw': True
     }
+}
+
+RECIPES_INGREDIENTS_COUNT_1 = {
+    'onion_soup': {
+        'onion': 3
+    }
+}
+
+RECIPES_SERVE_TASK_1 = {
+    'onion_soup': [('plate', 'cooked'), ('scoop', 'cooked'), ('serve', 'cooked')]
 }
 
 INGREDIENTS_NAMING_CONVENTION = {
@@ -235,7 +245,10 @@ ACTIONS = {
     7: 'MOVE_DIAGONAL_RIGHT_DOWN',
     8: 'STAY',
     9: 'PICK',
-    10: 'DROP'
+    10: 'CHOP',
+    11: 'COOK',
+    12: 'SCOOP',
+    13: 'SERVE'
 }
 
 
@@ -254,10 +267,10 @@ REWARDS_1 = {
     'MOVE_DIAGONAL_LEFT_DOWN': -1,
     'MOVE_DIAGONAL_RIGHT_DOWN': -1,
     'STAY': -2,
-    'PICK': 15,
-    'CHOP': 10,
-    'COOK': 5,
-    'COLLECT': 10,
+    'PICK': 10, # consider changing to 'create'
+    'CHOP': 30,
+    'COOK': 45,
+    'SCOOP': 30,
     'SERVE': 100
 }
 
