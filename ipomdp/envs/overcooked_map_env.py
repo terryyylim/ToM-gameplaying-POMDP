@@ -29,6 +29,10 @@ class OvercookedEnv(MapEnv):
         self.recipes_ingredients_count = RECIPES_INGREDIENTS_COUNT
         self.order_queue = []
 
+        # Initialization: Update agent's current cell to be not available
+        for agent in self.agents:
+            self.world_state['valid_cells'].remove(self.agents[agent].location)
+
     def custom_reset(self):
         """Initialize the map to original"""
 
