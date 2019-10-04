@@ -101,7 +101,6 @@ class OvercookedAgent(BaseAgent):
                             continue
                 except KeyError:
                     raise KeyError('No valid path to get to item!')
-
         return travel_costs
 
     def AStarSearch(self, dest_coords: Tuple[int,int]):
@@ -118,8 +117,7 @@ class OvercookedAgent(BaseAgent):
 
         TO-DO: Invert calculations
         """
- 
-        start = self.world_state['agent'][0]
+        start = self.location
         end = dest_coords
         G = {}
         F = {}
