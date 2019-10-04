@@ -80,21 +80,74 @@ def main(env: str, timer: int) -> None:
 
     end_time = time.time() + 30
     time_step_execution = False
+    counter = 1
+    make_video = False
+
+    c.env.render('./ipomdp/images/timestep0')
     while time.time() < end_time:
 
         # If goal space exist, else do nothing
         if not time_step_execution and c.env.world_state['goal_space']:
-            best_goals = c.env.find_agents_best_goal()
-            print('best_goals')
-            print(best_goals)
-            time_step_execution = True
+            if counter < 90:
+                print(f'============= Executing next timestep {counter} @ {time.time()} =============')
+                for agent in c.env.world_state['agents']:
+                    agent.location = tuple(agent.location)
+                    print(f'Agent {id(agent)} at {agent.location}, holding {agent.holding}')
+                    if agent.holding:
+                        print(f'Agent {id(agent)} is holding {agent.holding}, of state {agent.holding.state}\n')
+                time_step_execution = True
+                best_goals = c.env.find_agents_best_goal()
+                print(f'Agent Best Goals\n {best_goals}\n')
 
-        # TO-DO Given best_goals: perform 1 time-step
+                c.rollout(best_goals, counter)
+
+                # Mini-hack: remove all cells to get to items in world_state
+                # This hack causes agent to get stuck sometimes
+                hack_cells = [(1,3), (1,8), (3,11), (5,1), (6,1), (7,1), (7,11), (7,3), (7,5)]
+                for valid_cell in hack_cells:
+                    c.env.world_state['valid_cells'].append(valid_cell)
+
+                c.env.world_state['valid_cells'] = list(set(c.env.world_state['valid_cells']))
+
+                print()
+                print(f'============= Summary after timestep {counter} =============')
+                print(f'Current world_state: \n{c.env.world_state}\n\n')
+                ingredient_loc = [ingredient.location for ingredient in c.env.world_state['ingredients']]
+                chopping_boards_state = {cb: (cb.state, cb.location) for cb in c.env.world_state['chopping_board']}
+                goal_space = c.env.world_state['goal_space']
+                goal_info = [(id(goal), goal.head, id(goal.head), goal.head.state, goal.head.task) for goal in c.env.world_state['goal_space']]
+                agent_holding_status = {agent: agent.holding for agent in c.env.world_state['agents']}
+                agent_can_update_status = {agent: agent.can_update for agent in c.env.world_state['agents']}
+                print(f'Current ingredient locations: \n{ingredient_loc}\n')
+                print(f'Current chopping board states: \n{chopping_boards_state}\n')
+                print(f'Current goal space: \n{goal_space}\n')
+                print(f'Current goal info (goal_id; goal_head; goal_head_id; goal_head_state, goal_head_task): \n{goal_info}\n')
+                print(f'Current agents holding status:\n')
+                print(agent_holding_status)
+                print(f'Current agents can_update status:\n')
+                print(agent_can_update_status)
+
+                if counter == 82 or counter == 88:
+                    print('@rollout - Making video now')
+                    make_video = True
+                counter += 1
+                time_step_execution = False
         else:
             continue
 
-        if time.time() == end_time - 8:
-            print(c.env.world_state)
+        if make_video:
+            video_path = os.path.abspath(os.path.dirname(__file__)) + '/videos'
+            image_path = os.path.abspath(os.path.dirname(__file__)) + '/ipomdp/images'
+            if not os.path.exists(video_path):
+                os.makedirs(video_path)
+            fps = 1
+            video_name = 'trajectory'
+            helpers.make_video_from_image_dir(
+                video_path,
+                image_path,
+                video_name,
+                fps
+            )
 
     thread.event.set()
 
