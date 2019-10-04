@@ -19,8 +19,8 @@ class TaskThread(threading.Thread):
         self.controller = controller
     
     def run(self) -> None:
-        while not self.event.wait(3):
-            self.controller.env.random_queue_order()
+        # while not self.event.wait(1):
+        self.controller.env.random_queue_order()
 
 class Controller(object):
     def __init__(
