@@ -173,25 +173,27 @@ class OvercookedEnv(MapEnv):
                     self.world_state[item].append(new_item)
             elif item == 'plate':
                 for i_state in items[item]:
-                    new_item = Plate('utensils', i_state)
+                    new_item = Plate('utensils', i_state, 'empty')
                     self.world_state[item].append(new_item)
             elif item == 'pot':
                 for i_state in items[item]:
-                    new_item = Pot('utensils', i_state)
+                    new_item = Pot('utensils', i_state, 'empty')
                     self.world_state[item].append(new_item)
             elif item == 'stove':
                 for i_state in items[item]:
                     new_item = Stove('utensils', i_state)
                     self.world_state[item].append(new_item)
+        
+        for ingredient in ingredients:
+            self.world_state['ingredient_'+ingredient] = ingredients[ingredient]['location']
 
     def setup_agents(self):
         for agent in range(len(self.agent_initialization)):
             agent_id = agent + 1
             self.agents[agent_id] = OvercookedAgent(
-                                    'agent_'+str(agent_id),
+                                    str(agent_id),
                                     self.agent_initialization[agent],
                                     BARRIERS,
-                                    INGREDIENTS,
                                     RECIPES_COOKING_INTERMEDIATE_STATES,
                                     RECIPES_PLATING_INTERMEDIATE_STATES,
                                 )
