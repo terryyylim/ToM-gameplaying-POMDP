@@ -308,7 +308,30 @@ class MapEnv(MultiAgentEnv):
                         self.world_state['agents'][agent].update_agent_pos(move)
                     break
 
-        ## TO-DO: Add action handlers    
+        # All possible action handlers
+        print('@map_env - Executing Task Handlers')
+        for agent in agent_tasks:
+            print('conducting tasks now')
+            task_id = agent_tasks[agent][0]
+            task_action = agent_tasks[agent][1]
+            print(task_action)
+            # do we still need the second check?
+            if task_action[0] == 'PICK' and task_action[2] == agent.location:
+                print('@map_env - Executing Pick Action')
+                # agent.pick(task_id, task_action[1], task_action[2], task_action[3])
+                agent.pick(task_id, task_action[1])
+            elif task_action[0] == 'CHOP' and task_action[3] == agent.location:
+                print('@map_env - Executing Chop Action')
+                agent.chop(task_id, task_action[1], task_action[2])
+            elif task_action[0] == 'COOK' and task_action[3] == agent.location:
+                print('@map_env - Executing Cook Action')
+                agent.cook(task_id, task_action[1], task_action[2])
+            elif task_action[0] == 'SCOOP' and task_action[2] == agent.location:
+                print('@map_env - Executing Scoop Action')
+                agent.scoop(task_id, task_action[1])
+            elif task_action[0] == 'SERVE' and task_action[2] == agent.location:
+                print('@map_env - Executing Serve Action')
+                agent.serve(task_id, task_action[1])
 
     def map_to_colors(self, map=None, color_map=None):
         """Converts a map to an array of RGB values.
