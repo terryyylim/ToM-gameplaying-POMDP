@@ -256,6 +256,194 @@ class OvercookedEnv(MapEnv):
         # Okay to do random.choice even for 1 best task
         return random.choice(max_softmax_val_arr)
 
+    def generate_possible_paths(self, agent, best_goal):
+        print(f'Generating best possible path with softmax')
+        movement_count = 0
+        cur_best_movements = []
+        agent_end_idx = None
+
+        for step in best_goal['steps']:
+            if isinstance(step, int):
+                movement_count += 1
+                cur_best_movements.append(step)
+            else:
+                agent_end_idx = step[-1]
+        
+        # Currently all movements give reward of -1 (so don't need to check)
+        print(f'Agent location:')
+        print(agent.location)
+        print(agent_end_idx)
+
+        # Is there a more efficient way of doing this?
+        # Causes timeout with itertools.product and itertools.permutations
+        # all_permutations = list(itertools.product(possible_movements, repeat=movement_count))
+        # all_permutations = list(itertools.permutations(cur_best_movements, len(cur_best_movements)))
+        
+        # temp_all_valid_paths = []
+        # # Combinations dont work (Permutations here work but not with all paths, as it is too memory intensive)
+        # all_permutations = list(itertools.islice(itertools.permutations(cur_best_movements, len(cur_best_movements)), 0, 20000, 50))
+
+        all_permutations = self._generate_permutations(cur_best_movements, agent)
+
+        all_valid_paths = []
+        for permutation in all_permutations:
+            hit_obstacle = False
+
+            temp_agent_location = list(agent.location).copy()
+            for movement in range(len(permutation)):
+                temp_agent_location = [sum(x) for x in zip(temp_agent_location, MAP_ACTIONS[permutation[movement]])]
+
+                # Check for obstacle in path; and movement == 0
+                if tuple(temp_agent_location) not in self.world_state['valid_cells']:
+                    print(f'hit obstacle')
+                    print(temp_agent_location)
+                    print(self.world_state['valid_cells'])
+                    hit_obstacle = True
+                    continue
+            
+            # Append obstacle-free path
+            if not hit_obstacle:
+                all_valid_paths.append(
+                    list(map(
+                        lambda x: list(agent.actions.keys())[list(agent.actions.values()).index(x)],
+                        permutation)
+                    ))
+        
+        print(f'Done with all permutation mappings')
+        print(all_valid_paths)
+        if all_valid_paths:
+            return random.choice(all_valid_paths)
+
+        return -1
+    
+    def _find_random_valid_action(self, agent):
+        action_space = [
+            key for key, value in MAP_ACTIONS.items() \
+                if key not in [
+                    'STAY', 'MOVE_DIAGONAL_LEFT_UP', 'MOVE_DIAGONAL_RIGHT_UP',
+                    'MOVE_DIAGONAL_LEFT_DOWN', 'MOVE_DIAGONAL_RIGHT_DOWN'
+                    ]
+                ]
+        valid_random_cell_move = []
+
+        agent_location = list(agent.location).copy()
+        for movement in action_space:
+            temp_agent_location = [sum(x) for x in zip(agent_location, MAP_ACTIONS[movement])]
+
+            if tuple(temp_agent_location) in self.world_state['valid_cells']:
+                valid_random_cell_move.append(
+                    list(agent.actions.keys())[list(agent.actions.values()).index(movement)],
+                )
+        print(f'Found all possible random movements')
+        print(valid_random_cell_move)
+
+        return random.choice(valid_random_cell_move)
+
+    def _generate_permutations(self, path, agent):
+        """
+        Permutations based on the heuristics that a diagonal movement can be split into 2 separate movements
+        Eg. MOVE_DIAGONAL_LEFT_UP -> MOVE_LEFT, MOVE_UP / MOVE_UP, MOVE_LEFT
+        """
+        all_permutations = []
+        adjacent_movements = [
+            'MOVE_UP', 'MOVE_DOWN', 'MOVE_LEFT', 'MOVE_RIGHT'
+        ]
+        diagonal_movements = [
+            'MOVE_DIAGONAL_LEFT_UP', 'MOVE_DIAGONAL_RIGHT_UP',
+            'MOVE_DIAGONAL_LEFT_DOWN', 'MOVE_DIAGONAL_RIGHT_DOWN'
+        ]
+        path = list(map(
+            lambda x: agent.actions[x],
+            path)
+        )
+        all_permutations.append(path)
+        print(f'Finding permutations')
+        print(path)
+        idx_movement_mapping = [(idx, val) for idx, val in reversed(list(enumerate(path))) if val in diagonal_movements]
+
+        flags = [False, True]
+        flag_generator = list(itertools.product(flags, repeat=len(idx_movement_mapping)))
+        
+        # Need to loop twice left, up; up, left
+        # Only fixes diagonal edge cases
+        for flag in flag_generator:
+            # Do replacement from the back to avoid index error
+            flag = list(reversed(flag))
+            for flag_idx in range(len(flag)):
+                temp_path = path.copy()
+                if flag[flag_idx] == True:
+                    idx = idx_movement_mapping[flag_idx][0]
+                    val = idx_movement_mapping[flag_idx][1]
+
+                    if val == 'MOVE_DIAGONAL_LEFT_UP':
+                        temp_path[idx: idx+1] = 'MOVE_UP', 'MOVE_LEFT'
+                    elif val == 'MOVE_DIAGONAL_LEFT_DOWN':
+                        temp_path[idx: idx+1] = 'MOVE_DOWN', 'MOVE_LEFT'
+                    elif val == 'MOVE_DIAGONAL_RIGHT_UP':
+                        temp_path[idx: idx+1] = 'MOVE_UP', 'MOVE_RIGHT'
+                    elif val == 'MOVE_DIAGONAL_RIGHT_DOWN':
+                        temp_path[idx: idx+1] = 'MOVE_DOWN', 'MOVE_RIGHT'
+
+                all_permutations.append(temp_path)
+
+            for flag_idx in range(len(flag)):
+                temp_path = path.copy()
+                if flag[flag_idx] == True:
+                    idx = idx_movement_mapping[flag_idx][0]
+                    val = idx_movement_mapping[flag_idx][1]
+
+                    if val == 'MOVE_DIAGONAL_LEFT_UP':
+                        temp_path[idx: idx+1] = 'MOVE_LEFT', 'MOVE_UP'
+                    elif val == 'MOVE_DIAGONAL_LEFT_DOWN':
+                        temp_path[idx: idx+1] = 'MOVE_LEFT', 'MOVE_DOWN'
+                    elif val == 'MOVE_DIAGONAL_RIGHT_UP':
+                        temp_path[idx: idx+1] = 'MOVE_RIGHT', 'MOVE_UP'
+                    elif val == 'MOVE_DIAGONAL_RIGHT_DOWN':
+                        temp_path[idx: idx+1] = 'MOVE_RIGHT', 'MOVE_DOWN'
+
+                all_permutations.append(temp_path)
+
+        # Need to fix for adjacent edge cases; eg. MOVE_DOWN, MOVE_DIAGONAL_RIGHT_DOWN, but down is blocked
+        # Mini-hack to allow swapping & combining first 2 terms
+        if len(path) > 1:
+            if path[0] in adjacent_movements and path[1] in diagonal_movements:
+                print(f'Adjacent and Diagonal movements swap!')
+                temp_path = path.copy()
+                print(temp_path)
+                temp_adj_move = path[0]
+                temp_path[0] = path[1]
+                temp_path[1] = temp_adj_move
+                print(temp_path)
+
+                all_permutations.append(temp_path)
+
+            first_second_combi = [path[0], path[1]]
+            temp_path = path.copy()
+            if set(first_second_combi) == set(['MOVE_UP', 'MOVE_LEFT']):
+                temp_path.pop(0)
+                temp_path.pop(0)
+                temp_path.insert(0, 'MOVE_DIAGONAL_LEFT_UP')
+            elif set(first_second_combi) == set(['MOVE_UP', 'MOVE_RIGHT']):
+                temp_path.pop(0)
+                temp_path.pop(0)
+                temp_path.insert(0, 'MOVE_DIAGONAL_RIGHT_DOWN')
+            elif set(first_second_combi) == set(['MOVE_DOWN', 'MOVE_LEFT']):
+                temp_path.pop(0)
+                temp_path.pop(0)
+                temp_path.insert(0, 'MOVE_DIAGONAL_LEFT_DOWN')
+            elif set(first_second_combi) == set(['MOVE_DOWN', 'MOVE_LEFT']):
+                temp_path.pop(0)
+                temp_path.pop(0)
+                temp_path.insert(0, 'MOVE_DIAGONAL_LEFT_UP')
+            all_permutations.append(temp_path)
+
+        print(f'Done with finding all permutations')
+        print(all_permutations)
+        permutations_set = list(set(tuple(perm) for perm in all_permutations))
+
+        return list(permutations_set)
+
+
 def main() -> None:
     overcooked_env = OvercookedEnv(num_agents=2)
     print(overcooked_env.base_map)
