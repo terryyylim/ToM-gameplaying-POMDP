@@ -171,7 +171,7 @@ class OvercookedAgent(BaseAgent):
                 if neighbour in closedVertices: 
                     continue # We have already processed this node exhaustively
                 candidateG = G[current] + self.astar_map.move_cost(current, neighbour)
-    
+
                 if neighbour not in openVertices:
                     openVertices.add(neighbour) # Discovered a new vertex
                 elif candidateG >= G[neighbour]:
@@ -253,6 +253,7 @@ class OvercookedAgent(BaseAgent):
             elif task_list.head.task == 'scoop' or task_list.head.task == 'serve':
                 print('@base_agent - Entered scoop/serve logic')
                 if not isinstance(self.holding, Plate):
+                    print(f'Want scoop/serve but not holding plate')
                     try:
                         # If plate exists in the map
                         plate_board_cells = [plate.location for plate in self.world_state['plate']]
@@ -271,7 +272,7 @@ class OvercookedAgent(BaseAgent):
                             },
                             end_coord
                         ])
-                        continue
+                        # continue
                     except IndexError:
                         print('@base_agent - scoop/serve IndexError')
                         continue
@@ -491,6 +492,8 @@ class OvercookedAgent(BaseAgent):
         """
         all_valid_cells = defaultdict(list)
         # item_instance is Tuple[int,int]
+        # removing agent.location from valid_cells screws this check up
+        agent_locs = [agent.location for agent in self.world_state['agents']]
         for item_instance in item_coords:
             if (item_instance[0], item_instance[1]+1) in self.world_state['valid_cells']:
                 all_valid_cells[item_instance].append((item_instance[0], item_instance[1]+1))
@@ -500,6 +503,19 @@ class OvercookedAgent(BaseAgent):
                 all_valid_cells[item_instance].append((item_instance[0]-1, item_instance[1]))
             elif (item_instance[0]+1, item_instance[1]) in self.world_state['valid_cells']:
                 all_valid_cells[item_instance].append((item_instance[0]+1, item_instance[1]))
+
+            elif (item_instance[0], item_instance[1]+1) not in self.world_state['valid_cells'] \
+                and (item_instance[0], item_instance[1]+1) in agent_locs:
+                    all_valid_cells[item_instance].append((item_instance[0], item_instance[1]+1))
+            elif (item_instance[0], item_instance[1]-1) not in self.world_state['valid_cells'] \
+                and (item_instance[0], item_instance[1]-1) in agent_locs:
+                    all_valid_cells[item_instance].append((item_instance[0], item_instance[1]-1))
+            elif (item_instance[0]-1, item_instance[1]) not in self.world_state['valid_cells'] \
+                and (item_instance[0]-1, item_instance[1]) in agent_locs:
+                    all_valid_cells[item_instance].append((item_instance[0]-1, item_instance[1]))
+            elif (item_instance[0]+1, item_instance[1]) not in self.world_state['valid_cells'] \
+                and (item_instance[0]+1, item_instance[1]) in agent_locs:
+                    all_valid_cells[item_instance].append((item_instance[0]+1, item_instance[1]))
 
         return all_valid_cells
 
@@ -739,6 +755,7 @@ class OvercookedAgent(BaseAgent):
         dish_to_plate = [dish for dish in self.world_state['cooked_dish'] if dish.location == task_coord][0]
         # let the plate which agent is holding, hold the completed dish
         self.holding.dish = dish_to_plate
+        self.holding.state = 'plated'
 
         # remove dish from world state since used for plating
         for idx, cooked_dish in enumerate(self.world_state['cooked_dish']):
