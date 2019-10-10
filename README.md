@@ -1,8 +1,8 @@
 # Modelling Theory of Mind in MultiAgent Cooperative Game Playing using Inverse-planning nested POMDPs
 
 ## Content
-* [Summary] (#Summary)
-* [Installation] (#Installation)
+* [Summary](#Summary)
+* [Installation](#Installation)
 
 ### Summary
 This repository contains the code for modeling agents through inverse planning with POMDPs on the agent to infer goals and subsequently predict the actions of the other agents in a cooperative setting.
