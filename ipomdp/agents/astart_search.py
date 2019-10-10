@@ -21,6 +21,7 @@ class AStarGraph():
     def get_vertex_neighbours(self, pos):
         n = []
 		# Moves allow link a chess king
+        # prevent diagonals ,(1,1),(-1,1),(1,-1),(-1,-1)
         for dx, dy in [(1,0),(-1,0),(0,1),(0,-1),(1,1),(-1,1),(1,-1),(-1,-1)]:
             x2 = pos[0] + dx
             y2 = pos[1] + dy
@@ -32,5 +33,5 @@ class AStarGraph():
     def move_cost(self, a, b):
         for barrier in self.barriers:
             if b in barrier:
-                return 100 # Extremely high cost to enter barrier squares
+                return 10000 # Extremely high cost to enter barrier squares
             return 1 # Normal movement cost
