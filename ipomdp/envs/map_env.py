@@ -128,6 +128,19 @@ class MapEnv(MultiAgentEnv):
                 self.world_map[orig_pos[agent][0], orig_pos[agent][1]] = ' '
                 self.world_map[curr_pos[agent][0], curr_pos[agent][1]] = agent.agent_id
         
+        # Update map barriers for agent's A* Search
+        temp_astar_map = None
+        # Get A* Search map
+        for agent in self.world_state['agents']:
+            temp_astar_map = agent.astar_map
+        # Get all updates
+        for agent in self.world_state['agents']:
+            temp_astar_map.barriers.remove(orig_pos[agent])
+            temp_astar_map.barriers.append(curr_pos[agent])
+        # Update A* Search map for all agents
+        for agent in self.world_state['agents']:
+            agent.astar_map = temp_astar_map
+
         print('after 1 cycle')
         print(self.world_state['valid_cells'])
         # TO-DO: Add mechanism to store past observations, rewards
