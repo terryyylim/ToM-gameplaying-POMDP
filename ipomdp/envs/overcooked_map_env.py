@@ -88,26 +88,50 @@ class OvercookedEnv(MapEnv):
         }
         """
         print('@overcooked_map_env - find_agents_best_goal()')
-        agents_possible_goals = self.find_agents_possible_goals()\
+        agents_possible_goals = self.find_agents_possible_goals()
+        print('agents possible goals')
+        print(agents_possible_goals)
 
         assigned_best_goal = {}
         for agent in agents_possible_goals:
             tasks_rewards = [agents_possible_goals[agent][task]['rewards'] for task in agents_possible_goals[agent]]
-            if tasks_rewards:
-                max_task_rewards = max(tasks_rewards)
-                max_rewards_task_idx = [idx for idx in range(len(tasks_rewards)) if tasks_rewards[idx] == max_task_rewards]
+            print('printing task rewards')
+            print(tasks_rewards)
 
-                # If more than one task with the same cost
-                if len(max_rewards_task_idx) > 1:
-                    assigned_task_idx = random.choice(max_rewards_task_idx)
-                else:
-                    # not random
-                    assigned_task_idx = max_rewards_task_idx[0]
-                assigned_task = list(agents_possible_goals[agent])[assigned_task_idx]
-                assigned_best_goal[agent] = [assigned_task, agents_possible_goals[agent][assigned_task]]
+            if tasks_rewards:
+                softmax_best_goal = self._softmax(agents_possible_goals[agent])
+
+                # # Greedy solution
+                # max_task_rewards = max(tasks_rewards)
+                # max_rewards_task_idx = [idx for idx in range(len(tasks_rewards)) if tasks_rewards[idx] == max_task_rewards]
+
+                # # If more than one task with the same cost
+                # if len(max_rewards_task_idx) > 1:
+                #     assigned_task_idx = random.choice(max_rewards_task_idx)
+                # else:
+                #     # not random
+                #     assigned_task_idx = max_rewards_task_idx[0]
+                # assigned_task = list(agents_possible_goals[agent])[assigned_task_idx]
+                # assigned_best_goal[agent] = [assigned_task, agents_possible_goals[agent][assigned_task]]
+                print('find random action')
+                self._find_random_valid_action(agent)
+
+                print(f'Softmax Best Goal:')
+                print(softmax_best_goal)
+                best_path = self.generate_possible_paths(agent, agents_possible_goals[agent][softmax_best_goal])
+                
+                # best_path == -1; means there's no valid permutations, use the original path
+                if best_path != -1:
+                    best_path.append(agents_possible_goals[agent][softmax_best_goal]['steps'][-1])
+                    agents_possible_goals[agent][softmax_best_goal]['steps'] = best_path
+
+                assigned_best_goal[agent] = [softmax_best_goal, agents_possible_goals[agent][softmax_best_goal]]
             else:
+                # If no task at hand, but blocking stations, move to valid cell randomly
                 if agent.location in [(1,3), (1,8), (3,7), (3,5)]:
-                    assigned_best_goal[agent] = [-1, {'steps': [0], 'rewards': -2}]
+                    print(f'Entered find random valid action')
+                    random_valid_cell_move = self._find_random_valid_action(agent)
+                    assigned_best_goal[agent] = [-1, {'steps': [random_valid_cell_move], 'rewards': -1}]
                 else:
                     assigned_best_goal[agent] = [-1, {'steps': [8], 'rewards': -2}]
         return assigned_best_goal
@@ -211,6 +235,26 @@ class OvercookedEnv(MapEnv):
             self.world_map[self.agent_initialization[agent]] = agent_id
             self.world_state['agents'].append(self.agents[agent_id])
         self.custom_map_update()
+
+    def _softmax(self, rewards_dict, beta:int=-0.01):
+        softmax_denominator = 0
+        softmax_dict = defaultdict(int)
+        for key in rewards_dict:
+            reward = rewards_dict[key]['rewards']
+            softmax_denominator += math.exp(-1*beta*reward)
+        for key in rewards_dict:
+            reward = rewards_dict[key]['rewards']
+            softmax_numerator = math.exp(-1*beta*reward)
+            softmax_dict[key] = softmax_numerator/softmax_denominator
+
+        max_softmax_val_arr = []
+        max_softmax_val = max(softmax_dict.items(), key=lambda x: x[1])[1]
+        for key, value in softmax_dict.items():
+            if value == max_softmax_val:
+                max_softmax_val_arr.append(key)
+        
+        # Okay to do random.choice even for 1 best task
+        return random.choice(max_softmax_val_arr)
 
 def main() -> None:
     overcooked_env = OvercookedEnv(num_agents=2)
