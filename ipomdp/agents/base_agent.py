@@ -90,13 +90,26 @@ class OvercookedAgent(BaseAgent):
             for cur_item_instance in cur_item_instances:
                 try:
                     valid_cells = item_valid_cell_states[items[item_idx]][cur_item_instance]
+                    # Edge case: Multiple plates/pots and already at an empty one
+                    # if len(valid_cells) == 0:
+                    #     # No need to move
+                    #     travel_costs[items[item_idx]] = ([], 0, cur_item_instance)
                     for valid_cell in valid_cells:
                         temp_item_instance = self.AStarSearch(valid_cell)
                         if not travel_costs[items[item_idx]]:
                             travel_costs[items[item_idx]] = (temp_item_instance[0], temp_item_instance[1], cur_item_instance)
                         else:
+                            if travel_costs[items[item_idx]][1] == temp_item_instance[1]:
+                                # Randomizing item instance to go towards should prevents being stuck
+                                random_int = random.randint(0,1)
+                                temp_item_instance = list(temp_item_instance)
+                                temp_item_instance.append(cur_item_instance)
+                                temp_item_instance = tuple(temp_item_instance)
+
+                                random_selection = [travel_costs[items[item_idx]], temp_item_instance][random_int]
+                                travel_costs[items[item_idx]] = random_selection
                             # Only replace if existing travel cost is greater (ensure only 1 path is returned given same cost)
-                            if travel_costs[items[item_idx]][1] > temp_item_instance[1]:
+                            elif travel_costs[items[item_idx]][1] > temp_item_instance[1]:
                                 travel_costs[items[item_idx]] = (temp_item_instance[0], temp_item_instance[1], cur_item_instance)
                             continue
                 except KeyError:
