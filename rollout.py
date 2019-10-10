@@ -83,12 +83,20 @@ def main(env: str, timer: int) -> None:
     counter = 1
     make_video = False
 
+    # Remove the previous images and video
+    images_dir = 'ipomdp/images'
+    videos_dir = 'videos'
+    for file in os.listdir(images_dir):
+        if file.endswith('.png'):
+            os.remove(images_dir+'/'+file)
+    os.remove(videos_dir+'/trajectory.mp4')
+
     c.env.render('./ipomdp/images/timestep0')
     while time.time() < end_time:
 
         # If goal space exist, else do nothing
         if not time_step_execution and c.env.world_state['goal_space']:
-            if counter < 90:
+            if counter < 120:
                 print(f'============= Executing next timestep {counter} @ {time.time()} =============')
                 for agent in c.env.world_state['agents']:
                     agent.location = tuple(agent.location)
@@ -127,7 +135,7 @@ def main(env: str, timer: int) -> None:
                 print(f'Current agents can_update status:\n')
                 print(agent_can_update_status)
 
-                if counter == 82 or counter == 88:
+                if counter == 80 or counter == 83:
                     print('@rollout - Making video now')
                     make_video = True
                 counter += 1
