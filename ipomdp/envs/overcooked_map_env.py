@@ -3,6 +3,7 @@ from typing import List
 from typing import Tuple
 
 from collections import defaultdict
+import math
 import itertools
 import logging
 import numpy as np
@@ -39,6 +40,16 @@ class OvercookedEnv(MapEnv):
     def custom_map_update(self):
         for agent in self.agents:
             self.agents[agent].world_state = self.world_state
+        
+        temp_astar_map = None
+        for agent in self.world_state['agents']:
+            temp_astar_map = agent.astar_map
+        
+        # Update agent locations into map barriers for A* Search
+        for agent in self.world_state['agents']:
+            temp_astar_map.barriers.append(agent.location)
+        for agent in self.world_state['agents']:
+            agent.astar_map = temp_astar_map
 
     def random_queue_order(self):
         new_order = random.choice(self.recipes)
