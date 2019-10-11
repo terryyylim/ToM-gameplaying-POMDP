@@ -283,7 +283,8 @@ class OvercookedEnv(MapEnv):
         # # Combinations dont work (Permutations here work but not with all paths, as it is too memory intensive)
         # all_permutations = list(itertools.islice(itertools.permutations(cur_best_movements, len(cur_best_movements)), 0, 20000, 50))
 
-        all_permutations = self._generate_permutations(cur_best_movements, agent)
+        # all_permutations = self._old_generate_permutations(cur_best_movements, agent)
+        all_permutations = self._generate_permutations(cur_best_movements, agent, agent_end_idx)
 
         all_valid_paths = []
         for permutation in all_permutations:
@@ -339,7 +340,8 @@ class OvercookedEnv(MapEnv):
 
         return random.choice(valid_random_cell_move)
 
-    def _generate_permutations(self, path, agent):
+    # Not in use currently
+    def _old_generate_permutations(self, path, agent):
         """
         Permutations based on the heuristics that a diagonal movement can be split into 2 separate movements
         Eg. MOVE_DIAGONAL_LEFT_UP -> MOVE_LEFT, MOVE_UP / MOVE_UP, MOVE_LEFT
@@ -443,6 +445,166 @@ class OvercookedEnv(MapEnv):
 
         return list(permutations_set)
 
+    def _generate_permutations(self, path, agent, agent_end_idx):
+        """
+        Permutations based on the heuristics that a diagonal movement can be split into 2 separate movements
+        Eg. MOVE_DIAGONAL_LEFT_UP -> MOVE_LEFT, MOVE_UP / MOVE_UP, MOVE_LEFT
+
+        First step determines action space
+        ----------------------------------
+        MOVE_LEFT -> MOVE_DIAGONAL_LEFT_UP, MOVE_DIAGONAL_LEFT_DOWN, MOVE_LEFT
+        MOVE_RIGHT -> MOVE_DIAGONAL_RIGHT_UP, MOVE_DIAGONAL_RIGHT_DOWN, MOVE_RIGHT
+        MOVE_UP -> MOVE_DIAGONAL_LEFT_UP, MOVE_DIAGONAL_RIGHT_UP, MOVE_UP
+        MOVE_DOWN -> MOVE_DIAGONAL_LEFT_DOWN, MOVE_DIAGONAL_RIGHT_DOWN, MOVE_DOWN
+        MOVE_DIAGONAL_LEFT_UP -> MOVE_LEFT, MOVE_UP, MOVE_DIAGONAL_LEFT_UP
+        MOVE_DIAGONAL_RIGHT_UP -> MOVE_RIGHT, MOVE_UP, MOVE_DIAGONAL_RIGHT_UP
+        MOVE_DIAGONAL_LEFT_DOWN -> MOVE_LEFT, MOVE_DOWN, MOVE_DIAGONAL_LEFT_DOWN
+        MOVE_DIAGONAL_RIGHT_DOWN -> MOVE_RIGHT, MOVE_DOWN, MOVE_DIAGONAL_RIGHT_DOWN
+        """
+        heuristic_mapping = {
+            'MOVE_LEFT': ['MOVE_DIAGONAL_LEFT_UP', 'MOVE_DIAGONAL_LEFT_DOWN', 'MOVE_LEFT'],
+            'MOVE_RIGHT': ['MOVE_DIAGONAL_RIGHT_UP', 'MOVE_DIAGONAL_RIGHT_DOWN', 'MOVE_RIGHT'],
+            'MOVE_UP': ['MOVE_DIAGONAL_LEFT_UP', 'MOVE_DIAGONAL_RIGHT_UP', 'MOVE_UP'],
+            'MOVE_DOWN': ['MOVE_DIAGONAL_LEFT_DOWN', 'MOVE_DIAGONAL_RIGHT_DOWN', 'MOVE_DOWN'],
+            'MOVE_DIAGONAL_LEFT_UP': ['MOVE_LEFT', 'MOVE_UP', 'MOVE_DIAGONAL_LEFT_UP'],
+            'MOVE_DIAGONAL_RIGHT_UP': ['MOVE_RIGHT', 'MOVE_UP', 'MOVE_DIAGONAL_RIGHT_UP'],
+            'MOVE_DIAGONAL_LEFT_DOWN': ['MOVE_LEFT', 'MOVE_DOWN', 'MOVE_DIAGONAL_LEFT_DOWN'],
+            'MOVE_DIAGONAL_RIGHT_DOWN': ['MOVE_RIGHT', 'MOVE_DOWN', 'MOVE_DIAGONAL_RIGHT_DOWN']
+        }
+        path = list(map(
+            lambda x: agent.actions[x],
+            path)
+        )
+
+        # Determine best reward from path
+        best_reward = sum([agent.rewards[action] for action in path])
+        print(f'Best reward: {best_reward}')
+        print(path)
+        valid_permutations = []
+
+        def permutations_dp(
+            agent,
+            best_reward:int,
+            end_location,
+            cur_action_chain,
+            orig_action_chain,
+            heuristic_mapping,
+            dp_table,
+            valid_cells
+        ):
+            # still have actions left to take
+            cur_step = len(orig_action_chain) - len(cur_action_chain)
+
+            if not cur_action_chain:
+                return
+            
+            # Next action to take
+            action = cur_action_chain[0]
+            print(f'Current action is: {action}')
+            # Returns list of next possible actions to take
+            heuristic_map = heuristic_mapping[action]
+
+            # TO-DO: Add in checks if end_location for current iteration is a valid cell
+            if cur_step == 0:
+                cur_reward = 0
+                print(f'Entered cur_step == 0')
+
+                for heuristic_action in heuristic_map:
+                    heuristic_reward = agent.rewards[heuristic_action]
+                    new_reward = cur_reward + heuristic_reward
+                    new_location = [sum(x) for x in zip(list(agent.location), MAP_ACTIONS[heuristic_action])]
+                    new_path = [heuristic_action]
+
+                    # If its a DIAGONAL movement
+                    if 'DIAGONAL' in action and 'DIAGONAL' not in heuristic_action:
+                        second_action = heuristic_second_action(action, heuristic_action)
+                        second_reward = agent.rewards[second_action]
+                        new_reward += second_reward
+                        new_location = [sum(x) for x in zip(new_location, MAP_ACTIONS[second_action])]
+                        new_path.append(second_action)
+
+                    # If still possible to find best reward and not ending in invalid cell
+                    if (new_reward > best_reward) and (tuple(new_location) in valid_cells):
+                        dp_table[cur_step].append(
+                            {
+                                'cur_reward': new_reward,
+                                'cur_path': new_path,
+                                'cur_location': new_location
+                            }
+                        )
+                    
+                    if (new_reward == best_reward) and (new_location == list(end_location)):
+                        valid_permutations.append(new_path)
+            else:
+                print(f'Entered cur_step != 0')
+                # Returns valid existing path by far; List of Tuple (cost:int, steps:List[int])
+                cur_valid_paths = dp_table[cur_step-1]
+
+                for path_info in cur_valid_paths:
+                    cur_reward = path_info['cur_reward']
+                    cur_location = path_info['cur_location']
+                    cur_path = path_info['cur_path']
+
+                    for heuristic_action in heuristic_map:
+                        heuristic_reward = agent.rewards[heuristic_action]
+                        new_reward = cur_reward + heuristic_reward
+                        new_location = [sum(x) for x in zip(cur_location, MAP_ACTIONS[heuristic_action])]
+                        new_path = cur_path.copy()
+                        new_path.append(heuristic_action)
+
+                        if (new_reward > best_reward) and (tuple(new_location) in valid_cells):
+                            dp_table[cur_step].append(
+                                {
+                                    'cur_reward': new_reward,
+                                    'cur_path': new_path,
+                                    'cur_location': new_location
+                                }
+                            )
+                        
+                        if (new_reward == best_reward) and (new_location == list(end_location)):
+                            valid_permutations.append(new_path)
+            
+            # Remove completed action
+            cur_action_chain.pop(0)
+            permutations_dp(
+                agent, best_reward, end_location, cur_action_chain,
+                orig_action_chain, heuristic_mapping, dp_table, valid_cells
+            )
+
+        # Use heuristics to reduce action space
+        valid_cells = self.world_state['valid_cells'].copy()
+        locs = [agent.location for agent in self.world_state['agents']]
+        for loc in locs:
+            valid_cells.append(loc)
+        permutations_dp(
+            agent, best_reward, agent_end_idx, path.copy(), path.copy(),
+            heuristic_mapping, defaultdict(list), valid_cells
+        )
+        print(f'Done with generating valid permutations')
+        print(valid_permutations)
+
+        return valid_permutations
+    
+def heuristic_second_action(diagonal_action, taken_adj_action):
+    heuristic_action_mapping_alt = {
+        'MOVE_DIAGONAL_LEFT_UP': {
+            'MOVE_LEFT': 'MOVE_UP',
+            'MOVE_UP': 'MOVE_LEFT'
+        },
+        'MOVE_DIAGONAL_RIGHT_UP': {
+            'MOVE_RIGHT': 'MOVE_UP',
+            'MOVE_UP': 'MOVE_RIGHT'
+        },
+        'MOVE_DIAGONAL_LEFT_DOWN': {
+            'MOVE_LEFT': 'MOVE_DOWN',
+            'MOVE_DOWN': 'MOVE_LEFT'
+        },
+        'MOVE_DIAGONAL_RIGHT_DOWN': {
+            'MOVE_RIGHT': 'MOVE_DOWN',
+            'MOVE_DOWN': 'MOVE_RIGHT'
+        }
+    }
+    return heuristic_action_mapping_alt[diagonal_action][taken_adj_action]
 
 def main() -> None:
     overcooked_env = OvercookedEnv(num_agents=2)
