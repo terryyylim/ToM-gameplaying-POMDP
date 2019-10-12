@@ -89,7 +89,9 @@ def main(env: str, timer: int) -> None:
     for file in os.listdir(images_dir):
         if file.endswith('.png'):
             os.remove(images_dir+'/'+file)
-    os.remove(videos_dir+'/trajectory.mp4')
+    for file in os.listdir(videos_dir):
+        if file.endswith('/trajectory.mp4'):
+            os.remove(videos_dir+'/trajectory.mp4')
 
     c.env.render('./ipomdp/images/timestep0')
     while time.time() < end_time:
