@@ -78,7 +78,7 @@ def main(env: str, timer: int) -> None:
     thread = TaskThread(c)
     thread.start()
 
-    end_time = time.time() + 30
+    end_time = time.time() + 120
     time_step_execution = False
     counter = 1
     make_video = False
