@@ -99,7 +99,7 @@ class OvercookedEnv(MapEnv):
             print(tasks_rewards)
 
             if tasks_rewards:
-                softmax_best_goal = self._softmax(agents_possible_goals[agent])
+                softmax_best_goal = self._softmax(agents_possible_goals[agent], beta=0.5)
 
                 # # Greedy solution
                 # max_task_rewards = max(tasks_rewards)
@@ -236,22 +236,23 @@ class OvercookedEnv(MapEnv):
             self.world_state['agents'].append(self.agents[agent_id])
         self.custom_map_update()
 
-    def _softmax(self, rewards_dict, beta:int=-0.01):
-        softmax_denominator = 0
+    def _softmax(self, rewards_dict, beta:int=1):
+        softmax_total = 0
         softmax_dict = defaultdict(int)
         for key in rewards_dict:
             reward = rewards_dict[key]['rewards']
-            softmax_denominator += math.exp(-1*beta*reward)
-        for key in rewards_dict:
-            reward = rewards_dict[key]['rewards']
-            softmax_numerator = math.exp(-1*beta*reward)
-            softmax_dict[key] = softmax_numerator/softmax_denominator
+            softmax_value = math.exp(beta*reward)
+            softmax_dict[key] = softmax_value
+            softmax_total += softmax_value
+        softmax_dict = {k:v/softmax_total for k, v in softmax_dict.items()}
 
         max_softmax_val_arr = []
         max_softmax_val = max(softmax_dict.items(), key=lambda x: x[1])[1]
         for key, value in softmax_dict.items():
             if value == max_softmax_val:
                 max_softmax_val_arr.append(key)
+        print('After softmax calculation')
+        print(softmax_dict)
         
         # Okay to do random.choice even for 1 best task
         return random.choice(max_softmax_val_arr)
@@ -295,7 +296,7 @@ class OvercookedEnv(MapEnv):
                 temp_agent_location = [sum(x) for x in zip(temp_agent_location, MAP_ACTIONS[permutation[movement]])]
 
                 # Check for obstacle in path; and movement == 0
-                if tuple(temp_agent_location) not in self.world_state['valid_cells']:
+                if tuple(temp_agent_location) not in self.world_state['valid_cells'] and movement == 0:
                     print(f'hit obstacle')
                     print(temp_agent_location)
                     print(self.world_state['valid_cells'])
