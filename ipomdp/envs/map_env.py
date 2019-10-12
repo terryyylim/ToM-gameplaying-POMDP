@@ -2,6 +2,7 @@ from typing import Dict
 from typing import List
 from typing import Tuple
 
+import collections
 import numpy as np
 from ray.rllib.env import MultiAgentEnv
 
@@ -31,9 +32,12 @@ class MapEnv(MultiAgentEnv):
             color_map: dict
                 Specifies how to convert between ascii chars and colors
         """
+        self.task_id_count = 0
         self.base_map = self.ascii_to_numpy(ascii_map)
         self.world_map = self.base_map
         self.world_state = defaultdict(list)
+        self.world_state['task_id_count'] = 0
+        self.world_state['historical_actions'] = collections.defaultdict(list)
         self.agent_initialization = agent_initialization
 
         self.num_agents = len(agent_initialization)

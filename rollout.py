@@ -4,6 +4,7 @@ import numpy as np
 import time
 import threading
 import os
+import copy
 
 from ipomdp.envs.map_env import MapEnv
 from ipomdp.envs.overcooked_map_env import OvercookedEnv
@@ -41,6 +42,16 @@ class Controller(object):
     # undone: lacking rewards, observation updates
     def rollout(self, best_goals, horizon=50, save_path=None):
         print('rollout@rollout')
+        """
+        Save deep copy of current world state to be used as previous world state in next timestep.
+        Deep copy to be used for inference calculations.
+
+        Deep copy constructs a new compound object and then, recursively, inserts copies into it
+        of the objects found in the original.
+        This helps prevent any weird occurrences affecting the true world state.
+        """
+        self.env.world_state['historical_world_state'] = copy.deepcopy(self.env.world_state)
+
         rewards = []
         observations = []
         shape = self.env.world_map.shape
@@ -52,6 +63,10 @@ class Controller(object):
             action_mapping[agent] = (
                 best_goals[agent][0],
                 best_goals[agent][1]['steps'][0]
+            )
+        for agent in action_mapping:
+            self.env.world_state['historical_actions'][agent.id].append(
+                action_mapping[agent][1]
             )
 
         print(action_mapping)

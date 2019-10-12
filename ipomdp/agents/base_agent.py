@@ -7,6 +7,7 @@ from typing import Tuple
 from collections import defaultdict
 import matplotlib.pyplot as plt
 import numpy as np
+import operator
 import random
 
 from ipomdp.agents.agent_configs import *
@@ -65,6 +66,7 @@ class OvercookedAgent(BaseAgent):
         can_update: True if hasn't update for this task else False
         """
         self.world_state = {}
+        self.id = agent_id
         self.is_assigned = is_assigned
         self.can_update = can_update
         self.goals = goals
@@ -758,7 +760,8 @@ class OvercookedAgent(BaseAgent):
             # Create new Dish Class object
             new_dish = Dish(dish, pot.location)
             self.world_state['cooked_dish'].append(new_dish)
-            self.world_state['goal_space'].append(TaskList(dish, RECIPES_SERVE_TASK[dish], dish))
+            self.world_state['task_id_count'] += 1
+            self.world_state['goal_space'].append(TaskList(dish, RECIPES_SERVE_TASK[dish], dish, self.world_state['task_id_count']))
             pot.dish = dish
 
         if is_last:
@@ -849,6 +852,97 @@ class OvercookedAgent(BaseAgent):
 
         // Do inference here? Using "observations" which is temporary predicted future world state?
         """
+
+    def observer_inference(self):
+        """
+        Perform inference derivation.
+        """
+        print(f'Starting inference')
+        print(f'Printing current agent references')
+        print(self.location)
+        print(self.id)
+        agents_reference_move = {
+            agent.id: {
+                'prev_ref': agent,
+                'prev_move': self.world_state['historical_actions'][agent.id][-1]
+            } 
+            for agent in self.world_state['historical_world_state']['agents'] if agent.id != self.id
+        }
+
+        for agent in self.world_state['agents']:
+            if agent.id in agents_reference_move:
+                agents_reference_move[agent.id]['cur_ref'] = agent
+        print('Finished storing prev_move, prev_ref and cur_ref')
+        print(agents_reference_move)
+
+        print(f'Check if goals are correctly replicated')
+        prev_goal_info = [(id(goal), goal.head, id(goal.head), goal.head.state, goal.head.task) for goal in self.world_state['goal_space']]
+        cur_goal_info = [(id(goal), goal.head, id(goal.head), goal.head.state, goal.head.task) for goal in self.world_state['historical_world_state']['goal_space']]
+        print(f'Previous goal info (goal_id; goal_head; goal_head_id; goal_head_state, goal_head_task): \n{prev_goal_info}\n')
+        print(f'Current goal info (goal_id; goal_head; goal_head_id; goal_head_state, goal_head_task): \n{cur_goal_info}\n')
+
+        print(f'Replicate prev environment')
+        from ipomdp.envs.overcooked_map_env import OvercookedEnv
+        prev_env = OvercookedEnv()
+        prev_env.world_state = self.world_state['historical_world_state']
+        prev_best_goals = prev_env.find_agents_possible_goals()
+        prev_best_goals = {agent: info for agent, info in prev_best_goals.items() if agent.id != self.id}
+        print('prev best goals')
+        print(prev_best_goals)
+
+        # Eg. {1: 5143012944, 2: 5147600592, 3: 5147600528}
+        print('check prev task_id mappings')
+        print(prev_env.world_state['task_id_mappings'])
+        
+        # Eg. {1: 5249261392, 2: 5249260496, 3: 5249310800}
+        deep_copy_task_id_mappings = {task.id:id(task) for task in prev_env.world_state['goal_space']}
+        print('check cur task_id mappings')
+        print(deep_copy_task_id_mappings)
+
+        inferred_goals_info = defaultdict(lambda: defaultdict(lambda: defaultdict(int)))
+        for agent in prev_best_goals:
+            for goal in prev_best_goals[agent]:
+                _id = list(deep_copy_task_id_mappings.keys())[list(deep_copy_task_id_mappings.values()).index(goal)]
+                print('printing goal')
+                print(goal)
+                # Not sure if this is how sampling works (purely based off counts?)
+                sampling_count = 0
+                while sampling_count != 100:
+                    best_path = prev_env.generate_possible_paths(agent, prev_best_goals[agent][goal])
+
+                    if best_path != -1:
+                        best_path.append(prev_best_goals[agent][goal]['steps'][-1])
+                    # print('sampled best path')
+                    # print(best_path)
+                    # empty means stay
+                    try:
+                        if isinstance(best_path[0], int):
+                            inferred_goals_info[agent][_id][best_path[0]] += 1
+                        elif isinstance(best_path[0], list):
+                            inferred_goals_info[agent][_id][best_path[0][0]] += 1
+                            
+                        # inferred_goals[agent][_id].append(best_path[0])
+                    except TypeError:
+                        # 'int' object is not subscriptable; -1 is returned
+                        inferred_goals_info[agent][_id][8] += 1
+                        # inferred_goals[agent][_id].append(8)
+                    sampling_count += 1
+            
+        print(f'Done with gathering samples')
+        print(inferred_goals_info)
+        # Get best action for each goal
+        # Should we use softmax here?
+        inferred_best_action = defaultdict(dict)
+        for agent in inferred_goals_info:
+            for goal in inferred_goals_info[agent]:
+                print('printing goals aft all')
+                print(goal)
+                print(inferred_goals_info[agent][goal])
+                best_action = max(inferred_goals_info[agent][goal].items(), key=operator.itemgetter(1))[0]
+                inferred_best_action[agent][goal] = best_action
+        print(f'Done with inferred best actions - by count')
+        print(inferred_best_action)
+
 
 def main():
     # ray.init(num_cpus=4, include_webui=False, ignore_reinit_error=True)

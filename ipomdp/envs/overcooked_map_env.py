@@ -31,8 +31,12 @@ class OvercookedEnv(MapEnv):
         self.order_queue = []
 
         # Initialization: Update agent's current cell to be not available
-        for agent in self.agents:
-            self.world_state['valid_cells'].remove(self.agents[agent].location)
+        print(self.world_state['valid_cells'])
+        try:
+            for agent in self.agents:
+                self.world_state['valid_cells'].remove(self.agents[agent].location)
+        except ValueError:
+            print('Valid cell is already updated')
 
     def custom_reset(self):
         """Initialize the map to original"""
@@ -61,7 +65,12 @@ class OvercookedEnv(MapEnv):
         tasks_count = self.recipes_ingredients_count[new_order]
         for ingredient in tasks:
             for _ in range(tasks_count[ingredient]):
-                self.world_state['goal_space'].append(TaskList(new_order, tasks[ingredient], ingredient))
+                self.world_state['task_id_count'] += 1
+                self.world_state['goal_space'].append(TaskList(new_order, tasks[ingredient], ingredient, self.world_state['task_id_count']))
+        
+        self.world_state['task_id_mappings'] = {
+            goal.id: id(goal) for goal in self.world_state['goal_space']
+        }
 
     def find_agents_possible_goals(self):
         agent_goals = {}
@@ -91,6 +100,11 @@ class OvercookedEnv(MapEnv):
         agents_possible_goals = self.find_agents_possible_goals()
         print('agents possible goals')
         print(agents_possible_goals)
+
+        # Do inference here; skips inference for first timestep
+        if 'historical_world_state' in self.world_state:
+            for agent in self.world_state['agents']:
+                agent.observer_inference()
 
         assigned_best_goal = {}
         for agent in agents_possible_goals:
