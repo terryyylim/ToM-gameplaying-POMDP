@@ -785,6 +785,9 @@ class OvercookedAgent(BaseAgent):
         task_coord = scoop_info['task_coord']
         pot = [pot for pot in self.world_state['pot'] if pot.location == task_coord][0]
 
+        # Empty the pot as well
+        pot.ingredient_count = defaultdict(int)
+
         dish_to_plate = [dish for dish in self.world_state['cooked_dish'] if dish.location == task_coord][0]
         # let the plate which agent is holding, hold the completed dish
         self.holding.dish = dish_to_plate
