@@ -258,7 +258,8 @@ ACTIONS = {
     10: 'CHOP',
     11: 'COOK',
     12: 'SCOOP',
-    13: 'SERVE'
+    13: 'SERVE',
+    14: 'DROP'
 }
 
 
@@ -266,6 +267,8 @@ ACTIONS = {
 Rewards
 -------
 TO-DO: Rewards that have floating values.
+
+* WHEN DIAGONAL MOVEMENT COSTS -1, AGENT WILL GET STUCK.
 """
 REWARDS_1 = {
     'MOVE_LEFT': -1,
@@ -281,7 +284,8 @@ REWARDS_1 = {
     'CHOP': 30,
     'COOK': 45,
     'SCOOP': 30,
-    'SERVE': 100
+    'SERVE': 100,
+    'DROP': 10
 }
 
 """

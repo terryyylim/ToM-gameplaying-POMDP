@@ -371,6 +371,9 @@ class MapEnv(MultiAgentEnv):
             elif task_action[0] == 'SERVE' and task_action[2] == agent.location:
                 print('@map_env - Executing Serve Action')
                 agent.serve(task_id, task_action[1])
+            elif task_action[0] == 'DROP':
+                print('@map_env - Executing Drop Action')
+                agent.drop(task_id)
 
     def map_to_colors(self, map=None, color_map=None):
         """Converts a map to an array of RGB values.

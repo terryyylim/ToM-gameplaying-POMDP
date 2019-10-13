@@ -668,33 +668,48 @@ class OvercookedAgent(BaseAgent):
                 if is_last and task.head.task == 'plate':
                     task.head = task.head.next
 
+    def find_random_empty_cell(self) -> Tuple[int,int]:
+        all_valid_surrounding_cells = []
+        surrounding_cells_xy = [
+            [-1,-1], [-1,0], [-1,1], [0,1], [1,1], [1,0], [1,-1], [0,-1]
+        ]
 
-    def drop(self, path: List[Tuple[int,int]], item: Item, drop_coord: Tuple[int,int]) -> None:
+        temp_valid_cells = self.world_state['valid_item_cells'].copy()
+        for agent in self.world_state['agents']:
+            temp_valid_cells.append(agent.location)
+        for surrounding_cell_xy in surrounding_cells_xy:
+            surrounding_cell = [sum(x) for x in zip(self.location, surrounding_cell_xy)]
+            if tuple(surrounding_cell) in temp_valid_cells:
+                all_valid_surrounding_cells.append(tuple(surrounding_cell))
+        print(f'Found all valid surrounding cells')
+        print(all_valid_surrounding_cells)
+
+        return random.choice(all_valid_surrounding_cells)
+
+    def drop(self, task_id: int) -> None:
         """
         This action assumes agent is currently holding an item.
         Prerequisite
         ------------
-        - At grid with accessibility to dropping coord.
-        Drop item <X>.
-        """
-        self.move(path)
-        if type(item) == Ingredient:
-            self.world_state['ingredient_'+item.name][item.id]['location'] = drop_coord
-            self.holding = None
+        - Drop item at where agent is currently
 
-    def move(self, path: List[Tuple[int,int]]) -> None:
+        TO IMPROVE:
+        - Prevent stacking of item
+        - Dropping item blocks grid cell
         """
-        - Finds item in world state.
-        - Go to grid with accessibility to item.
+        print('base_agent@drop - Drop item in-hand')
+        random_empty_cell = self.find_random_empty_cell()
 
-        Parameters
-        ----------
-        path: for animation on grid to happen
-        """
-        for step in path:
-            # Do animation (sleep 0.5s?)
-            self.world_state[self.agent_id] = step
-        self.location = path[-1]
+        if type(self.holding) == Ingredient:
+            holding_ingredient = self.holding
+            holding_ingredient.location = random_empty_cell
+            self.world_state['ingredient'].append(holding_ingredient)
+        # For now, just plate
+        elif type(self.holding) == Plate:
+            holding_plate = self.holding
+            holding_plate.location = random_empty_cell
+            self.world_state['plate'].append(holding_plate)
+        self.holding = None
 
     def chop(self, task_id: int, is_last: bool, task_coord: Tuple[int, int]):
         print('base_agent@chop')
