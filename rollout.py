@@ -141,7 +141,11 @@ def main(env: str, timer: int) -> None:
 
                 print()
                 print(f'============= Summary after timestep {counter} =============')
-                print(f'Current world_state: \n{c.env.world_state}\n\n')
+                # print(f'Current world_state: \n{c.env.world_state}\n\n')
+                print(f'Current world_state:\n')
+                for key, value in c.env.world_state.items():
+                    if key != 'historical_world_state':
+                        print(f'Key: {key}, value: {value}\n')
                 ingredient_loc = [ingredient.location for ingredient in c.env.world_state['ingredients']]
                 chopping_boards_state = {cb: (cb.state, cb.location) for cb in c.env.world_state['chopping_board']}
                 goal_space = c.env.world_state['goal_space']
