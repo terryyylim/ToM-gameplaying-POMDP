@@ -525,27 +525,29 @@ class OvercookedAgent(BaseAgent):
         all_valid_cells = defaultdict(list)
         # item_instance is Tuple[int,int]
         # removing agent.location from valid_cells screws this check up
+
         agent_locs = [agent.location for agent in self.world_state['agents']]
         for item_instance in item_coords:
+            # Edge Case: Convert elif to if statements to consider item pick-up points with 2 valid end_coords
             if (item_instance[0], item_instance[1]+1) in self.world_state['valid_cells']:
                 all_valid_cells[item_instance].append((item_instance[0], item_instance[1]+1))
-            elif (item_instance[0], item_instance[1]-1) in self.world_state['valid_cells']:
+            if (item_instance[0], item_instance[1]-1) in self.world_state['valid_cells']:
                 all_valid_cells[item_instance].append((item_instance[0], item_instance[1]-1))
-            elif (item_instance[0]-1, item_instance[1]) in self.world_state['valid_cells']:
+            if (item_instance[0]-1, item_instance[1]) in self.world_state['valid_cells']:
                 all_valid_cells[item_instance].append((item_instance[0]-1, item_instance[1]))
-            elif (item_instance[0]+1, item_instance[1]) in self.world_state['valid_cells']:
+            if (item_instance[0]+1, item_instance[1]) in self.world_state['valid_cells']:
                 all_valid_cells[item_instance].append((item_instance[0]+1, item_instance[1]))
 
-            elif (item_instance[0], item_instance[1]+1) not in self.world_state['valid_cells'] \
+            if (item_instance[0], item_instance[1]+1) not in self.world_state['valid_cells'] \
                 and (item_instance[0], item_instance[1]+1) in agent_locs:
                     all_valid_cells[item_instance].append((item_instance[0], item_instance[1]+1))
-            elif (item_instance[0], item_instance[1]-1) not in self.world_state['valid_cells'] \
+            if (item_instance[0], item_instance[1]-1) not in self.world_state['valid_cells'] \
                 and (item_instance[0], item_instance[1]-1) in agent_locs:
                     all_valid_cells[item_instance].append((item_instance[0], item_instance[1]-1))
-            elif (item_instance[0]-1, item_instance[1]) not in self.world_state['valid_cells'] \
+            if (item_instance[0]-1, item_instance[1]) not in self.world_state['valid_cells'] \
                 and (item_instance[0]-1, item_instance[1]) in agent_locs:
                     all_valid_cells[item_instance].append((item_instance[0]-1, item_instance[1]))
-            elif (item_instance[0]+1, item_instance[1]) not in self.world_state['valid_cells'] \
+            if (item_instance[0]+1, item_instance[1]) not in self.world_state['valid_cells'] \
                 and (item_instance[0]+1, item_instance[1]) in agent_locs:
                     all_valid_cells[item_instance].append((item_instance[0]+1, item_instance[1]))
 
