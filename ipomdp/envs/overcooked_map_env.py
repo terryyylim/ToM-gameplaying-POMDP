@@ -31,10 +31,11 @@ class OvercookedEnv(MapEnv):
         self.order_queue = []
 
         # Initialization: Update agent's current cell to be not available
-        print(self.world_state['valid_cells'])
+        print(f'Removing agent current location from valid_cells, valid_item_cells list')
         try:
             for agent in self.agents:
                 self.world_state['valid_cells'].remove(self.agents[agent].location)
+                self.world_state['valid_item_cells'].remove(self.agents[agent].location)
         except ValueError:
             print('Valid cell is already updated')
 
@@ -142,6 +143,7 @@ class OvercookedEnv(MapEnv):
                 assigned_best_goal[agent] = [softmax_best_goal, agents_possible_goals[agent][softmax_best_goal]]
             else:
                 # If no task at hand, but blocking stations, move to valid cell randomly
+                # TO-DO: Fix case in stage 1 where agent is in cell (4,10) and blocks movements
                 if agent.location in [(1,3), (1,8), (3,7), (3,5)]:
                     print(f'Entered find random valid action')
                     random_valid_cell_move = self._find_random_valid_action(agent)
@@ -208,8 +210,10 @@ class OvercookedEnv(MapEnv):
         world_state:
             a dictionary indicating world state (coordinates of items in map)
         """
-        self.world_state['valid_cells'] = WORLD_STATE['new_valid_cells']
+        self.world_state['valid_cells'] = WORLD_STATE['valid_movement_cells']
+        self.world_state['valid_item_cells'] = WORLD_STATE['temporary_valid_item_cells']
         self.world_state['service_counter'] = WORLD_STATE['service_counter']
+        self.world_state['return_counter'] = WORLD_STATE['return_counter'][0]
 
         for item in items:
             if item == 'chopping_board':
