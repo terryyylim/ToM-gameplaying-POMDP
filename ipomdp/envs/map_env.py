@@ -9,6 +9,7 @@ from ray.rllib.env import MultiAgentEnv
 from ipomdp.envs.map_configs import *
 from ipomdp.agents.agent_configs import *
 from ipomdp.agents.base_agent import *
+from ipomdp.overcooked import *
 
 class MapEnv(MultiAgentEnv):
     def __init__(
@@ -120,27 +121,64 @@ class MapEnv(MultiAgentEnv):
         print(agent_actions)
         
         orig_pos = {agent:agent.location for agent in self.world_state['agents']}
+        orig_holding = {agent:agent.holding for agent in self.world_state['agents']}
 
         self.update_moves(agent_actions)
 
         curr_pos = {agent: tuple(agent.location) for agent in self.world_state['agents']}
-        for agent in curr_pos:
-            if curr_pos[agent] != orig_pos[agent]:
-                self.world_state['valid_cells'].append(orig_pos[agent])
-                self.world_state['valid_cells'].remove(curr_pos[agent])
-
-                self.world_map[orig_pos[agent][0], orig_pos[agent][1]] = ' '
-                self.world_map[curr_pos[agent][0], curr_pos[agent][1]] = agent.agent_id
         
         # Update map barriers for agent's A* Search
         temp_astar_map = None
         # Get A* Search map
         for agent in self.world_state['agents']:
             temp_astar_map = agent.astar_map
-        # Get all updates
-        for agent in self.world_state['agents']:
-            temp_astar_map.barriers.remove(orig_pos[agent])
-            temp_astar_map.barriers.append(curr_pos[agent])
+        
+        for agent in curr_pos:
+            if curr_pos[agent] != orig_pos[agent]:
+                self.world_state['valid_cells'].append(orig_pos[agent])
+                self.world_state['valid_cells'].remove(curr_pos[agent])
+
+                # Update barriers in map used for A* Search
+                temp_astar_map.barriers.remove(orig_pos[agent])
+                temp_astar_map.barriers.append(curr_pos[agent])
+
+                # Edge case: Prevent converting to ' ' if another agent is currently on it
+                all_agent_location = [tuple(agent.location) for agent in self.world_state['agents']]
+
+                if orig_pos[agent] not in all_agent_location:
+                    self.world_map[orig_pos[agent][0], orig_pos[agent][1]] = ' '
+                self.world_map[curr_pos[agent][0], curr_pos[agent][1]] = agent.agent_id
+        
+        for agent in agent_actions:
+            action = agent_actions[agent][1]
+
+            if isinstance(action, list):
+                # Index 0: action_type; Index 1: action_info
+                if action[0] == 'PICK' and action[1]['pick_type'] == 'plate':
+                    cur_plate_pos = action[1]['task_coord']
+                    self.world_state['valid_item_cells'].append(cur_plate_pos)
+
+                    if tuple(cur_plate_pos) in BARRIERS:
+                        self.world_map[cur_plate_pos[0], cur_plate_pos[1]] = '@'
+                    elif tuple(cur_plate_pos) == self.world_state['return_counter']:
+                        # TO-DO: If more than 1 plates returned here, then...colour? Because stackable
+                        self.world_map[cur_plate_pos[0], cur_plate_pos[1]] = 'D'
+                    else:
+                        self.world_map[cur_plate_pos[0], cur_plate_pos[1]] = ' '
+                # If is drop, make 2 colour shade
+                if action[0] == 'DROP':
+                    if type(orig_holding[agent]) == Plate:
+                        cur_plate_pos = orig_holding[agent].location
+
+                        # Edge case: Randomly chosen spot to drop item must be a table-top cell
+                        if cur_plate_pos in self.world_state['valid_item_cells']:
+                            self.world_state['valid_item_cells'].remove(cur_plate_pos)
+                        self.world_map[cur_plate_pos[0], cur_plate_pos[1]] = 'P'
+
+                if action[0] == 'SERVE':
+                    if type(orig_holding[agent]) == Plate:
+                        self.world_map[self.world_state['return_counter'][0], self.world_state['return_counter'][1]] = 'P'
+
         # Update A* Search map for all agents
         for agent in self.world_state['agents']:
             agent.astar_map = temp_astar_map
