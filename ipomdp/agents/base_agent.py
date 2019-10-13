@@ -357,33 +357,22 @@ class OvercookedAgent(BaseAgent):
                             end_coord
                         ])
                     elif not wanted_ingredient and self.holding:
-                        # TO-BE FIXED
-                        print('Contains Item in hand - Cannot pick')
-                        continue
-                    #     holding_ingredient = self.holding
-                    #     holding_ingredient.location = self.location
-                    #     self.world_state['ingredients'].append(holding_ingredient)
-                    #     self.holding = None
-
-                    #     # Just take fresh ones
-                    #     path_cost = self.calc_travel_cost(['ingredient_'+task_list.ingredient], [self.world_state['ingredient_'+task_list.ingredient]])
-                    #     # no need to move anymore
-                    #     task_coord = self.world_state['ingredient_'+task_list.ingredient][0]
-                    #     end_coord = self.location
-                    #     if path_cost:
-                    #         end_coord = path_cost['ingredient_'+task_list.ingredient][0][-1]
-                    #         path_actions += self.map_path_actions(path_cost['ingredient_'+task_list.ingredient][0])
-
-                    #     path_actions.append([
-                    #         'PICK',
-                    #         {
-                    #             'is_new': True,
-                    #             'is_last': True,
-                    #             'pick_type': 'ingredient',
-                    #             'task_coord': task_coord
-                    #         },
-                    #         end_coord
-                    #     ])
+                        # TO-BE FIXED (?)
+                        if isinstance(self.holding, Ingredient):
+                            if self.holding.name == task_list.ingredient:
+                                print('Contains Item in hand - But valid item for different task')
+                                continue
+                        else:
+                            # Edge case: Randomly chosen spot to drop item must be a table-top cell
+                            print('Contains Item in hand - Cannot pick')
+                            path_cost = self.calc_travel_cost(['valid_item_cells'], [self.world_state['valid_item_cells']])
+                            task_coord = path_cost['valid_item_cells'][2]
+                            end_coord = path_cost['valid_item_cells'][0][-1]
+                            valid_drop_path_actions = self.map_path_actions(path_cost['valid_item_cells'][0])
+                            path_actions += valid_drop_path_actions
+                            path_actions.append([
+                                'DROP'
+                            ])
                     else:
                         # valid_ingredient_cells = [ingredient.location for ingredient in self.world_state['ingredients'] if ingredient.name == task_list.ingredient]
                         # path_cost = self.calc_travel_cost(['ingredient_'+task_list.ingredient], [valid_ingredient_cells])
