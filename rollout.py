@@ -93,7 +93,8 @@ def main(env: str, timer: int) -> None:
     thread = TaskThread(c)
     thread.start()
 
-    end_time = time.time() + 120
+    end_time = time.time() + 360
+    queue_time = time.time() + 70
     time_step_execution = False
     counter = 1
     make_video = False
@@ -111,9 +112,13 @@ def main(env: str, timer: int) -> None:
     c.env.render('./ipomdp/images/timestep0')
     while time.time() < end_time:
 
+        if time.time() == queue_time:
+            print('entered queue time')
+            c.env.random_queue_order()
+
         # If goal space exist, else do nothing
         if not time_step_execution and c.env.world_state['goal_space']:
-            if counter < 120:
+            if counter < 220:
                 print(f'============= Executing next timestep {counter} @ {time.time()} =============')
                 for agent in c.env.world_state['agents']:
                     agent.location = tuple(agent.location)
@@ -152,7 +157,7 @@ def main(env: str, timer: int) -> None:
                 print(f'Current agents can_update status:\n')
                 print(agent_can_update_status)
 
-                if counter == 80 or counter == 83:
+                if counter == 185:
                     print('@rollout - Making video now')
                     make_video = True
                 counter += 1
