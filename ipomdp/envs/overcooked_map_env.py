@@ -73,10 +73,15 @@ class OvercookedEnv(MapEnv):
             goal.id: id(goal) for goal in self.world_state['goal_space']
         }
 
-    def find_agents_possible_goals(self):
+    def find_agents_possible_goals(self, observers_task_to_not_do=[]):
         agent_goals = {}
         for agent in self.world_state['agents']:
-            agent_goals[agent] = agent.find_best_goal()
+            observer_task_to_not_do = []
+            if observers_task_to_not_do:
+                print(f'Observer to not do tasks')
+                print(observers_task_to_not_do)
+                observer_task_to_not_do = observers_task_to_not_do[agent]
+            agent_goals[agent] = agent.find_best_goal(observer_task_to_not_do)
         return agent_goals
 
     def find_agents_best_goal(self):
@@ -98,14 +103,18 @@ class OvercookedEnv(MapEnv):
         }
         """
         print('@overcooked_map_env - find_agents_best_goal()')
-        agents_possible_goals = self.find_agents_possible_goals()
+        # Do inference here; skips inference for first timestep
+        observers_task_to_not_do = {}
+        for agent in self.world_state['agents']:
+            if agent.is_inference_agent and 'historical_world_state' in self.world_state:
+                observers_inference_tasks = agent.observer_inference()
+                observers_task_to_not_do[agent] = [self.world_state['task_id_mappings'][_id] for _id in observers_inference_tasks]
+            else:
+                observers_task_to_not_do[agent] = []
+
+        agents_possible_goals = self.find_agents_possible_goals(observers_task_to_not_do)
         print('agents possible goals')
         print(agents_possible_goals)
-
-        # Do inference here; skips inference for first timestep
-        if 'historical_world_state' in self.world_state:
-            for agent in self.world_state['agents']:
-                agent.observer_inference()
 
         assigned_best_goal = {}
         for agent in agents_possible_goals:
@@ -128,8 +137,6 @@ class OvercookedEnv(MapEnv):
                 #     assigned_task_idx = max_rewards_task_idx[0]
                 # assigned_task = list(agents_possible_goals[agent])[assigned_task_idx]
                 # assigned_best_goal[agent] = [assigned_task, agents_possible_goals[agent][assigned_task]]
-                print('find random action')
-                self._find_random_valid_action(agent)
 
                 print(f'Softmax Best Goal:')
                 print(softmax_best_goal)
@@ -241,7 +248,10 @@ class OvercookedEnv(MapEnv):
             self.world_state['ingredient_'+ingredient] = ingredients[ingredient]['location']
 
     def setup_agents(self):
+        # True -> ToM Agent; False -> Non-ToM Agent
+        is_inference_agents = {0: True, 1: True}
         for agent in range(len(self.agent_initialization)):
+            is_inference = is_inference_agents[agent]
             agent_id = agent + 1
             self.agents[agent_id] = OvercookedAgent(
                                     str(agent_id),
@@ -249,6 +259,7 @@ class OvercookedEnv(MapEnv):
                                     BARRIERS,
                                     RECIPES_COOKING_INTERMEDIATE_STATES,
                                     RECIPES_PLATING_INTERMEDIATE_STATES,
+                                    is_inference_agent=is_inference
                                 )
             self.world_map[self.agent_initialization[agent]] = agent_id
             self.world_state['agents'].append(self.agents[agent_id])
