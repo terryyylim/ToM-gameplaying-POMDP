@@ -5,10 +5,16 @@ from typing import Tuple
 
 # import ray
 from collections import defaultdict
+import multiprocessing
+from multiprocessing import Pool, Process, Queue, cpu_count
+import queue
+import threading
 import matplotlib.pyplot as plt
 import numpy as np
 import operator
 import random
+import copy
+import os
 
 from ipomdp.agents.agent_configs import *
 from ipomdp.agents.astart_search import AStarGraph
@@ -677,8 +683,8 @@ class OvercookedAgent(BaseAgent):
         ]
 
         temp_valid_cells = self.world_state['valid_item_cells'].copy()
-        for agent in self.world_state['agents']:
-            temp_valid_cells.append(agent.location)
+        # for agent in self.world_state['agents']:
+        #     temp_valid_cells.append(agent.location)
         for surrounding_cell_xy in surrounding_cells_xy:
             surrounding_cell = [sum(x) for x in zip(self.location, surrounding_cell_xy)]
             if tuple(surrounding_cell) in temp_valid_cells:
@@ -705,7 +711,7 @@ class OvercookedAgent(BaseAgent):
         if type(self.holding) == Ingredient:
             holding_ingredient = self.holding
             holding_ingredient.location = random_empty_cell
-            self.world_state['ingredient'].append(holding_ingredient)
+            self.world_state['ingredients'].append(holding_ingredient)
         # For now, just plate
         elif type(self.holding) == Plate:
             holding_plate = self.holding
@@ -715,7 +721,7 @@ class OvercookedAgent(BaseAgent):
 
     def chop(self, task_id: int, is_last: bool, task_coord: Tuple[int, int]):
         print('base_agent@chop')
-        print(task_coord)
+        self.world_state['explicit_rewards']['chop'] += 1
         task = [task for task in self.world_state['goal_space'] if id(task) == task_id][0]
 
         holding_ingredient = self.holding
@@ -738,6 +744,7 @@ class OvercookedAgent(BaseAgent):
 
     def cook(self, task_id: int, is_last: bool, task_coord: Tuple[int, int]):
         print('base_agent@cook')
+        self.world_state['explicit_rewards']['cook'] += 1
         task = [task for task in self.world_state['goal_space'] if id(task) == task_id][0]
         dish = task.dish
         ingredient = task.head.ingredient
@@ -770,6 +777,10 @@ class OvercookedAgent(BaseAgent):
             self.world_state['cooked_dish'].append(new_dish)
             self.world_state['task_id_count'] += 1
             self.world_state['goal_space'].append(TaskList(dish, RECIPES_SERVE_TASK[dish], dish, self.world_state['task_id_count']))
+            self.world_state['cooked_dish_count'][dish] += 1
+            for task_list in self.world_state['goal_space']:
+                if task_list.id not in self.world_state['task_id_mappings']:
+                    self.world_state['task_id_mappings'][task_list.id] = id(task_list)
             pot.dish = dish
 
         if is_last:
@@ -795,9 +806,11 @@ class OvercookedAgent(BaseAgent):
 
         # Empty the pot as well
         pot.ingredient_count = defaultdict(int)
+        pot.dish = None
 
         dish_to_plate = [dish for dish in self.world_state['cooked_dish'] if dish.location == task_coord][0]
         # let the plate which agent is holding, hold the completed dish
+        self.world_state['cooked_dish_count'][dish_to_plate.name] -= 1
         self.holding.dish = dish_to_plate
         self.holding.state = 'plated'
 
@@ -812,11 +825,13 @@ class OvercookedAgent(BaseAgent):
 
     def serve(self, task_id: int, serve_info):
         print('base_agent@serve')
+        self.world_state['explicit_rewards']['serve'] += 1
         task = [task for task in self.world_state['goal_space'] if id(task) == task_id][0]
         is_last = serve_info['is_last']
         
         # plate returns to return point (in clean form for now)
         self.holding.dish = None
+        self.holding.state = 'empty'
         self.holding.location = (5,0)
         self.world_state['plate'].append(self.holding)
 
