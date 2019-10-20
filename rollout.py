@@ -20,7 +20,6 @@ class TaskThread(threading.Thread):
         self.controller = controller
     
     def run(self) -> None:
-        # while not self.event.wait(1):
         self.controller.env.random_queue_order()
 
 class Controller(object):
@@ -90,8 +89,6 @@ def main(env: str, timer: int) -> None:
     thread = TaskThread(c)
     thread.start()
 
-    end_time = time.time() + 360
-    queue_time = time.time() + 70
     time_step_execution = False
     counter = 1
     make_video = False
@@ -107,15 +104,15 @@ def main(env: str, timer: int) -> None:
             os.remove(videos_dir+'/trajectory.mp4')
 
     c.env.render('./ipomdp/images/timestep0')
-    while time.time() < end_time:
-
-        if time.time() == queue_time:
-            print('entered queue time')
-            c.env.random_queue_order()
+    timesteps = 500
+    for counter in range(1, timesteps):
 
         # If goal space exist, else do nothing
         if not time_step_execution and c.env.world_state['goal_space']:
-            if counter < 220:
+            # Mini-hack to add more orders
+            if counter in [70, 140, 210, 280, 350, 420]:
+                c.env.random_queue_order()
+            if counter < 500:
                 print(f'============= Executing next timestep {counter} @ {time.time()} =============')
                 for agent in c.env.world_state['agents']:
                     agent.location = tuple(agent.location)
@@ -149,6 +146,9 @@ def main(env: str, timer: int) -> None:
                 goal_info = [(id(goal), goal.head, id(goal.head), goal.head.state, goal.head.task) for goal in c.env.world_state['goal_space']]
                 agent_holding_status = {agent: agent.holding for agent in c.env.world_state['agents']}
                 agent_can_update_status = {agent: agent.can_update for agent in c.env.world_state['agents']}
+                explicit_chop_rewards = c.env.world_state['explicit_rewards']['chop']
+                explicit_cook_rewards = c.env.world_state['explicit_rewards']['cook']
+                explicit_serve_rewards = c.env.world_state['explicit_rewards']['serve']
                 print(f'Current ingredient locations: \n{ingredient_loc}\n')
                 print(f'Current chopping board states: \n{chopping_boards_state}\n')
                 print(f'Current goal space: \n{goal_space}\n')
@@ -157,30 +157,32 @@ def main(env: str, timer: int) -> None:
                 print(agent_holding_status)
                 print(f'Current agents can_update status:\n')
                 print(agent_can_update_status)
+                print(f'Current EXPLICIT chop rewards: {explicit_chop_rewards}')
+                print(f'Current EXPLICIT cook rewards: {explicit_cook_rewards}')
+                print(f'Current EXPLICIT serve rewards: {explicit_serve_rewards}')
 
-                if counter == 185:
+                if counter == 450:
                     print('@rollout - Making video now')
                     make_video = True
-                counter += 1
-                time_step_execution = False
+                # counter += 1
+                # time_step_execution = False
+            if make_video:
+                video_path = os.path.abspath(os.path.dirname(__file__)) + '/videos'
+                image_path = os.path.abspath(os.path.dirname(__file__)) + '/ipomdp/images'
+                if not os.path.exists(video_path):
+                    os.makedirs(video_path)
+                fps = 1
+                video_name = 'trajectory'
+                helpers.make_video_from_image_dir(
+                    video_path,
+                    image_path,
+                    video_name,
+                    fps
+                )
+            counter += 1
+            time_step_execution = False
         else:
             continue
-
-        if make_video:
-            video_path = os.path.abspath(os.path.dirname(__file__)) + '/videos'
-            image_path = os.path.abspath(os.path.dirname(__file__)) + '/ipomdp/images'
-            if not os.path.exists(video_path):
-                os.makedirs(video_path)
-            fps = 1
-            video_name = 'trajectory'
-            helpers.make_video_from_image_dir(
-                video_path,
-                image_path,
-                video_name,
-                fps
-            )
-
-    thread.event.set()
 
 if __name__ == "__main__":
     main()
