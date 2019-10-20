@@ -50,13 +50,10 @@ class Controller(object):
         of the objects found in the original.
         This helps prevent any weird occurrences affecting the true world state.
         """
-        self.env.world_state['historical_world_state'] = copy.deepcopy(self.env.world_state)
-
-        rewards = []
-        observations = []
-        shape = self.env.world_map.shape
-        full_obs = [np.zeros(
-            (shape[0], shape[1], 3), dtype=np.uint8) for i in range(horizon)]
+        temp_copy = copy.deepcopy(self.env.world_state)
+        # only require historical world_state 1 timestep ago
+        temp_copy['historical_world_state'] = {}
+        self.env.world_state['historical_world_state'] = temp_copy
         
         action_mapping = {}
         for agent in best_goals:
