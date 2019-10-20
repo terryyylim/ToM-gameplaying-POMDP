@@ -154,17 +154,39 @@ class MapEnv(MultiAgentEnv):
 
             if isinstance(action, list):
                 # Index 0: action_type; Index 1: action_info
-                if action[0] == 'PICK' and action[1]['pick_type'] == 'plate':
-                    cur_plate_pos = action[1]['task_coord']
-                    self.world_state['valid_item_cells'].append(cur_plate_pos)
+                if action[0] == 'PICK':
+                    if action[1]['pick_type'] == 'plate':
+                        if agent.holding:
+                            # Edge-Case: AgentL about to serve, AgentR trying to pick plate for the same goal that is going to be removed
+                            # Continue and not pick instead
+                            cur_plate_pos = action[1]['task_coord']
+                            self.world_state['valid_item_cells'].append(cur_plate_pos)
 
-                    if tuple(cur_plate_pos) in BARRIERS:
-                        self.world_map[cur_plate_pos[0], cur_plate_pos[1]] = '@'
-                    elif tuple(cur_plate_pos) == self.world_state['return_counter']:
-                        # TO-DO: If more than 1 plates returned here, then...colour? Because stackable
-                        self.world_map[cur_plate_pos[0], cur_plate_pos[1]] = 'D'
-                    else:
-                        self.world_map[cur_plate_pos[0], cur_plate_pos[1]] = ' '
+                            if tuple(cur_plate_pos) == self.world_state['return_counter']:
+                                # TO-DO: If more than 1 plates returned here, then...colour? Because stackable
+                                all_plate_locations = [plate.location for plate in self.world_state['plate']]
+                                if len(set(all_plate_locations)) == 1:
+                                    # All plates are on return counter
+                                    self.world_map[cur_plate_pos[0], cur_plate_pos[1]] = 'P'
+                                else:
+                                    self.world_map[cur_plate_pos[0], cur_plate_pos[1]] = 'D'
+                            elif tuple(cur_plate_pos) in BARRIERS:
+                                self.world_map[cur_plate_pos[0], cur_plate_pos[1]] = '@'
+                            else:
+                                self.world_map[cur_plate_pos[0], cur_plate_pos[1]] = ' '
+                    elif action[1]['pick_type'] == 'ingredient':
+                        if agent.holding:
+                            cur_ingredient_pos = action[1]['task_coord']
+                            self.world_state['valid_item_cells'].append(cur_ingredient_pos)
+
+                            if tuple(cur_ingredient_pos) in BARRIERS:
+                                all_raw_chop_locations = [cb.location for cb in self.world_state['chopping_board']]
+                                all_raw_chop_locations.append(self.world_state['ingredient_'+agent.holding.name][0])
+                                if tuple(cur_ingredient_pos) in all_raw_chop_locations:
+                                    continue
+                                else:
+                                    self.world_map[cur_ingredient_pos[0], cur_ingredient_pos[1]] = '@'
+
                 # If is drop, make 2 colour shade
                 if action[0] == 'DROP':
                     if type(orig_holding[agent]) == Plate:
@@ -174,6 +196,18 @@ class MapEnv(MultiAgentEnv):
                         if cur_plate_pos in self.world_state['valid_item_cells']:
                             self.world_state['valid_item_cells'].remove(cur_plate_pos)
                         self.world_map[cur_plate_pos[0], cur_plate_pos[1]] = 'P'
+                    elif type(orig_holding[agent]) == Ingredient:
+                        cur_ingredient_pos = orig_holding[agent].location
+
+                        # Edge case: Randomly chosen spot to drop item must be a table-top cell
+                        if cur_ingredient_pos in self.world_state['valid_item_cells']:
+                            self.world_state['valid_item_cells'].remove(cur_ingredient_pos)
+
+                        # Different colours based on ingredient state
+                        if orig_holding[agent].state == 'unchopped':
+                            self.world_map[cur_ingredient_pos[0], cur_ingredient_pos[1]] = 'Z'
+                        elif orig_holding[agent].state == 'chopped':
+                            self.world_map[cur_ingredient_pos[0], cur_ingredient_pos[1]] = 'X'
 
                 if action[0] == 'SERVE':
                     if type(orig_holding[agent]) == Plate:
