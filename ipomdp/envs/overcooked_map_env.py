@@ -331,9 +331,9 @@ class OvercookedEnv(MapEnv):
 
                 # Check for obstacle in path; and movement == 0
                 if tuple(temp_agent_location) not in self.world_state['valid_cells'] and movement == 0:
-                    print(f'hit obstacle')
-                    print(temp_agent_location)
-                    print(self.world_state['valid_cells'])
+                    # print(f'hit obstacle')
+                    # print(temp_agent_location)
+                    # print(self.world_state['valid_cells'])
                     hit_obstacle = True
                     continue
             
@@ -346,7 +346,7 @@ class OvercookedEnv(MapEnv):
                     ))
         
         print(f'Done with all permutation mappings')
-        print(all_valid_paths)
+        # print(all_valid_paths)
         if all_valid_paths:
             return random.choice(all_valid_paths)
 
@@ -535,14 +535,14 @@ class OvercookedEnv(MapEnv):
             
             # Next action to take
             action = cur_action_chain[0]
-            print(f'Current action is: {action}')
+            # print(f'Current action is: {action}')
             # Returns list of next possible actions to take
             heuristic_map = heuristic_mapping[action]
 
             # TO-DO: Add in checks if end_location for current iteration is a valid cell
             if cur_step == 0:
                 cur_reward = 0
-                print(f'Entered cur_step == 0')
+                # print(f'Entered cur_step == 0')
 
                 for heuristic_action in heuristic_map:
                     heuristic_reward = agent.rewards[heuristic_action]
@@ -571,7 +571,7 @@ class OvercookedEnv(MapEnv):
                     if (new_reward == best_reward) and (new_location == list(end_location)):
                         valid_permutations.append(new_path)
             else:
-                print(f'Entered cur_step != 0')
+                # print(f'Entered cur_step != 0')
                 # Returns valid existing path by far; List of Tuple (cost:int, steps:List[int])
                 cur_valid_paths = dp_table[cur_step-1]
 
@@ -616,7 +616,7 @@ class OvercookedEnv(MapEnv):
             heuristic_mapping, defaultdict(list), valid_cells
         )
         print(f'Done with generating valid permutations')
-        print(valid_permutations)
+        # print(valid_permutations)
 
         return valid_permutations
     
