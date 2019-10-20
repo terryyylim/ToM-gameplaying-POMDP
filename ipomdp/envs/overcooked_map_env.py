@@ -221,6 +221,11 @@ class OvercookedEnv(MapEnv):
         self.world_state['valid_item_cells'] = WORLD_STATE['temporary_valid_item_cells']
         self.world_state['service_counter'] = WORLD_STATE['service_counter']
         self.world_state['return_counter'] = WORLD_STATE['return_counter'][0]
+        self.world_state['explicit_rewards'] = {'chop': 0, 'cook': 0, 'serve': 0}
+        self.world_state['cooked_dish_count'] = {}
+
+        for recipe in RECIPES:
+            self.world_state['cooked_dish_count'][recipe] = 0
 
         for item in items:
             if item == 'chopping_board':
