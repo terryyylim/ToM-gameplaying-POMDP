@@ -232,7 +232,10 @@ class OvercookedAgent(BaseAgent):
                             valid_drop_path_actions = self.map_path_actions(path_cost['valid_item_cells'][0])
                             path_actions += valid_drop_path_actions
                             path_actions.append([
-                                'DROP'
+                                'DROP',
+                                {
+                                    'for_task': 'PLATE'
+                                }
                             ])
                         else:
                             # In the case with multiple plates, a random one will be chosen
@@ -296,7 +299,10 @@ class OvercookedAgent(BaseAgent):
                                 valid_drop_path_actions = self.map_path_actions(path_cost['valid_item_cells'][0])
                                 path_actions += valid_drop_path_actions
                                 path_actions.append([
-                                    'DROP'
+                                    'DROP',
+                                    {
+                                        'for_task': 'PLATE'
+                                    }
                                 ])
                             else:
                                 try:
@@ -423,7 +429,10 @@ class OvercookedAgent(BaseAgent):
                                 valid_drop_path_actions = self.map_path_actions(path_cost['valid_item_cells'][0])
                                 path_actions += valid_drop_path_actions
                                 path_actions.append([
-                                    'DROP'
+                                    'DROP',
+                                    {
+                                        'for_task': 'INGREDIENT'
+                                    }
                                 ])
                         else:
                             # valid_ingredient_cells = [ingredient.location for ingredient in self.world_state['ingredients'] if ingredient.name == task_list.ingredient]
@@ -550,6 +559,10 @@ class OvercookedAgent(BaseAgent):
                         # Give more importance to picking plate (to serve)
                         if action_abbrev == 'PICK' and action[1]['pick_type'] == 'plate':
                             total_rewards += self.rewards[action_abbrev] + 30
+                        elif action_abbrev == 'DROP' and action[1]['for_task'] == 'PLATE':
+                            total_rewards += self.rewards[action_abbrev] + 30
+                        elif action_abbrev == 'DROP' and action[1]['for_task'] == 'INGREDIENT':
+                            total_rewards += self.rewards[action_abbrev] + 10
                         else:
                             total_rewards += self.rewards[action_abbrev]
                 agent_goal_costs[id(task_list)] = {

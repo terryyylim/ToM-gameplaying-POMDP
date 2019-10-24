@@ -285,7 +285,7 @@ REWARDS_1 = {
     'COOK': 45,
     'SCOOP': 50,
     'SERVE': 100,
-    'DROP': 10
+    'DROP': 0
 }
 
 """
