@@ -1018,19 +1018,22 @@ class OvercookedAgent(BaseAgent):
                 # print(inferred_goals_info)
 
                 sampling_count = 0
+                # All path finding will be the same for each goal (so just do it once)
+                all_best_paths = prev_env.generate_possible_paths(agent, prev_best_goals[agent][goal])
                 while sampling_count != 50:
 
-                    best_path = prev_env.generate_possible_paths(agent, prev_best_goals[agent][goal])
-
-                    if best_path != -1:
+                    best_path = None
+                    if all_best_paths != -1:
+                        best_path = random.choice(all_best_paths)
                         best_path.append(prev_best_goals[agent][goal]['steps'][-1])
+                    else:
+                        best_path = -1
                     try:
                         if isinstance(best_path[0], int):
                             inferred_goals_info[agent][_id][best_path[0]] += 1
-                        elif isinstance(best_path[0], list):
-                            inferred_goals_info[agent][_id][best_path[0][0]] += 1
 
                     except TypeError:
+                        # Case where best_path = -1
                         print(f'@observer_inference - TypeError')
                         print(f'Encountered best action to take, is not a movement.')
 

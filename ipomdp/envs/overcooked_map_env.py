@@ -140,10 +140,11 @@ class OvercookedEnv(MapEnv):
 
                 print(f'Softmax Best Goal:')
                 print(softmax_best_goal)
-                best_path = self.generate_possible_paths(agent, agents_possible_goals[agent][softmax_best_goal])
-                
+                all_best_paths = self.generate_possible_paths(agent, agents_possible_goals[agent][softmax_best_goal])
+
                 # best_path == -1; means there's no valid permutations, use the original path
-                if best_path != -1:
+                if all_best_paths != -1:
+                    best_path = random.choice(all_best_paths)
                     best_path.append(agents_possible_goals[agent][softmax_best_goal]['steps'][-1])
                     agents_possible_goals[agent][softmax_best_goal]['steps'] = best_path
 
@@ -346,9 +347,8 @@ class OvercookedEnv(MapEnv):
                     ))
         
         print(f'Done with all permutation mappings')
-        # print(all_valid_paths)
         if all_valid_paths:
-            return random.choice(all_valid_paths)
+            return all_valid_paths
 
         return -1
     
