@@ -181,9 +181,12 @@ class MapEnv(MultiAgentEnv):
 
                             if tuple(cur_ingredient_pos) in BARRIERS:
                                 all_raw_chop_locations = [cb.location for cb in self.world_state['chopping_board']]
-                                all_raw_chop_locations.append(self.world_state['ingredient_'+agent.holding.name][0])
+                                all_raw_ingredients_locations = [self.world_state['ingredient_'+agent.holding.name][0]]
                                 if tuple(cur_ingredient_pos) in all_raw_chop_locations:
-                                    continue
+                                    self.world_map[cur_ingredient_pos[0], cur_ingredient_pos[1]] = 'C'
+                                elif tuple(cur_ingredient_pos) in all_raw_ingredients_locations:
+                                    if agent.holding.name == 'onion':
+                                        self.world_map[cur_ingredient_pos[0], cur_ingredient_pos[1]] = 'O'
                                 else:
                                     self.world_map[cur_ingredient_pos[0], cur_ingredient_pos[1]] = '@'
 
