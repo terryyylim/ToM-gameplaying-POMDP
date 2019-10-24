@@ -2,6 +2,7 @@ import click
 import collections
 import numpy as np
 import time
+from datetime import datetime
 import threading
 import os
 import copy
@@ -105,6 +106,7 @@ def main(env: str, timer: int) -> None:
 
     c.env.render('./ipomdp/images/timestep0')
     timesteps = 500
+    start_time = datetime.now()
     for counter in range(1, timesteps):
 
         # If goal space exist, else do nothing
@@ -183,6 +185,11 @@ def main(env: str, timer: int) -> None:
             time_step_execution = False
         else:
             continue
+    end_time = datetime.now()
+    experiment_runtime = (end_time - start_time).seconds
+    experiment_runtime_min = experiment_runtime//60
+    experiment_runtime_sec = experiment_runtime%60
+    print(f'Experiment took {experiment_runtime_min} mins, {experiment_runtime_sec} secs to run.')
 
 if __name__ == "__main__":
     main()
