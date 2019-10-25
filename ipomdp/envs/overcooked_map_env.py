@@ -14,7 +14,6 @@ from ipomdp.envs.map_configs import *
 from ipomdp.agents.agent_configs import *
 from ipomdp.agents.base_agent import OvercookedAgent
 from ipomdp.overcooked import *
-from ipomdp.helpers import *
 
 class OvercookedEnv(MapEnv):
     def __init__(
@@ -659,6 +658,5 @@ def main() -> None:
 
 
 if __name__ == "__main__":
-    logger = helpers.get_logger()
 
     main()
