@@ -1,5 +1,11 @@
+from typing import Any
+
 import os
+import bz2
 import cv2
+import datetime
+import pickle
+from pathlib import Path
 
 def make_video_from_image_dir(vid_path, img_folder, video_name='trajectory', fps=5):
     """
@@ -44,3 +50,17 @@ def make_video_from_rgb_imgs(rgb_arrs, vid_path, video_name='trajectory',
 
     video.release()
     cv2.destroyAllWindows()
+
+def save(data: Any) -> None:
+    persistence_path = 'episodes_cache'
+    if not os.path.isdir(persistence_path):
+        os.mkdir(persistence_path)
+
+    pickle_file = Path(f'episodes_{datetime.datetime.utcnow()}.pbz2')
+    pickle_file = (persistence_path / pickle_file).as_posix()
+
+    handler = bz2.BZ2File(pickle_file, 'w')
+    with handler as f:
+        pickle.dump(data, f, pickle.HIGHEST_PROTOCOL)
+
+    print(f'Episodes cache saved to {pickle_file}')
