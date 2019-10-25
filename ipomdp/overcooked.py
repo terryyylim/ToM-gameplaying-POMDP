@@ -80,6 +80,7 @@ class Extinguisher(Item):
 class Plate(Item):
     def __init__(
         self,
+        plate_id: int,
         category: str,
         location: Tuple[int,int],
         state: str,
@@ -89,11 +90,13 @@ class Plate(Item):
         Only start plating dish when ingredient has been prepared (Chopped/Cooked etc.)
         """
         super().__init__(category, location, state)
+        self.plate_id = plate_id
         self.ready_to_serve = ready_to_serve
 
 class Pot(Item):
     def __init__(
         self,
+        pot_id: int,
         category: str,
         location: Tuple[int,int],
         state: str,
@@ -112,6 +115,7 @@ class Pot(Item):
         TO-DO: Think of way to time the cooking process
         """
         super().__init__(category, location, state)
+        self.pot_id = pot_id
         self.ingredient_count = ingredient_count
         self.intermediate_state = intermediate_state
         self.on_stove = on_stove

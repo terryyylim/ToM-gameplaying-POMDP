@@ -238,13 +238,17 @@ class OvercookedEnv(MapEnv):
                     new_item = Extinguisher('safety', i_state)
                     self.world_state[item].append(new_item)
             elif item == 'plate':
+                plate_idx = 1
                 for i_state in items[item]:
-                    new_item = Plate('utensils', i_state, 'empty')
+                    new_item = Plate(plate_idx, 'utensils', i_state, 'empty')
                     self.world_state[item].append(new_item)
+                    plate_idx += 1
             elif item == 'pot':
+                pot_idx = 1
                 for i_state in items[item]:
-                    new_item = Pot('utensils', i_state, 'empty')
+                    new_item = Pot(pot_idx, 'utensils', i_state, 'empty')
                     self.world_state[item].append(new_item)
+                    pot_idx += 1
             elif item == 'stove':
                 for i_state in items[item]:
                     new_item = Stove('utensils', i_state)
