@@ -31,8 +31,13 @@ class OvercookedEnv(MapEnv):
         self.order_queue = []
 
         # Initialization: Update agent's current cell to be not available
-        for agent in self.agents:
-            self.world_state['valid_cells'].remove(self.agents[agent].location)
+        print(f'Removing agent current location from valid_cells, valid_item_cells list')
+        try:
+            for agent in self.agents:
+                self.world_state['valid_cells'].remove(self.agents[agent].location)
+                self.world_state['valid_item_cells'].remove(self.agents[agent].location)
+        except ValueError:
+            print('Valid cell is already updated')
 
     def custom_reset(self):
         """Initialize the map to original"""
@@ -61,12 +66,22 @@ class OvercookedEnv(MapEnv):
         tasks_count = self.recipes_ingredients_count[new_order]
         for ingredient in tasks:
             for _ in range(tasks_count[ingredient]):
-                self.world_state['goal_space'].append(TaskList(new_order, tasks[ingredient], ingredient))
+                self.world_state['task_id_count'] += 1
+                self.world_state['goal_space'].append(TaskList(new_order, tasks[ingredient], ingredient, self.world_state['task_id_count']))
+        
+        self.world_state['task_id_mappings'] = {
+            goal.id: id(goal) for goal in self.world_state['goal_space']
+        }
 
-    def find_agents_possible_goals(self):
+    def find_agents_possible_goals(self, observers_task_to_not_do=[]):
         agent_goals = {}
         for agent in self.world_state['agents']:
-            agent_goals[agent] = agent.find_best_goal()
+            observer_task_to_not_do = []
+            if observers_task_to_not_do:
+                print(f'Observer to not do tasks')
+                print(observers_task_to_not_do)
+                observer_task_to_not_do = observers_task_to_not_do[agent]
+            agent_goals[agent] = agent.find_best_goal(observer_task_to_not_do)
         return agent_goals
 
     def find_agents_best_goal(self):
@@ -88,7 +103,16 @@ class OvercookedEnv(MapEnv):
         }
         """
         print('@overcooked_map_env - find_agents_best_goal()')
-        agents_possible_goals = self.find_agents_possible_goals()
+        # Do inference here; skips inference for first timestep
+        observers_task_to_not_do = {}
+        for agent in self.world_state['agents']:
+            if agent.is_inference_agent and 'historical_world_state' in self.world_state:
+                observers_inference_tasks = agent.observer_inference()
+                observers_task_to_not_do[agent] = [self.world_state['task_id_mappings'][_id] for _id in observers_inference_tasks]
+            else:
+                observers_task_to_not_do[agent] = []
+
+        agents_possible_goals = self.find_agents_possible_goals(observers_task_to_not_do)
         print('agents possible goals')
         print(agents_possible_goals)
 
@@ -99,7 +123,7 @@ class OvercookedEnv(MapEnv):
             print(tasks_rewards)
 
             if tasks_rewards:
-                softmax_best_goal = self._softmax(agents_possible_goals[agent])
+                softmax_best_goal = self._softmax(agents_possible_goals[agent], beta=0.5)
 
                 # # Greedy solution
                 # max_task_rewards = max(tasks_rewards)
@@ -113,21 +137,21 @@ class OvercookedEnv(MapEnv):
                 #     assigned_task_idx = max_rewards_task_idx[0]
                 # assigned_task = list(agents_possible_goals[agent])[assigned_task_idx]
                 # assigned_best_goal[agent] = [assigned_task, agents_possible_goals[agent][assigned_task]]
-                print('find random action')
-                self._find_random_valid_action(agent)
 
                 print(f'Softmax Best Goal:')
                 print(softmax_best_goal)
-                best_path = self.generate_possible_paths(agent, agents_possible_goals[agent][softmax_best_goal])
-                
+                all_best_paths = self.generate_possible_paths(agent, agents_possible_goals[agent][softmax_best_goal])
+
                 # best_path == -1; means there's no valid permutations, use the original path
-                if best_path != -1:
+                if all_best_paths != -1:
+                    best_path = random.choice(all_best_paths)
                     best_path.append(agents_possible_goals[agent][softmax_best_goal]['steps'][-1])
                     agents_possible_goals[agent][softmax_best_goal]['steps'] = best_path
 
                 assigned_best_goal[agent] = [softmax_best_goal, agents_possible_goals[agent][softmax_best_goal]]
             else:
                 # If no task at hand, but blocking stations, move to valid cell randomly
+                # TO-DO: Fix case in stage 1 where agent is in cell (4,10) and blocks movements
                 if agent.location in [(1,3), (1,8), (3,7), (3,5)]:
                     print(f'Entered find random valid action')
                     random_valid_cell_move = self._find_random_valid_action(agent)
@@ -194,8 +218,15 @@ class OvercookedEnv(MapEnv):
         world_state:
             a dictionary indicating world state (coordinates of items in map)
         """
-        self.world_state['valid_cells'] = WORLD_STATE['new_valid_cells']
+        self.world_state['valid_cells'] = WORLD_STATE['valid_movement_cells']
+        self.world_state['valid_item_cells'] = WORLD_STATE['temporary_valid_item_cells']
         self.world_state['service_counter'] = WORLD_STATE['service_counter']
+        self.world_state['return_counter'] = WORLD_STATE['return_counter'][0]
+        self.world_state['explicit_rewards'] = {'chop': 0, 'cook': 0, 'serve': 0}
+        self.world_state['cooked_dish_count'] = {}
+
+        for recipe in RECIPES:
+            self.world_state['cooked_dish_count'][recipe] = 0
 
         for item in items:
             if item == 'chopping_board':
@@ -223,7 +254,10 @@ class OvercookedEnv(MapEnv):
             self.world_state['ingredient_'+ingredient] = ingredients[ingredient]['location']
 
     def setup_agents(self):
+        # True -> ToM Agent; False -> Non-ToM Agent
+        is_inference_agents = {0: True, 1: True}
         for agent in range(len(self.agent_initialization)):
+            is_inference = is_inference_agents[agent]
             agent_id = agent + 1
             self.agents[agent_id] = OvercookedAgent(
                                     str(agent_id),
@@ -231,27 +265,29 @@ class OvercookedEnv(MapEnv):
                                     BARRIERS,
                                     RECIPES_COOKING_INTERMEDIATE_STATES,
                                     RECIPES_PLATING_INTERMEDIATE_STATES,
+                                    is_inference_agent=is_inference
                                 )
             self.world_map[self.agent_initialization[agent]] = agent_id
             self.world_state['agents'].append(self.agents[agent_id])
         self.custom_map_update()
 
-    def _softmax(self, rewards_dict, beta:int=-0.01):
-        softmax_denominator = 0
+    def _softmax(self, rewards_dict, beta:int=1):
+        softmax_total = 0
         softmax_dict = defaultdict(int)
         for key in rewards_dict:
             reward = rewards_dict[key]['rewards']
-            softmax_denominator += math.exp(-1*beta*reward)
-        for key in rewards_dict:
-            reward = rewards_dict[key]['rewards']
-            softmax_numerator = math.exp(-1*beta*reward)
-            softmax_dict[key] = softmax_numerator/softmax_denominator
+            softmax_value = math.exp(beta*reward)
+            softmax_dict[key] = softmax_value
+            softmax_total += softmax_value
+        softmax_dict = {k:v/softmax_total for k, v in softmax_dict.items()}
 
         max_softmax_val_arr = []
         max_softmax_val = max(softmax_dict.items(), key=lambda x: x[1])[1]
         for key, value in softmax_dict.items():
             if value == max_softmax_val:
                 max_softmax_val_arr.append(key)
+        print('After softmax calculation')
+        print(softmax_dict)
         
         # Okay to do random.choice even for 1 best task
         return random.choice(max_softmax_val_arr)
@@ -283,7 +319,8 @@ class OvercookedEnv(MapEnv):
         # # Combinations dont work (Permutations here work but not with all paths, as it is too memory intensive)
         # all_permutations = list(itertools.islice(itertools.permutations(cur_best_movements, len(cur_best_movements)), 0, 20000, 50))
 
-        all_permutations = self._generate_permutations(cur_best_movements, agent)
+        # all_permutations = self._old_generate_permutations(cur_best_movements, agent)
+        all_permutations = self._generate_permutations(cur_best_movements, agent, agent_end_idx)
 
         all_valid_paths = []
         for permutation in all_permutations:
@@ -294,10 +331,10 @@ class OvercookedEnv(MapEnv):
                 temp_agent_location = [sum(x) for x in zip(temp_agent_location, MAP_ACTIONS[permutation[movement]])]
 
                 # Check for obstacle in path; and movement == 0
-                if tuple(temp_agent_location) not in self.world_state['valid_cells']:
-                    print(f'hit obstacle')
-                    print(temp_agent_location)
-                    print(self.world_state['valid_cells'])
+                if tuple(temp_agent_location) not in self.world_state['valid_cells'] and movement == 0:
+                    # print(f'hit obstacle')
+                    # print(temp_agent_location)
+                    # print(self.world_state['valid_cells'])
                     hit_obstacle = True
                     continue
             
@@ -310,9 +347,8 @@ class OvercookedEnv(MapEnv):
                     ))
         
         print(f'Done with all permutation mappings')
-        print(all_valid_paths)
         if all_valid_paths:
-            return random.choice(all_valid_paths)
+            return all_valid_paths
 
         return -1
     
@@ -339,7 +375,8 @@ class OvercookedEnv(MapEnv):
 
         return random.choice(valid_random_cell_move)
 
-    def _generate_permutations(self, path, agent):
+    # Not in use currently
+    def _old_generate_permutations(self, path, agent):
         """
         Permutations based on the heuristics that a diagonal movement can be split into 2 separate movements
         Eg. MOVE_DIAGONAL_LEFT_UP -> MOVE_LEFT, MOVE_UP / MOVE_UP, MOVE_LEFT
@@ -443,6 +480,166 @@ class OvercookedEnv(MapEnv):
 
         return list(permutations_set)
 
+    def _generate_permutations(self, path, agent, agent_end_idx):
+        """
+        Permutations based on the heuristics that a diagonal movement can be split into 2 separate movements
+        Eg. MOVE_DIAGONAL_LEFT_UP -> MOVE_LEFT, MOVE_UP / MOVE_UP, MOVE_LEFT
+
+        First step determines action space
+        ----------------------------------
+        MOVE_LEFT -> MOVE_DIAGONAL_LEFT_UP, MOVE_DIAGONAL_LEFT_DOWN, MOVE_LEFT
+        MOVE_RIGHT -> MOVE_DIAGONAL_RIGHT_UP, MOVE_DIAGONAL_RIGHT_DOWN, MOVE_RIGHT
+        MOVE_UP -> MOVE_DIAGONAL_LEFT_UP, MOVE_DIAGONAL_RIGHT_UP, MOVE_UP
+        MOVE_DOWN -> MOVE_DIAGONAL_LEFT_DOWN, MOVE_DIAGONAL_RIGHT_DOWN, MOVE_DOWN
+        MOVE_DIAGONAL_LEFT_UP -> MOVE_LEFT, MOVE_UP, MOVE_DIAGONAL_LEFT_UP
+        MOVE_DIAGONAL_RIGHT_UP -> MOVE_RIGHT, MOVE_UP, MOVE_DIAGONAL_RIGHT_UP
+        MOVE_DIAGONAL_LEFT_DOWN -> MOVE_LEFT, MOVE_DOWN, MOVE_DIAGONAL_LEFT_DOWN
+        MOVE_DIAGONAL_RIGHT_DOWN -> MOVE_RIGHT, MOVE_DOWN, MOVE_DIAGONAL_RIGHT_DOWN
+        """
+        heuristic_mapping = {
+            'MOVE_LEFT': ['MOVE_DIAGONAL_LEFT_UP', 'MOVE_DIAGONAL_LEFT_DOWN', 'MOVE_LEFT'],
+            'MOVE_RIGHT': ['MOVE_DIAGONAL_RIGHT_UP', 'MOVE_DIAGONAL_RIGHT_DOWN', 'MOVE_RIGHT'],
+            'MOVE_UP': ['MOVE_DIAGONAL_LEFT_UP', 'MOVE_DIAGONAL_RIGHT_UP', 'MOVE_UP'],
+            'MOVE_DOWN': ['MOVE_DIAGONAL_LEFT_DOWN', 'MOVE_DIAGONAL_RIGHT_DOWN', 'MOVE_DOWN'],
+            'MOVE_DIAGONAL_LEFT_UP': ['MOVE_LEFT', 'MOVE_UP', 'MOVE_DIAGONAL_LEFT_UP'],
+            'MOVE_DIAGONAL_RIGHT_UP': ['MOVE_RIGHT', 'MOVE_UP', 'MOVE_DIAGONAL_RIGHT_UP'],
+            'MOVE_DIAGONAL_LEFT_DOWN': ['MOVE_LEFT', 'MOVE_DOWN', 'MOVE_DIAGONAL_LEFT_DOWN'],
+            'MOVE_DIAGONAL_RIGHT_DOWN': ['MOVE_RIGHT', 'MOVE_DOWN', 'MOVE_DIAGONAL_RIGHT_DOWN']
+        }
+        path = list(map(
+            lambda x: agent.actions[x],
+            path)
+        )
+
+        # Determine best reward from path
+        best_reward = sum([agent.rewards[action] for action in path])
+        print(f'Best reward: {best_reward}')
+        print(path)
+        valid_permutations = []
+
+        def permutations_dp(
+            agent,
+            best_reward:int,
+            end_location,
+            cur_action_chain,
+            orig_action_chain,
+            heuristic_mapping,
+            dp_table,
+            valid_cells
+        ):
+            # still have actions left to take
+            cur_step = len(orig_action_chain) - len(cur_action_chain)
+
+            if not cur_action_chain:
+                return
+            
+            # Next action to take
+            action = cur_action_chain[0]
+            # print(f'Current action is: {action}')
+            # Returns list of next possible actions to take
+            heuristic_map = heuristic_mapping[action]
+
+            # TO-DO: Add in checks if end_location for current iteration is a valid cell
+            if cur_step == 0:
+                cur_reward = 0
+                # print(f'Entered cur_step == 0')
+
+                for heuristic_action in heuristic_map:
+                    heuristic_reward = agent.rewards[heuristic_action]
+                    new_reward = cur_reward + heuristic_reward
+                    new_location = [sum(x) for x in zip(list(agent.location), MAP_ACTIONS[heuristic_action])]
+                    new_path = [heuristic_action]
+
+                    # If its a DIAGONAL movement
+                    if 'DIAGONAL' in action and 'DIAGONAL' not in heuristic_action:
+                        second_action = heuristic_second_action(action, heuristic_action)
+                        second_reward = agent.rewards[second_action]
+                        new_reward += second_reward
+                        new_location = [sum(x) for x in zip(new_location, MAP_ACTIONS[second_action])]
+                        new_path.append(second_action)
+
+                    # If still possible to find best reward and not ending in invalid cell
+                    if (new_reward > best_reward) and (tuple(new_location) in valid_cells):
+                        dp_table[cur_step].append(
+                            {
+                                'cur_reward': new_reward,
+                                'cur_path': new_path,
+                                'cur_location': new_location
+                            }
+                        )
+                    
+                    if (new_reward == best_reward) and (new_location == list(end_location)):
+                        valid_permutations.append(new_path)
+            else:
+                # print(f'Entered cur_step != 0')
+                # Returns valid existing path by far; List of Tuple (cost:int, steps:List[int])
+                cur_valid_paths = dp_table[cur_step-1]
+
+                for path_info in cur_valid_paths:
+                    cur_reward = path_info['cur_reward']
+                    cur_location = path_info['cur_location']
+                    cur_path = path_info['cur_path']
+
+                    for heuristic_action in heuristic_map:
+                        heuristic_reward = agent.rewards[heuristic_action]
+                        new_reward = cur_reward + heuristic_reward
+                        new_location = [sum(x) for x in zip(cur_location, MAP_ACTIONS[heuristic_action])]
+                        new_path = cur_path.copy()
+                        new_path.append(heuristic_action)
+
+                        if (new_reward > best_reward) and (tuple(new_location) in valid_cells):
+                            dp_table[cur_step].append(
+                                {
+                                    'cur_reward': new_reward,
+                                    'cur_path': new_path,
+                                    'cur_location': new_location
+                                }
+                            )
+                        
+                        if (new_reward == best_reward) and (new_location == list(end_location)):
+                            valid_permutations.append(new_path)
+            
+            # Remove completed action
+            cur_action_chain.pop(0)
+            permutations_dp(
+                agent, best_reward, end_location, cur_action_chain,
+                orig_action_chain, heuristic_mapping, dp_table, valid_cells
+            )
+
+        # Use heuristics to reduce action space
+        valid_cells = self.world_state['valid_cells'].copy()
+        locs = [agent.location for agent in self.world_state['agents']]
+        for loc in locs:
+            valid_cells.append(loc)
+        permutations_dp(
+            agent, best_reward, agent_end_idx, path.copy(), path.copy(),
+            heuristic_mapping, defaultdict(list), valid_cells
+        )
+        print(f'Done with generating valid permutations')
+        # print(valid_permutations)
+
+        return valid_permutations
+    
+def heuristic_second_action(diagonal_action, taken_adj_action):
+    heuristic_action_mapping_alt = {
+        'MOVE_DIAGONAL_LEFT_UP': {
+            'MOVE_LEFT': 'MOVE_UP',
+            'MOVE_UP': 'MOVE_LEFT'
+        },
+        'MOVE_DIAGONAL_RIGHT_UP': {
+            'MOVE_RIGHT': 'MOVE_UP',
+            'MOVE_UP': 'MOVE_RIGHT'
+        },
+        'MOVE_DIAGONAL_LEFT_DOWN': {
+            'MOVE_LEFT': 'MOVE_DOWN',
+            'MOVE_DOWN': 'MOVE_LEFT'
+        },
+        'MOVE_DIAGONAL_RIGHT_DOWN': {
+            'MOVE_RIGHT': 'MOVE_DOWN',
+            'MOVE_DOWN': 'MOVE_RIGHT'
+        }
+    }
+    return heuristic_action_mapping_alt[diagonal_action][taken_adj_action]
 
 def main() -> None:
     overcooked_env = OvercookedEnv(num_agents=2)

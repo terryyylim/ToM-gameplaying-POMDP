@@ -2,8 +2,10 @@ import click
 import collections
 import numpy as np
 import time
+from datetime import datetime
 import threading
 import os
+import copy
 
 from ipomdp.envs.map_env import MapEnv
 from ipomdp.envs.overcooked_map_env import OvercookedEnv
@@ -19,7 +21,6 @@ class TaskThread(threading.Thread):
         self.controller = controller
     
     def run(self) -> None:
-        # while not self.event.wait(1):
         self.controller.env.random_queue_order()
 
 class Controller(object):
@@ -41,17 +42,28 @@ class Controller(object):
     # undone: lacking rewards, observation updates
     def rollout(self, best_goals, horizon=50, save_path=None):
         print('rollout@rollout')
-        rewards = []
-        observations = []
-        shape = self.env.world_map.shape
-        full_obs = [np.zeros(
-            (shape[0], shape[1], 3), dtype=np.uint8) for i in range(horizon)]
+        """
+        Save deep copy of current world state to be used as previous world state in next timestep.
+        Deep copy to be used for inference calculations.
+
+        Deep copy constructs a new compound object and then, recursively, inserts copies into it
+        of the objects found in the original.
+        This helps prevent any weird occurrences affecting the true world state.
+        """
+        temp_copy = copy.deepcopy(self.env.world_state)
+        # only require historical world_state 1 timestep ago
+        temp_copy['historical_world_state'] = {}
+        self.env.world_state['historical_world_state'] = temp_copy
         
         action_mapping = {}
         for agent in best_goals:
             action_mapping[agent] = (
                 best_goals[agent][0],
                 best_goals[agent][1]['steps'][0]
+            )
+        for agent in action_mapping:
+            self.env.world_state['historical_actions'][agent.id].append(
+                action_mapping[agent][1]
             )
 
         print(action_mapping)
@@ -78,7 +90,6 @@ def main(env: str, timer: int) -> None:
     thread = TaskThread(c)
     thread.start()
 
-    end_time = time.time() + 30
     time_step_execution = False
     counter = 1
     make_video = False
@@ -89,14 +100,21 @@ def main(env: str, timer: int) -> None:
     for file in os.listdir(images_dir):
         if file.endswith('.png'):
             os.remove(images_dir+'/'+file)
-    os.remove(videos_dir+'/trajectory.mp4')
+    for file in os.listdir(videos_dir):
+        if file.endswith('/trajectory.mp4'):
+            os.remove(videos_dir+'/trajectory.mp4')
 
     c.env.render('./ipomdp/images/timestep0')
-    while time.time() < end_time:
+    timesteps = 500
+    start_time = datetime.now()
+    for counter in range(1, timesteps):
 
         # If goal space exist, else do nothing
         if not time_step_execution and c.env.world_state['goal_space']:
-            if counter < 120:
+            # Mini-hack to add more orders
+            if counter in [70, 140, 210, 280, 350, 420]:
+                c.env.random_queue_order()
+            if counter < 500:
                 print(f'============= Executing next timestep {counter} @ {time.time()} =============')
                 for agent in c.env.world_state['agents']:
                     agent.location = tuple(agent.location)
@@ -119,13 +137,20 @@ def main(env: str, timer: int) -> None:
 
                 print()
                 print(f'============= Summary after timestep {counter} =============')
-                print(f'Current world_state: \n{c.env.world_state}\n\n')
+                # print(f'Current world_state: \n{c.env.world_state}\n\n')
+                print(f'Current world_state:\n')
+                for key, value in c.env.world_state.items():
+                    if key != 'historical_world_state':
+                        print(f'Key: {key}, value: {value}\n')
                 ingredient_loc = [ingredient.location for ingredient in c.env.world_state['ingredients']]
                 chopping_boards_state = {cb: (cb.state, cb.location) for cb in c.env.world_state['chopping_board']}
                 goal_space = c.env.world_state['goal_space']
                 goal_info = [(id(goal), goal.head, id(goal.head), goal.head.state, goal.head.task) for goal in c.env.world_state['goal_space']]
                 agent_holding_status = {agent: agent.holding for agent in c.env.world_state['agents']}
                 agent_can_update_status = {agent: agent.can_update for agent in c.env.world_state['agents']}
+                explicit_chop_rewards = c.env.world_state['explicit_rewards']['chop']
+                explicit_cook_rewards = c.env.world_state['explicit_rewards']['cook']
+                explicit_serve_rewards = c.env.world_state['explicit_rewards']['serve']
                 print(f'Current ingredient locations: \n{ingredient_loc}\n')
                 print(f'Current chopping board states: \n{chopping_boards_state}\n')
                 print(f'Current goal space: \n{goal_space}\n')
@@ -134,30 +159,37 @@ def main(env: str, timer: int) -> None:
                 print(agent_holding_status)
                 print(f'Current agents can_update status:\n')
                 print(agent_can_update_status)
+                print(f'Current EXPLICIT chop rewards: {explicit_chop_rewards}')
+                print(f'Current EXPLICIT cook rewards: {explicit_cook_rewards}')
+                print(f'Current EXPLICIT serve rewards: {explicit_serve_rewards}')
 
-                if counter == 80 or counter == 83:
+                if counter == 450:
                     print('@rollout - Making video now')
                     make_video = True
-                counter += 1
-                time_step_execution = False
+                # counter += 1
+                # time_step_execution = False
+            if make_video:
+                video_path = os.path.abspath(os.path.dirname(__file__)) + '/videos'
+                image_path = os.path.abspath(os.path.dirname(__file__)) + '/ipomdp/images'
+                if not os.path.exists(video_path):
+                    os.makedirs(video_path)
+                fps = 1
+                video_name = 'trajectory'
+                helpers.make_video_from_image_dir(
+                    video_path,
+                    image_path,
+                    video_name,
+                    fps
+                )
+            counter += 1
+            time_step_execution = False
         else:
             continue
-
-        if make_video:
-            video_path = os.path.abspath(os.path.dirname(__file__)) + '/videos'
-            image_path = os.path.abspath(os.path.dirname(__file__)) + '/ipomdp/images'
-            if not os.path.exists(video_path):
-                os.makedirs(video_path)
-            fps = 1
-            video_name = 'trajectory'
-            helpers.make_video_from_image_dir(
-                video_path,
-                image_path,
-                video_name,
-                fps
-            )
-
-    thread.event.set()
+    end_time = datetime.now()
+    experiment_runtime = (end_time - start_time).seconds
+    experiment_runtime_min = experiment_runtime//60
+    experiment_runtime_sec = experiment_runtime%60
+    print(f'Experiment took {experiment_runtime_min} mins, {experiment_runtime_sec} secs to run.')
 
 if __name__ == "__main__":
     main()

@@ -24,8 +24,10 @@ class TaskList:
         self,
         dish: str,
         task: List[str],
-        ingredient: str
+        ingredient: str,
+        task_id: int
     ) -> None:
+        self.id = task_id
         self.dish = dish
         self.task = task
         self.ingredient = ingredient

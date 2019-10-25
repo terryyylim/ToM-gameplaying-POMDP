@@ -2,12 +2,14 @@ from typing import Dict
 from typing import List
 from typing import Tuple
 
+import collections
 import numpy as np
 from ray.rllib.env import MultiAgentEnv
 
 from ipomdp.envs.map_configs import *
 from ipomdp.agents.agent_configs import *
 from ipomdp.agents.base_agent import *
+from ipomdp.overcooked import *
 
 class MapEnv(MultiAgentEnv):
     def __init__(
@@ -31,9 +33,12 @@ class MapEnv(MultiAgentEnv):
             color_map: dict
                 Specifies how to convert between ascii chars and colors
         """
+        self.task_id_count = 0
         self.base_map = self.ascii_to_numpy(ascii_map)
         self.world_map = self.base_map
         self.world_state = defaultdict(list)
+        self.world_state['task_id_count'] = 0
+        self.world_state['historical_actions'] = collections.defaultdict(list)
         self.agent_initialization = agent_initialization
 
         self.num_agents = len(agent_initialization)
@@ -116,27 +121,101 @@ class MapEnv(MultiAgentEnv):
         print(agent_actions)
         
         orig_pos = {agent:agent.location for agent in self.world_state['agents']}
+        orig_holding = {agent:agent.holding for agent in self.world_state['agents']}
 
         self.update_moves(agent_actions)
 
         curr_pos = {agent: tuple(agent.location) for agent in self.world_state['agents']}
-        for agent in curr_pos:
-            if curr_pos[agent] != orig_pos[agent]:
-                self.world_state['valid_cells'].append(orig_pos[agent])
-                self.world_state['valid_cells'].remove(curr_pos[agent])
-
-                self.world_map[orig_pos[agent][0], orig_pos[agent][1]] = ' '
-                self.world_map[curr_pos[agent][0], curr_pos[agent][1]] = agent.agent_id
         
         # Update map barriers for agent's A* Search
         temp_astar_map = None
         # Get A* Search map
         for agent in self.world_state['agents']:
             temp_astar_map = agent.astar_map
-        # Get all updates
-        for agent in self.world_state['agents']:
-            temp_astar_map.barriers.remove(orig_pos[agent])
-            temp_astar_map.barriers.append(curr_pos[agent])
+        
+        for agent in curr_pos:
+            if curr_pos[agent] != orig_pos[agent]:
+                self.world_state['valid_cells'].append(orig_pos[agent])
+                self.world_state['valid_cells'].remove(curr_pos[agent])
+
+                # Update barriers in map used for A* Search
+                temp_astar_map.barriers.remove(orig_pos[agent])
+                temp_astar_map.barriers.append(curr_pos[agent])
+
+                # Edge case: Prevent converting to ' ' if another agent is currently on it
+                all_agent_location = [tuple(agent.location) for agent in self.world_state['agents']]
+
+                if orig_pos[agent] not in all_agent_location:
+                    self.world_map[orig_pos[agent][0], orig_pos[agent][1]] = ' '
+                self.world_map[curr_pos[agent][0], curr_pos[agent][1]] = agent.agent_id
+        
+        for agent in agent_actions:
+            action = agent_actions[agent][1]
+
+            if isinstance(action, list):
+                # Index 0: action_type; Index 1: action_info
+                if action[0] == 'PICK':
+                    if action[1]['pick_type'] == 'plate':
+                        if agent.holding:
+                            # Edge-Case: AgentL about to serve, AgentR trying to pick plate for the same goal that is going to be removed
+                            # Continue and not pick instead
+                            cur_plate_pos = action[1]['task_coord']
+                            self.world_state['valid_item_cells'].append(cur_plate_pos)
+
+                            if tuple(cur_plate_pos) == self.world_state['return_counter']:
+                                # TO-DO: If more than 1 plates returned here, then...colour? Because stackable
+                                all_plate_locations = [plate.location for plate in self.world_state['plate']]
+                                if len(set(all_plate_locations)) == 1:
+                                    # All plates are on return counter
+                                    self.world_map[cur_plate_pos[0], cur_plate_pos[1]] = 'P'
+                                else:
+                                    self.world_map[cur_plate_pos[0], cur_plate_pos[1]] = 'D'
+                            elif tuple(cur_plate_pos) in BARRIERS:
+                                self.world_map[cur_plate_pos[0], cur_plate_pos[1]] = '@'
+                            else:
+                                self.world_map[cur_plate_pos[0], cur_plate_pos[1]] = ' '
+                    elif action[1]['pick_type'] == 'ingredient':
+                        if agent.holding:
+                            cur_ingredient_pos = action[1]['task_coord']
+                            self.world_state['valid_item_cells'].append(cur_ingredient_pos)
+
+                            if tuple(cur_ingredient_pos) in BARRIERS:
+                                all_raw_chop_locations = [cb.location for cb in self.world_state['chopping_board']]
+                                all_raw_ingredients_locations = [self.world_state['ingredient_'+agent.holding.name][0]]
+                                if tuple(cur_ingredient_pos) in all_raw_chop_locations:
+                                    self.world_map[cur_ingredient_pos[0], cur_ingredient_pos[1]] = 'C'
+                                elif tuple(cur_ingredient_pos) in all_raw_ingredients_locations:
+                                    if agent.holding.name == 'onion':
+                                        self.world_map[cur_ingredient_pos[0], cur_ingredient_pos[1]] = 'O'
+                                else:
+                                    self.world_map[cur_ingredient_pos[0], cur_ingredient_pos[1]] = '@'
+
+                # If is drop, make 2 colour shade
+                if action[0] == 'DROP':
+                    if type(orig_holding[agent]) == Plate:
+                        cur_plate_pos = orig_holding[agent].location
+
+                        # Edge case: Randomly chosen spot to drop item must be a table-top cell
+                        if cur_plate_pos in self.world_state['valid_item_cells']:
+                            self.world_state['valid_item_cells'].remove(cur_plate_pos)
+                        self.world_map[cur_plate_pos[0], cur_plate_pos[1]] = 'P'
+                    elif type(orig_holding[agent]) == Ingredient:
+                        cur_ingredient_pos = orig_holding[agent].location
+
+                        # Edge case: Randomly chosen spot to drop item must be a table-top cell
+                        if cur_ingredient_pos in self.world_state['valid_item_cells']:
+                            self.world_state['valid_item_cells'].remove(cur_ingredient_pos)
+
+                        # Different colours based on ingredient state
+                        if orig_holding[agent].state == 'unchopped':
+                            self.world_map[cur_ingredient_pos[0], cur_ingredient_pos[1]] = 'Z'
+                        elif orig_holding[agent].state == 'chopped':
+                            self.world_map[cur_ingredient_pos[0], cur_ingredient_pos[1]] = 'X'
+
+                if action[0] == 'SERVE':
+                    if type(orig_holding[agent]) == Plate:
+                        self.world_map[self.world_state['return_counter'][0], self.world_state['return_counter'][1]] = 'P'
+
         # Update A* Search map for all agents
         for agent in self.world_state['agents']:
             agent.astar_map = temp_astar_map
@@ -367,6 +446,9 @@ class MapEnv(MultiAgentEnv):
             elif task_action[0] == 'SERVE' and task_action[2] == agent.location:
                 print('@map_env - Executing Serve Action')
                 agent.serve(task_id, task_action[1])
+            elif task_action[0] == 'DROP':
+                print('@map_env - Executing Drop Action')
+                agent.drop(task_id)
 
     def map_to_colors(self, map=None, color_map=None):
         """Converts a map to an array of RGB values.

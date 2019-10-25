@@ -22,6 +22,7 @@ class AStarGraph():
         n = []
 		# Moves allow link a chess king
         # prevent diagonals ,(1,1),(-1,1),(1,-1),(-1,-1)
+        # WHEN ONLY ADJACENT MOVEMENTS ALLOWED, AGENT WILL GET STUCK.
         for dx, dy in [(1,0),(-1,0),(0,1),(0,-1),(1,1),(-1,1),(1,-1),(-1,-1)]:
             x2 = pos[0] + dx
             y2 = pos[1] + dy
