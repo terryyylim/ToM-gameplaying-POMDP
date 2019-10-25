@@ -91,8 +91,9 @@ def main(env: str, timer: int) -> None:
     thread.start()
 
     time_step_execution = False
-    counter = 1
     make_video = False
+    counter = 1
+    episodes_cache = []
 
     # Remove the previous images and video
     images_dir = 'ipomdp/images'
@@ -107,6 +108,8 @@ def main(env: str, timer: int) -> None:
     c.env.render('./ipomdp/images/timestep0')
     timesteps = 500
     start_time = datetime.now()
+
+    episodes_cache.append(copy.deepcopy(c.env.world_state))
     for counter in range(1, timesteps):
 
         # If goal space exist, else do nothing
@@ -134,6 +137,9 @@ def main(env: str, timer: int) -> None:
                     c.env.world_state['valid_cells'].append(valid_cell)
 
                 c.env.world_state['valid_cells'] = list(set(c.env.world_state['valid_cells']))
+
+                # Update episodes cache
+                episodes_cache.append(copy.deepcopy(c.env.world_state))
 
                 print()
                 print(f'============= Summary after timestep {counter} =============')
@@ -182,9 +188,12 @@ def main(env: str, timer: int) -> None:
                     fps
                 )
             counter += 1
+
             time_step_execution = False
         else:
             continue
+    # Save episodes cache
+    helpers.save(episodes_cache)
     end_time = datetime.now()
     experiment_runtime = (end_time - start_time).seconds
     experiment_runtime_min = experiment_runtime//60
