@@ -35,10 +35,27 @@ class HumanAgent(BaseAgent):
         print([goal.head.task for goal in self.world_state['goal_space']])
         all_goals = [id(goal) for goal in self.world_state['goal_space'] if goal.head.task == action.lower()]
 
-        if all_goals:
-            goal_id = random.choice(all_goals)
-        else:
+        try:
+            if all_goals:
+                goal_id = random.choice(all_goals)
+            else:
+                goal_id = -1
+        except IndexError:
+            # No goals
             goal_id = -1
+        
+        if goal_id == -1:
+            if action == 'SCOOP':
+                print(f'Edge case for SCOOP')
+                # Edge case: human picks up plate before its available for serving
+                temp_action = 'PLATE'
+                all_goals = [id(goal) for goal in self.world_state['goal_space'] if goal.head.task == temp_action.lower()]
+
+                task_id = random.choice(all_goals)
+
+                task = [task for task in self.world_state['goal_space'] if id(task) == task_id][0]
+                task.head = task.head.next
+                goal_id = task_id
         print(f'Human Agent going for goal {goal_id}.')
         return goal_id
 
