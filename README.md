@@ -33,21 +33,19 @@ python rollout.py
 ```
 
 ### Gameplay
-Run the file
+To start the game, run the following.
 ```
 python overcooked_server/overcooked_game.py
 ```
 
-```
-Controls
-```
+#### Controls
 | Actions | PICK | CHOP | COOK | SCOOP | SERVE |
 | :-----: | :--: | :--: | :--: | :---: | :---: |
 | Key-Map |   Z  |   X  |   C  |   V   |   B   |
 
 | Movement | UP  | DOWN | LEFT | RIGHT | 
-| :------: | :-: | :--: | :--: | :---: | :---: |
-| Key-Map  | UP  | DOWN | LEFT | RIGHT |   Q |
+| :------: | :-: | :--: | :--: | :---: |
+| Key-Map  | UP  | DOWN | LEFT | RIGHT |
 
 | Movement | DIAG-UP-LEFT | DIAG-UP-RIGHT | DIAG-DOWN-LEFT | DIAG-DOWN-RIGHT |
 | :------: | :----------: | :-----------: | :------------: | :-------------: |
