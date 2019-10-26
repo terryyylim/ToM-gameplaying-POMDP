@@ -628,6 +628,13 @@ class Game:
         print(action_mapping)
         print('@rollout - Starting step function')
         self.env.step(action_mapping)
+
+        explicit_chop_rewards = self.env.world_state['explicit_rewards']['chop']
+        explicit_cook_rewards = self.env.world_state['explicit_rewards']['cook']
+        explicit_serve_rewards = self.env.world_state['explicit_rewards']['serve']
+        print(f'Current EXPLICIT chop rewards: {explicit_chop_rewards}')
+        print(f'Current EXPLICIT cook rewards: {explicit_cook_rewards}')
+        print(f'Current EXPLICIT serve rewards: {explicit_serve_rewards}')
         # print(f'@rollout - Currently at horizon - {horizon}')
         # self.env.render('./ipomdp/images/timestep'+str(horizon))
 
