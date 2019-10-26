@@ -3,6 +3,7 @@
 ## Content
 * [Summary](#Summary)
 * [Installation](#Installation)
+* [Gameplay](#Gameplay)
 
 ### Summary
 This repository contains the code for modeling agents through inverse planning with POMDPs on the agent to infer goals and subsequently predict the actions of the other agents in a cooperative setting.
@@ -30,3 +31,24 @@ pip install -r requirements.txt
 ```
 python rollout.py
 ```
+
+### Gameplay
+Run the file
+```
+python overcooked_server/overcooked_game.py
+```
+
+```
+Controls
+```
+| Actions | PICK | CHOP | COOK | SCOOP | SERVE |
+| :-----: | :--: | :--: | :--: | :---: | :---: |
+| Key-Map |   Z  |   X  |   C  |   V   |   B   |
+
+| Movement | UP  | DOWN | LEFT | RIGHT | 
+| :------: | :-: | :--: | :--: | :---: | :---: |
+| Key-Map  | UP  | DOWN | LEFT | RIGHT |   Q |
+
+| Movement | DIAG-UP-LEFT | DIAG-UP-RIGHT | DIAG-DOWN-LEFT | DIAG-DOWN-RIGHT |
+| :------: | :----------: | :-----------: | :------------: | :-------------: |
+| Key-Map  |       Q      |        W      |        E       |         R       |
