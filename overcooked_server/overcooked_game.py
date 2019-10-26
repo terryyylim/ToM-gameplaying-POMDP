@@ -206,7 +206,6 @@ class Game:
                         best_goals[player_object] = [-1, {'steps': [action_mapping], 'rewards': reward_mapping}]
                     else:
                         # its a task_action being taken
-                        # TODO: find best goal that maps to action
                         goal_id = player_object._find_suitable_goal(action_mapping, action_task)
                         best_goals[player_object] = [goal_id, {'steps': action_task, 'rewards': reward_mapping}]
 
@@ -567,8 +566,6 @@ class Game:
             drop_validity = False
         else:
             valid_item_cells = self.env.world_state['valid_item_cells']
-            print('drop valid item cells')
-            print(valid_item_cells)
 
             surrounding_cells_xy = [[-1,0], [0,1], [1,0], [0,-1]]
             for surrounding_cell_xy in surrounding_cells_xy:

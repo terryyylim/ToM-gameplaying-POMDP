@@ -19,13 +19,10 @@ from overcooked_classes import *
 class OvercookedEnv(MapEnv):
     def __init__(
         self,
-        ascii_map=OVERCOOKED_MAP,
-        num_agents: int=1,
-        render=True,
         human_agents=None,
         ai_agents=None
     ) -> None:
-        super().__init__(ascii_map, num_agents, render)
+        super().__init__()
         self.initialize_world_state(ITEMS_INITIALIZATION, INGREDIENTS_INITIALIZATION)
         self.recipes = RECIPES
         self.recipes_ingredients_task = RECIPES_INGREDIENTS_TASK
@@ -180,52 +177,6 @@ class OvercookedEnv(MapEnv):
                     assigned_best_goal[agent] = [-1, {'steps': [8], 'rewards': -2}]
         return assigned_best_goal
 
-    # def find_agents_best_goal(self):
-    #     """
-    #     Finds best action for each agent which maximizes utility.
-
-    #     Return
-    #     ------
-    #     {<ipomdp.agents.base_agent.OvercookedAgent object at 0x1380daed0>: {'path': [(2, 4), (1, 3)], 'cost': 1},
-    #     <ipomdp.agents.base_agent.OvercookedAgent object at 0x138a56910>: {'path': [(2, 8), (2, 7), (2, 6), (1, 5), (1, 4), (1, 3)], 'cost': 5}}
-    #     """
-    #     agents_possible_goals = self.find_agents_possible_goals()
-
-    #     all_agents = []
-    #     for agent in agents_possible_goals:
-    #         agent_temp = []
-    #         for goal in agents_possible_goals[agent]:
-    #             agent_temp.append((agent, goal, agents_possible_goals[agent][goal]['cost']))
-    #         all_agents.append(agent_temp)
-    #     if len(agents_possible_goals) == 2:
-    #         all_combi = list(itertools.product(all_agents[0], all_agents[1]))
-    #     elif len(agents_possible_goals) == 3:
-    #         all_combi = list(itertools.product(all_agents[0], all_agents[1], all_agents[2]))
-
-    #     min_cost = float('inf')
-    #     min_cost_idx = []
-    #     for combi_idx in range(len(all_combi)):
-    #         temp_cost = 0
-    #         for combi_goal in all_combi[combi_idx]:
-    #             temp_cost += combi_goal[2]
-    #         if temp_cost == min_cost:
-    #             min_cost_idx.append(combi_idx)
-    #         if temp_cost < min_cost:
-    #             min_cost = temp_cost
-    #             min_cost_idx = [combi_idx]
-    #     random_min_cost_idx = random.choice(min_cost_idx)
-    #     temp_best_goals = all_combi[random_min_cost_idx]
-
-    #     best_goals = {}
-    #     for best_goal_info in temp_best_goals:
-    #         print('print best goal info')
-    #         print(best_goal_info)
-    #         best_goals[best_goal_info[0]] = agents_possible_goals[best_goal_info[0]][best_goal_info[1]]
-    #         best_goals[best_goal_info[0]]['task'] = best_goal_info[1]
-    #     self.assign_agents(best_goals)
-
-        # return best_goals
-
     def assign_agents(self, best_goals):
         """
         Set agent's assignment to True so that it doesnt search for a new goal.
@@ -342,18 +293,7 @@ class OvercookedEnv(MapEnv):
         # Currently all movements give reward of -1 (so don't need to check)
         print(f'Agent location:')
         print(agent.location)
-        print(agent_end_idx)
 
-        # Is there a more efficient way of doing this?
-        # Causes timeout with itertools.product and itertools.permutations
-        # all_permutations = list(itertools.product(possible_movements, repeat=movement_count))
-        # all_permutations = list(itertools.permutations(cur_best_movements, len(cur_best_movements)))
-        
-        # temp_all_valid_paths = []
-        # # Combinations dont work (Permutations here work but not with all paths, as it is too memory intensive)
-        # all_permutations = list(itertools.islice(itertools.permutations(cur_best_movements, len(cur_best_movements)), 0, 20000, 50))
-
-        # all_permutations = self._old_generate_permutations(cur_best_movements, agent)
         all_permutations = self._generate_permutations(cur_best_movements, agent, agent_end_idx)
 
         all_valid_paths = []
@@ -366,9 +306,6 @@ class OvercookedEnv(MapEnv):
 
                 # Check for obstacle in path; and movement == 0
                 if tuple(temp_agent_location) not in self.world_state['valid_cells'] and movement == 0:
-                    # print(f'hit obstacle')
-                    # print(temp_agent_location)
-                    # print(self.world_state['valid_cells'])
                     hit_obstacle = True
                     continue
             
@@ -428,8 +365,6 @@ class OvercookedEnv(MapEnv):
             path)
         )
         all_permutations.append(path)
-        print(f'Finding permutations')
-        print(path)
         idx_movement_mapping = [(idx, val) for idx, val in reversed(list(enumerate(path))) if val in diagonal_movements]
 
         flags = [False, True]
@@ -480,11 +415,9 @@ class OvercookedEnv(MapEnv):
             if path[0] in adjacent_movements and path[1] in diagonal_movements:
                 print(f'Adjacent and Diagonal movements swap!')
                 temp_path = path.copy()
-                print(temp_path)
                 temp_adj_move = path[0]
                 temp_path[0] = path[1]
                 temp_path[1] = temp_adj_move
-                print(temp_path)
 
                 all_permutations.append(temp_path)
 
@@ -508,8 +441,6 @@ class OvercookedEnv(MapEnv):
                 temp_path.insert(0, 'MOVE_DIAGONAL_LEFT_UP')
             all_permutations.append(temp_path)
 
-        print(f'Done with finding all permutations')
-        print(all_permutations)
         permutations_set = list(set(tuple(perm) for perm in all_permutations))
 
         return list(permutations_set)
@@ -548,7 +479,6 @@ class OvercookedEnv(MapEnv):
         # Determine best reward from path
         best_reward = sum([agent.rewards[action] for action in path])
         print(f'Best reward: {best_reward}')
-        print(path)
         valid_permutations = []
 
         def permutations_dp(
@@ -595,8 +525,6 @@ class OvercookedEnv(MapEnv):
                         new_path.append(second_action)
 
                     # If still possible to find best reward and not ending in invalid cell
-                    print('perm errorrr')
-                    print(valid_cells)
                     if (new_reward > best_reward) and (tuple(new_location) in valid_cells):
                         dp_table[cur_step].append(
                             {
@@ -654,7 +582,6 @@ class OvercookedEnv(MapEnv):
             heuristic_mapping, defaultdict(list), valid_cells
         )
         print(f'Done with generating valid permutations')
-        # print(valid_permutations)
 
         return valid_permutations
     
@@ -678,20 +605,3 @@ def heuristic_second_action(diagonal_action, taken_adj_action):
         }
     }
     return heuristic_action_mapping_alt[diagonal_action][taken_adj_action]
-
-def main() -> None:
-    overcooked_env = OvercookedEnv(num_agents=2)
-    print(overcooked_env.base_map)
-    print(overcooked_env.world_map)
-    print(overcooked_env.table_tops)
-    print(overcooked_env.agents)
-    print('end')
-    print(overcooked_env.world_state)
-    print('updated state')
-    print(overcooked_env.agents[1].world_state)
-    overcooked_env.render('./frame.png')
-
-
-if __name__ == "__main__":
-
-    main()

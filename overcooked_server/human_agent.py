@@ -83,12 +83,6 @@ class HumanAgent(BaseAgent):
         task_coord = pick_info['task_coord']
 
         if task_id != -1:
-            print('taskid is -1')
-            print('pick_type')
-            print(pick_type)
-            print(is_new)
-            print(is_last)
-            print(task_coord)
             try:
                 print('entered try')
                 task = [task for task in self.world_state['goal_space'] if id(task) == task_id][0]
@@ -294,18 +288,7 @@ class HumanAgent(BaseAgent):
         Only works for dishes with 1 ingredient
         """
         print('base_agent@scoop')
-        if task_id == -1:
-            # Case where human picks plate before cook task is done
-            print('inside edge case scoop')
-            action = 'PLATE'
-            all_goals = [id(goal) for goal in self.world_state['goal_space'] if goal.head.task == action.lower()]
-            print([goal.head.task for goal in self.world_state['goal_space']])
-            if all_goals:
-                task_id = random.choice(all_goals)
-            else:
-                task_id = -1
-            print(f'Human Agent going for goal {task_id}.')
-        
+
         task = [task for task in self.world_state['goal_space'] if id(task) == task_id][0]
         is_last = scoop_info['is_last']
         task_coord = scoop_info['task_coord']

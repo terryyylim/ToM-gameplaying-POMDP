@@ -14,11 +14,6 @@ from overcooked_classes import *
 class MapEnv(MultiAgentEnv):
     def __init__(
         self,
-        ascii_map: List[str],
-        num_agents: int=1,
-        render=True,
-        color_map: Dict[str, List[int]]=DEFAULT_COLOURS,
-        agent_initialization: List[Tuple[int,int]]=AGENTS_INITIALIZATION
     ) -> None:
         """
         Parameters
@@ -33,27 +28,11 @@ class MapEnv(MultiAgentEnv):
             color_map: dict
                 Specifies how to convert between ascii chars and colors
         """
+        self.agents = {}
         self.task_id_count = 0
-        self.base_map = self.ascii_to_numpy(ascii_map)
-        self.world_map = self.base_map
         self.world_state = defaultdict(list)
         self.world_state['task_id_count'] = 0
         self.world_state['historical_actions'] = collections.defaultdict(list)
-        self.agent_initialization = agent_initialization
-
-        self.num_agents = len(agent_initialization)
-        
-        self.agents = {}
-
-        self.color_map = color_map if color_map is not None else DEFAULT_COLOURS
-
-        self.table_tops = []
-        for row in range(self.base_map.shape[0]):
-            for col in range(self.base_map.shape[1]):
-                if self.base_map[row, col] == '@':
-                    self.table_tops.append([row, col])
-        print('got here')
-        # self.setup_agents()
 
     def custom_reset(self):
         """Reset custom elements of the map. For example, spawn table tops and items"""
@@ -143,13 +122,6 @@ class MapEnv(MultiAgentEnv):
                 # Update barriers in map used for A* Search
                 temp_astar_map.barriers.remove(orig_pos[agent])
                 temp_astar_map.barriers.append(curr_pos[agent])
-
-                # Edge case: Prevent converting to ' ' if another agent is currently on it
-                # all_agent_location = [tuple(agent.location) for agent in self.world_state['agents']]
-
-                # if orig_pos[agent] not in all_agent_location:
-                #     self.world_map[orig_pos[agent][0], orig_pos[agent][1]] = ' '
-                # self.world_map[curr_pos[agent][0], curr_pos[agent][1]] = agent.agent_id
         
         for agent in agent_actions:
             action = agent_actions[agent][1]
@@ -164,18 +136,6 @@ class MapEnv(MultiAgentEnv):
                             cur_plate_pos = action[1]['task_coord']
                             self.world_state['valid_item_cells'].append(cur_plate_pos)
 
-                            # if tuple(cur_plate_pos) == self.world_state['return_counter']:
-                            #     # TO-DO: If more than 1 plates returned here, then...colour? Because stackable
-                            #     all_plate_locations = [plate.location for plate in self.world_state['plate']]
-                            #     if len(set(all_plate_locations)) == 1:
-                            #         # All plates are on return counter
-                            #         self.world_map[cur_plate_pos[0], cur_plate_pos[1]] = 'P'
-                            #     else:
-                            #         self.world_map[cur_plate_pos[0], cur_plate_pos[1]] = 'D'
-                            # elif tuple(cur_plate_pos) in BARRIERS:
-                            #     self.world_map[cur_plate_pos[0], cur_plate_pos[1]] = '@'
-                            # else:
-                            #     self.world_map[cur_plate_pos[0], cur_plate_pos[1]] = ' '
                     elif action[1]['pick_type'] == 'ingredient':
                         if agent.holding:
                             all_raw_chop_locations = [cb.location for cb in self.world_state['chopping_board']]
@@ -185,18 +145,6 @@ class MapEnv(MultiAgentEnv):
                             if cur_ingredient_pos not in all_raw_chop_locations and cur_ingredient_pos not in all_raw_ingredients_locations: 
                                 self.world_state['valid_item_cells'].append(cur_ingredient_pos)
 
-                            # if tuple(cur_ingredient_pos) in BARRIERS:
-                            #     all_raw_chop_locations = [cb.location for cb in self.world_state['chopping_board']]
-                            #     all_raw_ingredients_locations = [self.world_state['ingredient_'+agent.holding.name][0]]
-                            #     if tuple(cur_ingredient_pos) in all_raw_chop_locations:
-                            #         self.world_map[cur_ingredient_pos[0], cur_ingredient_pos[1]] = 'C'
-                            #     elif tuple(cur_ingredient_pos) in all_raw_ingredients_locations:
-                            #         if agent.holding.name == 'onion':
-                            #             self.world_map[cur_ingredient_pos[0], cur_ingredient_pos[1]] = 'O'
-                            #     else:
-                            #         self.world_map[cur_ingredient_pos[0], cur_ingredient_pos[1]] = '@'
-
-                # If is drop, make 2 colour shade
                 if action[0] == 'DROP':
                     if type(orig_holding[agent]) == Plate:
                         cur_plate_pos = orig_holding[agent].location
@@ -204,23 +152,12 @@ class MapEnv(MultiAgentEnv):
                         # Edge case: Randomly chosen spot to drop item must be a table-top cell
                         if cur_plate_pos in self.world_state['valid_item_cells']:
                             self.world_state['valid_item_cells'].remove(cur_plate_pos)
-                        # self.world_map[cur_plate_pos[0], cur_plate_pos[1]] = 'P'
                     elif type(orig_holding[agent]) == Ingredient:
                         cur_ingredient_pos = orig_holding[agent].location
 
                         # Edge case: Randomly chosen spot to drop item must be a table-top cell
                         if cur_ingredient_pos in self.world_state['valid_item_cells']:
                             self.world_state['valid_item_cells'].remove(cur_ingredient_pos)
-
-                        # Different colours based on ingredient state
-                #         if orig_holding[agent].state == 'unchopped':
-                #             self.world_map[cur_ingredient_pos[0], cur_ingredient_pos[1]] = 'Z'
-                #         elif orig_holding[agent].state == 'chopped':
-                #             self.world_map[cur_ingredient_pos[0], cur_ingredient_pos[1]] = 'X'
-
-                # if action[0] == 'SERVE':
-                #     if type(orig_holding[agent]) == Plate:
-                #         self.world_map[self.world_state['return_counter'][0], self.world_state['return_counter'][1]] = 'P'
 
         # Update A* Search map for all agents
         for agent in self.world_state['agents']:
@@ -461,42 +398,3 @@ class MapEnv(MultiAgentEnv):
             elif task_action[0] == 'DROP':
                 print('@map_env - Executing Drop Action')
                 agent.drop(task_id)
-
-    def map_to_colors(self, map=None, color_map=None):
-        """Converts a map to an array of RGB values.
-        Parameters
-        ----------
-        map: np.ndarray
-            map to convert to colors
-        color_map: dict
-            mapping between array elements and desired colors
-        Returns
-        -------
-        arr: np.ndarray
-            3-dim numpy array consisting of color map
-        """
-        if map is None:
-            map = self.world_map
-        if color_map is None:
-            color_map = self.color_map
-
-        rgb_arr = np.zeros((map.shape[0], map.shape[1], 3), dtype=int)
-        for row_elem in range(map.shape[0]):
-            for col_elem in range(map.shape[1]):
-                rgb_arr[row_elem, col_elem, :] = color_map[map[row_elem, col_elem]]
-
-        return rgb_arr
-
-    def render(self, filename=None):
-        """ Creates an image of the map to plot or save.
-        Args:
-            path: If a string is passed, will save the image
-                to disk at this location.
-        """
-        print('@map_env - render()')
-        rgb_arr = self.map_to_colors(self.world_map)
-        plt.imshow(rgb_arr, interpolation='nearest')
-        if filename is None:
-            plt.show()
-        else:
-            plt.savefig(filename)
