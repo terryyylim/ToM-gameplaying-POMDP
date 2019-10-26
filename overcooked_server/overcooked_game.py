@@ -193,14 +193,9 @@ class Game:
         for event in pg.event.get():
             if event.type == pg.QUIT:
                 self.quit()
-            if event.type == pg.KEYDOWN:
-                print(self.walls)
-
+            if event.type == pg.KEYUP:
                 player_action_validity, action_type, action_task = self._check_action_validity(1, event.key)
-                print(self.env.world_state['agents'])
                 player_object = [agent for agent in self.env.world_state['agents'] if agent.id == '1'][0]
-                print('player obj')
-                print(player_object)
                 best_goals = self.env.find_agents_best_goal()
 
                 if not player_action_validity:
