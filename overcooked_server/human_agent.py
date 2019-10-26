@@ -329,6 +329,31 @@ class HumanAgent(BaseAgent):
         if is_last and task.head.next:
             print('base_agent@scoop - Update plate -> serve task')
             task.head = task.head.next
+    
+    def serve(self, task_id: int, serve_info):
+        print('base_agent@serve')
+        self.world_state['explicit_rewards']['serve'] += 1
+        task = [task for task in self.world_state['goal_space'] if id(task) == task_id][0]
+        is_last = serve_info['is_last']
+        
+        # plate returns to return point (in clean form for now)
+        self.holding.dish = None
+        self.holding.state = 'empty'
+        self.holding.location = (5,0)
+        self.world_state['plate'].append(self.holding)
+
+        # remove dish from plate
+        self.holding = None
+
+        # remove order from TaskList
+        if is_last:
+            print('base_agent@serve - Remove serve task')
+            task.head = task.head.next
+            if task.head == None:
+                for idx, task_no in enumerate(self.world_state['goal_space']):
+                    if id(task_no) == task_id:
+                        del self.world_state['goal_space'][idx]
+                        break
 
     def find_random_empty_cell(self) -> Tuple[int,int]:
         all_valid_surrounding_cells = []

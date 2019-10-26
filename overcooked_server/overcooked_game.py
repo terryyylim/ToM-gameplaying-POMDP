@@ -294,7 +294,7 @@ class Game:
             elif action == pg.K_v:
                 valid_flag, action_task = self._check_scoop_validity(player_id)
             elif action == pg.K_b:
-                pass
+                valid_flag, action_task = self._check_serve_validity(player_id)
             elif action == pg.K_a:
                 valid_flag, action_task = self._check_drop_validity(player_id)
             else:
@@ -526,6 +526,40 @@ class Game:
         if action_task:
             scoop_validity = True
         return scoop_validity, action_task
+    
+    def _check_serve_validity(self, player_id):
+        serve_validity = False
+        player_pos = self._get_pos(player_id)
+        action_task = []
+
+        # Have to hold plate with dish before serving
+        player_object = [agent for agent in self.env.world_state['agents'] if agent.id == '1'][0]
+        if not player_object.holding:
+            serve_validity = False
+        elif not isinstance(player_object.holding, Plate):
+            serve_validity = False
+        elif player_object.holding.state != 'plated':
+            serve_validity = False
+        else:
+            valid_serving_cells = SERVING_STATION
+
+            surrounding_cells_xy = [[-1,0], [0,1], [1,0], [0,-1]]
+            for surrounding_cell_xy in surrounding_cells_xy:
+                surrounding_cell = [sum(x) for x in zip(list(player_pos), surrounding_cell_xy)]
+                surrounding_cell = tuple(surrounding_cell)
+                if surrounding_cell in valid_serving_cells:
+                    action_task.append([
+                        'SERVE',
+                        {
+                            'is_last': True,
+                            'task_coord': surrounding_cell
+                        },
+                        player_pos
+                    ])
+        if action_task:
+            serve_validity = True
+
+        return serve_validity, action_task
 
     def _check_drop_validity(self, player_id):
         drop_validity = False
