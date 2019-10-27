@@ -193,6 +193,12 @@ class Game:
             if event.type == pg.QUIT:
                 self.quit()
             if event.type == pg.KEYUP:
+                print(f'Start of episode {self.env.episode}')
+                goal_space = self.env.world_state['goal_space']
+                goal_info = [(id(goal), goal.head, id(goal.head), goal.head.state, goal.head.task) for goal in self.env.world_state['goal_space']]
+                print(f'Current goal space: \n{goal_space}\n')
+                print(f'Current goal info (goal_id; goal_head; goal_head_id; goal_head_state, goal_head_task): \n{goal_info}\n')
+
                 player_action_validity, action_type, action_task = self._check_action_validity(1, event.key)
                 player_object = [agent for agent in self.env.world_state['agents'] if agent.id == '1'][0]
                 best_goals = self.env.find_agents_best_goal()
@@ -225,16 +231,6 @@ class Game:
 
                 if event.key == pg.K_ESCAPE:
                     self.quit()
-                # if event.key == pg.K_LEFT:
-                #     print(self.player_1.x)
-                #     print(self.player_1.y)
-                #     self.player_1.move(dx=-1)
-                # if event.key == pg.K_RIGHT:
-                #     self.player_1.move(dx=1)
-                # if event.key == pg.K_UP:
-                #     self.player_1.move(dy=-1)
-                # if event.key == pg.K_DOWN:
-                #     self.player_1.move(dy=1)
                 print(f'Just completed episode {self.env.episode}')
                 print([agent.location for agent in self.env.world_state['agents']])
                 self.env.update_episode()
@@ -619,6 +615,9 @@ class Game:
         print(action_mapping)
         print('@rollout - Starting step function')
         self.env.step(action_mapping)
+
+        print(f'Historical World State')
+        print(self.env.world_state['historical_world_state'])
 
         explicit_chop_rewards = self.env.world_state['explicit_rewards']['chop']
         explicit_cook_rewards = self.env.world_state['explicit_rewards']['cook']

@@ -139,6 +139,7 @@ class OvercookedEnv(MapEnv):
         for agent in self.world_state['agents']:
             if isinstance(agent, OvercookedAgent):
                 if agent.is_inference_agent and 'historical_world_state' in self.world_state:
+                    print(f'Do inference for ToM agent')
                     observers_inference_tasks = agent.observer_inference()
                     observers_task_to_not_do[agent] = [self.world_state['task_id_mappings'][_id] for _id in observers_inference_tasks]
                 else:
