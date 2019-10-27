@@ -287,8 +287,6 @@ class OvercookedAgent(BaseAgent):
                                 # If is holding ingredient, need to drop first
                                 # Edge case: Randomly chosen spot to drop item must be a table-top cell
                                 print('Contains Item in hand - Cannot pick')
-                                print(self.holding)
-                                print(task_list.ingredient)
                                 path_cost = self.calc_travel_cost(['valid_item_cells'], [self.world_state['valid_item_cells']])
                                 task_coord = path_cost['valid_item_cells'][2]
                                 end_coord = path_cost['valid_item_cells'][0][-1]
