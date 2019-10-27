@@ -440,8 +440,8 @@ class OvercookedAgent(BaseAgent):
                             if isinstance(self.holding, Ingredient):
                                 if self.holding.name == task_list.ingredient:
                                     print('Contains Item in hand - But valid item for different task')
-                                    task_list.head = task_list.head.next
-                                    snap = True
+                                    # task_list.head = task_list.head.next
+                                    # snap = True
                                     continue
                             else:
                                 # Edge case: Randomly chosen spot to drop item must be a table-top cell
@@ -485,8 +485,8 @@ class OvercookedAgent(BaseAgent):
                         print(f'@base_agent {id(self)} - Check for guaranteed presence of ingredient\n')
 
                         # Edge case: No available ingredient, this task is invalid
+                        # continue
                         if not wanted_ingredient and not isinstance(self.holding, Ingredient):
-                            # continue
                             if task_list.head.task == 'chop':
                                 temp_wanted_ingredient = [
                                     ingredient.location for ingredient in self.world_state['ingredients'] if \
@@ -621,8 +621,8 @@ class OvercookedAgent(BaseAgent):
                     'steps': path_actions,
                     'rewards': total_rewards
                 }
-                if snap == True:
-                    break
+                # if snap == True:
+                #     break
 
         return agent_goal_costs
 
