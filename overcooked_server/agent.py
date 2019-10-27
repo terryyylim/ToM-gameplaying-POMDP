@@ -204,7 +204,7 @@ class OvercookedAgent(BaseAgent):
         end_coord: coordinate where agent must be at before performing task at task_coord
         """
         agent_goal_costs = defaultdict(dict)
-
+        snap = False
         for task_list in self.world_state['goal_space']:
             if id(task_list) in observer_task_to_not_do:
                 continue
@@ -277,6 +277,11 @@ class OvercookedAgent(BaseAgent):
                                     },
                                     end_coord
                                 ])
+                    elif isinstance(self.holding, Plate):
+                        # Already holding plate (case when human agent picks)
+                        task_list.head = task_list.head.next
+                        continue
+
                 elif task_list.head.task == 'scoop' or task_list.head.task == 'serve':
                     print('@base_agent - Entered scoop/serve logic')
                     if not isinstance(self.holding, Plate):
@@ -435,6 +440,8 @@ class OvercookedAgent(BaseAgent):
                             if isinstance(self.holding, Ingredient):
                                 if self.holding.name == task_list.ingredient:
                                     print('Contains Item in hand - But valid item for different task')
+                                    task_list.head = task_list.head.next
+                                    snap = True
                                     continue
                             else:
                                 # Edge case: Randomly chosen spot to drop item must be a table-top cell
@@ -479,7 +486,33 @@ class OvercookedAgent(BaseAgent):
 
                         # Edge case: No available ingredient, this task is invalid
                         if not wanted_ingredient and not isinstance(self.holding, Ingredient):
-                            continue
+                            # continue
+                            if task_list.head.task == 'chop':
+                                temp_wanted_ingredient = [
+                                    ingredient.location for ingredient in self.world_state['ingredients'] if \
+                                        (ingredient.name == task_list.ingredient and ingredient.state == 'chopped')]
+                                if temp_wanted_ingredient:
+                                    task_list.head = task_list.head.next
+                                    snap = True
+                                    break
+                            path_cost = self.calc_travel_cost(['ingredient_'+task_list.ingredient], [self.world_state['ingredient_'+task_list.ingredient]])
+                            # no need to move anymore
+                            task_coord = self.world_state['ingredient_'+task_list.ingredient][0]
+                            end_coord = self.location
+                            if path_cost:
+                                end_coord = path_cost['ingredient_'+task_list.ingredient][0][-1]
+                                path_actions += self.map_path_actions(path_cost['ingredient_'+task_list.ingredient][0])
+
+                            path_actions.append([
+                                'PICK',
+                                {
+                                    'is_new': True,
+                                    'is_last': False,
+                                    'pick_type': 'ingredient',
+                                    'task_coord': task_coord
+                                },
+                                end_coord
+                            ])
                         else:
                             # Get all paths + task, paths + task into [path_actions] array and returning
                             if task_list.head.task == 'chop':
@@ -524,6 +557,7 @@ class OvercookedAgent(BaseAgent):
 
                                 # If not holding (chopped) ingredient: Go to ingredient, Do picking
                                 if not isinstance(self.holding, Ingredient) or self.holding.state != 'chopped':
+                                    # TODO: Fix agent pick up chopped ingredient while holding ingredient
                                     try:
                                         # If chopped ingredient exists in the map
                                         path_cost = self.calc_travel_cost(['ingredient_'+task_list.ingredient], [wanted_ingredient])
@@ -587,6 +621,8 @@ class OvercookedAgent(BaseAgent):
                     'steps': path_actions,
                     'rewards': total_rewards
                 }
+                if snap == True:
+                    break
 
         return agent_goal_costs
 

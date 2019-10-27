@@ -59,6 +59,23 @@ class HumanAgent(BaseAgent):
                 task = [task for task in self.world_state['goal_space'] if id(task) == task_id][0]
                 task.head = task.head.next
                 goal_id = task_id
+            if action == 'COOK':
+                temp_action = 'CHOP'
+                all_goals = [id(goal) for goal in self.world_state['goal_space'] if goal.head.task == temp_action.lower()]
+                if all_goals:
+                    # there is CHOP task stucked
+                    task_id = random.choice(all_goals)
+                    task = [task for task in self.world_state['goal_space'] if id(task) == task_id][0]
+                    task.head = task.head.next
+                    goal_id = task_id
+                else:
+                    temp_action = 'PICK'
+                    all_goals = [id(goal) for goal in self.world_state['goal_space'] if goal.head.task == temp_action.lower()]
+                    task_id = random.choice(all_goals)
+                    task = [task for task in self.world_state['goal_space'] if id(task) == task_id][0]
+                    task.head = task.head.next.next
+                    goal_id = task_id
+
         print(f'Human Agent going for goal {goal_id}.')
         return goal_id
 
@@ -231,25 +248,38 @@ class HumanAgent(BaseAgent):
     def chop(self, task_id: int, is_last: bool, task_coord: Tuple[int, int]):
         print('base_agent@chop')
         self.world_state['explicit_rewards']['chop'] += 1
-        task = [task for task in self.world_state['goal_space'] if id(task) == task_id][0]
+        if task_id == -1:
+            holding_ingredient = self.holding
+            holding_ingredient.location = task_coord
 
-        holding_ingredient = self.holding
-        # only update location after reaching, since ingredient is in hand (?)
-        holding_ingredient.location = task_coord
+            # agent drops ingredient to chopping board
+            self.holding = None
+            holding_ingredient.state = 'chopped'
+            self.world_state['ingredients'].append(holding_ingredient)
+            used_chopping_board = [board for board in self.world_state['chopping_board'] if board.location == task_coord][0]
 
-        # agent drops ingredient to chopping board
-        self.holding = None
-        holding_ingredient.state = 'chopped'
-        self.world_state['ingredients'].append(holding_ingredient)
-        used_chopping_board = [board for board in self.world_state['chopping_board'] if board.location == task_coord][0]
+            # update chopping board to be 'taken'
+            used_chopping_board.state = 'taken'
+        else:
+            task = [task for task in self.world_state['goal_space'] if id(task) == task_id][0]
 
-        # update chopping board to be 'taken'
-        used_chopping_board.state = 'taken'
+            holding_ingredient = self.holding
+            # only update location after reaching, since ingredient is in hand (?)
+            holding_ingredient.location = task_coord
 
-        # Edge case: task.head.next can point to None if agentR reaches here after agentL already in midst of performing next task
-        if is_last and task.head.next:
-            print('base_agent@chop - Remove chopping task')
-            task.head = task.head.next
+            # agent drops ingredient to chopping board
+            self.holding = None
+            holding_ingredient.state = 'chopped'
+            self.world_state['ingredients'].append(holding_ingredient)
+            used_chopping_board = [board for board in self.world_state['chopping_board'] if board.location == task_coord][0]
+
+            # update chopping board to be 'taken'
+            used_chopping_board.state = 'taken'
+
+            # Edge case: task.head.next can point to None if agentR reaches here after agentL already in midst of performing next task
+            if is_last and task.head.next:
+                print('base_agent@chop - Remove chopping task')
+                task.head = task.head.next
         
     def cook(self, task_id: int, is_last: bool, task_coord: Tuple[int, int]):
         print('base_agent@cook')
