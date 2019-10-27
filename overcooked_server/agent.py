@@ -1006,7 +1006,7 @@ class OvercookedAgent(BaseAgent):
         print(f'Current goal info (goal_id; goal_head; goal_head_id; goal_head_state, goal_head_task): \n{cur_goal_info}\n')
 
         print(f'Replicate prev environment')
-        from ipomdp.envs.overcooked_map_env import OvercookedEnv
+        from overcooked_env import OvercookedEnv
         prev_env = OvercookedEnv()
         prev_env.world_state = self.world_state['historical_world_state']
         prev_best_goals = prev_env.find_agents_possible_goals()
@@ -1089,9 +1089,6 @@ class OvercookedAgent(BaseAgent):
                             inferred_goals_info[agent][_id][13] += 1
                         elif non_movement_action[0] == 'DROP':
                             inferred_goals_info[agent][_id][14] += 1
-                        
-                        # 'int' object is not subscriptable; -1 is returned
-                        # inferred_goals_info[agent][_id][8] += 1
                     sampling_count += 1
                 
                 # Apply laplace smoothing
@@ -1150,7 +1147,7 @@ class OvercookedAgent(BaseAgent):
         print(goal_probability_distribution)
         # Run one timestep for other agents from current world state
         print(f'Replicate current environment')
-        from ipomdp.envs.overcooked_map_env import OvercookedEnv
+        from overcooked_env import OvercookedEnv
         curr_env = OvercookedEnv()
         curr_env.world_state = copy.deepcopy(self.world_state)
         curr_best_goals = curr_env.find_agents_possible_goals()
