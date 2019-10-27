@@ -608,9 +608,10 @@ class Game:
                 best_goals[agent][1]['steps'][0]
             )
         for agent in action_mapping:
-            self.env.world_state['historical_actions'][agent.id].append(
-                action_mapping[agent][1]
-            )
+            self.env.world_state['historical_actions'][agent.id] = [action_mapping[agent][1]]
+            # self.env.world_state['historical_actions'][agent.id].append(
+            #     action_mapping[agent][1]
+            # )
 
         print(action_mapping)
         print('@rollout - Starting step function')
