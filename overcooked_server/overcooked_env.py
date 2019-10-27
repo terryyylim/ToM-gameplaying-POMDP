@@ -10,11 +10,12 @@ import numpy as np
 import random
 
 from map_env import MapEnv
-from map_configs import *
-from agent_configs import *
 from agent import OvercookedAgent
 from human_agent import HumanAgent
 from overcooked_classes import *
+from overcooked_game_settings import MAP_ACTIONS, RECIPES, RECIPES_INGREDIENTS_TASK
+from agent_configs import ITEMS_INITIALIZATION, INGREDIENTS_INITIALIZATION, \
+    RECIPES_INGREDIENTS_COUNT, BARRIERS
 
 class OvercookedEnv(MapEnv):
     def __init__(

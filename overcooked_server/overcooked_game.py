@@ -9,9 +9,8 @@ import pygame as pg
 
 from map_env import MapEnv
 from overcooked_env import OvercookedEnv
-from map_configs import RECIPES
-from overcooked_game_settings import *
 from sprites import *
+from agent_configs import RECIPES_INGREDIENTS_COUNT
 
 class Game:
     def __init__(self):

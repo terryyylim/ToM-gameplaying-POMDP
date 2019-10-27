@@ -6,9 +6,8 @@ import collections
 import numpy as np
 from ray.rllib.env import MultiAgentEnv
 
-from map_configs import *
-from agent_configs import *
-from agent import *
+from overcooked_game_settings import MAP_ACTIONS
+from agent import OvercookedAgent
 from overcooked_classes import *
 
 class MapEnv(MultiAgentEnv):

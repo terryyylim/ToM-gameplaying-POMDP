@@ -1,4 +1,4 @@
-# define some colors (R, G, B)
+# ==================== Colour definition ====================
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
 DARKGREY = (40, 40, 40)
@@ -9,7 +9,7 @@ YELLOW = (255, 255, 0)
 BACKGROUND_BLUE = (213, 226, 237)
 BROWN = (160, 82, 4)
 
-# game settings
+# ======================= Game Settings =======================
 WIDTH = 416 # 13x32  # 16 * 64 or 32 * 32 or 64 * 16
 HEIGHT = 288 # 9x32 # 16 * 48 or 32 * 24 or 64 * 12
 FPS = 60
@@ -20,7 +20,15 @@ TILESIZE = 32
 GRIDWIDTH = WIDTH / TILESIZE
 GRIDHEIGHT = HEIGHT / TILESIZE
 
+# ========================= Recipes ===========================
+RECIPES_1 = ['onion_soup']
+RECIPES_INGREDIENTS_TASK_1 = {
+    'onion_soup': {
+        'onion': [('pick', 'fresh'), ('chop', 'unchopped'), ('cook', 'chopped')]
+    }
+}
 
+# ================== Game Background Initialization ==================
 PLAYERS_1 = {
     1: {
         'holding': None,
@@ -112,6 +120,21 @@ AI_AGENTS_1 = {
     }
 }
 
+# ====================== Actions ======================= 
+MAP_ACTIONS_1 = {
+    'MOVE_LEFT': [0, -1],
+    'MOVE_RIGHT': [0, 1],
+    'MOVE_UP': [-1, 0],
+    'MOVE_DOWN': [1, 0],
+    'MOVE_DIAGONAL_LEFT_UP': [-1, -1],
+    'MOVE_DIAGONAL_RIGHT_UP': [-1, 1],
+    'MOVE_DIAGONAL_LEFT_DOWN': [1, -1],
+    'MOVE_DIAGONAL_RIGHT_DOWN': [1, 1],
+    'STAY': [0,0]
+}
+
+RECIPES = RECIPES_1
+RECIPES_INGREDIENTS_TASK = RECIPES_INGREDIENTS_TASK_1
 HUMAN_AGENTS = HUMAN_AGENTS_1
 AI_AGENTS = AI_AGENTS_1
 TABLE_TOPS = TABLE_TOPS_1
@@ -126,3 +149,4 @@ SERVING_STATION = SERVING_STATION_1
 EXTINGUISHER = EXTINGUISHER_1
 TRASH_BIN = TRASH_BIN_1
 WALLS = WALLS_1
+MAP_ACTIONS = MAP_ACTIONS_1

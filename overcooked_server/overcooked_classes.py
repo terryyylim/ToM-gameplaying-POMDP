@@ -5,7 +5,7 @@ from typing import Tuple
 
 from collections import defaultdict
 
-from agent_configs import *
+from agent_configs import WORLD_STATE
 
 class TaskNode:
     def __init__(
