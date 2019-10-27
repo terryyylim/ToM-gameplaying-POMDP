@@ -92,13 +92,27 @@ class OvercookedEnv(MapEnv):
     def find_agents_possible_goals(self, observers_task_to_not_do=[]):
         agent_goals = {}
         for agent in self.world_state['agents']:
+            observer_task_to_not_do = []
             if isinstance(agent, OvercookedAgent):
-                observer_task_to_not_do = []
                 if observers_task_to_not_do:
                     print(f'Observer to not do tasks')
                     print(observers_task_to_not_do)
                     observer_task_to_not_do = observers_task_to_not_do[agent]
                 agent_goals[agent] = agent.find_best_goal(observer_task_to_not_do)
+            else:
+                if isinstance(agent, HumanAgent):
+                    print(f'Dummy Agent goals')
+                    temp_OvercookedAgent = OvercookedAgent(
+                        agent.id,
+                        agent.location,
+                        agent.barriers,
+                        holding=agent.holding
+                    )
+                    temp_OvercookedAgent.world_state = self.world_state
+                    print([(goal.head, goal.task, goal.ingredient) for goal in temp_OvercookedAgent.world_state['goal_space']])
+                    agent_goals[agent] = temp_OvercookedAgent.find_best_goal([])
+                    print(agent_goals[agent])
+                    del temp_OvercookedAgent
         return agent_goals
 
     def find_agents_best_goal(self):
@@ -170,7 +184,7 @@ class OvercookedEnv(MapEnv):
             else:
                 # If no task at hand, but blocking stations, move to valid cell randomly
                 # TO-DO: Fix case in stage 1 where agent is in cell (4,10) and blocks movements
-                if agent.location in [(1,3), (1,8), (3,7), (3,5)]:
+                if tuple(agent.location) in [(1,3), (1,8), (3,7), (3,5)]:
                     print(f'Entered find random valid action')
                     random_valid_cell_move = self._find_random_valid_action(agent)
                     assigned_best_goal[agent] = [-1, {'steps': [random_valid_cell_move], 'rewards': -1}]

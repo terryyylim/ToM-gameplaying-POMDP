@@ -5,6 +5,7 @@ from collections import defaultdict
 import random
 
 from agent import BaseAgent
+from agent_configs import BARRIERS
 from overcooked_classes import Ingredient, Dish, Plate, TaskList
 from agent_configs import ACTIONS, REWARDS, INGREDIENTS_STATION, INGREDIENTS_INITIALIZATION, RECIPES_INGREDIENTS_COUNT, RECIPES_SERVE_TASK
 
@@ -15,7 +16,8 @@ class HumanAgent(BaseAgent):
         location,
         holding=None,
         actions=ACTIONS,
-        rewards=REWARDS
+        rewards=REWARDS,
+        barriers=BARRIERS
     ) -> None:
         super().__init__(agent_id, location)
         self.world_state = {}
@@ -23,6 +25,7 @@ class HumanAgent(BaseAgent):
         self.holding = holding
         self.actions = actions
         self.rewards = rewards
+        self.barriers = barriers
     
     def _find_suitable_goal(self, action_number, task_info):
         print(f'Finding suitable goal now')
