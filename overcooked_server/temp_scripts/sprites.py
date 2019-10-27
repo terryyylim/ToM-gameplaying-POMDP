@@ -1,12 +1,13 @@
 import os
 import pygame as pg
 
-from overcooked_pygame.settings import *
+from overcooked_server.temp_scripts.settings import *
 from ipomdp.overcooked import *
 
 # Set up Assets
 game_folder = os.path.dirname(__file__)
-assets_folder = os.path.join(game_folder, 'assets')
+# print(game_folder)
+assets_folder = os.path.join(game_folder, '..', 'assets')
 
 # Pure Player Class
 # class Player(pg.sprite.Sprite):

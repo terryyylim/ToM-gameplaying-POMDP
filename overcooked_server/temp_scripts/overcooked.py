@@ -5,8 +5,8 @@ from typing import Tuple
 
 import pygame as pg
 import sys
-from overcooked_pygame.settings import *
-from overcooked_pygame.sprites import *
+from overcooked_server.temp_scripts.settings import *
+from overcooked_server.temp_scripts.sprites import *
 
 class Game:
     def __init__(self):

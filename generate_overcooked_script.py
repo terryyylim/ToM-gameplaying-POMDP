@@ -9,17 +9,15 @@ import pickle
 from pathlib import Path
 import pygame as pg
 
-from overcooked_pygame.settings import *
-from overcooked_pygame.sprites import *
-from overcooked_pygame.overcooked import Game
+from overcooked_server.temp_scripts.settings import *
+from overcooked_server.temp_scripts.sprites import *
+from overcooked_server.temp_scripts.overcooked import Game
 
 from ipomdp.envs.map_env import MapEnv
 from ipomdp.envs.map_configs import *
 from ipomdp.agents.agent_configs import *
 from ipomdp.agents.base_agent import OvercookedAgent
 from ipomdp.overcooked import *
-from ipomdp.helpers import *
-
 from helpers import make_video_from_image_dir
 
 
