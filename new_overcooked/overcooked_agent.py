@@ -4,6 +4,7 @@ from typing import List
 from typing import Tuple
 
 from collections import defaultdict
+import copy
 import numpy as np
 import random
 
@@ -364,7 +365,7 @@ class OvercookedAgent():
                         ])
                     else:
                         # Should we make default behaviour to pick up new ingredient from crate?
-                        pass
+                        continue
 
             # COOK GOALS - onion, tomato
             if goal in [2,7]:
@@ -437,6 +438,7 @@ class OvercookedAgent():
                                 path_actions.append(['COOK', True, task_coord, end_coord])
                             else:
                                 # If still no available pots
+                                # TO-FIX: Causes inference agent to pick and drop continuously because no pot to cook at
                                 print(f'agent@cook - Trying to cook but no available pot')
                                 continue
                 else:
@@ -900,3 +902,241 @@ class OvercookedAgent():
             print('base_agent@serve - Remove serve task')
             self.world_state['goal_space_count'][task_id] -= 1
             self.world_state['goal_space'][task_id].pop(0)
+
+    def observer_inference(self):
+        """Perform inference derivation"""
+        print(f'Replicate prev environment')
+        from new_overcooked_env import OvercookedEnv
+        prev_env = OvercookedEnv()
+        prev_env.world_state = self.world_state['historical_world_state']
+        prev_best_goals = prev_env.find_agents_possible_goals()
+
+        print(f'Previous best goals')
+        print(prev_best_goals)
+
+        # Considers all other agents except itself - allows for > 2 agents inference
+        prev_best_goals = {agent: info for agent, info in prev_best_goals.items() if agent.id != self.id}
+        print(f'Previous best goals - after filtering out own best goal')
+        print(prev_best_goals)
+
+        inferred_goals_info = defaultdict(lambda: defaultdict(lambda: defaultdict(int)))
+        for agent in prev_best_goals:
+            for goal in prev_best_goals[agent]:
+
+                sampling_count = 0
+                all_best_paths = prev_env.generate_possible_paths(agent, prev_best_goals[agent][goal])
+                while sampling_count != 50:
+
+                    best_path = None
+                    if all_best_paths != -1:
+                        best_path = random.choice(all_best_paths)
+                        best_path.append(prev_best_goals[agent][goal]['steps'][-1])
+                    else:
+                        best_path = -1
+                    try:
+                        if isinstance(best_path[0], int):
+                            inferred_goals_info[agent][best_path[0]] += 1
+
+                    except TypeError:
+                        # Case where best_path = -1
+                        print(f'@observer_inference - TypeError')
+                        print(f'Encountered best action to take, is not a movement.')
+
+                        # print(prev_best_goals[agent])
+                        # print(prev_best_goals[agent][goal])
+                        # print(prev_best_goals[agent][goal]['steps'][-1])
+                        # print(best_path)
+
+                        non_movement_action = prev_best_goals[agent][goal]['steps'][-1]
+                        if non_movement_action[0] == 'PICK':
+                            inferred_goals_info[agent][goal][9] += 1
+                        elif non_movement_action[0] == 'CHOP':
+                            inferred_goals_info[agent][goal][10] += 1
+                        elif non_movement_action[0] == 'COOK':
+                            inferred_goals_info[agent][goal][11] += 1
+                        elif non_movement_action[0] == 'SCOOP':
+                            inferred_goals_info[agent][goal][12] += 1
+                        elif non_movement_action[0] == 'SERVE':
+                            inferred_goals_info[agent][goal][13] += 1
+                        elif non_movement_action[0] == 'DROP':
+                            inferred_goals_info[agent][goal][14] += 1
+                    sampling_count += 1
+                # Apply laplace smoothing
+                inferred_goals_info[agent][goal] = self._laplace_smoothing(inferred_goals_info[agent][goal], 'action')
+
+        print(f'Done with gathering samples')
+        print(inferred_goals_info)
+        inferred_goals_conditional_distribution = _get_conditional_distribution(inferred_goals_info)
+        print(f'Done with deriving conditional distribution')
+        print(inferred_goals_conditional_distribution)
+        observer_task_to_not_do = self.observer_coordination_planning(inferred_goals_conditional_distribution)
+
+        return observer_task_to_not_do
+
+    def observer_coordination_planning(self, action_conditional_distribution):
+        """
+        PARAMETERS
+        ----------
+        action_conditional_distribution
+            Make use of P(goal,t|action,t) to derive P(a,t+1|goal,t)
+        """
+        print(f'@observer_coordination_planning')
+        print(self.world_state['historical_actions'])
+        print(action_conditional_distribution)
+        goal_probability_distribution = {}
+        for agent in action_conditional_distribution:
+            agent_prev_action = self.world_state['historical_actions'][agent.id][-1]
+            print(f'Agent {agent.id} Prev action')
+            print(agent_prev_action)
+            try:
+                goal_probability_distribution[agent] = {k:v for k,v in action_conditional_distribution[agent].items() if k == agent_prev_action}[agent_prev_action]
+            except TypeError:
+                print(f'@observer_coordination_planning - TypeError - {agent_prev_action[0]}')
+                if agent_prev_action[0] == 'PICK':
+                    agent_prev_action = 9
+                elif agent_prev_action[0] == 'CHOP':
+                    agent_prev_action = 10
+                elif agent_prev_action[0] == 'COOK':
+                    agent_prev_action = 11
+                elif agent_prev_action[0] == 'SCOOP':
+                    agent_prev_action = 12
+                elif agent_prev_action[0] == 'SERVE':
+                    agent_prev_action = 13
+                elif agent_prev_action[0] == 'DROP':
+                    agent_prev_action = 14
+                goal_probability_distribution[agent] = {k:v for k,v in action_conditional_distribution[agent].items() if k == agent_prev_action}[agent_prev_action]
+        print(goal_probability_distribution)
+
+        # Run one episode for other agents from current world state
+        print(f'Replicate current environment')
+        from new_overcooked_env import OvercookedEnv
+        curr_env = OvercookedEnv()
+        curr_env.world_state = copy.deepcopy(self.world_state)
+        curr_best_goals = curr_env.find_agents_possible_goals()
+        print('\nCurrent best goals - Pre-smoothing')
+        print(curr_best_goals)
+
+        GOAL_SPACE = list(self.world_state['goal_space'])
+        curr_best_goals = self._laplace_smoothing(curr_best_goals, 'goals', GOAL_SPACE)
+        print('\nCurrent best goals - Post-smoothing')
+        print(curr_best_goals)
+
+        # Perform goal weighting to select best next action to take
+        goal_probability_distribution = {agent.id:val for agent, val in goal_probability_distribution.items()}
+        curr_best_goals = {agent.id:val for agent, val in curr_best_goals.items()}
+        print(f'\nAll goal probability distribution')
+        print(goal_probability_distribution)
+        print(f'\nRe-mapping of Current best goals')
+        print(curr_best_goals)
+
+        # Edge case: Task gets removed from TaskList (eg. after cooking/serving)
+        # for agent in curr_best_goals:
+        filtered_goal_probability_distribution = defaultdict(lambda: defaultdict(float))
+        for agent in goal_probability_distribution:
+            for task in goal_probability_distribution[agent]:
+                temp_task_prob = goal_probability_distribution[agent][task]
+                if task in curr_best_goals[agent]:
+                    # only bother with valid tasks
+                    filtered_goal_probability_distribution[agent][task] = temp_task_prob
+        goal_probability_distribution = filtered_goal_probability_distribution
+        print(f'All goal probability distribution after filtering')
+        print(goal_probability_distribution)
+
+        # Current as in look-ahead this current episode
+        curr_agent_goal_rewards = {}
+        for agent in goal_probability_distribution:
+            curr_agent_goal_rewards[agent] = {
+                k:goal_probability_distribution[agent][k]*curr_best_goals[agent][k]['rewards'] 
+                for k,v in goal_probability_distribution[agent].items()
+            }
+        print(f'\nCurrent agent goal rewards')
+        print(curr_agent_goal_rewards)
+
+        all_agents_best_inferred_goals = {}
+        for agent in curr_agent_goal_rewards:
+            # Randomly choose one if multiple goals have the same weighting
+            best_goal_list = list()
+            max_weighted_reward = max(curr_agent_goal_rewards[agent].items(), key=lambda x: x[1])[1]
+            for task_id, weighted_reward in curr_agent_goal_rewards[agent].items():
+                if weighted_reward == max_weighted_reward:
+                    best_goal_list.append(task_id)
+            
+            all_agents_best_inferred_goals[agent] = random.choice(best_goal_list)
+
+        print(f'\nCurrent Best Inferred goal')
+        print(all_agents_best_inferred_goals)
+
+        observer_goal_to_not_do = []
+        agent_own_id = self.id
+        print(f'Own Agent Best goals')
+        print(curr_best_goals[agent_own_id])
+        for agent in all_agents_best_inferred_goals:
+            print(f'Other agent.. Agent {agent} Best goals')
+            print(curr_best_goals[agent])
+            print(curr_best_goals[agent][all_agents_best_inferred_goals[agent]])
+            print(all_agents_best_inferred_goals[agent])
+            if curr_best_goals[agent][all_agents_best_inferred_goals[agent]]['rewards'] > \
+                curr_best_goals[agent_own_id][all_agents_best_inferred_goals[agent]]['rewards']:
+                observer_goal_to_not_do.append(all_agents_best_inferred_goals[agent])
+        print(f'\nObserver to not do goals')
+        print(observer_goal_to_not_do)
+
+        # Not do goal only if there's only 1 goal to pursue
+        multiple_goals = []
+        for goal in observer_goal_to_not_do:
+            if self.world_state['goal_space_count'][goal] > 1:
+                multiple_goals.append(goal)
+        observer_goal_to_not_do = [goal for goal in observer_goal_to_not_do if goal not in multiple_goals]
+        print(f'\nAfter checking whether to pursue anyway')
+        print(observer_goal_to_not_do)
+
+        return observer_goal_to_not_do
+
+    def _laplace_smoothing(self, p_distribution, type, goal_space=None):
+        if type == 'action':
+            ACTION_SPACE = 15 # up to 14 actions
+            for i in range(ACTION_SPACE):
+                p_distribution[i] += 1
+        elif type == 'goals':
+            GOALS_SPACE = goal_space
+            temp_p_distribution = defaultdict(dict)
+            for agent in p_distribution:
+                for goal_id in GOALS_SPACE:
+                    if goal_id not in p_distribution[agent]:
+                        # Already filtered out by agent.find_best_goal() function
+                        # Require this to prevent key error when doing goal weighting
+                        # p_distribution[agent][goal_id] = {'rewards': 0}
+                        temp_p_distribution[agent][goal_id] = {'rewards': 0}
+                    else:
+                        temp_p_distribution[agent][goal_id] = p_distribution[agent][goal_id]
+            p_distribution = temp_p_distribution
+
+        return p_distribution
+
+def _get_conditional_distribution(sampled_goal_space_actions):
+    """
+    Calculates conditional probability of taking each goal given action using Bayes rule.
+
+    goal_1 = {1: 37, 2: 12, 3: 35, 4: 3}
+    goal_2 = {1: 54, 2: 14, 3: 23, 4: 13}
+    P(goal_1|a=1) = P(a=1|goal_1)P(goal_1)/SUMMATION(goal')P(a=1|goal')P(goal')
+
+    Returns
+    -------
+    Dictionary of Agents
+        of Dictionary of Actions
+            of Dictionary of Goals
+    which represents P(a|goal).
+    """
+    print(f'@_conditional_distribution')
+    ACTION_SPACE = 15 # up to 14 actions
+    conditional_distribution = defaultdict(lambda: defaultdict(lambda: defaultdict(float)))
+
+    for agent in sampled_goal_space_actions:
+        for action in range(ACTION_SPACE):
+            total_sampled_counts = sum([val for goal in sampled_goal_space_actions[agent] for key, val in sampled_goal_space_actions[agent][goal].items() if key == action])
+            for goal_id in sampled_goal_space_actions[agent]:
+                cur_goal_sampled_count = sampled_goal_space_actions[agent][goal_id][action]
+                conditional_distribution[agent][action][goal_id] = cur_goal_sampled_count/total_sampled_counts
+
+    return conditional_distribution

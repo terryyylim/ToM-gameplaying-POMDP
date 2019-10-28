@@ -171,20 +171,18 @@ class OvercookedEnv(MapEnv):
                     print(observers_task_to_not_do)
                     observer_task_to_not_do = observers_task_to_not_do[agent]
                 agent_goals[agent] = agent.find_best_goal(observer_task_to_not_do)
-            # else:
-            #     if isinstance(agent, HumanAgent):
-            #         print(f'Dummy Agent goals')
-            #         temp_OvercookedAgent = OvercookedAgent(
-            #             agent.id,
-            #             agent.location,
-            #             agent.barriers,
-            #             holding=agent.holding
-            #         )
-            #         temp_OvercookedAgent.world_state = self.world_state
-            #         # print([(goal.head, goal.task, goal.ingredient) for goal in temp_OvercookedAgent.world_state['goal_space']])
-            #         agent_goals[agent] = temp_OvercookedAgent.find_best_goal([])
-            #         print(agent_goals[agent])
-            #         del temp_OvercookedAgent
+            else:
+                if isinstance(agent, HumanAgent):
+                    print(f'Dummy Agent goals')
+                    temp_OvercookedAgent = OvercookedAgent(
+                        agent.id,
+                        agent.location,
+                        agent.barriers,
+                        holding=agent.holding
+                    )
+                    temp_OvercookedAgent.world_state = self.world_state
+                    agent_goals[agent] = temp_OvercookedAgent.find_best_goal([])
+                    del temp_OvercookedAgent
         return agent_goals
 
     def find_agents_best_goal(self):
@@ -196,7 +194,7 @@ class OvercookedEnv(MapEnv):
                 if agent.is_inference_agent and 'historical_world_state' in self.world_state:
                     print(f'Do inference for ToM agent')
                     observers_inference_tasks = agent.observer_inference()
-                    observers_task_to_not_do[agent] = [self.world_state['task_id_mappings'][_id] for _id in observers_inference_tasks]
+                    observers_task_to_not_do[agent] = observers_inference_tasks
                 else:
                     observers_task_to_not_do[agent] = []
 
