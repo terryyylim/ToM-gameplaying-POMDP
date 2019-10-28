@@ -75,10 +75,6 @@ class Game:
                 'coords': plate.location
             }
         for pot in episode['pot']:
-            print('pot check here')
-            print(pot)
-            print(pot.ingredient)
-            print(pot.ingredient_count)
             if pot.ingredient_count:
                 pot_ingredient = pot.ingredient
                 pot_ingredient_count = pot.ingredient_count
@@ -645,7 +641,6 @@ class Game:
         return drop_validity, action_task, goal_id
 
     def rollout(self, best_goals, horizon=50, save_path=None):
-        print('rollout@rollout')
         """
         Save deep copy of current world state to be used as previous world state in next timestep.
         Deep copy to be used for inference calculations.
@@ -667,9 +662,6 @@ class Game:
             )
         for agent in action_mapping:
             self.env.world_state['historical_actions'][agent.id] = [action_mapping[agent][1]]
-            # self.env.world_state['historical_actions'][agent.id].append(
-            #     action_mapping[agent][1]
-            # )
 
         print(action_mapping)
         print('@rollout - Starting step function')
