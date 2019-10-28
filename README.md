@@ -4,6 +4,7 @@
 * [Summary](#Summary)
 * [Installation](#Installation)
 * [Gameplay](#Gameplay)
+* [Simulation](#Simulation)
 
 ### Summary
 This repository contains the code for modeling agents through inverse planning with POMDPs on the agent to infer goals and subsequently predict the actions of the other agents in a cooperative setting.
@@ -35,7 +36,7 @@ python rollout.py
 ### Gameplay
 To start the game, run the following.
 ```
-python overcooked_server/overcooked_game.py
+python new_overcooked/game.py
 ```
 
 #### Controls
@@ -50,3 +51,10 @@ python overcooked_server/overcooked_game.py
 | Movement | DIAG-UP-LEFT | DIAG-UP-RIGHT | DIAG-DOWN-LEFT | DIAG-DOWN-RIGHT |
 | :------: | :----------: | :-----------: | :------------: | :-------------: |
 | Key-Map  |       Q      |        W      |        E       |         R       |
+
+
+### Simulation
+To run a simulation, run the following with desired parameters in CLI.
+```
+python new_overcooked/game.py --num_ai_agents=2 --is_simulation=True --simulation_episodes=500
+```
