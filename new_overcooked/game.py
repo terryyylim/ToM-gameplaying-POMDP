@@ -3,9 +3,11 @@ from typing import Dict
 from typing import List
 from typing import Tuple
 
+import click
 import copy
 import sys
 import pygame as pg
+from datetime import datetime
 
 from map_env import MapEnv
 from new_overcooked_env import OvercookedEnv
@@ -675,9 +677,13 @@ class Game:
     def show_go_screen(self):
         pass
 
-def main():
+@click.command()
+@click.option('--num_ai_agents', default=1, help='Number of AI agents to initialize')
+@click.option('--is_simulation', default=False, help='Run Simulation or Human Experiment?')
+@click.option('--simulation_episodes', default=500, help='Number of simulations to run')
+def main(num_ai_agents, is_simulation, simulation_episodes):
     # create the game object
-    g = Game()
+    g = Game(num_ai_agents, is_simulation, simulation_episodes)
     g.show_start_screen()
     while True:
         g.new(
