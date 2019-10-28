@@ -335,6 +335,19 @@ class Game:
                 ingredient_name = ingredient
         return ingredient_name
 
+    def _get_recipe_ingredient_count(self, ingredient):
+        recipe_ingredient_count = None
+        for recipe in RECIPES_INFO:
+            if RECIPES_INFO[recipe]['ingredient'] == ingredient:
+                recipe_ingredient_count = RECIPES_INFO[recipe]['count']
+        
+        return recipe_ingredient_count
+
+    def _get_ingredient_dish(self, recipe):
+        ingredient = RECIPES_INFO[recipe]['ingredient']
+        
+        return ingredient
+
     def _get_goal_id(self, ingredient, action):
         goal_id = None
         if ingredient == 'onion':
@@ -361,21 +374,14 @@ class Game:
         for ingredient in INGREDIENTS_STATION:
             all_valid_pick_items_pos.append(INGREDIENTS_STATION[ingredient])
 
-        print('now picking action')
-        print(player_pos)
         surrounding_cells_xy = [[-1,0], [0,1], [1,0], [0,-1]]
         for surrounding_cell_xy in surrounding_cells_xy:
             surrounding_cell = [sum(x) for x in zip(list(player_pos), surrounding_cell_xy)]
             surrounding_cell = tuple(surrounding_cell)
             if surrounding_cell in all_valid_pick_items_pos:
                 item = [item for item in all_valid_pick_items if item.location == surrounding_cell]
-                print('picking action now')
-                print(surrounding_cell)
-                print(item)
                 if item:
                     item = item[0]
-                    print('item 0')
-                    print(item)
                     if isinstance(item, Plate):
                         action_task.append([
                             'PICK',
@@ -390,19 +396,6 @@ class Game:
                         ingredient_name = self._get_ingredient(surrounding_cell)
                         goal_id = self._get_goal_id(ingredient_name, 'PICK')
                     else:
-                        print('not picking plate')
-                        # if item.state == 'unchopped':
-                        #     action_task.append([
-                        #         'PICK',
-                        #         {
-                        #             'is_new': False,
-                        #             'is_last': True,
-                        #             'pick_type': 'ingredient',
-                        #             'task_coord': surrounding_cell
-                        #         },
-                        #         player_pos
-                        #     ])
-                        # else:
                         action_task.append([
                             'PICK',
                             {
@@ -416,7 +409,6 @@ class Game:
                         ingredient_name = self._get_ingredient(surrounding_cell)
                         goal_id = self._get_goal_id(ingredient_name, 'PICK')
                 else:
-                    print('pick from new station')
                     # new item from ingredient station
                     action_task.append([
                         'PICK',
@@ -466,15 +458,18 @@ class Game:
                     action_task.append(
                         ['CHOP', True, surrounding_cell, player_pos]
                     )
+                    ingredient_name = player_object.holding.name
+                    goal_id = self._get_goal_id(ingredient_name, 'CHOP')
         if action_task:
             chop_validity = True
 
-        return chop_validity, action_task
+        return chop_validity, action_task, goal_id
 
     def _check_cook_validity(self, player_id):
         cook_validity = False
         player_pos = self._get_pos(player_id)
         action_task = []
+        goal_id = None
 
         # Have to hold chopped ingredient before chopping
         player_object = [agent for agent in self.env.world_state['agents'] if agent.id == '1'][0]
@@ -495,31 +490,31 @@ class Game:
                 surrounding_cell = tuple(surrounding_cell)
                 if surrounding_cell in all_valid_pots_pos:
                     pot = [pot for pot in all_valid_pots if pot.location == surrounding_cell][0]
-                    ingredient_in_hand = player_object.holding.name
-                    # Ugly hack
-                    if ingredient_in_hand == 'onion':
-                        dish = 'onion_soup'
-                    # No ingredient pot yet
-                    if len(pot.ingredient_count) == 0:
+                    ingredient_name = player_object.holding.name
+                    # CASE: No ingredient pot yet
+                    if pot.ingredient_count == 0:
                         action_task.append(
                             ['COOK', True, surrounding_cell, player_pos]
                         )
-                    # Already has an ingredient in pot    
-                    elif len(pot.ingredient_count) != 0:
-                        if pot.ingredient_count[ingredient_in_hand] != RECIPES_INGREDIENTS_COUNT[dish]:
+                        goal_id = self._get_goal_id(ingredient_name, 'COOK')
+                    # CASE: Already has an ingredient in pot and is same ingredient as hand's ingredient
+                    elif (pot.ingredient_count != 0) and (pot.ingredient == ingredient_name):
+                        recipe_ingredient_count = self._get_recipe_ingredient_count(ingredient_name)
+                        if pot.ingredient_count != recipe_ingredient_count:
                             action_task.append(
                                 ['COOK', True, surrounding_cell, player_pos]
                             )
-                    # NEG CASE: if pot ingredient is different as ingredient in hand
+                            goal_id = self._get_goal_id(ingredient_name, 'COOK')                   
         if action_task:
             cook_validity = True
 
-        return cook_validity, action_task
+        return cook_validity, action_task, goal_id
     
     def _check_scoop_validity(self, player_id):
         scoop_validity = False
         player_pos = self._get_pos(player_id)
         action_task = []
+        goal_id = None
 
         # Have to hold empty plate before scooping
         player_object = [agent for agent in self.env.world_state['agents'] if agent.id == '1'][0]
@@ -539,11 +534,10 @@ class Game:
                 surrounding_cell = tuple(surrounding_cell)
                 if surrounding_cell in all_valid_pots_pos:
                     pot = [pot for pot in all_valid_pots if pot.location == surrounding_cell][0]
+                    ingredient_name = pot.ingredient
+                    ingredient_count = self._get_recipe_ingredient_count(ingredient_name)
                     # Ensure pot is full
-                    # Ugly hack 1: assume only 1 pot such that self.world_state['cooked_dish_count'][dish] += 1 always = 1 at most
-                    # Ugly hack 2: assume only 1 dish
-                    dish = RECIPES[0]
-                    if self.env.world_state['cooked_dish_count'][dish] == 1:
+                    if ingredient_count == pot.ingredient_count:
                         action_task.append([
                             'SCOOP',
                             {
@@ -552,14 +546,16 @@ class Game:
                             },
                             player_pos
                         ])
+                        goal_id = self._get_goal_id(ingredient_name, 'SCOOP')
         if action_task:
             scoop_validity = True
-        return scoop_validity, action_task
+        return scoop_validity, action_task, goal_id
     
     def _check_serve_validity(self, player_id):
         serve_validity = False
         player_pos = self._get_pos(player_id)
         action_task = []
+        goal_id = None
 
         # Have to hold plate with dish before serving
         player_object = [agent for agent in self.env.world_state['agents'] if agent.id == '1'][0]
@@ -585,10 +581,13 @@ class Game:
                         },
                         player_pos
                     ])
+                    dish_name = player_object.holding.dish.name
+                    ingredient_name = self._get_ingredient_dish(dish_name)
+                    goal_id = self._get_goal_id(ingredient_name, 'SERVE')
         if action_task:
             serve_validity = True
 
-        return serve_validity, action_task
+        return serve_validity, action_task, goal_id
 
     def _check_drop_validity(self, player_id):
         drop_validity = False

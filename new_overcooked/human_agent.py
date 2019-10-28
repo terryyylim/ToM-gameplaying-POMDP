@@ -177,3 +177,130 @@ class HumanAgent():
             holding_plate.location = random_empty_cell
             self.world_state['plate'].append(holding_plate)
         self.holding = None
+
+    def chop(self, task_id: int, is_last: bool, task_coord: Tuple[int, int]):
+        print('human@chop')
+        print(task_id)
+        ingredient_name = self.get_ingredient_name(task_id)
+        self.world_state['explicit_rewards']['chop'] += 1
+        self.world_state['goal_space_count'][task_id] -= 1
+        self.world_state['goal_space_count'][task_id+1] += 1
+        print('goal space check')
+        print(self.world_state['goal_space_count'])
+        if is_last:
+            print('base_agent@chop - Remove chopping task')
+            self.world_state['goal_space'][task_id].pop(0)
+            self.world_state['goal_space'][task_id+1].append({
+                'state': 'chopped',
+                'ingredient': ingredient_name
+            })
+
+        holding_ingredient = self.holding
+        # only update location after reaching, since ingredient is in hand
+        holding_ingredient.location = task_coord
+
+        # agent drops ingredient to chopping board
+        self.holding = None
+        holding_ingredient.state = 'chopped'
+        self.world_state['ingredients'].append(holding_ingredient)
+        used_chopping_board = [board for board in self.world_state['chopping_board'] if board.location == task_coord][0]
+
+        # update chopping board to be 'taken'
+        used_chopping_board.state = 'taken'
+        
+    def cook(self, task_id: int, is_last: bool, task_coord: Tuple[int, int]):
+        print('human@cook')
+        ingredient_name = self.get_ingredient_name(task_id)
+        ingredient_count = self.get_recipe_ingredient_count(ingredient_name)
+        dish = self.get_recipe_dish(ingredient_name)
+        self.world_state['explicit_rewards']['cook'] += 1
+        self.world_state['goal_space_count'][task_id] -= 1
+        self.world_state['goal_space'][task_id].pop(0)
+
+        # Find the chosen pot - useful in maps with more than 1 pot
+        pot = [pot for pot in self.world_state['pot'] if pot.location == task_coord][0]
+
+        holding_ingredient = self.holding
+        # only update location after reaching, since ingredient is in hand
+        holding_ingredient.location = task_coord
+
+        # agent drops ingredient to pot
+        pot.ingredient = ingredient_name
+        pot.ingredient_count += 1
+
+        # remove ingredient from world state since used for cooking
+        for idx, ingredient in enumerate(self.world_state['ingredients']):
+            if id(ingredient) == id(holding_ingredient):
+                del self.world_state['ingredients'][idx]
+                break
+        # remove ingredient from agent's hand since no longer holding
+        self.holding = None
+
+        if pot.ingredient_count == ingredient_count:
+            print('base_agent@cook - Add completed dish to pot')
+
+            # Create new Dish Class object
+            new_dish = Dish(dish, pot.location)
+            self.world_state['cooked_dish'].append(new_dish)
+            pot.dish = dish
+
+            # Add Scoop to Goal Space
+            self.world_state['goal_space_count'][task_id+1] += 1
+            self.world_state['goal_space'][task_id+1].append({
+                'state': 'empty',
+                'ingredient': ingredient_name
+            })
+
+    def scoop(self, task_id: int, scoop_info):
+        print('human@scoop')
+        ingredient_name = self.get_ingredient_name(task_id)
+        is_last = scoop_info['is_last']
+        task_coord = scoop_info['task_coord']
+        pot = [pot for pot in self.world_state['pot'] if pot.location == task_coord][0]
+
+         # Empty the pot as well
+        pot.ingredient = None
+        pot.ingredient_count = 0
+        pot.dish = None
+
+        dish_to_plate = [dish for dish in self.world_state['cooked_dish'] if dish.location == task_coord][0]
+        # let the plate which agent is holding, hold the completed dish
+        self.world_state['cooked_dish_count'][dish_to_plate.name] -= 1
+        self.holding.dish = dish_to_plate
+        self.holding.state = 'plated'
+
+        # remove dish from world state since used for plating
+        for idx, cooked_dish in enumerate(self.world_state['cooked_dish']):
+            if id(cooked_dish) == id(dish_to_plate):
+                del self.world_state['cooked_dish'][idx]
+                break
+
+        self.world_state['goal_space_count'][task_id] -= 1
+        if is_last:
+            print('human@scoop - Remove scooping task')
+            self.world_state['goal_space'][task_id].pop(0)
+            self.world_state['goal_space_count'][task_id+1] += 1
+            self.world_state['goal_space'][task_id+1].append({
+                'state': 'plated',
+                'ingredient': ingredient_name
+            })
+        
+    def serve(self, task_id: int, serve_info):
+        print('human@serve')
+        self.world_state['explicit_rewards']['serve'] += 1
+        is_last = serve_info['is_last']
+
+        # plate returns to return point (in clean form for now)
+        self.holding.dish = None
+        self.holding.state = 'empty'
+        self.holding.location = (5,0)
+        self.world_state['plate'].append(self.holding)
+
+        # remove dish from plate
+        self.holding = None
+
+        # remove order from TaskList
+        if is_last:
+            print('human@serve - Remove serve task')
+            self.world_state['goal_space_count'][task_id] -= 1
+            self.world_state['goal_space'][task_id].pop(0)
