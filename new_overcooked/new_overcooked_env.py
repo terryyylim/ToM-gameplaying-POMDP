@@ -201,13 +201,13 @@ class OvercookedEnv(MapEnv):
                     observers_task_to_not_do[agent] = []
 
         agents_possible_goals = self.find_agents_possible_goals(observers_task_to_not_do)
-        print('agents possible goals')
+        print(f'Agents possible goals')
         print(agents_possible_goals)
 
         assigned_best_goal = {}
         for agent in agents_possible_goals:
             tasks_rewards = [agents_possible_goals[agent][task]['rewards'] for task in agents_possible_goals[agent]]
-            print('printing task rewards')
+            print(f'Agent {agent.id} Task Rewards')
             print(tasks_rewards)
 
             if tasks_rewards:

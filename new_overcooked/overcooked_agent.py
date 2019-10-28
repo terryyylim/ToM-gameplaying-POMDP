@@ -372,16 +372,11 @@ class OvercookedAgent():
                 print(f'@agent - Entered COOK logic')
                 path_actions = []
                 task_info = self.world_state['goal_space'][goal][0]
-                print(task_info)
-                print(self.holding)
 
                 wanted_ingredient = [
                     ingredient.location for ingredient in self.world_state['ingredients'] if \
                         (ingredient.name == task_info['ingredient'] and ingredient.state == task_info['state'])]
                 if self.holding:
-                    print('am holding')
-                    print(self.holding)
-                    print(self.holding.name)
                     if isinstance(self.holding, Plate):
                         holding_type = 'PLATE'
                         path_cost = self.calc_travel_cost(['valid_item_cells'], [self.world_state['valid_item_cells']])
@@ -409,7 +404,6 @@ class OvercookedAgent():
                             }
                         ])
                     elif isinstance(self.holding, Ingredient) and self.holding.name == task_info['ingredient']:
-                        print(f'SOMEHOW HERE')
                         if self.holding.state != task_info['state']:
                             holding_type = 'INGREDIENT'
                             path_cost = self.calc_travel_cost(['valid_item_cells'], [self.world_state['valid_item_cells']])

@@ -46,8 +46,6 @@ class Game:
         return copy.deepcopy(obj)
 
     def load_data(self):
-        print(f'Loading data')
-        print(self.env.world_state)
         episode = self.env.world_state
 
         self.PLAYERS, self.PLATES, self.POTS = {}, {}, {}
@@ -694,9 +692,15 @@ class Game:
                     self.PLAYERS, self.TABLE_TOPS, self.INGREDIENTS, self.CHOPPING_BOARDS, self.PLATES, self.POTS,
                     self.INGREDIENTS_STATION, self.SERVING_STATION, self.RETURN_STATION, self.EXTINGUISHER, self.TRASH_BIN
                 )
-            best_goals = self.env.find_agents_best_goal()
 
             print(f'================ Episode {episode} best goals ================')
+            print(f'\nStart of episode {self.env.episode}')
+            best_goals = self.env.find_agents_best_goal()
+            goal_space = self.env.world_state['goal_space']
+            goal_info = self.env.world_state['goal_space_count']
+            print(f'Current goal space: \n{goal_space}\n')
+            print(f'Current goal info: \n{goal_info}\n')
+            print(f'Best goals')
             print(best_goals)
             print(f'Agent locations')
             print([agent.location for agent in self.env.world_state['agents']])
