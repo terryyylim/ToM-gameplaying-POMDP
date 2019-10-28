@@ -11,20 +11,36 @@ from datetime import datetime
 
 from map_env import MapEnv
 from new_overcooked_env import OvercookedEnv
-# from agent_configs import RECIPES_INGREDIENTS_COUNT
 from sprites import *
 from settings import *
 
+import helpers
+
 class Game:
-    def __init__(self):
+    def __init__(
+        self,
+        num_ai_agents: int=1,
+        is_simulation: bool=False,
+        simulation_episodes: int=500
+    ) -> None:
         pg.init()
         self.screen = pg.display.set_mode((WIDTH, HEIGHT))
         pg.display.set_caption(TITLE)
         self.clock = pg.time.Clock()
         pg.key.set_repeat(500, 100)
 
-        self.env = OvercookedEnv(human_agents=HUMAN_AGENTS, ai_agents=AI_AGENTS)
-        self.load_data()
+        AI_AGENTS_TO_INITIALIZE = {}
+        for idx in range(1, num_ai_agents+1):
+            idx = str(idx)
+            AI_AGENTS_TO_INITIALIZE[idx] = AI_AGENTS[idx]
+        if is_simulation:
+            self.env = OvercookedEnv(ai_agents=AI_AGENTS_TO_INITIALIZE)
+            self.load_data()
+
+            self.run_simulation(simulation_episodes)
+        else:
+            self.env = OvercookedEnv(human_agents=HUMAN_AGENTS, ai_agents=AI_AGENTS_TO_INITIALIZE)
+            self.load_data()
 
     def _deep_copy(self, obj):
         return copy.deepcopy(obj)
@@ -668,8 +684,67 @@ class Game:
         print(f'Current EXPLICIT chop rewards: {explicit_chop_rewards}')
         print(f'Current EXPLICIT cook rewards: {explicit_cook_rewards}')
         print(f'Current EXPLICIT serve rewards: {explicit_serve_rewards}')
-        # print(f'@rollout - Currently at horizon - {horizon}')
-        # self.env.render('./ipomdp/images/timestep'+str(horizon))
+
+    def run_simulation(self, episodes:int=500):
+        game_folder = os.path.dirname(__file__)
+        simulations_folder = os.path.join(game_folder, 'simulations')
+        video_folder = os.path.join(game_folder, 'videos')
+
+        helpers.check_dir_exist(simulations_folder)
+        helpers.check_dir_exist(video_folder)
+
+        helpers.clean_dir(simulations_folder)
+        
+        start_time = datetime.now()
+        for episode in range(episodes):
+            if episode == 0:
+                self.new(
+                    self.PLAYERS, self.TABLE_TOPS, self.INGREDIENTS, self.CHOPPING_BOARDS, self.PLATES, self.POTS,
+                    self.INGREDIENTS_STATION, self.SERVING_STATION, self.RETURN_STATION, self.EXTINGUISHER, self.TRASH_BIN
+                )
+            best_goals = self.env.find_agents_best_goal()
+
+            print(f'================ Episode {episode} best goals ================')
+            print(best_goals)
+            print(f'Agent locations')
+            print([agent.location for agent in self.env.world_state['agents']])
+
+            self.rollout(best_goals, self.env.episode)
+            self.load_data()
+            self.update()
+            self.draw()
+
+            self.new(
+                self.PLAYERS, self.TABLE_TOPS, self.INGREDIENTS, self.CHOPPING_BOARDS, self.PLATES, self.POTS,
+                self.INGREDIENTS_STATION, self.SERVING_STATION, self.RETURN_STATION, self.EXTINGUISHER, self.TRASH_BIN
+            )
+
+            print(f'Just completed episode {self.env.episode}')
+            self.env.update_episode()
+            pg.image.save(self.screen, simulations_folder+f'/episode_{self.env.episode}.png')
+        
+        print(f'======================= Done with simulation =======================')
+        explicit_chop_rewards = self.env.world_state['explicit_rewards']['chop']
+        explicit_cook_rewards = self.env.world_state['explicit_rewards']['cook']
+        explicit_serve_rewards = self.env.world_state['explicit_rewards']['serve']
+        print(f'Current EXPLICIT chop rewards: {explicit_chop_rewards}')
+        print(f'Current EXPLICIT cook rewards: {explicit_cook_rewards}')
+        print(f'Current EXPLICIT serve rewards: {explicit_serve_rewards}')
+
+        end_time = datetime.now()
+        experiment_runtime = (end_time - start_time).seconds
+        experiment_runtime_min = experiment_runtime//60
+        experiment_runtime_sec = experiment_runtime%60
+        print(f'Simulation Experiment took {experiment_runtime_min} mins, {experiment_runtime_sec} secs to run.')
+
+        agent_types = [agent.is_inference_agent for agent in self.env.world_state['agents']]
+        video_name_ext = helpers.get_video_name_ext(agent_types, episodes)
+        helpers.make_video_from_image_dir(
+            video_folder,
+            simulations_folder,
+            video_name_ext
+        )
+        sys.exit()
 
     def show_start_screen(self):
         pass

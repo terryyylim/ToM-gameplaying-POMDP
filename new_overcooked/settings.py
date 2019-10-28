@@ -203,6 +203,10 @@ AI_AGENTS_1 = {
     '1': {
         'coords': (2,8),
         'ToM': False
+    },
+    '2': {
+        'coords': (2,5),
+        'ToM': False
     }
 }
 
