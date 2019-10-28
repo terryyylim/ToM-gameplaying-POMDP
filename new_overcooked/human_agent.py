@@ -68,7 +68,7 @@ class HumanAgent():
         return ingredient
 
     def pick(self, task_id:int, pick_info) -> None:
-        print('agent@pick')
+        print('human@pick')
         is_new = pick_info['is_new']
         is_last = pick_info['is_last']
         pick_type = pick_info['pick_type']
@@ -164,7 +164,7 @@ class HumanAgent():
         - Prevent stacking of item
         - Dropping item blocks grid cell
         """
-        print('base_agent@drop - Drop item in-hand')
+        print('human@drop - Drop item in-hand')
         random_empty_cell = self.find_random_empty_cell()
 
         if type(self.holding) == Ingredient:

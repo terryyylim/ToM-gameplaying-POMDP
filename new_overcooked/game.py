@@ -215,6 +215,8 @@ class Game:
                 player_action_validity, action_type, action_task, goal_id = self._check_action_validity(1, event.key)
                 player_object = [agent for agent in self.env.world_state['agents'] if agent.id == '1'][0]
                 best_goals = self.env.find_agents_best_goal()
+                print('found best goals')
+                print(best_goals)
 
                 if not player_action_validity:
                     best_goals[player_object] = [-1, {'steps': [8], 'rewards': -2}]
