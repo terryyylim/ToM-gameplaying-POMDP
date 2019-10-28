@@ -28,7 +28,7 @@ def get_video_name_ext(agent_type: List[bool], episodes: int) -> str:
     return video_name_ext + '_' + video_type_count
 
 def make_video_from_rgb_imgs(rgb_arrs, vid_path, video_name='trajectory',
-                             fps=5, format="mp4v", resize=(640, 480)):
+                             fps=1, format="mp4v", resize=(640, 480)):
     """
     Create a video from a list of rgb arrays
     """
@@ -57,7 +57,7 @@ def make_video_from_rgb_imgs(rgb_arrs, vid_path, video_name='trajectory',
     video.release()
     cv2.destroyAllWindows()
 
-def make_video_from_image_dir(vid_path, img_folder, video_name='trajectory', fps=5):
+def make_video_from_image_dir(vid_path, img_folder, video_name='trajectory', fps=1):
     """
     Create a video from a directory of images
     """
