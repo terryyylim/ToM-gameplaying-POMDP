@@ -10,12 +10,13 @@ import numpy as np
 import random
 
 from map_env import MapEnv
-from agent import OvercookedAgent
 from human_agent import HumanAgent
-from overcooked_classes import *
-from overcooked_game_settings import MAP_ACTIONS, RECIPES, RECIPES_INGREDIENTS_TASK
-from agent_configs import ITEMS_INITIALIZATION, INGREDIENTS_INITIALIZATION, \
-    RECIPES_INGREDIENTS_COUNT, BARRIERS
+from overcooked_agent import OvercookedAgent
+from overcooked_item_classes import ChoppingBoard, Extinguisher, Plate, Pot
+from settings import MAP_ACTIONS, RECIPES, RECIPES_INFO, RECIPES_INGREDIENTS_TASK, \
+        RECIPES_ACTION_MAPPING, ITEMS_INITIALIZATION, INGREDIENTS_INITIALIZATION, \
+        WORLD_STATE, WALLS
+
 
 class OvercookedEnv(MapEnv):
     def __init__(
@@ -27,7 +28,6 @@ class OvercookedEnv(MapEnv):
         self.initialize_world_state(ITEMS_INITIALIZATION, INGREDIENTS_INITIALIZATION)
         self.recipes = RECIPES
         self.recipes_ingredients_task = RECIPES_INGREDIENTS_TASK
-        self.recipes_ingredients_count = RECIPES_INGREDIENTS_COUNT
         self.order_queue = []
         self.episode = 0
         self.human_agents = human_agents
@@ -43,15 +43,76 @@ class OvercookedEnv(MapEnv):
                 self.world_state['valid_item_cells'].remove(self.agents[agent].location)
         except ValueError:
             print('Valid cell is already updated')
-    
+
     def update_episode(self):
         self.episode += 1
         queue_episodes = [70, 140, 210, 280, 350, 420]
         if self.episode in queue_episodes:
             self.random_queue_order()
 
-    def custom_reset(self):
-        """Initialize the map to original"""
+    def random_queue_order(self):
+        new_order = random.choice(self.recipes)
+        self.initialize_new_order(new_order)
+
+    def initialize_new_order(self, dish):
+        recipe = RECIPES_INFO[dish]
+        pick_mapping = RECIPES_ACTION_MAPPING[dish]['PICK']
+        self.world_state['goal_space_count'][pick_mapping] += recipe['count']
+
+        enqueue_count = self.world_state['goal_space_count'][pick_mapping] - 0
+        if enqueue_count > 0:
+            for _ in range(enqueue_count):
+                self.world_state['goal_space'][pick_mapping].append({
+                    'state': 'unchopped',
+                    'ingredient': recipe['ingredient']
+                })
+
+    def initialize_world_state(self, items: Dict[str, List[Tuple]], ingredients: Dict[str, List[Tuple]]):
+        """ 
+        world_state:
+            a dictionary indicating world state (coordinates of items in map)
+        """
+        self.world_state['valid_cells'] = WORLD_STATE['valid_movement_cells']
+        self.world_state['valid_item_cells'] = WORLD_STATE['temporary_valid_item_cells']
+        self.world_state['service_counter'] = WORLD_STATE['service_counter']
+        self.world_state['return_counter'] = WORLD_STATE['return_counter'][0]
+        self.world_state['explicit_rewards'] = {'chop': 0, 'cook': 0, 'serve': 0}
+        self.world_state['cooked_dish_count'] = {}
+        self.world_state['goal_space_count'] = defaultdict(int)
+        self.world_state['goal_space'] = defaultdict(list)
+
+        for dish in RECIPES_ACTION_MAPPING:
+            for k,v in RECIPES_ACTION_MAPPING[dish].items():
+                self.world_state['goal_space_count'][v] = 0
+                self.world_state['goal_space'][v] = []
+
+        for recipe in RECIPES:
+            self.world_state['cooked_dish_count'][recipe] = 0
+
+        for item in items:
+            if item == 'chopping_board':
+                for i_state in items[item]:
+                    new_item = ChoppingBoard('utensils', i_state, 'empty')
+                    self.world_state[item].append(new_item)
+            elif item == 'extinguisher':
+                for i_state in items[item]:
+                    new_item = Extinguisher('safety', i_state)
+                    self.world_state[item].append(new_item)
+            elif item == 'plate':
+                plate_idx = 1
+                for i_state in items[item]:
+                    new_item = Plate(plate_idx, 'utensils', i_state, 'empty')
+                    self.world_state[item].append(new_item)
+                    plate_idx += 1
+            elif item == 'pot':
+                pot_idx = 1
+                for i_state in items[item]:
+                    new_item = Pot(pot_id=pot_idx, category='utensils', location=i_state, ingredient='', ingredient_count=0)
+                    self.world_state[item].append(new_item)
+                    pot_idx += 1
+        
+        for ingredient in ingredients:
+            self.world_state['ingredient_'+ingredient] = ingredients[ingredient]['location']
 
     def custom_map_update(self):
         for agent in self.agents:
@@ -72,22 +133,33 @@ class OvercookedEnv(MapEnv):
             if isinstance(agent, OvercookedAgent):
                 agent.astar_map = temp_astar_map
 
-    def random_queue_order(self):
-        new_order = random.choice(self.recipes)
-        self.order_queue.append(new_order)
-        self.initialize_task_list(new_order)
-
-    def initialize_task_list(self, new_order: str):
-        tasks = self.recipes_ingredients_task[new_order]
-        tasks_count = self.recipes_ingredients_count[new_order]
-        for ingredient in tasks:
-            for _ in range(tasks_count[ingredient]):
-                self.world_state['task_id_count'] += 1
-                self.world_state['goal_space'].append(TaskList(new_order, tasks[ingredient], ingredient, self.world_state['task_id_count']))
-        
-        self.world_state['task_id_mappings'] = {
-            goal.id: id(goal) for goal in self.world_state['goal_space']
-        }
+    def setup_agents(self):
+        if self.human_agents:
+            for human_agent in self.human_agents:
+                agent_id = human_agent
+                coords = self.human_agents[agent_id]['coords']
+                self.agents[agent_id] = HumanAgent(
+                    agent_id,
+                    coords
+                )
+                self.world_state['agents'].append(self.agents[agent_id])
+        human_agent_count = len(self.human_agents) if self.human_agents else 0
+        ai_agent_count = human_agent_count
+        if self.ai_agents:
+            for agent in self.ai_agents:
+                ai_agent_count += 1
+                is_ToM = self.ai_agents[agent]['ToM']
+                coords = self.ai_agents[agent]['coords']
+                agent_id = str(ai_agent_count)
+                self.agents[agent_id] = OvercookedAgent(
+                                        agent_id,
+                                        coords,
+                                        WALLS,
+                                        is_inference_agent=is_ToM
+                                    )
+                self.world_state['agents'].append(self.agents[agent_id])
+                
+        self.custom_map_update()
 
     def find_agents_possible_goals(self, observers_task_to_not_do=[]):
         agent_goals = {}
@@ -109,30 +181,11 @@ class OvercookedEnv(MapEnv):
                         holding=agent.holding
                     )
                     temp_OvercookedAgent.world_state = self.world_state
-                    print([(goal.head, goal.task, goal.ingredient) for goal in temp_OvercookedAgent.world_state['goal_space']])
                     agent_goals[agent] = temp_OvercookedAgent.find_best_goal([])
-                    print(agent_goals[agent])
                     del temp_OvercookedAgent
         return agent_goals
 
     def find_agents_best_goal(self):
-        """
-        Finds best action for each agent which maximizes utility, independent of other agents.
-        
-        Returns
-        -------
-        Example - for 2 agents
-        assigned_best_goal = {
-            <ipomdp.agents.base_agent.OvercookedAgent object at 0x133b46490>: [
-                task_id,
-                {'path': [4, ['p', 'new', (1, 3)]], 'cost': 1}
-            ],
-            <ipomdp.agents.base_agent.OvercookedAgent object at 0x133b46210>: [
-                task_id,
-                {'path': [0, 0, 4, 0, 0, ['p', 'new', (1, 3)]], 'cost': 5}
-            ]
-        }
-        """
         print('@overcooked_map_env - find_agents_best_goal()')
         # Do inference here; skips inference for first timestep
         observers_task_to_not_do = {}
@@ -141,18 +194,18 @@ class OvercookedEnv(MapEnv):
                 if agent.is_inference_agent and 'historical_world_state' in self.world_state:
                     print(f'Do inference for ToM agent')
                     observers_inference_tasks = agent.observer_inference()
-                    observers_task_to_not_do[agent] = [self.world_state['task_id_mappings'][_id] for _id in observers_inference_tasks]
+                    observers_task_to_not_do[agent] = observers_inference_tasks
                 else:
                     observers_task_to_not_do[agent] = []
 
         agents_possible_goals = self.find_agents_possible_goals(observers_task_to_not_do)
-        print('agents possible goals')
+        print(f'Agents possible goals')
         print(agents_possible_goals)
 
         assigned_best_goal = {}
         for agent in agents_possible_goals:
             tasks_rewards = [agents_possible_goals[agent][task]['rewards'] for task in agents_possible_goals[agent]]
-            print('printing task rewards')
+            print(f'Agent {agent.id} Task Rewards')
             print(tasks_rewards)
 
             if tasks_rewards:
@@ -180,6 +233,10 @@ class OvercookedEnv(MapEnv):
                     best_path = random.choice(all_best_paths)
                     best_path.append(agents_possible_goals[agent][softmax_best_goal]['steps'][-1])
                     agents_possible_goals[agent][softmax_best_goal]['steps'] = best_path
+                else:
+                    # Eg. Edge Case [1, {'steps': [], 'rewards': 0}]
+                    if not agents_possible_goals[agent][softmax_best_goal]['steps']:
+                        agents_possible_goals[agent][softmax_best_goal]['steps'] = [8] # STAY
 
                 assigned_best_goal[agent] = [softmax_best_goal, agents_possible_goals[agent][softmax_best_goal]]
             else:
@@ -192,85 +249,6 @@ class OvercookedEnv(MapEnv):
                 else:
                     assigned_best_goal[agent] = [-1, {'steps': [8], 'rewards': -2}]
         return assigned_best_goal
-
-    def assign_agents(self, best_goals):
-        """
-        Set agent's assignment to True so that it doesnt search for a new goal.
-        """
-        for agent in best_goals:
-            agent.is_assigned = True
-
-    def initialize_world_state(self, items: Dict[str, List[Tuple]], ingredients: Dict[str, List[Tuple]]):
-        """ 
-        world_state:
-            a dictionary indicating world state (coordinates of items in map)
-        """
-        self.world_state['valid_cells'] = WORLD_STATE['valid_movement_cells']
-        self.world_state['valid_item_cells'] = WORLD_STATE['temporary_valid_item_cells']
-        self.world_state['service_counter'] = WORLD_STATE['service_counter']
-        self.world_state['return_counter'] = WORLD_STATE['return_counter'][0]
-        self.world_state['explicit_rewards'] = {'chop': 0, 'cook': 0, 'serve': 0}
-        self.world_state['cooked_dish_count'] = {}
-
-        for recipe in RECIPES:
-            self.world_state['cooked_dish_count'][recipe] = 0
-
-        for item in items:
-            if item == 'chopping_board':
-                for i_state in items[item]:
-                    new_item = ChoppingBoard('utensils', i_state, 'empty')
-                    self.world_state[item].append(new_item)
-            elif item == 'extinguisher':
-                for i_state in items[item]:
-                    new_item = Extinguisher('safety', i_state)
-                    self.world_state[item].append(new_item)
-            elif item == 'plate':
-                plate_idx = 1
-                for i_state in items[item]:
-                    new_item = Plate(plate_idx, 'utensils', i_state, 'empty')
-                    self.world_state[item].append(new_item)
-                    plate_idx += 1
-            elif item == 'pot':
-                pot_idx = 1
-                for i_state in items[item]:
-                    new_item = Pot(pot_idx, 'utensils', i_state, 'empty')
-                    self.world_state[item].append(new_item)
-                    pot_idx += 1
-            elif item == 'stove':
-                for i_state in items[item]:
-                    new_item = Stove('utensils', i_state)
-                    self.world_state[item].append(new_item)
-        
-        for ingredient in ingredients:
-            self.world_state['ingredient_'+ingredient] = ingredients[ingredient]['location']
-
-    def setup_agents(self):
-        if self.human_agents:
-            for human_agent in self.human_agents:
-                agent_id = human_agent
-                coords = self.human_agents[agent_id]['coords']
-                self.agents[agent_id] = HumanAgent(
-                    agent_id,
-                    coords
-                )
-                self.world_state['agents'].append(self.agents[agent_id])
-        human_agent_count = len(self.human_agents) if self.human_agents else 0
-        ai_agent_count = human_agent_count
-        if self.ai_agents:
-            for agent in self.ai_agents:
-                ai_agent_count += 1
-                is_ToM = self.ai_agents[agent]['ToM']
-                coords = self.ai_agents[agent]['coords']
-                agent_id = str(ai_agent_count)
-                self.agents[agent_id] = OvercookedAgent(
-                                        agent_id,
-                                        coords,
-                                        BARRIERS,
-                                        is_inference_agent=is_ToM
-                                    )
-                self.world_state['agents'].append(self.agents[agent_id])
-                
-        self.custom_map_update()
 
     def _softmax(self, rewards_dict, beta:int=1):
         softmax_total = 0
@@ -338,7 +316,7 @@ class OvercookedEnv(MapEnv):
             return all_valid_paths
 
         return -1
-    
+
     def _find_random_valid_action(self, agent):
         action_space = [
             key for key, value in MAP_ACTIONS.items() \
@@ -361,105 +339,6 @@ class OvercookedEnv(MapEnv):
         print(valid_random_cell_move)
 
         return random.choice(valid_random_cell_move)
-
-    # Not in use currently
-    def _old_generate_permutations(self, path, agent):
-        """
-        Permutations based on the heuristics that a diagonal movement can be split into 2 separate movements
-        Eg. MOVE_DIAGONAL_LEFT_UP -> MOVE_LEFT, MOVE_UP / MOVE_UP, MOVE_LEFT
-        """
-        all_permutations = []
-        adjacent_movements = [
-            'MOVE_UP', 'MOVE_DOWN', 'MOVE_LEFT', 'MOVE_RIGHT'
-        ]
-        diagonal_movements = [
-            'MOVE_DIAGONAL_LEFT_UP', 'MOVE_DIAGONAL_RIGHT_UP',
-            'MOVE_DIAGONAL_LEFT_DOWN', 'MOVE_DIAGONAL_RIGHT_DOWN'
-        ]
-        path = list(map(
-            lambda x: agent.actions[x],
-            path)
-        )
-        all_permutations.append(path)
-        idx_movement_mapping = [(idx, val) for idx, val in reversed(list(enumerate(path))) if val in diagonal_movements]
-
-        flags = [False, True]
-        flag_generator = list(itertools.product(flags, repeat=len(idx_movement_mapping)))
-        
-        # Need to loop twice left, up; up, left
-        # Only fixes diagonal edge cases
-        for flag in flag_generator:
-            # Do replacement from the back to avoid index error
-            flag = list(reversed(flag))
-            for flag_idx in range(len(flag)):
-                temp_path = path.copy()
-                if flag[flag_idx] == True:
-                    idx = idx_movement_mapping[flag_idx][0]
-                    val = idx_movement_mapping[flag_idx][1]
-
-                    if val == 'MOVE_DIAGONAL_LEFT_UP':
-                        temp_path[idx: idx+1] = 'MOVE_UP', 'MOVE_LEFT'
-                    elif val == 'MOVE_DIAGONAL_LEFT_DOWN':
-                        temp_path[idx: idx+1] = 'MOVE_DOWN', 'MOVE_LEFT'
-                    elif val == 'MOVE_DIAGONAL_RIGHT_UP':
-                        temp_path[idx: idx+1] = 'MOVE_UP', 'MOVE_RIGHT'
-                    elif val == 'MOVE_DIAGONAL_RIGHT_DOWN':
-                        temp_path[idx: idx+1] = 'MOVE_DOWN', 'MOVE_RIGHT'
-
-                all_permutations.append(temp_path)
-
-            for flag_idx in range(len(flag)):
-                temp_path = path.copy()
-                if flag[flag_idx] == True:
-                    idx = idx_movement_mapping[flag_idx][0]
-                    val = idx_movement_mapping[flag_idx][1]
-
-                    if val == 'MOVE_DIAGONAL_LEFT_UP':
-                        temp_path[idx: idx+1] = 'MOVE_LEFT', 'MOVE_UP'
-                    elif val == 'MOVE_DIAGONAL_LEFT_DOWN':
-                        temp_path[idx: idx+1] = 'MOVE_LEFT', 'MOVE_DOWN'
-                    elif val == 'MOVE_DIAGONAL_RIGHT_UP':
-                        temp_path[idx: idx+1] = 'MOVE_RIGHT', 'MOVE_UP'
-                    elif val == 'MOVE_DIAGONAL_RIGHT_DOWN':
-                        temp_path[idx: idx+1] = 'MOVE_RIGHT', 'MOVE_DOWN'
-
-                all_permutations.append(temp_path)
-
-        # Need to fix for adjacent edge cases; eg. MOVE_DOWN, MOVE_DIAGONAL_RIGHT_DOWN, but down is blocked
-        # Mini-hack to allow swapping & combining first 2 terms
-        if len(path) > 1:
-            if path[0] in adjacent_movements and path[1] in diagonal_movements:
-                print(f'Adjacent and Diagonal movements swap!')
-                temp_path = path.copy()
-                temp_adj_move = path[0]
-                temp_path[0] = path[1]
-                temp_path[1] = temp_adj_move
-
-                all_permutations.append(temp_path)
-
-            first_second_combi = [path[0], path[1]]
-            temp_path = path.copy()
-            if set(first_second_combi) == set(['MOVE_UP', 'MOVE_LEFT']):
-                temp_path.pop(0)
-                temp_path.pop(0)
-                temp_path.insert(0, 'MOVE_DIAGONAL_LEFT_UP')
-            elif set(first_second_combi) == set(['MOVE_UP', 'MOVE_RIGHT']):
-                temp_path.pop(0)
-                temp_path.pop(0)
-                temp_path.insert(0, 'MOVE_DIAGONAL_RIGHT_DOWN')
-            elif set(first_second_combi) == set(['MOVE_DOWN', 'MOVE_LEFT']):
-                temp_path.pop(0)
-                temp_path.pop(0)
-                temp_path.insert(0, 'MOVE_DIAGONAL_LEFT_DOWN')
-            elif set(first_second_combi) == set(['MOVE_DOWN', 'MOVE_LEFT']):
-                temp_path.pop(0)
-                temp_path.pop(0)
-                temp_path.insert(0, 'MOVE_DIAGONAL_LEFT_UP')
-            all_permutations.append(temp_path)
-
-        permutations_set = list(set(tuple(perm) for perm in all_permutations))
-
-        return list(permutations_set)
 
     def _generate_permutations(self, path, agent, agent_end_idx):
         """

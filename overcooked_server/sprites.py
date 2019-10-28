@@ -1,8 +1,8 @@
 import os
 import pygame as pg
 
-from overcooked_game_settings import *
-from overcooked_classes import *
+from settings import *
+from overcooked_item_classes import *
 
 # Set up Assets
 game_folder = os.path.dirname(__file__)

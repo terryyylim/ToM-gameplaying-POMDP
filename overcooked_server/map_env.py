@@ -2,13 +2,13 @@ from typing import Dict
 from typing import List
 from typing import Tuple
 
-import collections
+from collections import defaultdict
 import numpy as np
 from ray.rllib.env import MultiAgentEnv
 
-from overcooked_game_settings import MAP_ACTIONS
-from agent import OvercookedAgent
-from overcooked_classes import *
+from settings import MAP_ACTIONS
+from overcooked_agent import OvercookedAgent
+from overcooked_item_classes import Plate, Ingredient
 
 class MapEnv(MultiAgentEnv):
     def __init__(
@@ -31,7 +31,7 @@ class MapEnv(MultiAgentEnv):
         self.task_id_count = 0
         self.world_state = defaultdict(list)
         self.world_state['task_id_count'] = 0
-        self.world_state['historical_actions'] = collections.defaultdict(list)
+        self.world_state['historical_actions'] = defaultdict(list)
 
     def custom_reset(self):
         """Reset custom elements of the map. For example, spawn table tops and items"""

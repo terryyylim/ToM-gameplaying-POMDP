@@ -906,7 +906,7 @@ class OvercookedAgent():
     def observer_inference(self):
         """Perform inference derivation"""
         print(f'Replicate prev environment')
-        from new_overcooked_env import OvercookedEnv
+        from overcooked_env import OvercookedEnv
         prev_env = OvercookedEnv()
         prev_env.world_state = self.world_state['historical_world_state']
         prev_best_goals = prev_env.find_agents_possible_goals()
@@ -1009,7 +1009,7 @@ class OvercookedAgent():
 
         # Run one episode for other agents from current world state
         print(f'Replicate current environment')
-        from new_overcooked_env import OvercookedEnv
+        from overcooked_env import OvercookedEnv
         curr_env = OvercookedEnv()
         curr_env.world_state = copy.deepcopy(self.world_state)
         curr_best_goals = curr_env.find_agents_possible_goals()
