@@ -130,5 +130,6 @@ dmypy.json
 # images, videos, episodes
 images
 videos
+simulations
 episodes
 **pbz2
