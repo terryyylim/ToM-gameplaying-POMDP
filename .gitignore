@@ -127,7 +127,9 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
-# images, videos, for lols
+# images, videos, episodes
 images
 videos
-lol.py
+simulations
+episodes
+**pbz2

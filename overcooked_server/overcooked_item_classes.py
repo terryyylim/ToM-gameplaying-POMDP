@@ -5,60 +5,20 @@ from typing import Tuple
 
 from collections import defaultdict
 
-from ipomdp.agents.agent_configs import *
-
-class TaskNode:
-    def __init__(
-        self,
-        task: str,
-        ingredient: str,
-        state: str
-    ) -> None:
-        self.task = task
-        self.ingredient = ingredient
-        self.state = state
-        self.next = None
-
-class TaskList:
-    def __init__(
-        self,
-        dish: str,
-        task: List[str],
-        ingredient: str,
-        task_id: int
-    ) -> None:
-        self.id = task_id
-        self.dish = dish
-        self.task = task
-        self.ingredient = ingredient
-        self.initialize_tasks(task, ingredient)
-
-    def initialize_tasks(self, task: List[str], ingredient: str):
-        task_list = TaskNode(task[0][0], ingredient, task[0][1])
-        head = task_list
-        temp_pointer = head
-        for sub_task in task[1:]:
-            temp_pointer.next = TaskNode(sub_task[0], ingredient, sub_task[1])
-            temp_pointer = temp_pointer.next
-        self.head = head
+from settings import WORLD_STATE
 
 class Item:
     def __init__(
         self,
         category: str,
-        location: Tuple[int,int],
-        state: str,
+        location: Tuple[int,int]
     ) -> None:
         self.id = id
         self.category = category
         self.location = location
-        self.state = state
 
     def get_category(self) -> str:
         return self.category
-
-    def get_state(self) -> str:
-        return self.state
 
 class ChoppingBoard(Item):
     def __init__(
@@ -67,7 +27,8 @@ class ChoppingBoard(Item):
         location: Tuple[int,int],
         state: str,
     ) -> None:
-        super().__init__(category, location, state)
+        super().__init__(category, location)
+        self.state = state
 
 class Extinguisher(Item):
     def __init__(
@@ -75,7 +36,7 @@ class Extinguisher(Item):
         category: str,
         location: Tuple[int,int]
     ) -> None:
-        super().__init__(id, category, location)
+        super().__init__(category, location)
 
 class Plate(Item):
     def __init__(
@@ -89,9 +50,10 @@ class Plate(Item):
         """
         Only start plating dish when ingredient has been prepared (Chopped/Cooked etc.)
         """
-        super().__init__(category, location, state)
+        super().__init__(category, location)
         self.plate_id = plate_id
         self.ready_to_serve = ready_to_serve
+        self.state = state
 
 class Pot(Item):
     def __init__(
@@ -99,34 +61,23 @@ class Pot(Item):
         pot_id: int,
         category: str,
         location: Tuple[int,int],
-        state: str,
-        ingredient_count: Dict[str,int]=defaultdict(int),
-        intermediate_state: Optional[str] = None,
-        on_stove: Optional[bool] = True,
+        ingredient_count: int,
+        ingredient: str=None,
+        is_empty: bool=True,
     ) -> None:
         """
         Paramters
         ---------
-        intermediate_state: str
-            keeps track of state based on RECIPES_COOKING_INTERMEDIATE_STATES_1 in `configs.py`
         state: str
             Whether pot is cooking or not
 
         TO-DO: Think of way to time the cooking process
         """
-        super().__init__(category, location, state)
+        super().__init__(category, location)
         self.pot_id = pot_id
+        self.ingredient = ingredient
         self.ingredient_count = ingredient_count
-        self.intermediate_state = intermediate_state
-        self.on_stove = on_stove
-
-    def is_empty(self) -> bool:
-        return self.intermediate_state == None
-
-    def is_cooking(self) -> bool:
-        if self.on_stove and self.intermediate_state:
-            return True
-        return False
+        self.is_empty = is_empty
     
     def get_location(self) -> Tuple[str,str]:
         return self.location
@@ -160,17 +111,19 @@ class Ingredient(Item):
         is_new:
             Whether the ingredient is just taken from storage
         """
-        super().__init__(id, category, state)
+        super().__init__(id, category)
         self.name = name
         self.is_raw = is_raw
         self.is_new = is_new
+        self.state = state
         if is_new:
             self.initialize_pos()
 
     def initialize_pos(self):
         if self.is_raw:
-            self.location = WORLD_STATE['r_'+self.name][0]
+            self.location = WORLD_STATE['ingredient_'+self.name][0]
         else:
+            # for fresh ingredient (eg. lettuce); currently not in use
             self.location = WORLD_STATE['f_'+self.name][0]
 
 class Dish(Item):

@@ -356,7 +356,33 @@ class OvercookedAgent(BaseAgent):
                                     continue
                             else:
                                 # Edge Case: Prevent PICK & DROP plate continuously while 'SERVE' is in order queue
-                                continue
+                                # continue
+                                try:
+                                    print('inside pick filled plate')
+                                    # If filled plate exists in the map
+                                    plate_board_cells = [plate.location for plate in self.world_state['plate'] if plate.state == 'plated']
+                                    if plate_board_cells:
+                                        plate_path_cost = self.calc_travel_cost(['plate'], [plate_board_cells])
+                                        task_coord = plate_path_cost['plate'][2]
+                                        end_coord = plate_path_cost['plate'][0][-1]
+                                        path_actions += self.map_path_actions(plate_path_cost['plate'][0])
+
+                                        path_actions.append([
+                                            'PICK',
+                                            {
+                                                'is_new': False,
+                                                'is_last': False,
+                                                'pick_type': 'plate',
+                                                'task_coord': task_coord
+                                            },
+                                            end_coord
+                                        ])
+                                    else:
+                                        # Edge Case: Prevent PICK & DROP plate continuously while 'SERVE' is in order queue
+                                        continue
+                                except IndexError:
+                                    print('@base_agent - scoop/serve IndexError')
+                                    continue
                         elif task_list.head.task == 'serve':
                             try:
                                 if self.holding.dish.name == task_list.dish:
