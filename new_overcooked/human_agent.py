@@ -227,6 +227,7 @@ class HumanAgent():
         # agent drops ingredient to pot
         pot.ingredient = ingredient_name
         pot.ingredient_count += 1
+        pot.is_empty = False
 
         # remove ingredient from world state since used for cooking
         for idx, ingredient in enumerate(self.world_state['ingredients']):
@@ -261,6 +262,7 @@ class HumanAgent():
          # Empty the pot as well
         pot.ingredient = None
         pot.ingredient_count = 0
+        pot.is_empty = True
         pot.dish = None
 
         dish_to_plate = [dish for dish in self.world_state['cooked_dish'] if dish.location == task_coord][0]

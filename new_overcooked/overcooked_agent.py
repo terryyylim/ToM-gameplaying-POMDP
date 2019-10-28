@@ -418,20 +418,13 @@ class OvercookedAgent():
                                 }
                             ])
                         elif self.holding.state == task_info['state']:
-                            print(f'YEAAAA IN STATE')
                             recipe_ingredient_count = self.get_recipe_ingredient_count(task_info['ingredient'])
                             # Fill pot with ingredient before considering empty pots
                             pot_cells = [pot.location for pot in self.world_state['pot'] if pot.ingredient == task_info['ingredient'] if pot.ingredient_count < recipe_ingredient_count]
-                            print('pot_cells1')
-                            print(pot_cells)
                             if not pot_cells:
-                                pot_cells = [pot.location for pot in self.world_state['pot'] if pot.state == 'empty']
-                            print('pot_cells2')
-                            print(pot_cells)
+                                pot_cells = [pot.location for pot in self.world_state['pot'] if pot.is_empty]
                             if pot_cells:
                                 cooking_path_cost = self.calc_travel_cost(['pot'], [pot_cells])
-                                print('pot_cells3')
-                                print(cooking_path_cost)
 
                                 # TO-FIX (if > 1, randomly choose 1)
                                 task_coord = cooking_path_cost['pot'][2]
@@ -444,10 +437,10 @@ class OvercookedAgent():
                                 path_actions.append(['COOK', True, task_coord, end_coord])
                             else:
                                 # If still no available pots
-                                pass
+                                print(f'agent@cook - Trying to cook but no available pot')
+                                continue
                 else:
                     # Case: Not holding ingredient but it exist in map
-                    print('YEAH PICKING')
                     if wanted_ingredient:
                         path_cost = self.calc_travel_cost(['ingredient_'+task_info['ingredient']], [wanted_ingredient])
                         task_coord = path_cost['ingredient_'+task_info['ingredient']][2]
@@ -467,7 +460,7 @@ class OvercookedAgent():
                     else:
                         # Should we make default behaviour to pick up new ingredient from crate?
                         print(f'SHOULD WE DEFAULT BEHAVIOUR?')
-                        pass
+                        continue
             
             # SCOOP GOALS - onion, tomato
             if goal in [3,8]:
@@ -607,23 +600,26 @@ class OvercookedAgent():
                         ])
                 else:
                     print('@base_agent - Entered serve logic')
-                    # If plate exists in the map
-                    plate_board_cells = [plate.location for plate in self.world_state['plate']]
-                    plate_path_cost = self.calc_travel_cost(['plate'], [plate_board_cells])
-                    task_coord = plate_path_cost['plate'][2]
-                    end_coord = plate_path_cost['plate'][0][-1]
-                    path_actions += self.map_path_actions(plate_path_cost['plate'][0])
+                    # If plate exists in the map and there is dish to serve
+                    if sum(self.world_state['cooked_dish_count'].values()) > 0:
+                        plate_board_cells = [plate.location for plate in self.world_state['plate']]
+                        plate_path_cost = self.calc_travel_cost(['plate'], [plate_board_cells])
+                        task_coord = plate_path_cost['plate'][2]
+                        end_coord = plate_path_cost['plate'][0][-1]
+                        path_actions += self.map_path_actions(plate_path_cost['plate'][0])
 
-                    path_actions.append([
-                        'PICK',
-                        {
-                            'is_new': False,
-                            'is_last': False,
-                            'pick_type': 'plate',
-                            'task_coord': task_coord
-                        },
-                        end_coord
-                    ])
+                        path_actions.append([
+                            'PICK',
+                            {
+                                'is_new': False,
+                                'is_last': False,
+                                'pick_type': 'plate',
+                                'task_coord': task_coord
+                            },
+                            end_coord
+                        ])
+                    else:
+                        continue
 
             for action in path_actions:
                 try:
@@ -825,6 +821,7 @@ class OvercookedAgent():
         # agent drops ingredient to pot
         pot.ingredient = ingredient_name
         pot.ingredient_count += 1
+        pot.is_empty = False
 
         # remove ingredient from world state since used for cooking
         for idx, ingredient in enumerate(self.world_state['ingredients']):
@@ -859,6 +856,7 @@ class OvercookedAgent():
          # Empty the pot as well
         pot.ingredient = None
         pot.ingredient_count = 0
+        pot.is_empty = True
         pot.dish = None
 
         dish_to_plate = [dish for dish in self.world_state['cooked_dish'] if dish.location == task_coord][0]
