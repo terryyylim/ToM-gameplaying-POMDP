@@ -235,6 +235,10 @@ class OvercookedEnv(MapEnv):
                     best_path = random.choice(all_best_paths)
                     best_path.append(agents_possible_goals[agent][softmax_best_goal]['steps'][-1])
                     agents_possible_goals[agent][softmax_best_goal]['steps'] = best_path
+                else:
+                    # Eg. Edge Case [1, {'steps': [], 'rewards': 0}]
+                    if not agents_possible_goals[agent][softmax_best_goal]['steps']:
+                        agents_possible_goals[agent][softmax_best_goal]['steps'] = [8] # STAY
 
                 assigned_best_goal[agent] = [softmax_best_goal, agents_possible_goals[agent][softmax_best_goal]]
             else:
