@@ -36,7 +36,7 @@ python rollout.py
 ### Gameplay
 To start the game, run the following.
 ```
-python new_overcooked/game.py
+python overcooked_server/game.py
 ```
 
 #### Controls
@@ -56,5 +56,5 @@ python new_overcooked/game.py
 ### Simulation
 To run a simulation, run the following with desired parameters in CLI.
 ```
-python new_overcooked/game.py --num_ai_agents=2 --is_simulation=True --simulation_episodes=500
+python overcooked_server/game.py --num_ai_agents=2 --is_simulation=True --simulation_episodes=500
 ```
