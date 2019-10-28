@@ -11,19 +11,14 @@ class Item:
     def __init__(
         self,
         category: str,
-        location: Tuple[int,int],
-        state: str,
+        location: Tuple[int,int]
     ) -> None:
         self.id = id
         self.category = category
         self.location = location
-        self.state = state
 
     def get_category(self) -> str:
         return self.category
-
-    def get_state(self) -> str:
-        return self.state
 
 class ChoppingBoard(Item):
     def __init__(
@@ -32,7 +27,8 @@ class ChoppingBoard(Item):
         location: Tuple[int,int],
         state: str,
     ) -> None:
-        super().__init__(category, location, state)
+        super().__init__(category, location)
+        self.state = state
 
 class Extinguisher(Item):
     def __init__(
@@ -40,7 +36,7 @@ class Extinguisher(Item):
         category: str,
         location: Tuple[int,int]
     ) -> None:
-        super().__init__(id, category, location)
+        super().__init__(category, location)
 
 class Plate(Item):
     def __init__(
@@ -54,9 +50,10 @@ class Plate(Item):
         """
         Only start plating dish when ingredient has been prepared (Chopped/Cooked etc.)
         """
-        super().__init__(category, location, state)
+        super().__init__(category, location)
         self.plate_id = plate_id
         self.ready_to_serve = ready_to_serve
+        self.state = state
 
 class Pot(Item):
     def __init__(
@@ -66,7 +63,7 @@ class Pot(Item):
         location: Tuple[int,int],
         ingredient_count: int,
         ingredient: str=None,
-        state: str='empty',
+        is_empty: bool=True,
     ) -> None:
         """
         Paramters
@@ -76,10 +73,11 @@ class Pot(Item):
 
         TO-DO: Think of way to time the cooking process
         """
-        super().__init__(category, location, state)
+        super().__init__(category, location)
         self.pot_id = pot_id
         self.ingredient = ingredient
         self.ingredient_count = ingredient_count
+        self.is_empty = is_empty
     
     def get_location(self) -> Tuple[str,str]:
         return self.location
@@ -113,10 +111,11 @@ class Ingredient(Item):
         is_new:
             Whether the ingredient is just taken from storage
         """
-        super().__init__(id, category, state)
+        super().__init__(id, category)
         self.name = name
         self.is_raw = is_raw
         self.is_new = is_new
+        self.state = state
         if is_new:
             self.initialize_pos()
 
