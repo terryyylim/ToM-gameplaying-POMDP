@@ -897,6 +897,7 @@ class OvercookedAgent():
             print('base_agent@serve - Remove serve task')
             self.world_state['goal_space_count'][task_id] -= 1
             self.world_state['goal_space'][task_id].pop(0)
+            self.world_state['order_count'] -= 1
 
     def observer_inference(self):
         """Perform inference derivation"""

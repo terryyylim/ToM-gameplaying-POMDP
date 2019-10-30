@@ -57,6 +57,7 @@ class OvercookedEnv(MapEnv):
     def initialize_new_order(self, dish):
         recipe = RECIPES_INFO[dish]
         pick_mapping = RECIPES_ACTION_MAPPING[dish]['PICK']
+        self.world_state['order_count'] += 1
         self.world_state['goal_space_count'][pick_mapping] += recipe['count']
 
         enqueue_count = self.world_state['goal_space_count'][pick_mapping] - 0
@@ -78,6 +79,7 @@ class OvercookedEnv(MapEnv):
         self.world_state['return_counter'] = WORLD_STATE['return_counter'][0]
         self.world_state['explicit_rewards'] = {'chop': 0, 'cook': 0, 'serve': 0}
         self.world_state['cooked_dish_count'] = {}
+        self.world_state['order_count'] = 0
         self.world_state['goal_space_count'] = defaultdict(int)
         self.world_state['goal_space'] = defaultdict(list)
 

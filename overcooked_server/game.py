@@ -118,7 +118,10 @@ class Game:
         return_station: List[Tuple[int,int]],
         extinguisher: Tuple[int,int],
         trash_bin: Tuple[int,int],
-        walls: List[Tuple[int,int]]=WALLS
+        walls: List[Tuple[int,int]]=WALLS,
+        score: Tuple[int,int]=SCOREBOARD_SCORE,
+        orders: Tuple[int,int]=SCOREBOARD_ORDERS,
+        scoreboard: List[Tuple[int,int]]=SCOREBOARD
     ) -> None:
         # initialize all variables and do all the setup for a new game
         self.all_sprites = pg.sprite.Group()
@@ -133,6 +136,9 @@ class Game:
         self.return_station = pg.sprite.Group()
         self.extinguisher = pg.sprite.Group()
         self.trash_bin = pg.sprite.Group()
+        self.score = pg.sprite.Group()
+        self.orders = pg.sprite.Group()
+        self.scoreboard = pg.sprite.Group()
         self.walls = walls
         self.player_count = len(players)
 
@@ -170,6 +176,10 @@ class Game:
         ReturnStation(self, return_station['state'], return_station['coords'][1], return_station['coords'][0])
         ExtinguisherStation(self, extinguisher[1], extinguisher[0])
         TrashBin(self, trash_bin[1], trash_bin[0])
+        Score(self, score[1], score[0])
+        Orders(self, orders[1], orders[0])
+        for scoreboard_coord in scoreboard:
+            ScoreBoard(self, scoreboard_coord[1], scoreboard_coord[0])
 
 
     def run(self):
@@ -202,6 +212,25 @@ class Game:
         self.screen.fill(BGCOLOR)
         self.draw_grid()
         self.all_sprites.draw(self.screen)
+
+        # Score Display (On top of sprites)
+        font = pg.font.Font('freesansbold.ttf', 20)
+        current_score = self.env.world_state['explicit_rewards']['serve']
+        current_order = self.env.world_state['order_count']
+        score = font.render(str(current_score), True, GREEN, SCOREBOARD_BG)
+        order = font.render(str(current_order), True, GREEN, SCOREBOARD_BG)
+        scoreRect = score.get_rect()
+        orderRect = order.get_rect()
+        scoreRect.center = (
+            (SCOREBOARD_SCORE[1]+1)*TILESIZE+TILESIZE//2,
+            HEIGHT-TILESIZE//2
+        )
+        orderRect.center = (
+            (SCOREBOARD_ORDERS[1]+1)*TILESIZE+TILESIZE//2,
+            HEIGHT-TILESIZE//2    
+        )
+        self.screen.blit(score, scoreRect)
+        self.screen.blit(order, orderRect)
         pg.display.flip()
 
     def events(self):    

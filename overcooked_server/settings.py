@@ -8,10 +8,11 @@ RED = (255, 0, 0)
 YELLOW = (255, 255, 0)
 BACKGROUND_BLUE = (213, 226, 237)
 BROWN = (160, 82, 4)
+SCOREBOARD_BG = (143, 186, 200)
 
 # ======================= Game Settings =======================
 WIDTH = 416 # 13x32  # 16 * 64 or 32 * 32 or 64 * 16
-HEIGHT = 288 # 9x32 # 16 * 48 or 32 * 24 or 64 * 12
+HEIGHT = 320 # 9x32 # 16 * 48 or 32 * 24 or 64 * 12
 FPS = 60
 TITLE = "Overcooked Simulation"
 BGCOLOR = BACKGROUND_BLUE
@@ -210,6 +211,13 @@ AI_AGENTS_1 = {
     }
 }
 
+# ================== Game Scoreboard Initialization ==================
+SCOREBOARD_SCORE_1 = (9,0)
+SCOREBOARD_ORDERS_1 = (9,4)
+SCOREBOARD = [
+    (9,1), (9,2), (9,3), (9,5), (9,6), (9,7), (9,8), (9,9), (9,10), (9,11), (9,12)
+]
+
 # ====================== Actions ======================= 
 MAP_ACTIONS_1 = {
     'MOVE_LEFT': [0, -1],
@@ -243,3 +251,5 @@ TRASH_BIN = TRASH_BIN_1
 WALLS = WALLS_1
 MAP_ACTIONS = MAP_ACTIONS_1
 WORLD_STATE = WORLD_STATE_1
+SCOREBOARD_SCORE = SCOREBOARD_SCORE_1
+SCOREBOARD_ORDERS = SCOREBOARD_ORDERS_1
