@@ -670,9 +670,6 @@ class OvercookedAgent():
     # ACTIONS
     def pick(self, task_id: int, pick_info) -> None:
         print('agent@pick')
-        print(task_id)
-        print(pick_info)
-        print(self.world_state['goal_space_count'])
         is_new = pick_info['is_new']
         is_last = pick_info['is_last']
         pick_type = pick_info['pick_type']
@@ -781,8 +778,6 @@ class OvercookedAgent():
         self.world_state['explicit_rewards']['chop'] += 1
         self.world_state['goal_space_count'][task_id] -= 1
         self.world_state['goal_space_count'][task_id+1] += 1
-        print('goal space check')
-        print(self.world_state['goal_space_count'])
         if is_last:
             print('base_agent@chop - Remove chopping task')
             self.world_state['goal_space'][task_id].pop(0)

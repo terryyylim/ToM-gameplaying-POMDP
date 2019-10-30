@@ -155,17 +155,10 @@ class Game:
             plate_state = val['state']
             plate_coord = val['coords']
             PlateStation(self, plate_state, plate_coord[1], plate_coord[0])
-        print(pots)
         for key, val in pots.items():
             pot_ingredient = val['ingredient']
             pot_ingredient_count = val['ingredient_count']
             pot_coord = val['coords']
-            print('lease pot')
-            print(key)
-            print(val)
-            print(pot_ingredient)
-            print(pot_ingredient_count)
-            print(pot_coord)
             PotStation(self, pot_ingredient, pot_ingredient_count, pot_coord[1], pot_coord[0])
         for key, val in ingredient_stations.items():
             ingredient = key
@@ -262,7 +255,7 @@ class Game:
                 print([agent.location for agent in self.env.world_state['agents']])
                 print([agent.holding for agent in self.env.world_state['agents']])
                 self.env.update_episode()
-                pg.image.save(self.screen, f'episodes/episode_{self.env.episode}.png')
+                # pg.image.save(self.screen, f'episodes/episode_{self.env.episode}.png')
 
     def _get_pos(self, player_id):
         if player_id == 1:
