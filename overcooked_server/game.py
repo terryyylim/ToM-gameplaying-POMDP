@@ -148,6 +148,10 @@ class Game:
                 self.player_1 = Player(self, idx, players[idx]['coords'][1], players[idx]['coords'][0], players[idx]['holding'])
             elif idx == '2':
                 self.player_2 = Player(self, idx, players[idx]['coords'][1], players[idx]['coords'][0], players[idx]['holding'])
+            elif idx == '3':
+                self.player_3 = Player(self, idx, players[idx]['coords'][1], players[idx]['coords'][0], players[idx]['holding'])
+            elif idx == '4':
+                self.player_4 = Player(self, idx, players[idx]['coords'][1], players[idx]['coords'][0], players[idx]['holding'])
         for table_top_coord in table_tops:
             TableTop(self, table_top_coord[1], table_top_coord[0])
         for ingredient in ingredients:

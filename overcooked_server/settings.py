@@ -174,14 +174,6 @@ PLATES_1 = {
     }
 }
 
-POTS_1 = {
-    1: {
-        'ingredient': None,
-        'ingredient_count': 0,
-        'coords': (0,8)
-    }
-}
-
 INGREDIENTS_STATION_1 = {
     'onion': (0,3)
 }
@@ -207,6 +199,14 @@ AI_AGENTS_1 = {
     },
     '2': {
         'coords': (2,5),
+        'ToM': False
+    },
+    '3': {
+        'coords': (6,8),
+        'ToM': False
+    },
+    '4': {
+        'coords': (6,5),
         'ToM': False
     }
 }
