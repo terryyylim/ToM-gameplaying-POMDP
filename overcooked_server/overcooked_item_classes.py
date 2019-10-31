@@ -78,6 +78,7 @@ class Pot(Item):
         self.ingredient = ingredient
         self.ingredient_count = ingredient_count
         self.is_empty = is_empty
+        self.dish = None
     
     def get_location(self) -> Tuple[str,str]:
         return self.location
