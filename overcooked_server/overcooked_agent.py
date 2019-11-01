@@ -958,7 +958,7 @@ class OvercookedAgent():
 
                 sampling_count = 0
                 all_best_paths = prev_env.generate_possible_paths(agent, prev_best_goals[agent][goal])
-                while sampling_count != 50:
+                while sampling_count != 100:
 
                     best_path = None
                     if all_best_paths != -1:
