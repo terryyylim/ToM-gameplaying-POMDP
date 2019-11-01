@@ -84,7 +84,7 @@ class HumanAgent():
                     ingredient_name,
                     state,
                     'ingredient',
-                    INGREDIENTS_INITIALIZATION[ingredient_name]
+                    task_coord
                 )
                 new_ingredient.location = tuple(self.location)
                 self.holding = new_ingredient
@@ -295,7 +295,7 @@ class HumanAgent():
         # plate returns to return point (in clean form for now)
         self.holding.dish = None
         self.holding.state = 'empty'
-        self.holding.location = (5,0)
+        self.holding.location = self.world_state['return_counter']
         self.world_state['plate'].append(self.holding)
 
         # remove dish from plate

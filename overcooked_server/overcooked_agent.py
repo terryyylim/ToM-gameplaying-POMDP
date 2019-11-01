@@ -685,12 +685,16 @@ class OvercookedAgent():
                     ingredient_name,
                     state,
                     'ingredient',
-                    INGREDIENTS_INITIALIZATION[ingredient_name]
+                    task_coord
                 )
                 new_ingredient.location = tuple(self.location)
                 self.holding = new_ingredient
             if is_last:
-                self.world_state['goal_space'][task_id].pop(0)                
+                try:
+                    self.world_state['goal_space'][task_id].pop(0)
+                except IndexError:
+                    # Both Agents try to pick at the same time
+                    pass
                 self.world_state['goal_space'][task_id+1].append({
                     'state': 'unchopped',
                     'ingredient': ingredient_name
