@@ -22,7 +22,8 @@ class OvercookedEnv(MapEnv):
     def __init__(
         self,
         human_agents=None,
-        ai_agents=None
+        ai_agents=None,
+        queue_episodes=None
     ) -> None:
         super().__init__()
         self.initialize_world_state(ITEMS_INITIALIZATION, INGREDIENTS_INITIALIZATION)
@@ -32,6 +33,7 @@ class OvercookedEnv(MapEnv):
         self.episode = 0
         self.human_agents = human_agents
         self.ai_agents = ai_agents
+        self.queue_episodes = queue_episodes
         self.setup_agents()
         self.random_queue_order()
 
@@ -46,8 +48,8 @@ class OvercookedEnv(MapEnv):
 
     def update_episode(self):
         self.episode += 1
-        queue_episodes = [70, 140, 210, 280, 350, 420]
-        if self.episode in queue_episodes:
+
+        if self.episode%self.queue_episodes == 0:
             self.random_queue_order()
 
     def random_queue_order(self):
