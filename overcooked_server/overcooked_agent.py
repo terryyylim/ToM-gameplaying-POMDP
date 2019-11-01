@@ -739,7 +739,8 @@ class OvercookedAgent():
     def find_random_empty_cell(self) -> Tuple[int,int]:
         all_valid_surrounding_cells = []
         surrounding_cells_xy = [
-            [-1,-1], [-1,0], [-1,1], [0,1], [1,1], [1,0], [1,-1], [0,-1]
+            [-1,0], [0,1], [1,0], [0,-1]
+            # [-1,-1], [-1,0], [-1,1], [0,1], [1,1], [1,0], [1,-1], [0,-1]
         ]
 
         temp_valid_cells = self.world_state['valid_item_cells'].copy()
