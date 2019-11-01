@@ -261,7 +261,8 @@ class OvercookedAgent():
                             'is_new': True,
                             'is_last': True,
                             'pick_type': 'ingredient',
-                            'task_coord': task_coord
+                            'task_coord': task_coord,
+                            'for_task': 'PICK'
                         },
                         end_coord
                     ])
@@ -334,17 +335,21 @@ class OvercookedAgent():
                                 }
                             ])
                         elif self.holding.state == task_info['state']:
-                            chopping_board_cells = [chopping_board.location for chopping_board in self.world_state['chopping_board'] if chopping_board.state == 'empty']
-                            chopping_path_cost = self.calc_travel_cost(['chopping_board'], [chopping_board_cells])
-                            task_coord = [board.location for board in self.world_state['chopping_board'] if board.state == 'empty'][0]
-                            end_coord = self.location # no need to move anymore
+                            try:
+                                chopping_board_cells = [chopping_board.location for chopping_board in self.world_state['chopping_board'] if chopping_board.state == 'empty']
+                                chopping_path_cost = self.calc_travel_cost(['chopping_board'], [chopping_board_cells])
+                                task_coord = [board.location for board in self.world_state['chopping_board'] if board.state == 'empty'][0]
+                                end_coord = self.location # no need to move anymore
 
-                            if chopping_path_cost:
-                                task_coord = chopping_path_cost['chopping_board'][2]
-                                end_coord = chopping_path_cost['chopping_board'][0][-1]
-                                chopping_path_actions = self.map_path_actions(chopping_path_cost['chopping_board'][0])
-                                path_actions += chopping_path_actions
-                            path_actions.append(['CHOP', True, task_coord, end_coord])
+                                if chopping_path_cost:
+                                    task_coord = chopping_path_cost['chopping_board'][2]
+                                    end_coord = chopping_path_cost['chopping_board'][0][-1]
+                                    chopping_path_actions = self.map_path_actions(chopping_path_cost['chopping_board'][0])
+                                    path_actions += chopping_path_actions
+                                path_actions.append(['CHOP', True, task_coord, end_coord])
+                            except IndexError:
+                                # No empty chopping board
+                                continue
                 else:
                     # Case: Not holding ingredient but it exist in map
                     if wanted_ingredient:
@@ -359,7 +364,8 @@ class OvercookedAgent():
                                 'is_new': False,
                                 'is_last': False,
                                 'pick_type': 'ingredient',
-                                'task_coord': task_coord
+                                'task_coord': task_coord,
+                                'for_task': 'CHOP'
                             },
                             end_coord
                         ])
@@ -455,7 +461,8 @@ class OvercookedAgent():
                                 'is_new': False,
                                 'is_last': False,
                                 'pick_type': 'ingredient',
-                                'task_coord': task_coord
+                                'task_coord': task_coord,
+                                'for_task': 'COOK'
                             },
                             end_coord
                         ])
@@ -534,7 +541,8 @@ class OvercookedAgent():
                                 'is_new': False,
                                 'is_last': False,
                                 'pick_type': 'plate',
-                                'task_coord': task_coord
+                                'task_coord': task_coord,
+                                'for_task': 'SCOOP'
                             },
                             end_coord
                         ])
@@ -616,7 +624,8 @@ class OvercookedAgent():
                                 'is_new': False,
                                 'is_last': False,
                                 'pick_type': 'plate',
-                                'task_coord': task_coord
+                                'task_coord': task_coord,
+                                'for_task': 'SERVE'
                             },
                             end_coord
                         ])
@@ -631,17 +640,32 @@ class OvercookedAgent():
                     # Give more importance to picking plate (to serve)
                     if action_abbrev == 'PICK' and action[1]['pick_type'] == 'plate':
                         total_rewards += self.rewards[action_abbrev] + 30
+                    elif action_abbrev == 'PICK' and action[1]['for_task'] == 'COOK':
+                        total_rewards += self.rewards[action_abbrev] + 45
+                    elif action_abbrev == 'PICK' and action[1]['for_task'] == 'SERVE':
+                        total_rewards += self.rewards[action_abbrev] + 100
                     elif action_abbrev == 'DROP' and action[1]['for_task'] == 'PLATE':
                         total_rewards += self.rewards[action_abbrev] + 30
                     elif action_abbrev == 'DROP' and action[1]['for_task'] == 'INGREDIENT':
                         total_rewards += self.rewards[action_abbrev] + 10
                     else:
                         total_rewards += self.rewards[action_abbrev]
-            agent_goal_costs[goal] = {
-                'steps': path_actions,
-                'rewards': total_rewards
-            }
+            if self.contains_invalid(path_actions):
+                pass
+            else:
+                agent_goal_costs[goal] = {
+                    'steps': path_actions,
+                    'rewards': total_rewards
+                }
         return agent_goal_costs
+    
+    def contains_invalid(self, check_list):
+        invalid_flag = False
+        for coords in check_list:
+            if coords in self.world_state['invalid_movement_cells']:
+                invalid_flag = True
+                break
+        return invalid_flag
 
     def get_recipe_ingredient_count(self, ingredient):
         recipe_ingredient_count = None
@@ -816,37 +840,41 @@ class OvercookedAgent():
         # Find the chosen pot - useful in maps with more than 1 pot
         pot = [pot for pot in self.world_state['pot'] if pot.location == task_coord][0]
 
-        holding_ingredient = self.holding
-        # only update location after reaching, since ingredient is in hand
-        holding_ingredient.location = task_coord
-
-        # agent drops ingredient to pot
-        pot.ingredient = ingredient_name
-        pot.ingredient_count += 1
-        pot.is_empty = False
-
-        # remove ingredient from world state since used for cooking
-        for idx, ingredient in enumerate(self.world_state['ingredients']):
-            if id(ingredient) == id(holding_ingredient):
-                del self.world_state['ingredients'][idx]
-                break
-        # remove ingredient from agent's hand since no longer holding
-        self.holding = None
-
         if pot.ingredient_count == ingredient_count:
-            print('base_agent@cook - Add completed dish to pot')
+            # Maxed out already
+            pass
+        else:
+            holding_ingredient = self.holding
+            # only update location after reaching, since ingredient is in hand
+            holding_ingredient.location = task_coord
 
-            # Create new Dish Class object
-            new_dish = Dish(dish, pot.location)
-            self.world_state['cooked_dish'].append(new_dish)
-            pot.dish = dish
+            # agent drops ingredient to pot
+            pot.ingredient = ingredient_name
+            pot.ingredient_count += 1
+            pot.is_empty = False
 
-            # Add Scoop to Goal Space
-            self.world_state['goal_space_count'][task_id+1] += 1
-            self.world_state['goal_space'][task_id+1].append({
-                'state': 'empty',
-                'ingredient': ingredient_name
-            })
+            # remove ingredient from world state since used for cooking
+            for idx, ingredient in enumerate(self.world_state['ingredients']):
+                if id(ingredient) == id(holding_ingredient):
+                    del self.world_state['ingredients'][idx]
+                    break
+            # remove ingredient from agent's hand since no longer holding
+            self.holding = None
+
+            if pot.ingredient_count == ingredient_count:
+                print('base_agent@cook - Add completed dish to pot')
+
+                # Create new Dish Class object
+                new_dish = Dish(dish, pot.location)
+                self.world_state['cooked_dish'].append(new_dish)
+                pot.dish = dish
+
+                # Add Scoop to Goal Space
+                self.world_state['goal_space_count'][task_id+1] += 1
+                self.world_state['goal_space'][task_id+1].append({
+                    'state': 'empty',
+                    'ingredient': ingredient_name
+                })
 
     def scoop(self, task_id: int, scoop_info):
         print('agent@scoop')
@@ -861,27 +889,31 @@ class OvercookedAgent():
         pot.is_empty = True
         pot.dish = None
 
-        dish_to_plate = [dish for dish in self.world_state['cooked_dish'] if dish.location == task_coord][0]
-        # let the plate which agent is holding, hold the completed dish
-        self.world_state['cooked_dish_count'][dish_to_plate.name] -= 1
-        self.holding.dish = dish_to_plate
-        self.holding.state = 'plated'
+        try:
+            dish_to_plate = [dish for dish in self.world_state['cooked_dish'] if dish.location == task_coord][0]
+            # let the plate which agent is holding, hold the completed dish
+            self.world_state['cooked_dish_count'][dish_to_plate.name] -= 1
+            self.holding.dish = dish_to_plate
+            self.holding.state = 'plated'
 
-        # remove dish from world state since used for plating
-        for idx, cooked_dish in enumerate(self.world_state['cooked_dish']):
-            if id(cooked_dish) == id(dish_to_plate):
-                del self.world_state['cooked_dish'][idx]
-                break
+            # remove dish from world state since used for plating
+            for idx, cooked_dish in enumerate(self.world_state['cooked_dish']):
+                if id(cooked_dish) == id(dish_to_plate):
+                    del self.world_state['cooked_dish'][idx]
+                    break
 
-        self.world_state['goal_space_count'][task_id] -= 1
-        if is_last:
-            print('base_agent@scoop - Remove scooping task')
-            self.world_state['goal_space'][task_id].pop(0)
-            self.world_state['goal_space_count'][task_id+1] += 1
-            self.world_state['goal_space'][task_id+1].append({
-                'state': 'plated',
-                'ingredient': ingredient_name
-            })
+            self.world_state['goal_space_count'][task_id] -= 1
+            if is_last:
+                print('base_agent@scoop - Remove scooping task')
+                self.world_state['goal_space'][task_id].pop(0)
+                self.world_state['goal_space_count'][task_id+1] += 1
+                self.world_state['goal_space'][task_id+1].append({
+                    'state': 'plated',
+                    'ingredient': ingredient_name
+                })
+        except IndexError:
+            # Both Agents try to scoop at the same time
+            pass
         
     def serve(self, task_id: int, serve_info):
         print('agent@serve')
@@ -891,7 +923,7 @@ class OvercookedAgent():
         # plate returns to return point (in clean form for now)
         self.holding.dish = None
         self.holding.state = 'empty'
-        self.holding.location = (5,0)
+        self.holding.location = self.world_state['return_counter']
         self.world_state['plate'].append(self.holding)
 
         # remove dish from plate
