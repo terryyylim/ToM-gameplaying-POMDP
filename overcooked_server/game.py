@@ -34,12 +34,19 @@ class Game:
             idx = str(idx)
             AI_AGENTS_TO_INITIALIZE[idx] = AI_AGENTS[idx]
         if is_simulation:
-            self.env = OvercookedEnv(ai_agents=AI_AGENTS_TO_INITIALIZE)
+            self.env = OvercookedEnv(
+                ai_agents=AI_AGENTS_TO_INITIALIZE,
+                queue_episodes=QUEUE_EPISODES
+            )
             self.load_data()
 
             self.run_simulation(simulation_episodes)
         else:
-            self.env = OvercookedEnv(human_agents=HUMAN_AGENTS, ai_agents=AI_AGENTS_TO_INITIALIZE)
+            self.env = OvercookedEnv(
+                human_agents=HUMAN_AGENTS,
+                ai_agents=AI_AGENTS_TO_INITIALIZE,
+                queue_episodes=QUEUE_EPISODES
+            )
             self.load_data()
 
     def _deep_copy(self, obj):
@@ -101,8 +108,6 @@ class Game:
         self.CHOPPING_BOARDS = [chopping_board.location for chopping_board in episode['chopping_board'] if chopping_board.state != 'taken']
         self.INGREDIENTS_STATION = INGREDIENTS_STATION
         self.SERVING_STATION = SERVING_STATION
-        self.EXTINGUISHER = EXTINGUISHER
-        self.TRASH_BIN = TRASH_BIN
         self.WALLS = WALLS
 
     def new(
@@ -116,8 +121,6 @@ class Game:
         ingredient_stations: Dict[str, Tuple[int,int]],
         serving_stations: List[Tuple[int,int]],
         return_station: List[Tuple[int,int]],
-        extinguisher: Tuple[int,int],
-        trash_bin: Tuple[int,int],
         walls: List[Tuple[int,int]]=WALLS,
         score: Tuple[int,int]=SCOREBOARD_SCORE,
         orders: Tuple[int,int]=SCOREBOARD_ORDERS,
@@ -131,11 +134,8 @@ class Game:
         self.plates = pg.sprite.Group()
         self.pot_stations = pg.sprite.Group()
         self.ingredient_stations = pg.sprite.Group()
-        self.ingredient_stations = pg.sprite.Group()
         self.serving_stations = pg.sprite.Group()
         self.return_station = pg.sprite.Group()
-        self.extinguisher = pg.sprite.Group()
-        self.trash_bin = pg.sprite.Group()
         self.score = pg.sprite.Group()
         self.orders = pg.sprite.Group()
         self.scoreboard = pg.sprite.Group()
@@ -172,14 +172,13 @@ class Game:
             PotStation(self, pot_ingredient, pot_ingredient_count, pot_coord[1], pot_coord[0])
         for key, val in ingredient_stations.items():
             ingredient = key
-            chopping_board_coord = val
-            IngredientStation(self, ingredient, chopping_board_coord[1], chopping_board_coord[0])
+            ingredient_station_coord = val
+            for coords in ingredient_station_coord:
+                IngredientStation(self, ingredient, coords[1], coords[0])
         for serving_station_coord in serving_stations:
             ServingStation(self, serving_station_coord[1], serving_station_coord[0])
             
         ReturnStation(self, return_station['state'], return_station['coords'][1], return_station['coords'][0])
-        ExtinguisherStation(self, extinguisher[1], extinguisher[0])
-        TrashBin(self, trash_bin[1], trash_bin[0])
         Score(self, score[1], score[0])
         Orders(self, orders[1], orders[0])
         for scoreboard_coord in scoreboard:
@@ -279,7 +278,7 @@ class Game:
 
                 self.new(
                     self.PLAYERS, self.TABLE_TOPS, self.INGREDIENTS, self.CHOPPING_BOARDS, self.PLATES, self.POTS,
-                    self.INGREDIENTS_STATION, self.SERVING_STATION, self.RETURN_STATION, self.EXTINGUISHER, self.TRASH_BIN
+                    self.INGREDIENTS_STATION, self.SERVING_STATION, self.RETURN_STATION
                 )
 
                 if event.key == pg.K_ESCAPE:
@@ -410,7 +409,8 @@ class Game:
             all_valid_pick_items.append(ingredient)
             all_valid_pick_items_pos.append(ingredient.location)
         for ingredient in INGREDIENTS_STATION:
-            all_valid_pick_items_pos.append(INGREDIENTS_STATION[ingredient])
+            for ingredient_coords in INGREDIENTS_STATION[ingredient]:
+                all_valid_pick_items_pos.append(ingredient_coords)
 
         surrounding_cells_xy = [[-1,0], [0,1], [1,0], [0,-1]]
         for surrounding_cell_xy in surrounding_cells_xy:
@@ -716,7 +716,7 @@ class Game:
             if episode == 0:
                 self.new(
                     self.PLAYERS, self.TABLE_TOPS, self.INGREDIENTS, self.CHOPPING_BOARDS, self.PLATES, self.POTS,
-                    self.INGREDIENTS_STATION, self.SERVING_STATION, self.RETURN_STATION, self.EXTINGUISHER, self.TRASH_BIN
+                    self.INGREDIENTS_STATION, self.SERVING_STATION, self.RETURN_STATION
                 )
 
             print(f'================ Episode {episode} best goals ================')
@@ -738,7 +738,7 @@ class Game:
 
             self.new(
                 self.PLAYERS, self.TABLE_TOPS, self.INGREDIENTS, self.CHOPPING_BOARDS, self.PLATES, self.POTS,
-                self.INGREDIENTS_STATION, self.SERVING_STATION, self.RETURN_STATION, self.EXTINGUISHER, self.TRASH_BIN
+                self.INGREDIENTS_STATION, self.SERVING_STATION, self.RETURN_STATION
             )
 
             print(f'Just completed episode {self.env.episode}')
@@ -785,7 +785,7 @@ def main(num_ai_agents, is_simulation, simulation_episodes):
     while True:
         g.new(
             g.PLAYERS, g.TABLE_TOPS, g.INGREDIENTS, g.CHOPPING_BOARDS, g.PLATES, g.POTS,
-            g.INGREDIENTS_STATION, g.SERVING_STATION, g.RETURN_STATION, g.EXTINGUISHER, g.TRASH_BIN
+            g.INGREDIENTS_STATION, g.SERVING_STATION, g.RETURN_STATION
         )
         g.run()
         g.show_go_screen()

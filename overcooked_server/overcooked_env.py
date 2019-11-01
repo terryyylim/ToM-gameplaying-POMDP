@@ -96,10 +96,10 @@ class OvercookedEnv(MapEnv):
                 for i_state in items[item]:
                     new_item = ChoppingBoard('utensils', i_state, 'empty')
                     self.world_state[item].append(new_item)
-            elif item == 'extinguisher':
-                for i_state in items[item]:
-                    new_item = Extinguisher('safety', i_state)
-                    self.world_state[item].append(new_item)
+            # elif item == 'extinguisher':
+            #     for i_state in items[item]:
+            #         new_item = Extinguisher('safety', i_state)
+            #         self.world_state[item].append(new_item)
             elif item == 'plate':
                 plate_idx = 1
                 for i_state in items[item]:
