@@ -38,11 +38,6 @@ RECIPES_INFO = {
         'tomato': 3
     }
 }
-RECIPES_INGREDIENTS_TASK = {
-    'onion_soup': {
-        'onion': [('pick', 'fresh'), ('chop', 'unchopped'), ('cook', 'chopped')]
-    }
-}
 RECIPES_ACTION_MAPPING = {
     'onion_soup': {
         'onion': {
