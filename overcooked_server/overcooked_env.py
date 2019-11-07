@@ -28,7 +28,6 @@ class OvercookedEnv(MapEnv):
         super().__init__()
         self.initialize_world_state(ITEMS_INITIALIZATION, INGREDIENTS_INITIALIZATION)
         self.recipes = RECIPES
-        self.recipes_ingredients_task = RECIPES_INGREDIENTS_TASK
         self.order_queue = []
         self.episode = 0
         self.human_agents = human_agents
@@ -60,7 +59,6 @@ class OvercookedEnv(MapEnv):
         recipe = RECIPES_INFO[dish]
         for ingredient in recipe:
             pick_mapping = RECIPES_ACTION_MAPPING[dish][ingredient]['PICK']
-            self.world_state['order_count'] += 1
             self.world_state['goal_space_count'][pick_mapping] += recipe[ingredient]
 
             enqueue_count = self.world_state['goal_space_count'][pick_mapping] - 0
@@ -70,6 +68,7 @@ class OvercookedEnv(MapEnv):
                         'state': 'unchopped',
                         'ingredient': ingredient
                     })
+        self.world_state['order_count'] += 1
 
     def initialize_world_state(self, items: Dict[str, List[Tuple]], ingredients: Dict[str, List[Tuple]]):
         """ 
