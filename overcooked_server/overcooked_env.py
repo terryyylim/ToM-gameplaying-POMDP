@@ -13,9 +13,9 @@ from map_env import MapEnv
 from human_agent import HumanAgent
 from overcooked_agent import OvercookedAgent
 from overcooked_item_classes import ChoppingBoard, Extinguisher, Plate, Pot
-from settings import MAP_ACTIONS, RECIPES, RECIPES_INFO, RECIPES_INGREDIENTS_TASK, \
-        RECIPES_ACTION_MAPPING, ITEMS_INITIALIZATION, INGREDIENTS_INITIALIZATION, \
-        WORLD_STATE, WALLS
+from settings import MAP_ACTIONS, RECIPES, RECIPES_INFO, RECIPES_ACTION_MAPPING, \
+    ITEMS_INITIALIZATION, INGREDIENTS_INITIALIZATION, WORLD_STATE, WALLS, \
+        FLATTENED_RECIPES_ACTION_MAPPING
 
 
 class OvercookedEnv(MapEnv):

@@ -11,9 +11,8 @@ import random
 from agent_configs import ACTIONS, REWARDS
 from astar_search import AStarGraph
 from overcooked_item_classes import Ingredient, Plate, Dish
-from settings import RECIPES_INFO, INGREDIENTS_INITIALIZATION, \
-    RECIPE_ACTION_NAME, INGREDIENT_ACTION_NAME, MAP_ACTIONS, RECIPES_ACTION_MAPPING, \
-        FLATTENED_RECIPES_ACTION_MAPPING
+from settings import RECIPES_INFO, RECIPE_ACTION_NAME, INGREDIENT_ACTION_NAME, \
+    MAP_ACTIONS, RECIPES_ACTION_MAPPING, FLATTENED_RECIPES_ACTION_MAPPING
 
 class OvercookedAgent():
     def __init__(
@@ -903,7 +902,6 @@ class OvercookedAgent():
 
     def scoop(self, task_id: int, scoop_info):
         print('agent@scoop')
-        ingredient_name = self.get_ingredient_name(task_id)
         dish = self.get_recipe_name(task_id)
         is_last = scoop_info['is_last']
         task_coord = scoop_info['task_coord']
@@ -935,7 +933,7 @@ class OvercookedAgent():
                 self.world_state['goal_space_count'][new_task_id] += 1
                 self.world_state['goal_space'][new_task_id].append({
                     'state': 'plated',
-                    'ingredient': ingredient_name
+                    'dish': dish
                 })
         except IndexError:
             # Both Agents try to scoop at the same time
