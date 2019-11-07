@@ -550,6 +550,7 @@ class Game:
         return cook_validity, action_task, goal_id
     
     def _check_scoop_validity(self, player_id):
+        print('human@_check_scoop_validity')
         scoop_validity = False
         player_pos = self._get_pos(player_id)
         action_task = []
@@ -573,10 +574,8 @@ class Game:
                 surrounding_cell = tuple(surrounding_cell)
                 if surrounding_cell in all_valid_pots_pos:
                     pot = [pot for pot in all_valid_pots if pot.location == surrounding_cell][0]
-                    ingredient_name = pot.ingredient
-                    ingredient_count = self._get_recipe_ingredient_count(ingredient_name)
                     # Ensure pot is full
-                    if ingredient_count == pot.ingredient_count:
+                    if pot.dish:
                         action_task.append([
                             'SCOOP',
                             {
@@ -585,7 +584,7 @@ class Game:
                             },
                             player_pos
                         ])
-                        goal_id = self._get_goal_id(ingredient_name, 'SCOOP')
+                        goal_id = self._get_general_goal_id(pot.dish, 'SCOOP')
         if action_task:
             scoop_validity = True
         return scoop_validity, action_task, goal_id
@@ -621,8 +620,7 @@ class Game:
                         player_pos
                     ])
                     dish_name = player_object.holding.dish.name
-                    ingredient_name = self._get_ingredient_dish(dish_name)
-                    goal_id = self._get_goal_id(ingredient_name, 'SERVE')
+                    goal_id = self._get_general_goal_id(dish_name, 'SERVE')
         if action_task:
             serve_validity = True
 

@@ -6,8 +6,8 @@ import random
 
 from agent_configs import ACTIONS, REWARDS
 from overcooked_item_classes import Ingredient, Dish, Plate
-from settings import WALLS, INGREDIENTS_STATION, INGREDIENTS_INITIALIZATION, \
-    RECIPES_INFO, RECIPE_ACTION_NAME, INGREDIENT_ACTION_NAME
+from settings import WALLS, INGREDIENTS_STATION, RECIPES_INFO, \
+    RECIPE_ACTION_NAME, INGREDIENT_ACTION_NAME, RECIPES_ACTION_MAPPING
 
 class HumanAgent():
     def __init__(
@@ -250,7 +250,6 @@ class HumanAgent():
             # remove ingredient from agent's hand since no longer holding
             self.holding = None
 
-            # if pot.ingredient_count == ingredient_count:
             if self.complete_cooking_check(dish, pot.ingredient_count):
                 print('human@cook - Add completed dish to pot')
 
@@ -260,22 +259,22 @@ class HumanAgent():
                 pot.dish = dish
 
                 # Add Scoop to Goal Space
-                self.world_state['goal_space_count'][task_id+1] += 1
-                self.world_state['goal_space'][task_id+1].append({
+                new_task_id = self.get_general_goal_id(dish, 'SCOOP')
+                self.world_state['goal_space_count'][new_task_id] += 1
+                self.world_state['goal_space'][new_task_id].append({
                     'state': 'empty',
                     'ingredient': ingredient_name
                 })
 
     def scoop(self, task_id: int, scoop_info):
         print('human@scoop')
-        ingredient_name = self.get_ingredient_name(task_id)
+        dish = self.get_recipe_name(task_id)
         is_last = scoop_info['is_last']
         task_coord = scoop_info['task_coord']
         pot = [pot for pot in self.world_state['pot'] if pot.location == task_coord][0]
 
          # Empty the pot as well
-        pot.ingredient = None
-        pot.ingredient_count = 0
+        pot.ingredient_count = defaultdict(int)
         pot.is_empty = True
         pot.dish = None
 
@@ -294,11 +293,12 @@ class HumanAgent():
         self.world_state['goal_space_count'][task_id] -= 1
         if is_last:
             print('human@scoop - Remove scooping task')
+            new_task_id = self.get_general_goal_id(dish, 'SERVE')
             self.world_state['goal_space'][task_id].pop(0)
-            self.world_state['goal_space_count'][task_id+1] += 1
-            self.world_state['goal_space'][task_id+1].append({
+            self.world_state['goal_space_count'][new_task_id] += 1
+            self.world_state['goal_space'][new_task_id].append({
                 'state': 'plated',
-                'ingredient': ingredient_name
+                'dish': dish
             })
         
     def serve(self, task_id: int, serve_info):
