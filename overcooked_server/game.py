@@ -389,8 +389,12 @@ class Game:
                 goal_id = RECIPES_ACTION_MAPPING[recipe][ingredient][action]
                 break
         return goal_id
+    
+    def _get_general_goal_id(self, recipe, action):
+        return RECIPES_ACTION_MAPPING[recipe]['general'][action]
 
     def _check_pick_validity(self, player_id):
+        print('agent@_check_pick_validity')
         pick_validity = False
         player_pos = self._get_pos(player_id)
         all_valid_pick_items = []

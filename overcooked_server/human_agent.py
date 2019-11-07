@@ -72,6 +72,9 @@ class HumanAgent():
 
     def complete_cooking_check(self, recipe, ingredient_counts):
         return RECIPES_INFO[recipe] == ingredient_counts
+    
+    def get_general_goal_id(self, recipe, action):
+        return RECIPES_ACTION_MAPPING[recipe]['general'][action]
 
     def pick(self, task_id:int, pick_info) -> None:
         print('human@pick')
