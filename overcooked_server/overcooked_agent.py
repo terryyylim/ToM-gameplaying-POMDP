@@ -833,9 +833,6 @@ class OvercookedAgent():
         ingredient_name = self.get_ingredient_name(task_id)
         ingredient_count = self.get_recipe_ingredient_count(ingredient_name)
         dish = self.get_recipe_dish(ingredient_name)
-        self.world_state['explicit_rewards']['cook'] += 1
-        self.world_state['goal_space_count'][task_id] -= 1
-        self.world_state['goal_space'][task_id].pop(0)
 
         # Find the chosen pot - useful in maps with more than 1 pot
         pot = [pot for pot in self.world_state['pot'] if pot.location == task_coord][0]
@@ -844,6 +841,10 @@ class OvercookedAgent():
             # Maxed out already
             pass
         else:
+            self.world_state['explicit_rewards']['cook'] += 1
+            self.world_state['goal_space_count'][task_id] -= 1
+            self.world_state['goal_space'][task_id].pop(0)
+
             holding_ingredient = self.holding
             # only update location after reaching, since ingredient is in hand
             holding_ingredient.location = task_coord
