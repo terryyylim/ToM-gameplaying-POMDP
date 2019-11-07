@@ -159,15 +159,15 @@ HUMAN_AGENTS = {
 AI_AGENTS = {
     '1': {
         'coords': (2,8),
-        'ToM': True
+        'ToM': False
     },
     '2': {
         'coords': (2,5),
-        'ToM': True
+        'ToM': False
     },
     '3': {
         'coords': (6,8),
-        'ToM': True
+        'ToM': False
     },
     '4': {
         'coords': (6,5),
@@ -181,4 +181,4 @@ SCOREBOARD_ORDERS = (9,4)
 SCOREBOARD = [
     (9,1), (9,2), (9,3), (9,5), (9,6), (9,7), (9,8), (9,9), (9,10), (9,11), (9,12)
 ]
-QUEUE_EPISODES = 70
+QUEUE_EPISODES = 50
