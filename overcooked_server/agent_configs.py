@@ -41,7 +41,7 @@ REWARDS_1 = {
     'STAY': -2,
     'PICK': 10, # consider changing to 'create'
     'CHOP': 30,
-    'COOK': 45,
+    'COOK': 40,
     'SCOOP': 50,
     'SERVE': 100,
     'DROP': 0

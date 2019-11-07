@@ -61,7 +61,7 @@ class Pot(Item):
         pot_id: int,
         category: str,
         location: Tuple[int,int],
-        ingredient_count: int,
+        ingredient_count: Dict[str,int],
         ingredient: str=None,
         is_empty: bool=True,
     ) -> None:

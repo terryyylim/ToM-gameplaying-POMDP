@@ -81,12 +81,10 @@ class Game:
             }
         for pot in episode['pot']:
             if pot.ingredient_count:
-                pot_ingredient = pot.ingredient
                 pot_ingredient_count = pot.ingredient_count
             else:
-                pot_ingredient, pot_ingredient_count = None, 0
+                pot_ingredient_count = defaultdict(int)
             self.POTS[pot.pot_id] = {
-                'ingredient': pot_ingredient,
                 'ingredient_count': pot_ingredient_count,
                 'coords': pot.location
             }
@@ -166,10 +164,9 @@ class Game:
             plate_coord = val['coords']
             PlateStation(self, plate_state, plate_coord[1], plate_coord[0])
         for key, val in pots.items():
-            pot_ingredient = val['ingredient']
             pot_ingredient_count = val['ingredient_count']
             pot_coord = val['coords']
-            PotStation(self, pot_ingredient, pot_ingredient_count, pot_coord[1], pot_coord[0])
+            PotStation(self, pot_ingredient_count, pot_coord[1], pot_coord[0])
         for key, val in ingredient_stations.items():
             ingredient = key
             ingredient_station_coord = val
@@ -375,8 +372,8 @@ class Game:
     def _get_recipe_ingredient_count(self, ingredient):
         recipe_ingredient_count = None
         for recipe in RECIPES_INFO:
-            if RECIPES_INFO[recipe]['ingredient'] == ingredient:
-                recipe_ingredient_count = RECIPES_INFO[recipe]['count']
+            if ingredient in RECIPES_INFO[recipe]:
+                recipe_ingredient_count = RECIPES_INFO[recipe][ingredient]
         
         return recipe_ingredient_count
 
@@ -387,10 +384,10 @@ class Game:
 
     def _get_goal_id(self, ingredient, action):
         goal_id = None
-        if ingredient == 'onion':
-            goal_id = RECIPES_ACTION_MAPPING['onion_soup'][action]
-        elif ingredient == 'tomato':
-            goal_id = RECIPES_ACTION_MAPPING['tomato_soup'][action]
+        for recipe in RECIPES_ACTION_MAPPING:
+            if ingredient in RECIPES_ACTION_MAPPING[recipe]:
+                goal_id = RECIPES_ACTION_MAPPING[recipe][ingredient][action]
+                break
         return goal_id
 
     def _check_pick_validity(self, player_id):
@@ -504,6 +501,7 @@ class Game:
         return chop_validity, action_task, goal_id
 
     def _check_cook_validity(self, player_id):
+        print(f'human@_check_cook_validity')
         cook_validity = False
         player_pos = self._get_pos(player_id)
         action_task = []
@@ -529,20 +527,19 @@ class Game:
                 if surrounding_cell in all_valid_pots_pos:
                     pot = [pot for pot in all_valid_pots if pot.location == surrounding_cell][0]
                     ingredient_name = player_object.holding.name
+                    recipe_ingredient_count = self._get_recipe_ingredient_count(ingredient_name) #assumes no recipe with same ingredient in map
                     # CASE: No ingredient pot yet
-                    if pot.ingredient_count == 0:
+                    if pot.is_empty:
                         action_task.append(
                             ['COOK', True, surrounding_cell, player_pos]
                         )
                         goal_id = self._get_goal_id(ingredient_name, 'COOK')
                     # CASE: Already has an ingredient in pot and is same ingredient as hand's ingredient
-                    elif (pot.ingredient_count != 0) and (pot.ingredient == ingredient_name):
-                        recipe_ingredient_count = self._get_recipe_ingredient_count(ingredient_name)
-                        if pot.ingredient_count != recipe_ingredient_count:
-                            action_task.append(
+                    elif pot.ingredient_count[ingredient_name] != recipe_ingredient_count:
+                        action_task.append(
                                 ['COOK', True, surrounding_cell, player_pos]
                             )
-                            goal_id = self._get_goal_id(ingredient_name, 'COOK')                   
+                        goal_id = self._get_goal_id(ingredient_name, 'COOK')
         if action_task:
             cook_validity = True
 

@@ -109,15 +109,22 @@ class PlateStation(pg.sprite.Sprite):
         self.rect.y = y * TILESIZE
 
 class PotStation(pg.sprite.Sprite):
-    def __init__(self, game, pot_ingredient, pot_ingredient_count, x, y):
+    def __init__(self, game, pot_ingredients, x, y):
         self.groups = game.all_sprites, game.pot_stations
         pg.sprite.Sprite.__init__(self, self.groups)
         self.game = game        
         self.x = x
         self.y = y
 
+        pot_ingredient_info = ""
+        pot_ingredient_count = 0
+        for ingredient in pot_ingredients:
+            pot_ingredient_count += pot_ingredients[ingredient]
+            pot_ingredient_info += ingredient + str(pot_ingredients[ingredient]) + '_'
+
         if pot_ingredient_count != 0:
-            self.image = pg.image.load(os.path.join(assets_folder, f'pot_station_{pot_ingredient}_{pot_ingredient_count}.png')).convert()
+            self.image = pg.image.load(os.path.join(assets_folder, f'pot_station_{pot_ingredient_info}.png')).convert()
+            # self.image = pg.image.load(os.path.join(assets_folder, f'pot_station_{pot_ingredient}_{pot_ingredient_count}.png')).convert()
         else:
             self.image = pg.image.load(os.path.join(assets_folder, f'pot_station_empty.png')).convert()
         self.rect = self.image.get_rect()

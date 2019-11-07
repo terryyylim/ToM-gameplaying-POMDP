@@ -33,13 +33,11 @@ WORLD_STATE = {
 # ========================= Recipes ===========================
 RECIPES = ['onion_soup'] #'tomato_soup'
 RECIPES_INFO = {
-    'onion_soup': {
-        'ingredient': 'onion',
-        'count': 3
+   'onion_soup': {
+        'onion': 3
     },
     'tomato_soup': {
-        'ingredient': 'tomato',
-        'count': 3
+        'tomato': 3
     }
 }
 RECIPES_INGREDIENTS_TASK = {
@@ -49,19 +47,42 @@ RECIPES_INGREDIENTS_TASK = {
 }
 RECIPES_ACTION_MAPPING = {
     'onion_soup': {
-        'PICK': 0,
-        'CHOP': 1,
-        'COOK': 2,
-        'SCOOP': 3,
-        'SERVE': 4
+        'onion': {
+            'PICK': 0,
+            'CHOP': 1,
+            'COOK': 2,
+        },
+        'general': {
+            'SCOOP': 3,
+            'SERVE': 4
+        }
     },
     'tomato_soup': {
-        'PICK': 5,
-        'CHOP': 6,
-        'COOK': 7,
-        'SCOOP': 8,
-        'SERVE': 9
+        'tomato': {
+            'PICK': 5,
+            'CHOP': 6,
+            'COOK': 7
+        },
+        'general': {
+            'SCOOP': 8,
+            'SERVE': 9
+        }
     }
+}
+RECIPE_ACTION_NAME = {
+    'onion_soup': [0,1,2,3,4],
+    'tomato_soup': [5,6,7,8,9]
+}
+INGREDIENT_ACTION_NAME = {
+    'onion': [0,1,2,3,4],
+    'tomato': [5,6,7,8,9]
+}
+FLATTENED_RECIPES_ACTION_MAPPING = {
+    'PICK': [0,5],
+    'CHOP': [1,6],
+    'COOK': [2,7],
+    'SCOOP': [3,8],
+    'SERVE': [4,9]
 }
 
 # ================== Game Background Initialization ==================
@@ -159,11 +180,11 @@ HUMAN_AGENTS = {
 AI_AGENTS = {
     '1': {
         'coords': (2,8),
-        'ToM': False
+        'ToM': True
     },
     '2': {
         'coords': (2,5),
-        'ToM': False
+        'ToM': True
     },
     '3': {
         'coords': (6,8),

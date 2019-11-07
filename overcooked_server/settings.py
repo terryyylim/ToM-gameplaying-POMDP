@@ -1,5 +1,5 @@
 # Choose the map
-import maps.map_3 as selected_map
+import maps.map_2 as selected_map
 
 # ==================== Colour definition ====================
 WHITE = (255, 255, 255)
@@ -43,6 +43,9 @@ RECIPES = selected_map.RECIPES
 RECIPES_INFO = selected_map.RECIPES_INFO
 RECIPES_INGREDIENTS_TASK = selected_map.RECIPES_INGREDIENTS_TASK
 RECIPES_ACTION_MAPPING = selected_map.RECIPES_ACTION_MAPPING
+RECIPE_ACTION_NAME = selected_map.RECIPE_ACTION_NAME
+INGREDIENT_ACTION_NAME = selected_map.INGREDIENT_ACTION_NAME
+FLATTENED_RECIPES_ACTION_MAPPING = selected_map.FLATTENED_RECIPES_ACTION_MAPPING
 HUMAN_AGENTS = selected_map.HUMAN_AGENTS
 AI_AGENTS = selected_map.AI_AGENTS
 TABLE_TOPS = selected_map.TABLE_TOPS

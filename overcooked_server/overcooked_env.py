@@ -58,17 +58,18 @@ class OvercookedEnv(MapEnv):
 
     def initialize_new_order(self, dish):
         recipe = RECIPES_INFO[dish]
-        pick_mapping = RECIPES_ACTION_MAPPING[dish]['PICK']
-        self.world_state['order_count'] += 1
-        self.world_state['goal_space_count'][pick_mapping] += recipe['count']
+        for ingredient in recipe:
+            pick_mapping = RECIPES_ACTION_MAPPING[dish][ingredient]['PICK']
+            self.world_state['order_count'] += 1
+            self.world_state['goal_space_count'][pick_mapping] += recipe[ingredient]
 
-        enqueue_count = self.world_state['goal_space_count'][pick_mapping] - 0
-        if enqueue_count > 0:
-            for _ in range(enqueue_count):
-                self.world_state['goal_space'][pick_mapping].append({
-                    'state': 'unchopped',
-                    'ingredient': recipe['ingredient']
-                })
+            enqueue_count = self.world_state['goal_space_count'][pick_mapping] - 0
+            if enqueue_count > 0:
+                for _ in range(enqueue_count):
+                    self.world_state['goal_space'][pick_mapping].append({
+                        'state': 'unchopped',
+                        'ingredient': ingredient
+                    })
 
     def initialize_world_state(self, items: Dict[str, List[Tuple]], ingredients: Dict[str, List[Tuple]]):
         """ 
@@ -87,9 +88,11 @@ class OvercookedEnv(MapEnv):
         self.world_state['goal_space'] = defaultdict(list)
 
         for dish in RECIPES_ACTION_MAPPING:
-            for k,v in RECIPES_ACTION_MAPPING[dish].items():
-                self.world_state['goal_space_count'][v] = 0
-                self.world_state['goal_space'][v] = []
+            for action_header in RECIPES_ACTION_MAPPING[dish]:
+                action_info = RECIPES_ACTION_MAPPING[dish][action_header]
+                for k,v in action_info.items():
+                    self.world_state['goal_space_count'][v] = 0
+                    self.world_state['goal_space'][v] = []
 
         for recipe in RECIPES:
             self.world_state['cooked_dish_count'][recipe] = 0
@@ -112,7 +115,7 @@ class OvercookedEnv(MapEnv):
             elif item == 'pot':
                 pot_idx = 1
                 for i_state in items[item]:
-                    new_item = Pot(pot_id=pot_idx, category='utensils', location=i_state, ingredient='', ingredient_count=0)
+                    new_item = Pot(pot_id=pot_idx, category='utensils', location=i_state, ingredient='', ingredient_count=defaultdict(int))
                     self.world_state[item].append(new_item)
                     pot_idx += 1
         
