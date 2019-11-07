@@ -48,7 +48,15 @@ class OvercookedEnv(MapEnv):
     def update_episode(self):
         self.episode += 1
 
-        if self.episode%self.queue_episodes == 0:
+        # if self.episode%self.queue_episodes == 0:
+        #     self.random_queue_order()
+        pick_idx = FLATTENED_RECIPES_ACTION_MAPPING['PICK']
+        queue_flag = True
+        for idx in pick_idx:
+            if self.world_state['goal_space_count'][idx] > 1:
+                queue_flag = False
+                break
+        if queue_flag:
             self.random_queue_order()
 
     def random_queue_order(self):
