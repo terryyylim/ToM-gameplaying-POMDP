@@ -176,6 +176,8 @@ class OvercookedEnv(MapEnv):
             if isinstance(agent, OvercookedAgent):
                 if observers_task_to_not_do:
                     print(f'Observer to not do tasks')
+                    print(agent.id)
+                    print(agent.location)
                     print(observers_task_to_not_do)
                     observer_task_to_not_do = observers_task_to_not_do[agent]
                 agent_goals[agent] = agent.find_best_goal(observer_task_to_not_do)
@@ -208,6 +210,11 @@ class OvercookedEnv(MapEnv):
 
         agents_possible_goals = self.find_agents_possible_goals(observers_task_to_not_do)
         print(f'Agents possible goals')
+        for agent in agents_possible_goals:
+            print(agent)
+            print(agent.id)
+            print(agent.location)
+            print(agents_possible_goals[agent])
         print(agents_possible_goals)
 
         assigned_best_goal = {}

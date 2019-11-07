@@ -688,8 +688,8 @@ class Game:
         print('@rollout - Starting step function')
         self.env.step(action_mapping)
 
-        print(f'Historical World State')
-        print(self.env.world_state['historical_world_state'])
+        # print(f'Historical World State')
+        # print(self.env.world_state['historical_world_state'])
 
         explicit_chop_rewards = self.env.world_state['explicit_rewards']['chop']
         explicit_cook_rewards = self.env.world_state['explicit_rewards']['cook']
@@ -739,6 +739,12 @@ class Game:
             )
 
             print(f'Just completed episode {self.env.episode}')
+            goal_space = self.env.world_state['goal_space']
+            goal_info = self.env.world_state['goal_space_count']
+            print(f'Current goal space: \n{goal_space}\n')
+            print(f'Current goal info: \n{goal_info}\n')
+            print([agent.location for agent in self.env.world_state['agents']])
+            print([agent.holding for agent in self.env.world_state['agents']])
             self.env.update_episode()
             pg.image.save(self.screen, simulations_folder+f'/episode_{self.env.episode}.png')
         
