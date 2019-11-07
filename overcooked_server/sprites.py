@@ -118,9 +118,11 @@ class PotStation(pg.sprite.Sprite):
 
         pot_ingredient_info = ""
         pot_ingredient_count = 0
+        pot_ingredients = {ingredient_info[0]:ingredient_info[1] for ingredient_info in sorted(pot_ingredients.items())}
         for ingredient in pot_ingredients:
             pot_ingredient_count += pot_ingredients[ingredient]
-            pot_ingredient_info += ingredient + str(pot_ingredients[ingredient]) + '_'
+            if pot_ingredients[ingredient] > 0:
+                pot_ingredient_info += ingredient + str(pot_ingredients[ingredient]) + '_'
 
         if pot_ingredient_count != 0:
             self.image = pg.image.load(os.path.join(assets_folder, f'pot_station_{pot_ingredient_info}.png')).convert()
