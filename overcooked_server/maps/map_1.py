@@ -81,17 +81,6 @@ FLATTENED_RECIPES_ACTION_MAPPING = {
 }
 
 # ================== Game Background Initialization ==================
-PLAYERS = {
-    1: {
-        'holding': None,
-        'coords': (2,5)
-    },
-    2: {
-        'holding': None,
-        'coords': (2,8)
-    }
-}
-
 ITEMS_INITIALIZATION = {
     'chopping_board': [(8,3), (8,5)],
     # 'extinguisher': [(1,12)],
@@ -175,11 +164,11 @@ HUMAN_AGENTS = {
 AI_AGENTS = {
     '1': {
         'coords': (2,8),
-        'ToM': True
+        'ToM': False
     },
     '2': {
         'coords': (2,5),
-        'ToM': True
+        'ToM': False
     },
     '3': {
         'coords': (6,8),

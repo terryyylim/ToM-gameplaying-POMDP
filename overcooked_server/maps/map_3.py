@@ -79,17 +79,6 @@ FLATTENED_RECIPES_ACTION_MAPPING = {
 }
 
 # ================== Game Background Initialization ==================
-PLAYERS = {
-    1: {
-        'holding': None,
-        'coords': (4,3)
-    },
-    2: {
-        'holding': None,
-        'coords': (4,9)
-    }
-}
-
 ITEMS_INITIALIZATION = {
     'chopping_board': [(5,0), (5,12)],
     'plate': [(8,5), (8,7)],
