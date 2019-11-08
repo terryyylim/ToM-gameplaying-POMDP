@@ -109,15 +109,24 @@ class PlateStation(pg.sprite.Sprite):
         self.rect.y = y * TILESIZE
 
 class PotStation(pg.sprite.Sprite):
-    def __init__(self, game, pot_ingredient, pot_ingredient_count, x, y):
+    def __init__(self, game, pot_ingredients, x, y):
         self.groups = game.all_sprites, game.pot_stations
         pg.sprite.Sprite.__init__(self, self.groups)
         self.game = game        
         self.x = x
         self.y = y
 
+        pot_ingredient_info = ""
+        pot_ingredient_count = 0
+        pot_ingredients = {ingredient_info[0]:ingredient_info[1] for ingredient_info in sorted(pot_ingredients.items())}
+        for ingredient in pot_ingredients:
+            pot_ingredient_count += pot_ingredients[ingredient]
+            if pot_ingredients[ingredient] > 0:
+                pot_ingredient_info += ingredient + str(pot_ingredients[ingredient]) + '_'
+
         if pot_ingredient_count != 0:
-            self.image = pg.image.load(os.path.join(assets_folder, f'pot_station_{pot_ingredient}_{pot_ingredient_count}.png')).convert()
+            self.image = pg.image.load(os.path.join(assets_folder, f'pot_station_{pot_ingredient_info}.png')).convert()
+            # self.image = pg.image.load(os.path.join(assets_folder, f'pot_station_{pot_ingredient}_{pot_ingredient_count}.png')).convert()
         else:
             self.image = pg.image.load(os.path.join(assets_folder, f'pot_station_empty.png')).convert()
         self.rect = self.image.get_rect()
@@ -178,6 +187,44 @@ class TrashBin(pg.sprite.Sprite):
         pg.sprite.Sprite.__init__(self, self.groups)
         self.game = game
         self.image = pg.image.load(os.path.join(assets_folder, f'trash_bin.png')).convert()
+        self.rect = self.image.get_rect()
+        self.x = x
+        self.y = y
+        self.rect.x = x * TILESIZE
+        self.rect.y = y * TILESIZE
+
+# Scoreboard Sprites
+class ScoreBoard(pg.sprite.Sprite):
+    def __init__(self, game, x, y):
+        self.groups = game.all_sprites, game.scoreboard
+        pg.sprite.Sprite.__init__(self, self.groups)
+        self.game = game
+        self.image = pg.Surface((TILESIZE, TILESIZE))
+        self.image.fill(SCOREBOARD_BG)
+        self.rect = self.image.get_rect()
+        self.x = x
+        self.y = y
+        self.rect.x = x * TILESIZE
+        self.rect.y = y * TILESIZE
+
+class Score(pg.sprite.Sprite):
+    def __init__(self, game, x, y):
+        self.groups = game.all_sprites, game.score
+        pg.sprite.Sprite.__init__(self, self.groups)
+        self.game = game
+        self.image = pg.image.load(os.path.join(assets_folder, f'scoreboard_score.png')).convert()
+        self.rect = self.image.get_rect()
+        self.x = x
+        self.y = y
+        self.rect.x = x * TILESIZE
+        self.rect.y = y * TILESIZE
+
+class Orders(pg.sprite.Sprite):
+    def __init__(self, game, x, y):
+        self.groups = game.all_sprites, game.orders
+        pg.sprite.Sprite.__init__(self, self.groups)
+        self.game = game
+        self.image = pg.image.load(os.path.join(assets_folder, f'scoreboard_orders.png')).convert()
         self.rect = self.image.get_rect()
         self.x = x
         self.y = y

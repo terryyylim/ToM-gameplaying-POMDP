@@ -133,7 +133,9 @@ class MapEnv(MultiAgentEnv):
                             # Edge-Case: AgentL about to serve, AgentR trying to pick plate for the same goal that is going to be removed
                             # Continue and not pick instead
                             cur_plate_pos = action[1]['task_coord']
-                            self.world_state['valid_item_cells'].append(cur_plate_pos)
+
+                            if cur_plate_pos not in self.world_state['return_counter']:
+                                self.world_state['valid_item_cells'].append(cur_plate_pos)
 
                     elif action[1]['pick_type'] == 'ingredient':
                         if agent.holding:

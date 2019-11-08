@@ -34,12 +34,19 @@ class Game:
             idx = str(idx)
             AI_AGENTS_TO_INITIALIZE[idx] = AI_AGENTS[idx]
         if is_simulation:
-            self.env = OvercookedEnv(ai_agents=AI_AGENTS_TO_INITIALIZE)
+            self.env = OvercookedEnv(
+                ai_agents=AI_AGENTS_TO_INITIALIZE,
+                queue_episodes=QUEUE_EPISODES
+            )
             self.load_data()
 
             self.run_simulation(simulation_episodes)
         else:
-            self.env = OvercookedEnv(human_agents=HUMAN_AGENTS, ai_agents=AI_AGENTS_TO_INITIALIZE)
+            self.env = OvercookedEnv(
+                human_agents=HUMAN_AGENTS,
+                ai_agents=AI_AGENTS_TO_INITIALIZE,
+                queue_episodes=QUEUE_EPISODES
+            )
             self.load_data()
 
     def _deep_copy(self, obj):
@@ -74,12 +81,10 @@ class Game:
             }
         for pot in episode['pot']:
             if pot.ingredient_count:
-                pot_ingredient = pot.ingredient
                 pot_ingredient_count = pot.ingredient_count
             else:
-                pot_ingredient, pot_ingredient_count = None, 0
+                pot_ingredient_count = defaultdict(int)
             self.POTS[pot.pot_id] = {
-                'ingredient': pot_ingredient,
                 'ingredient_count': pot_ingredient_count,
                 'coords': pot.location
             }
@@ -101,8 +106,6 @@ class Game:
         self.CHOPPING_BOARDS = [chopping_board.location for chopping_board in episode['chopping_board'] if chopping_board.state != 'taken']
         self.INGREDIENTS_STATION = INGREDIENTS_STATION
         self.SERVING_STATION = SERVING_STATION
-        self.EXTINGUISHER = EXTINGUISHER
-        self.TRASH_BIN = TRASH_BIN
         self.WALLS = WALLS
 
     def new(
@@ -116,9 +119,10 @@ class Game:
         ingredient_stations: Dict[str, Tuple[int,int]],
         serving_stations: List[Tuple[int,int]],
         return_station: List[Tuple[int,int]],
-        extinguisher: Tuple[int,int],
-        trash_bin: Tuple[int,int],
-        walls: List[Tuple[int,int]]=WALLS
+        walls: List[Tuple[int,int]]=WALLS,
+        score: Tuple[int,int]=SCOREBOARD_SCORE,
+        orders: Tuple[int,int]=SCOREBOARD_ORDERS,
+        scoreboard: List[Tuple[int,int]]=SCOREBOARD
     ) -> None:
         # initialize all variables and do all the setup for a new game
         self.all_sprites = pg.sprite.Group()
@@ -128,11 +132,11 @@ class Game:
         self.plates = pg.sprite.Group()
         self.pot_stations = pg.sprite.Group()
         self.ingredient_stations = pg.sprite.Group()
-        self.ingredient_stations = pg.sprite.Group()
         self.serving_stations = pg.sprite.Group()
         self.return_station = pg.sprite.Group()
-        self.extinguisher = pg.sprite.Group()
-        self.trash_bin = pg.sprite.Group()
+        self.score = pg.sprite.Group()
+        self.orders = pg.sprite.Group()
+        self.scoreboard = pg.sprite.Group()
         self.walls = walls
         self.player_count = len(players)
 
@@ -142,6 +146,10 @@ class Game:
                 self.player_1 = Player(self, idx, players[idx]['coords'][1], players[idx]['coords'][0], players[idx]['holding'])
             elif idx == '2':
                 self.player_2 = Player(self, idx, players[idx]['coords'][1], players[idx]['coords'][0], players[idx]['holding'])
+            elif idx == '3':
+                self.player_3 = Player(self, idx, players[idx]['coords'][1], players[idx]['coords'][0], players[idx]['holding'])
+            elif idx == '4':
+                self.player_4 = Player(self, idx, players[idx]['coords'][1], players[idx]['coords'][0], players[idx]['holding'])
         for table_top_coord in table_tops:
             TableTop(self, table_top_coord[1], table_top_coord[0])
         for ingredient in ingredients:
@@ -155,28 +163,23 @@ class Game:
             plate_state = val['state']
             plate_coord = val['coords']
             PlateStation(self, plate_state, plate_coord[1], plate_coord[0])
-        print(pots)
         for key, val in pots.items():
-            pot_ingredient = val['ingredient']
             pot_ingredient_count = val['ingredient_count']
             pot_coord = val['coords']
-            print('lease pot')
-            print(key)
-            print(val)
-            print(pot_ingredient)
-            print(pot_ingredient_count)
-            print(pot_coord)
-            PotStation(self, pot_ingredient, pot_ingredient_count, pot_coord[1], pot_coord[0])
+            PotStation(self, pot_ingredient_count, pot_coord[1], pot_coord[0])
         for key, val in ingredient_stations.items():
             ingredient = key
-            chopping_board_coord = val
-            IngredientStation(self, ingredient, chopping_board_coord[1], chopping_board_coord[0])
+            ingredient_station_coord = val
+            for coords in ingredient_station_coord:
+                IngredientStation(self, ingredient, coords[1], coords[0])
         for serving_station_coord in serving_stations:
             ServingStation(self, serving_station_coord[1], serving_station_coord[0])
             
         ReturnStation(self, return_station['state'], return_station['coords'][1], return_station['coords'][0])
-        ExtinguisherStation(self, extinguisher[1], extinguisher[0])
-        TrashBin(self, trash_bin[1], trash_bin[0])
+        Score(self, score[1], score[0])
+        Orders(self, orders[1], orders[0])
+        for scoreboard_coord in scoreboard:
+            ScoreBoard(self, scoreboard_coord[1], scoreboard_coord[0])
 
 
     def run(self):
@@ -209,6 +212,25 @@ class Game:
         self.screen.fill(BGCOLOR)
         self.draw_grid()
         self.all_sprites.draw(self.screen)
+
+        # Score Display (On top of sprites)
+        font = pg.font.Font('freesansbold.ttf', 20)
+        current_score = self.env.world_state['explicit_rewards']['serve']
+        current_order = self.env.world_state['order_count']
+        score = font.render(str(current_score), True, GREEN, SCOREBOARD_BG)
+        order = font.render(str(current_order), True, GREEN, SCOREBOARD_BG)
+        scoreRect = score.get_rect()
+        orderRect = order.get_rect()
+        scoreRect.center = (
+            (SCOREBOARD_SCORE[1]+1)*TILESIZE+TILESIZE//2,
+            HEIGHT-TILESIZE//2
+        )
+        orderRect.center = (
+            (SCOREBOARD_ORDERS[1]+1)*TILESIZE+TILESIZE//2,
+            HEIGHT-TILESIZE//2    
+        )
+        self.screen.blit(score, scoreRect)
+        self.screen.blit(order, orderRect)
         pg.display.flip()
 
     def events(self):    
@@ -253,7 +275,7 @@ class Game:
 
                 self.new(
                     self.PLAYERS, self.TABLE_TOPS, self.INGREDIENTS, self.CHOPPING_BOARDS, self.PLATES, self.POTS,
-                    self.INGREDIENTS_STATION, self.SERVING_STATION, self.RETURN_STATION, self.EXTINGUISHER, self.TRASH_BIN
+                    self.INGREDIENTS_STATION, self.SERVING_STATION, self.RETURN_STATION
                 )
 
                 if event.key == pg.K_ESCAPE:
@@ -262,7 +284,7 @@ class Game:
                 print([agent.location for agent in self.env.world_state['agents']])
                 print([agent.holding for agent in self.env.world_state['agents']])
                 self.env.update_episode()
-                pg.image.save(self.screen, f'episodes/episode_{self.env.episode}.png')
+                # pg.image.save(self.screen, f'episodes/episode_{self.env.episode}.png')
 
     def _get_pos(self, player_id):
         if player_id == 1:
@@ -350,8 +372,8 @@ class Game:
     def _get_recipe_ingredient_count(self, ingredient):
         recipe_ingredient_count = None
         for recipe in RECIPES_INFO:
-            if RECIPES_INFO[recipe]['ingredient'] == ingredient:
-                recipe_ingredient_count = RECIPES_INFO[recipe]['count']
+            if ingredient in RECIPES_INFO[recipe]:
+                recipe_ingredient_count = RECIPES_INFO[recipe][ingredient]
         
         return recipe_ingredient_count
 
@@ -362,13 +384,17 @@ class Game:
 
     def _get_goal_id(self, ingredient, action):
         goal_id = None
-        if ingredient == 'onion':
-            goal_id = RECIPES_ACTION_MAPPING['onion_soup'][action]
-        elif ingredient == 'tomato':
-            goal_id = RECIPES_ACTION_MAPPING['tomato_soup'][action]
+        for recipe in RECIPES_ACTION_MAPPING:
+            if ingredient in RECIPES_ACTION_MAPPING[recipe]:
+                goal_id = RECIPES_ACTION_MAPPING[recipe][ingredient][action]
+                break
         return goal_id
+    
+    def _get_general_goal_id(self, recipe, action):
+        return RECIPES_ACTION_MAPPING[recipe]['general'][action]
 
     def _check_pick_validity(self, player_id):
+        print('agent@_check_pick_validity')
         pick_validity = False
         player_pos = self._get_pos(player_id)
         all_valid_pick_items = []
@@ -384,7 +410,8 @@ class Game:
             all_valid_pick_items.append(ingredient)
             all_valid_pick_items_pos.append(ingredient.location)
         for ingredient in INGREDIENTS_STATION:
-            all_valid_pick_items_pos.append(INGREDIENTS_STATION[ingredient])
+            for ingredient_coords in INGREDIENTS_STATION[ingredient]:
+                all_valid_pick_items_pos.append(ingredient_coords)
 
         surrounding_cells_xy = [[-1,0], [0,1], [1,0], [0,-1]]
         for surrounding_cell_xy in surrounding_cells_xy:
@@ -478,6 +505,7 @@ class Game:
         return chop_validity, action_task, goal_id
 
     def _check_cook_validity(self, player_id):
+        print(f'human@_check_cook_validity')
         cook_validity = False
         player_pos = self._get_pos(player_id)
         action_task = []
@@ -503,26 +531,26 @@ class Game:
                 if surrounding_cell in all_valid_pots_pos:
                     pot = [pot for pot in all_valid_pots if pot.location == surrounding_cell][0]
                     ingredient_name = player_object.holding.name
+                    recipe_ingredient_count = self._get_recipe_ingredient_count(ingredient_name) #assumes no recipe with same ingredient in map
                     # CASE: No ingredient pot yet
-                    if pot.ingredient_count == 0:
+                    if pot.is_empty:
                         action_task.append(
                             ['COOK', True, surrounding_cell, player_pos]
                         )
                         goal_id = self._get_goal_id(ingredient_name, 'COOK')
                     # CASE: Already has an ingredient in pot and is same ingredient as hand's ingredient
-                    elif (pot.ingredient_count != 0) and (pot.ingredient == ingredient_name):
-                        recipe_ingredient_count = self._get_recipe_ingredient_count(ingredient_name)
-                        if pot.ingredient_count != recipe_ingredient_count:
-                            action_task.append(
+                    elif pot.ingredient_count[ingredient_name] != recipe_ingredient_count:
+                        action_task.append(
                                 ['COOK', True, surrounding_cell, player_pos]
                             )
-                            goal_id = self._get_goal_id(ingredient_name, 'COOK')                   
+                        goal_id = self._get_goal_id(ingredient_name, 'COOK')
         if action_task:
             cook_validity = True
 
         return cook_validity, action_task, goal_id
     
     def _check_scoop_validity(self, player_id):
+        print('human@_check_scoop_validity')
         scoop_validity = False
         player_pos = self._get_pos(player_id)
         action_task = []
@@ -546,10 +574,8 @@ class Game:
                 surrounding_cell = tuple(surrounding_cell)
                 if surrounding_cell in all_valid_pots_pos:
                     pot = [pot for pot in all_valid_pots if pot.location == surrounding_cell][0]
-                    ingredient_name = pot.ingredient
-                    ingredient_count = self._get_recipe_ingredient_count(ingredient_name)
                     # Ensure pot is full
-                    if ingredient_count == pot.ingredient_count:
+                    if pot.dish:
                         action_task.append([
                             'SCOOP',
                             {
@@ -558,7 +584,7 @@ class Game:
                             },
                             player_pos
                         ])
-                        goal_id = self._get_goal_id(ingredient_name, 'SCOOP')
+                        goal_id = self._get_general_goal_id(pot.dish, 'SCOOP')
         if action_task:
             scoop_validity = True
         return scoop_validity, action_task, goal_id
@@ -594,8 +620,7 @@ class Game:
                         player_pos
                     ])
                     dish_name = player_object.holding.dish.name
-                    ingredient_name = self._get_ingredient_dish(dish_name)
-                    goal_id = self._get_goal_id(ingredient_name, 'SERVE')
+                    goal_id = self._get_general_goal_id(dish_name, 'SERVE')
         if action_task:
             serve_validity = True
 
@@ -665,8 +690,8 @@ class Game:
         print('@rollout - Starting step function')
         self.env.step(action_mapping)
 
-        print(f'Historical World State')
-        print(self.env.world_state['historical_world_state'])
+        # print(f'Historical World State')
+        # print(self.env.world_state['historical_world_state'])
 
         explicit_chop_rewards = self.env.world_state['explicit_rewards']['chop']
         explicit_cook_rewards = self.env.world_state['explicit_rewards']['cook']
@@ -690,7 +715,7 @@ class Game:
             if episode == 0:
                 self.new(
                     self.PLAYERS, self.TABLE_TOPS, self.INGREDIENTS, self.CHOPPING_BOARDS, self.PLATES, self.POTS,
-                    self.INGREDIENTS_STATION, self.SERVING_STATION, self.RETURN_STATION, self.EXTINGUISHER, self.TRASH_BIN
+                    self.INGREDIENTS_STATION, self.SERVING_STATION, self.RETURN_STATION
                 )
 
             print(f'================ Episode {episode} best goals ================')
@@ -712,10 +737,16 @@ class Game:
 
             self.new(
                 self.PLAYERS, self.TABLE_TOPS, self.INGREDIENTS, self.CHOPPING_BOARDS, self.PLATES, self.POTS,
-                self.INGREDIENTS_STATION, self.SERVING_STATION, self.RETURN_STATION, self.EXTINGUISHER, self.TRASH_BIN
+                self.INGREDIENTS_STATION, self.SERVING_STATION, self.RETURN_STATION
             )
 
             print(f'Just completed episode {self.env.episode}')
+            goal_space = self.env.world_state['goal_space']
+            goal_info = self.env.world_state['goal_space_count']
+            print(f'Current goal space: \n{goal_space}\n')
+            print(f'Current goal info: \n{goal_info}\n')
+            print([agent.location for agent in self.env.world_state['agents']])
+            print([agent.holding for agent in self.env.world_state['agents']])
             self.env.update_episode()
             pg.image.save(self.screen, simulations_folder+f'/episode_{self.env.episode}.png')
         
@@ -759,7 +790,7 @@ def main(num_ai_agents, is_simulation, simulation_episodes):
     while True:
         g.new(
             g.PLAYERS, g.TABLE_TOPS, g.INGREDIENTS, g.CHOPPING_BOARDS, g.PLATES, g.POTS,
-            g.INGREDIENTS_STATION, g.SERVING_STATION, g.RETURN_STATION, g.EXTINGUISHER, g.TRASH_BIN
+            g.INGREDIENTS_STATION, g.SERVING_STATION, g.RETURN_STATION
         )
         g.run()
         g.show_go_screen()

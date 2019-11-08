@@ -13,25 +13,26 @@ from map_env import MapEnv
 from human_agent import HumanAgent
 from overcooked_agent import OvercookedAgent
 from overcooked_item_classes import ChoppingBoard, Extinguisher, Plate, Pot
-from settings import MAP_ACTIONS, RECIPES, RECIPES_INFO, RECIPES_INGREDIENTS_TASK, \
-        RECIPES_ACTION_MAPPING, ITEMS_INITIALIZATION, INGREDIENTS_INITIALIZATION, \
-        WORLD_STATE, WALLS
+from settings import MAP_ACTIONS, RECIPES, RECIPES_INFO, RECIPES_ACTION_MAPPING, \
+    ITEMS_INITIALIZATION, INGREDIENTS_INITIALIZATION, WORLD_STATE, WALLS, \
+        FLATTENED_RECIPES_ACTION_MAPPING
 
 
 class OvercookedEnv(MapEnv):
     def __init__(
         self,
         human_agents=None,
-        ai_agents=None
+        ai_agents=None,
+        queue_episodes=None
     ) -> None:
         super().__init__()
         self.initialize_world_state(ITEMS_INITIALIZATION, INGREDIENTS_INITIALIZATION)
         self.recipes = RECIPES
-        self.recipes_ingredients_task = RECIPES_INGREDIENTS_TASK
         self.order_queue = []
         self.episode = 0
         self.human_agents = human_agents
         self.ai_agents = ai_agents
+        self.queue_episodes = queue_episodes
         self.setup_agents()
         self.random_queue_order()
 
@@ -46,8 +47,16 @@ class OvercookedEnv(MapEnv):
 
     def update_episode(self):
         self.episode += 1
-        queue_episodes = [70, 140, 210, 280, 350, 420]
-        if self.episode in queue_episodes:
+
+        # if self.episode%self.queue_episodes == 0:
+        #     self.random_queue_order()
+        pick_idx = FLATTENED_RECIPES_ACTION_MAPPING['PICK']
+        queue_flag = True
+        for idx in pick_idx:
+            if self.world_state['goal_space_count'][idx] > 1:
+                queue_flag = False
+                break
+        if queue_flag:
             self.random_queue_order()
 
     def random_queue_order(self):
@@ -56,35 +65,41 @@ class OvercookedEnv(MapEnv):
 
     def initialize_new_order(self, dish):
         recipe = RECIPES_INFO[dish]
-        pick_mapping = RECIPES_ACTION_MAPPING[dish]['PICK']
-        self.world_state['goal_space_count'][pick_mapping] += recipe['count']
+        for ingredient in recipe:
+            pick_mapping = RECIPES_ACTION_MAPPING[dish][ingredient]['PICK']
+            self.world_state['goal_space_count'][pick_mapping] += recipe[ingredient]
 
-        enqueue_count = self.world_state['goal_space_count'][pick_mapping] - 0
-        if enqueue_count > 0:
-            for _ in range(enqueue_count):
-                self.world_state['goal_space'][pick_mapping].append({
-                    'state': 'unchopped',
-                    'ingredient': recipe['ingredient']
-                })
+            enqueue_count = self.world_state['goal_space_count'][pick_mapping] - 0
+            if enqueue_count > 0:
+                for _ in range(enqueue_count):
+                    self.world_state['goal_space'][pick_mapping].append({
+                        'state': 'unchopped',
+                        'ingredient': ingredient
+                    })
+        self.world_state['order_count'] += 1
 
     def initialize_world_state(self, items: Dict[str, List[Tuple]], ingredients: Dict[str, List[Tuple]]):
         """ 
         world_state:
             a dictionary indicating world state (coordinates of items in map)
         """
+        self.world_state['invalid_movement_cells'] = WORLD_STATE['invalid_movement_cells']
         self.world_state['valid_cells'] = WORLD_STATE['valid_movement_cells']
-        self.world_state['valid_item_cells'] = WORLD_STATE['temporary_valid_item_cells']
+        self.world_state['valid_item_cells'] = WORLD_STATE['valid_item_cells']
         self.world_state['service_counter'] = WORLD_STATE['service_counter']
         self.world_state['return_counter'] = WORLD_STATE['return_counter'][0]
         self.world_state['explicit_rewards'] = {'chop': 0, 'cook': 0, 'serve': 0}
         self.world_state['cooked_dish_count'] = {}
+        self.world_state['order_count'] = 0
         self.world_state['goal_space_count'] = defaultdict(int)
         self.world_state['goal_space'] = defaultdict(list)
 
         for dish in RECIPES_ACTION_MAPPING:
-            for k,v in RECIPES_ACTION_MAPPING[dish].items():
-                self.world_state['goal_space_count'][v] = 0
-                self.world_state['goal_space'][v] = []
+            for action_header in RECIPES_ACTION_MAPPING[dish]:
+                action_info = RECIPES_ACTION_MAPPING[dish][action_header]
+                for k,v in action_info.items():
+                    self.world_state['goal_space_count'][v] = 0
+                    self.world_state['goal_space'][v] = []
 
         for recipe in RECIPES:
             self.world_state['cooked_dish_count'][recipe] = 0
@@ -94,10 +109,10 @@ class OvercookedEnv(MapEnv):
                 for i_state in items[item]:
                     new_item = ChoppingBoard('utensils', i_state, 'empty')
                     self.world_state[item].append(new_item)
-            elif item == 'extinguisher':
-                for i_state in items[item]:
-                    new_item = Extinguisher('safety', i_state)
-                    self.world_state[item].append(new_item)
+            # elif item == 'extinguisher':
+            #     for i_state in items[item]:
+            #         new_item = Extinguisher('safety', i_state)
+            #         self.world_state[item].append(new_item)
             elif item == 'plate':
                 plate_idx = 1
                 for i_state in items[item]:
@@ -107,7 +122,7 @@ class OvercookedEnv(MapEnv):
             elif item == 'pot':
                 pot_idx = 1
                 for i_state in items[item]:
-                    new_item = Pot(pot_id=pot_idx, category='utensils', location=i_state, ingredient='', ingredient_count=0)
+                    new_item = Pot(pot_id=pot_idx, category='utensils', location=i_state, ingredient='', ingredient_count=defaultdict(int))
                     self.world_state[item].append(new_item)
                     pot_idx += 1
         
@@ -168,6 +183,8 @@ class OvercookedEnv(MapEnv):
             if isinstance(agent, OvercookedAgent):
                 if observers_task_to_not_do:
                     print(f'Observer to not do tasks')
+                    print(agent.id)
+                    print(agent.location)
                     print(observers_task_to_not_do)
                     observer_task_to_not_do = observers_task_to_not_do[agent]
                 agent_goals[agent] = agent.find_best_goal(observer_task_to_not_do)
@@ -200,6 +217,11 @@ class OvercookedEnv(MapEnv):
 
         agents_possible_goals = self.find_agents_possible_goals(observers_task_to_not_do)
         print(f'Agents possible goals')
+        for agent in agents_possible_goals:
+            print(agent)
+            print(agent.id)
+            print(agent.location)
+            print(agents_possible_goals[agent])
         print(agents_possible_goals)
 
         assigned_best_goal = {}
