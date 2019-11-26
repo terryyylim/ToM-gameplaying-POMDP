@@ -127,9 +127,10 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
-# images, videos, episodes
+# images, videos, episodes, results
 images
 videos
 simulations
 episodes
 **pbz2
+results
