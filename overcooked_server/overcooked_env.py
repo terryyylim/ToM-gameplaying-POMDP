@@ -47,6 +47,7 @@ class OvercookedEnv(MapEnv):
 
     def update_episode(self):
         self.episode += 1
+        self.world_state['score'] = [score-1 for score in self.world_state['score']]
 
         # if self.episode%self.queue_episodes == 0:
         #     self.random_queue_order()
@@ -77,6 +78,7 @@ class OvercookedEnv(MapEnv):
                         'ingredient': ingredient
                     })
         self.world_state['order_count'] += 1
+        self.world_state['score'].append(100)
 
     def initialize_world_state(self, items: Dict[str, List[Tuple]], ingredients: Dict[str, List[Tuple]]):
         """ 
@@ -93,6 +95,8 @@ class OvercookedEnv(MapEnv):
         self.world_state['order_count'] = 0
         self.world_state['goal_space_count'] = defaultdict(int)
         self.world_state['goal_space'] = defaultdict(list)
+        self.world_state['score'] = []
+        self.world_state['total_score'] = 0
 
         for dish in RECIPES_ACTION_MAPPING:
             for action_header in RECIPES_ACTION_MAPPING[dish]:

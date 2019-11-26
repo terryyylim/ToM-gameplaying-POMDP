@@ -304,6 +304,7 @@ class HumanAgent():
     def serve(self, task_id: int, serve_info):
         print('human@serve')
         self.world_state['explicit_rewards']['serve'] += 1
+        self.world_state['total_score'] += self.world_state['score'].pop(0)
         is_last = serve_info['is_last']
 
         # plate returns to return point (in clean form for now)

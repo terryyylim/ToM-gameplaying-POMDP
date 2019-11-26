@@ -215,7 +215,8 @@ class Game:
 
         # Score Display (On top of sprites)
         font = pg.font.Font('freesansbold.ttf', 20)
-        current_score = self.env.world_state['explicit_rewards']['serve']
+        # current_score = self.env.world_state['explicit_rewards']['serve']
+        current_score = self.env.world_state['total_score']
         current_order = self.env.world_state['order_count']
         score = font.render(str(current_score), True, GREEN, SCOREBOARD_BG)
         order = font.render(str(current_order), True, GREEN, SCOREBOARD_BG)
