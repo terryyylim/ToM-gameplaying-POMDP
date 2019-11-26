@@ -15,7 +15,7 @@ from overcooked_agent import OvercookedAgent
 from overcooked_item_classes import ChoppingBoard, Extinguisher, Plate, Pot
 from settings import MAP_ACTIONS, RECIPES, RECIPES_INFO, RECIPES_ACTION_MAPPING, \
     ITEMS_INITIALIZATION, INGREDIENTS_INITIALIZATION, WORLD_STATE, WALLS, \
-        FLATTENED_RECIPES_ACTION_MAPPING
+        FLATTENED_RECIPES_ACTION_MAPPING, MAP
 
 
 class OvercookedEnv(MapEnv):
@@ -30,6 +30,7 @@ class OvercookedEnv(MapEnv):
         self.recipes = RECIPES
         self.order_queue = []
         self.episode = 0
+        self.results_filename = MAP
         self.human_agents = human_agents
         self.ai_agents = ai_agents
         self.queue_episodes = queue_episodes
@@ -162,6 +163,7 @@ class OvercookedEnv(MapEnv):
                     coords
                 )
                 self.world_state['agents'].append(self.agents[agent_id])
+                self.results_filename += '_human'
         human_agent_count = len(self.human_agents) if self.human_agents else 0
         ai_agent_count = human_agent_count
         if self.ai_agents:
@@ -177,6 +179,7 @@ class OvercookedEnv(MapEnv):
                                         is_inference_agent=is_ToM
                                     )
                 self.world_state['agents'].append(self.agents[agent_id])
+                self.results_filename += '_ai'
                 
         self.custom_map_update()
 

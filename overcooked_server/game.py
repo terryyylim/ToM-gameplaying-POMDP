@@ -6,6 +6,7 @@ from typing import Tuple
 import click
 import copy
 import sys
+import pandas as pd
 import pygame as pg
 from datetime import datetime
 
@@ -48,6 +49,13 @@ class Game:
                 queue_episodes=QUEUE_EPISODES
             )
             self.load_data()
+        self.results_filename = 'results/' + self.env.results_filename + '.csv'
+        self.results = defaultdict(int)
+        self.results_col = []
+        for i in range(TERMINATING_EPISODE):
+            if i%50 == 0:
+                self.results[str(i)] = 0
+                self.results_col.append(str(i))
 
     def _deep_copy(self, obj):
         return copy.deepcopy(obj)
@@ -181,14 +189,27 @@ class Game:
         for scoreboard_coord in scoreboard:
             ScoreBoard(self, scoreboard_coord[1], scoreboard_coord[0])
 
+    def save_results(self):
+        try:
+            results_df = pd.read_csv(self.results_filename)
+            new_row = pd.DataFrame([self.results], columns=self.results.keys())
+            results_df = pd.concat([results_df, new_row], axis=0).reset_index()
+        except FileNotFoundError:
+            results_df = pd.DataFrame([self.results], columns=self.results.keys())
+        results_df = results_df[self.results_col]
+        results_df.to_csv(self.results_filename, index=False)
 
     def run(self):
         # game loop - set self.playing = False to end the game
         self.playing = True
         
         while self.playing:
-            if self.env.episode > 500:
-                self.playing = False
+            if self.env.episode%50 == 0:
+                self.results[str(self.env.episode)] = self.env.world_state['total_score']
+            if self.env.episode > TERMINATING_EPISODE:
+                self.save_results()
+                pg.display.quit()
+                self.quit()
             self.dt = self.clock.tick(FPS) / 1000
             self.events()
             self.update()

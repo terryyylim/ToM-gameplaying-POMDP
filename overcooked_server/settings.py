@@ -24,6 +24,8 @@ TILESIZE = 32
 GRIDWIDTH = WIDTH / TILESIZE
 GRIDHEIGHT = HEIGHT / TILESIZE
 
+TERMINATING_EPISODE = 105
+
 # ====================== Actions ======================= 
 MAP_ACTIONS = {
     'MOVE_LEFT': [0, -1],
@@ -39,6 +41,7 @@ MAP_ACTIONS = {
 
 
 # ====================== Chosen Map ======================
+MAP = selected_map.MAP
 RECIPES = selected_map.RECIPES
 RECIPES_INFO = selected_map.RECIPES_INFO
 RECIPES_ACTION_MAPPING = selected_map.RECIPES_ACTION_MAPPING
