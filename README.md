@@ -43,7 +43,7 @@ python overcooked_server/game.py
 ```Human Agent 1```  
 | Actions | PICK | CHOP | COOK | SCOOP | SERVE |
 | :-----: | :--: | :--: | :--: | :---: | :---: |
-| Key-Map |   Z  |   X  |   C  |   V   |   B   |
+| Key-Map |  Z   |  X   |  C   |  V    |  B    |
 
 | Movement | UP  | DOWN | LEFT | RIGHT | 
 | :------: | :-: | :--: | :--: | :---: |
