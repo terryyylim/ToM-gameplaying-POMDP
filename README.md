@@ -40,7 +40,7 @@ python overcooked_server/game.py
 ```
 
 #### Controls
-```Human Agent 1```
+```Human Agent 1```  
 | Actions | PICK | CHOP | COOK | SCOOP | SERVE |
 | :-----: | :--: | :--: | :--: | :---: | :---: |
 | Key-Map |   Z  |   X  |   C  |   V   |   B   |
@@ -53,7 +53,7 @@ python overcooked_server/game.py
 | :------: | :----------: | :-----------: | :------------: | :-------------: |
 | Key-Map  |       ,      |        .      |        /       |      RSHIFT     |
 
-```Human Agent 2```
+```Human Agent 2```  
 | Actions | PICK | CHOP | COOK | SCOOP | SERVE |
 | :-----: | :--: | :--: | :--: | :---: | :---: |
 | Key-Map |   1  |   2  |   3  |   4   |   5   |
