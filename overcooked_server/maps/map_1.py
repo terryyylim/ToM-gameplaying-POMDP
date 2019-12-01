@@ -160,6 +160,9 @@ RETURN_STATION = {
 HUMAN_AGENTS = {
     '1': {
         'coords': (2,5),
+    },
+    '2': {
+        'coords': (2,8),
     }
 }
 
