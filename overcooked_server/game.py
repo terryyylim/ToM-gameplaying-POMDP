@@ -43,8 +43,9 @@ class Game:
 
             self.run_simulation(simulation_episodes)
         else:
+            final_HUMAN_AGENTS = {k:v for k,v in HUMAN_AGENTS.items() if k == '1'}
             self.env = OvercookedEnv(
-                human_agents=HUMAN_AGENTS,
+                human_agents=final_HUMAN_AGENTS,
                 ai_agents=AI_AGENTS_TO_INITIALIZE,
                 queue_episodes=QUEUE_EPISODES
             )
