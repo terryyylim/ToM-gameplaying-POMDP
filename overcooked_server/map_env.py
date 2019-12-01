@@ -6,8 +6,10 @@ from collections import defaultdict
 import numpy as np
 from ray.rllib.env import MultiAgentEnv
 
-from settings import MAP_ACTIONS
+from astar_search import AStarGraph
+from settings import MAP_ACTIONS, WALLS
 from overcooked_agent import OvercookedAgent
+from human_agent import HumanAgent
 from overcooked_item_classes import Plate, Ingredient
 
 class MapEnv(MultiAgentEnv):
@@ -112,6 +114,8 @@ class MapEnv(MultiAgentEnv):
         for agent in self.world_state['agents']:
             if isinstance(agent, OvercookedAgent):
                 temp_astar_map = agent.astar_map
+            elif isinstance(agent, HumanAgent):
+                temp_astar_map = self.walls
         
         for agent in curr_pos:
             if curr_pos[agent] != orig_pos[agent]:
