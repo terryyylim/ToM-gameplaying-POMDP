@@ -40,6 +40,7 @@ python overcooked_server/game.py
 ```
 
 #### Controls
+```Human Agent 1```
 | Actions | PICK | CHOP | COOK | SCOOP | SERVE |
 | :-----: | :--: | :--: | :--: | :---: | :---: |
 | Key-Map |   Z  |   X  |   C  |   V   |   B   |
@@ -50,8 +51,20 @@ python overcooked_server/game.py
 
 | Movement | DIAG-UP-LEFT | DIAG-UP-RIGHT | DIAG-DOWN-LEFT | DIAG-DOWN-RIGHT |
 | :------: | :----------: | :-----------: | :------------: | :-------------: |
-| Key-Map  |       Q      |        W      |        E       |         R       |
+| Key-Map  |       ,      |        .      |        /       |      RSHIFT     |
 
+```Human Agent 2```
+| Actions | PICK | CHOP | COOK | SCOOP | SERVE |
+| :-----: | :--: | :--: | :--: | :---: | :---: |
+| Key-Map |   1  |   2  |   3  |   4   |   5   |
+
+| Movement | UP  | DOWN | LEFT | RIGHT | 
+| :------: | :-: | :--: | :--: | :---: |
+| Key-Map  |  Y  |  H   |  G   |   J   |
+
+| Movement | DIAG-UP-LEFT | DIAG-UP-RIGHT | DIAG-DOWN-LEFT | DIAG-DOWN-RIGHT |
+| :------: | :----------: | :-----------: | :------------: | :-------------: |
+| Key-Map  |       Q      |        W      |        E       |         R       |
 
 ### Simulation
 To run a simulation, run the following with desired parameters in CLI.
