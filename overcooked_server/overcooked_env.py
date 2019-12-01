@@ -10,6 +10,7 @@ import numpy as np
 import random
 
 from map_env import MapEnv
+from astar_search import AStarGraph
 from human_agent import HumanAgent
 from overcooked_agent import OvercookedAgent
 from overcooked_item_classes import ChoppingBoard, Extinguisher, Plate, Pot
@@ -30,6 +31,7 @@ class OvercookedEnv(MapEnv):
         self.recipes = RECIPES
         self.order_queue = []
         self.episode = 0
+        self.walls = AStarGraph(WALLS)
         self.results_filename = MAP
         self.human_agents = human_agents
         self.ai_agents = ai_agents
@@ -140,12 +142,11 @@ class OvercookedEnv(MapEnv):
             print(agent)
             print(type(self.agents[agent]))
             self.agents[agent].world_state = self.world_state
-        
-        temp_astar_map = None
         for agent in self.world_state['agents']:
-            if isinstance(agent, OvercookedAgent):
-                temp_astar_map = agent.astar_map
-        
+            self.walls.barriers.append(agent.location)
+
+        temp_astar_map = AStarGraph(WALLS)
+
         # Update agent locations into map barriers for A* Search
         for agent in self.world_state['agents']:
             temp_astar_map.barriers.append(agent.location)
