@@ -321,15 +321,15 @@ class Game:
             pg.K_RIGHT: [0, 1],
             pg.K_UP: [-1, 0],
             pg.K_DOWN: [1, 0],
-            pg.K_q: [-1, -1],
-            pg.K_w: [-1, 1],
-            pg.K_e: [1, -1],
-            pg.K_r: [1, 1],
-            pg.K_s: [0, 0]
+            pg.K_COMMA: [-1, -1],
+            pg.K_PERIOD: [-1, 1],
+            pg.K_SLASH: [1, -1],
+            pg.K_RSHIFT: [1, 1],
+            pg.K_m: [0, 0]
         }
         movement_keys = [
             pg.K_LEFT, pg.K_RIGHT, pg.K_UP, pg.K_DOWN,
-            pg.K_q, pg.K_w, pg.K_e, pg.K_r, pg.K_s
+            pg.K_COMMA, pg.K_PERIOD, pg.K_SLASH, pg.K_RSHIFT, pg.K_m
         ]
         valid_flag = False
         action_type = None
@@ -358,7 +358,7 @@ class Game:
                 valid_flag, action_task, goal_id = self._check_scoop_validity(player_id)
             elif action == pg.K_b:
                 valid_flag, action_task, goal_id = self._check_serve_validity(player_id)
-            elif action == pg.K_a:
+            elif action == pg.K_n:
                 valid_flag, action_task, goal_id = self._check_drop_validity(player_id)
             else:
                 pass
@@ -371,17 +371,17 @@ class Game:
             pg.K_RIGHT: [1, -1],
             pg.K_UP: [2, -1],
             pg.K_DOWN: [3, -1],
-            pg.K_q: [4, -2],
-            pg.K_w: [5, -2],
-            pg.K_e: [6, -2],
-            pg.K_r: [7, -2],
-            pg.K_s: [8, -2],
+            pg.K_COMMA: [4, -2], # DIAG-UP-LEFT
+            pg.K_PERIOD: [5, -2], # DIAG-UP-RIGHT
+            pg.K_SLASH: [6, -2], # DIAG-DOWN-LEFT
+            pg.K_RSHIFT: [7, -2], # DIAG-DOWN-RIGHT
+            pg.K_m: [8, -2], # STAY
             pg.K_z: [9, 10],
             pg.K_x: [10, 30],
             pg.K_c: [11, 45],
             pg.K_v: [12, 50],
             pg.K_b: [13, 100],
-            pg.K_a: [14, 0],
+            pg.K_n: [14, 0], # DROP
         }
         return action_reward_mapping[action][0], action_reward_mapping[action][1]
     
