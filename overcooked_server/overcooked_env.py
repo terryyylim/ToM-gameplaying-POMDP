@@ -81,7 +81,7 @@ class OvercookedEnv(MapEnv):
                         'ingredient': ingredient
                     })
         self.world_state['order_count'] += 1
-        self.world_state['score'].append(100)
+        self.world_state['score'].append(150)
 
     def initialize_world_state(self, items: Dict[str, List[Tuple]], ingredients: Dict[str, List[Tuple]]):
         """ 
