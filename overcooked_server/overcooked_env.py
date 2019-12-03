@@ -138,9 +138,6 @@ class OvercookedEnv(MapEnv):
 
     def custom_map_update(self):
         for agent in self.agents:
-            print('in custom update')
-            print(agent)
-            print(type(self.agents[agent]))
             self.agents[agent].world_state = self.world_state
         for agent in self.world_state['agents']:
             self.walls.barriers.append(agent.location)
