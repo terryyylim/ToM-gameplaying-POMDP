@@ -1,5 +1,5 @@
 # Choose the map
-import maps.map_2 as selected_map
+import maps.map_7 as selected_map
 
 # ==================== Colour definition ====================
 WHITE = (255, 255, 255)
@@ -24,7 +24,7 @@ TILESIZE = 32
 GRIDWIDTH = WIDTH / TILESIZE
 GRIDHEIGHT = HEIGHT / TILESIZE
 
-TERMINATING_EPISODE = 105
+TERMINATING_EPISODE = 599
 
 # ====================== Actions ======================= 
 MAP_ACTIONS = {
