@@ -209,7 +209,7 @@ class Game:
         while self.playing:
             if self.env.episode%50 == 0:
                 self.results[str(self.env.episode)] = self.env.world_state['total_score']
-            if self.env.episode > TERMINATING_EPISODE:
+            if self.env.episode == TERMINATING_EPISODE:
                 self.save_results()
                 pg.display.quit()
                 self.quit()

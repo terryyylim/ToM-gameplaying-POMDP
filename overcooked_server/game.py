@@ -41,6 +41,14 @@ class Game:
             )
             self.load_data()
 
+            self.results_filename = 'results/' + self.env.results_filename + '.csv'
+            self.results = defaultdict(int)
+            self.results_col = []
+            for i in range(TERMINATING_EPISODE+1):
+                if i%50 == 0:
+                    self.results[str(i)] = 0
+                    self.results_col.append(str(i))
+
             self.run_simulation(simulation_episodes)
         else:
             final_HUMAN_AGENTS = {k:v for k,v in HUMAN_AGENTS.items() if k == '1'}
@@ -53,7 +61,7 @@ class Game:
         self.results_filename = 'results/' + self.env.results_filename + '.csv'
         self.results = defaultdict(int)
         self.results_col = []
-        for i in range(TERMINATING_EPISODE):
+        for i in range(TERMINATING_EPISODE+1):
             if i%50 == 0:
                 self.results[str(i)] = 0
                 self.results_col.append(str(i))
@@ -207,7 +215,7 @@ class Game:
         while self.playing:
             if self.env.episode%50 == 0:
                 self.results[str(self.env.episode)] = self.env.world_state['total_score']
-            if self.env.episode > TERMINATING_EPISODE:
+            if self.env.episode == TERMINATING_EPISODE:
                 self.save_results()
                 pg.display.quit()
                 self.quit()
@@ -772,7 +780,12 @@ class Game:
             print([agent.holding for agent in self.env.world_state['agents']])
             self.env.update_episode()
             pg.image.save(self.screen, simulations_folder+f'/episode_{self.env.episode}.png')
-        
+
+            if self.env.episode%50 == 0:
+                self.results[str(self.env.episode)] = self.env.world_state['total_score']
+            if self.env.episode == TERMINATING_EPISODE:
+                self.save_results()
+
         print(f'======================= Done with simulation =======================')
         explicit_chop_rewards = self.env.world_state['explicit_rewards']['chop']
         explicit_cook_rewards = self.env.world_state['explicit_rewards']['cook']
