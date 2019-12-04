@@ -180,7 +180,10 @@ class OvercookedEnv(MapEnv):
                                     )
                 self.world_state['agents'].append(self.agents[agent_id])
                 self.results_filename += '_ai'
-                
+                if is_ToM:
+                    self.results_filename += '_ToM'
+                else:
+                    self.results_filename += '_dummy'
         self.custom_map_update()
 
     def find_agents_possible_goals(self, observers_task_to_not_do=[]):
