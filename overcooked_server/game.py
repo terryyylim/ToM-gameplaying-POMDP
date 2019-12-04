@@ -781,8 +781,10 @@ class Game:
             self.env.update_episode()
             pg.image.save(self.screen, simulations_folder+f'/episode_{self.env.episode}.png')
 
-            if self.env.episode%50 == 0:
+            if self.env.episode == 0:
                 self.results[str(self.env.episode)] = self.env.world_state['total_score']
+            if (self.env.episode+1)%50 == 0:
+                self.results[str(self.env.episode+1)] = self.env.world_state['total_score']
             if self.env.episode == TERMINATING_EPISODE:
                 self.save_results()
 
