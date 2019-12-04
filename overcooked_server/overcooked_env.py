@@ -146,9 +146,11 @@ class OvercookedEnv(MapEnv):
 
         # Update agent locations into map barriers for A* Search
         for agent in self.world_state['agents']:
-            temp_astar_map.barriers.append(agent.location)
+            temp_astar_map.barriers[0].append(agent.location)
         for agent in self.world_state['agents']:
             if isinstance(agent, OvercookedAgent):
+                agent.astar_map = temp_astar_map
+            if isinstance(agent, HumanAgent):
                 agent.astar_map = temp_astar_map
 
     def setup_agents(self):

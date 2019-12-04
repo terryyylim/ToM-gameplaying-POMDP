@@ -123,8 +123,8 @@ class MapEnv(MultiAgentEnv):
                 self.world_state['valid_cells'].remove(curr_pos[agent])
 
                 # Update barriers in map used for A* Search
-                temp_astar_map.barriers.remove(orig_pos[agent])
-                temp_astar_map.barriers.append(curr_pos[agent])
+                temp_astar_map.barriers[0].remove(orig_pos[agent])
+                temp_astar_map.barriers[0].append(curr_pos[agent])
         
         for agent in agent_actions:
             action = agent_actions[agent][1]
