@@ -28,11 +28,6 @@ source <desired-path>/bin/activate
 pip install -r requirements.txt
 ```
 
-3. Run the file
-```
-python rollout.py
-```
-
 ### Gameplay
 To start the game, run the following.
 ```
