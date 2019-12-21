@@ -56,8 +56,9 @@ class OvercookedEnv(MapEnv):
         #     self.random_queue_order()
         pick_idx = FLATTENED_RECIPES_ACTION_MAPPING['PICK']
         queue_flag = True
+        total_count = sum([v for k,v in self.world_state['goal_space_count'].items()])
         for idx in pick_idx:
-            if self.world_state['goal_space_count'][idx] > 1:
+            if self.world_state['goal_space_count'][idx] > 1 and total_count > 1:
                 queue_flag = False
                 break
         if queue_flag:
