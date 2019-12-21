@@ -6,6 +6,7 @@ from typing import Tuple
 import click
 import copy
 import sys
+import random
 import pandas as pd
 import pygame as pg
 from datetime import datetime
@@ -41,27 +42,20 @@ class Game:
             )
             self.load_data()
 
-            self.results_filename = 'results/' + self.env.results_filename + '.csv'
-            self.results = defaultdict(int)
-            self.results_col = []
-            for i in range(TERMINATING_EPISODE+1):
-                if i%50 == 0:
-                    self.results[str(i)] = 0
-                    self.results_col.append(str(i))
-
             self.run_simulation(simulation_episodes)
         else:
-            final_HUMAN_AGENTS = {k:v for k,v in HUMAN_AGENTS.items() if k == '1'}
             self.env = OvercookedEnv(
-                human_agents=final_HUMAN_AGENTS,
+                human_agents=HUMAN_AGENTS,
                 ai_agents=AI_AGENTS_TO_INITIALIZE,
                 queue_episodes=QUEUE_EPISODES
             )
+            self.player_1_input = None
+            self.player_2_input = None
             self.load_data()
         self.results_filename = 'results/' + self.env.results_filename + '.csv'
         self.results = defaultdict(int)
         self.results_col = []
-        for i in range(TERMINATING_EPISODE+1):
+        for i in range(TERMINATING_EPISODE):
             if i%50 == 0:
                 self.results[str(i)] = 0
                 self.results_col.append(str(i))
@@ -277,45 +271,78 @@ class Game:
                 print(f'Current goal info: \n{goal_info}\n')
                 print([agent.holding for agent in self.env.world_state['agents']])
 
-                player_action_validity, action_type, action_task, goal_id = self._check_action_validity(1, event.key)
-                player_object = [agent for agent in self.env.world_state['agents'] if agent.id == '1'][0]
-                best_goals = self.env.find_agents_best_goal()
-                print('found best goals')
-                print(best_goals)
+                if event.key in [
+                    pg.K_LEFT, pg.K_RIGHT, pg.K_UP, pg.K_DOWN,
+                    pg.K_m, pg.K_COMMA, pg.K_PERIOD, pg.K_SLASH, pg.K_RSHIFT,
+                    pg.K_z, pg.K_x, pg.K_c, pg.K_v, pg.K_b, pg.K_n
+                ]:
+                    self.player_2_input = event.key
+                
+                if event.key in [
+                    pg.K_g, pg.K_j, pg.K_y, pg.K_h,
+                    pg.K_7, pg.K_q, pg.K_w, pg.K_e, pg.K_r,
+                    pg.K_1, pg.K_2, pg.K_3, pg.K_4, pg.K_5, pg.K_6
+                ]:
+                    self.player_1_input = event.key
+                
+                print('inputs...')
+                print(self.player_1_input)
+                print(self.player_2_input)
+                if self.player_1_input and self.player_2_input:
+                    cur_player_1_input = self.player_1_input
+                    cur_player_2_input = self.player_2_input
+                    self.player_1_input = None
+                    self.player_2_input = None
+                    best_goals = {}
+                    for player_id in range(1,3):
+                        if player_id == 1:
+                            player_input = cur_player_1_input
+                        elif player_id == 2:
+                            player_input = cur_player_2_input
+                        player_action_validity, action_type, action_task, goal_id = self._check_action_validity(player_id, player_input)
+                        player_object = [agent for agent in self.env.world_state['agents'] if int(agent.id) == player_id][0]
 
-                if not player_action_validity:
-                    best_goals[player_object] = [-1, {'steps': [8], 'rewards': -2}]
-                else:
-                    action_mapping, reward_mapping = self._get_action_mapping_info(event.key)
-                    if action_type == 'movement':
-                        best_goals[player_object] = [-1, {'steps': [action_mapping], 'rewards': reward_mapping}]
-                    else:
-                        # its a task_action being taken
-                        # goal_id = player_object._find_suitable_goal(action_mapping, action_task)
-                        best_goals[player_object] = [goal_id, {'steps': action_task, 'rewards': reward_mapping}]
+                        if not player_action_validity:
+                            best_goals[player_object] = [-1, {'steps': [8], 'rewards': -2}]
+                        else:
+                            action_mapping, reward_mapping = self._get_action_mapping_info(player_input)
+                            if action_type == 'movement':
+                                best_goals[player_object] = [-1, {'steps': [action_mapping], 'rewards': reward_mapping}]
+                            else:
+                                # its a task_action being taken
+                                best_goals[player_object] = [goal_id, {'steps': action_task, 'rewards': reward_mapping}]
 
-                print('best goals')
-                print(best_goals)
-                print('before rolling out')
-                print([agent.location for agent in self.env.world_state['agents']])
 
-                self.rollout(best_goals, self.env.episode)
-                self.load_data()
-                self.update()
-                self.draw()
+                    print('best goals')
+                    print(best_goals)
+                    # Only works for 2 agents
+                    both_same = False
+                    both_goals = [info[0] for agent, info in best_goals.items()]
+                    if (both_goals[0] == both_goals[1]) and (both_goals[0] == 3):
+                        both_same = True
+                    if both_same:
+                        # chosen agent to not perform
+                        chosen_agent_id = random.randint(1,2)
+                        chosen_agent = [agent for agent, info in best_goals.items() if int(agent.id) == chosen_agent_id][0]
+                        best_goals[chosen_agent] = [-1, {'steps': [8], 'rewards': -2}]
 
-                self.new(
-                    self.PLAYERS, self.TABLE_TOPS, self.INGREDIENTS, self.CHOPPING_BOARDS, self.PLATES, self.POTS,
-                    self.INGREDIENTS_STATION, self.SERVING_STATION, self.RETURN_STATION
-                )
+                    self.rollout(best_goals, self.env.episode)
+                    self.load_data()
+                    self.update()
+                    self.draw()
 
-                if event.key == pg.K_ESCAPE:
-                    self.quit()
-                print(f'Just completed episode {self.env.episode}')
-                print([agent.location for agent in self.env.world_state['agents']])
-                print([agent.holding for agent in self.env.world_state['agents']])
-                self.env.update_episode()
-                # pg.image.save(self.screen, f'episodes/episode_{self.env.episode}.png')
+                    self.new(
+                        self.PLAYERS, self.TABLE_TOPS, self.INGREDIENTS, self.CHOPPING_BOARDS, self.PLATES, self.POTS,
+                        self.INGREDIENTS_STATION, self.SERVING_STATION, self.RETURN_STATION
+                    )
+
+                    if event.key == pg.K_ESCAPE:
+                        self.quit()
+                    print(f'Just completed episode {self.env.episode}')
+                    print([agent.location for agent in self.env.world_state['agents']])
+                    print([agent.holding for agent in self.env.world_state['agents']])
+                    self.env.update_episode()
+                    # pg.image.save(self.screen, f'episodes/episode_{self.env.episode}.png')
 
     def _get_pos(self, player_id):
         if player_id == 1:
@@ -333,11 +360,23 @@ class Game:
             pg.K_PERIOD: [-1, 1],
             pg.K_SLASH: [1, -1],
             pg.K_RSHIFT: [1, 1],
-            pg.K_m: [0, 0]
+            pg.K_m: [0, 0],
+
+            pg.K_g: [0, -1],
+            pg.K_j: [0, 1],
+            pg.K_y: [-1, 0],
+            pg.K_h: [1, 0],
+            pg.K_q: [-1, -1],
+            pg.K_w: [-1, 1],
+            pg.K_e: [1, -1],
+            pg.K_r: [1, 1],
+            pg.K_7: [0, 0]
         }
         movement_keys = [
             pg.K_LEFT, pg.K_RIGHT, pg.K_UP, pg.K_DOWN,
-            pg.K_COMMA, pg.K_PERIOD, pg.K_SLASH, pg.K_RSHIFT, pg.K_m
+            pg.K_COMMA, pg.K_PERIOD, pg.K_SLASH, pg.K_RSHIFT, pg.K_m,
+            pg.K_y, pg.K_g, pg.K_h, pg.K_j,
+            pg.K_q, pg.K_w, pg.K_e, pg.K_r, pg.K_7
         ]
         valid_flag = False
         action_type = None
@@ -355,18 +394,18 @@ class Game:
         else:
             # Do actions
             action_type = 'action'
-            if action == pg.K_z:
+            if (action == pg.K_z) or (action == pg.K_1):
                 # Check if there's anything to pick in (UP, DOWN, LEFT, RIGHT)
                 valid_flag, action_task, goal_id = self._check_pick_validity(player_id)
-            elif action == pg.K_x:
+            elif (action == pg.K_x) or (action == pg.K_2):
                 valid_flag, action_task, goal_id = self._check_chop_validity(player_id)
-            elif action == pg.K_c:
+            elif (action == pg.K_c) or (action == pg.K_3):
                 valid_flag, action_task, goal_id = self._check_cook_validity(player_id)
-            elif action == pg.K_v:
+            elif (action == pg.K_v) or (action == pg.K_4):
                 valid_flag, action_task, goal_id = self._check_scoop_validity(player_id)
-            elif action == pg.K_b:
+            elif (action == pg.K_b) or (action == pg.K_5):
                 valid_flag, action_task, goal_id = self._check_serve_validity(player_id)
-            elif action == pg.K_n:
+            elif (action == pg.K_n) or (action == pg.K_6):
                 valid_flag, action_task, goal_id = self._check_drop_validity(player_id)
             else:
                 pass
@@ -384,20 +423,37 @@ class Game:
             pg.K_SLASH: [6, -2], # DIAG-DOWN-LEFT
             pg.K_RSHIFT: [7, -2], # DIAG-DOWN-RIGHT
             pg.K_m: [8, -2], # STAY
-            pg.K_z: [9, 10],
-            pg.K_x: [10, 30],
-            pg.K_c: [11, 45],
-            pg.K_v: [12, 50],
-            pg.K_b: [13, 100],
+            pg.K_z: [9, 10], # PICK
+            pg.K_x: [10, 30], # CHOP
+            pg.K_c: [11, 45], # COOK
+            pg.K_v: [12, 50], # SCOOP
+            pg.K_b: [13, 100], # SERVE
             pg.K_n: [14, 0], # DROP
+
+            pg.K_g: [0, -1],
+            pg.K_j: [1, -1],
+            pg.K_y: [2, -1],
+            pg.K_h: [3, -1],
+            pg.K_q: [4, -2], # DIAG-UP-LEFT
+            pg.K_w: [5, -2], # DIAG-UP-RIGHT
+            pg.K_e: [6, -2], # DIAG-DOWN-LEFT
+            pg.K_r: [7, -2], # DIAG-DOWN-RIGHT
+            pg.K_7: [8, -2], # STAY
+            pg.K_1: [9, 10], # PICK
+            pg.K_2: [10, 30], # CHOP
+            pg.K_3: [11, 45], # COOK
+            pg.K_4: [12, 50], # SCOOP
+            pg.K_5: [13, 100], # SERVE
+            pg.K_6: [14, 0], # DROP
         }
         return action_reward_mapping[action][0], action_reward_mapping[action][1]
     
     def _get_ingredient(self, coords):
         ingredient_name = None
         for ingredient in INGREDIENTS_INITIALIZATION:
-            if INGREDIENTS_INITIALIZATION[ingredient]['location'][0] == coords:
-                ingredient_name = ingredient
+            for ingredient_coord in INGREDIENTS_INITIALIZATION[ingredient]['location']:
+                if ingredient_coord == coords:
+                    ingredient_name = ingredient
         return ingredient_name
 
     def _get_recipe_ingredient_count(self, ingredient):
@@ -499,17 +555,18 @@ class Game:
 
         if action_task:
             pick_validity = True
-            
+
         return pick_validity, action_task, goal_id
 
     def _check_chop_validity(self, player_id):
+        print('agent@_check_chop_validity')
         chop_validity = False
         player_pos = self._get_pos(player_id)
         action_task = []
         goal_id = None
 
         # Have to hold unchopped ingredient before chopping
-        player_object = [agent for agent in self.env.world_state['agents'] if agent.id == '1'][0]
+        player_object = [agent for agent in self.env.world_state['agents'] if int(agent.id) == player_id][0]
         if not player_object.holding:
             chop_validity = False
         elif not isinstance(player_object.holding, Ingredient):
@@ -543,7 +600,7 @@ class Game:
         goal_id = None
 
         # Have to hold chopped ingredient before chopping
-        player_object = [agent for agent in self.env.world_state['agents'] if agent.id == '1'][0]
+        player_object = [agent for agent in self.env.world_state['agents'] if int(agent.id) == player_id][0]
         if not player_object.holding:
             cook_validity = False
         elif not isinstance(player_object.holding, Ingredient):
@@ -588,7 +645,7 @@ class Game:
         goal_id = None
 
         # Have to hold empty plate before scooping
-        player_object = [agent for agent in self.env.world_state['agents'] if agent.id == '1'][0]
+        player_object = [agent for agent in self.env.world_state['agents'] if int(agent.id) == player_id][0]
         if not player_object.holding:
             scoop_validity = False
         elif not isinstance(player_object.holding, Plate):
@@ -627,7 +684,7 @@ class Game:
         goal_id = None
 
         # Have to hold plate with dish before serving
-        player_object = [agent for agent in self.env.world_state['agents'] if agent.id == '1'][0]
+        player_object = [agent for agent in self.env.world_state['agents'] if int(agent.id) == player_id][0]
         if not player_object.holding:
             serve_validity = False
         elif not isinstance(player_object.holding, Plate):
@@ -664,7 +721,7 @@ class Game:
         goal_id = -1
 
         # Have to hold something before dropping
-        player_object = [agent for agent in self.env.world_state['agents'] if agent.id == '1'][0]
+        player_object = [agent for agent in self.env.world_state['agents'] if int(agent.id) == player_id][0]
         if not player_object.holding:
             drop_validity = False
         else:
@@ -720,9 +777,6 @@ class Game:
         print(action_mapping)
         print('@rollout - Starting step function')
         self.env.step(action_mapping)
-
-        # print(f'Historical World State')
-        # print(self.env.world_state['historical_world_state'])
 
         explicit_chop_rewards = self.env.world_state['explicit_rewards']['chop']
         explicit_cook_rewards = self.env.world_state['explicit_rewards']['cook']
@@ -780,14 +834,7 @@ class Game:
             print([agent.holding for agent in self.env.world_state['agents']])
             self.env.update_episode()
             pg.image.save(self.screen, simulations_folder+f'/episode_{self.env.episode}.png')
-
-            if self.env.episode == 0:
-                self.results[str(self.env.episode)] = self.env.world_state['total_score']
-            if (self.env.episode+1)%50 == 0:
-                self.results[str(self.env.episode+1)] = self.env.world_state['total_score']
-            if self.env.episode == TERMINATING_EPISODE:
-                self.save_results()
-
+        
         print(f'======================= Done with simulation =======================')
         explicit_chop_rewards = self.env.world_state['explicit_rewards']['chop']
         explicit_cook_rewards = self.env.world_state['explicit_rewards']['cook']
@@ -818,7 +865,7 @@ class Game:
         pass
 
 @click.command()
-@click.option('--num_ai_agents', default=1, help='Number of AI agents to initialize')
+@click.option('--num_ai_agents', default=0, help='Number of AI agents to initialize')
 @click.option('--is_simulation', default=False, help='Run Simulation or Human Experiment?')
 @click.option('--simulation_episodes', default=500, help='Number of simulations to run')
 def main(num_ai_agents, is_simulation, simulation_episodes):

@@ -1,5 +1,7 @@
 # ======================= World State =======================
 # As of now: DO NOT ALLOW DROPPING ITEMS INFRONT OF TASK_PERFORMING CELL
+MAP = 'map3'
+
 WORLD_STATE = {
     'invalid_movement_cells': [
         (0,6), (1,6), (2,6), (3,6), (4,6), (5,6), (7,6), (8,6)
@@ -153,6 +155,9 @@ RETURN_STATION = {
 HUMAN_AGENTS = {
     '1': {
         'coords': (4,3),
+    },
+    '2': {
+        'coords': (4,9),
     }
 }
 

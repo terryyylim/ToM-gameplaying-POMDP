@@ -1,5 +1,7 @@
 # ======================= World State =======================
 # As of now: DO NOT ALLOW DROPPING ITEMS INFRONT OF TASK_PERFORMING CELL
+MAP = 'map1'
+
 WORLD_STATE = {
     'valid_optimal_table_tops': [
         (1,4), (2,4), (3,4), (4,4), (5,4), (6,4), (7,4), (8,4), (9,4)
@@ -158,6 +160,9 @@ RETURN_STATION = {
 HUMAN_AGENTS = {
     '1': {
         'coords': (2,5),
+    },
+    '2': {
+        'coords': (2,8),
     }
 }
 

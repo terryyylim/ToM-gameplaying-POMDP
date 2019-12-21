@@ -1,5 +1,5 @@
 # Choose the map
-import maps.map_2 as selected_map
+import maps.map_10 as selected_map
 
 # ==================== Colour definition ====================
 WHITE = (255, 255, 255)
@@ -24,6 +24,8 @@ TILESIZE = 32
 GRIDWIDTH = WIDTH / TILESIZE
 GRIDHEIGHT = HEIGHT / TILESIZE
 
+TERMINATING_EPISODE = 1000
+
 # ====================== Actions ======================= 
 MAP_ACTIONS = {
     'MOVE_LEFT': [0, -1],
@@ -39,6 +41,7 @@ MAP_ACTIONS = {
 
 
 # ====================== Chosen Map ======================
+MAP = selected_map.MAP
 RECIPES = selected_map.RECIPES
 RECIPES_INFO = selected_map.RECIPES_INFO
 RECIPES_ACTION_MAPPING = selected_map.RECIPES_ACTION_MAPPING

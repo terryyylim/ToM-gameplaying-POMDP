@@ -428,7 +428,9 @@ class OvercookedAgent():
                         elif self.holding.state == task_info['state']:
                             recipe_ingredient_count = self.get_recipe_ingredient_count(task_info['recipe'], task_info['ingredient'])
                             # Fill pot with ingredient before considering empty pots
-                            pot_cells = [pot.location for pot in self.world_state['pot'] if pot.ingredient_count[task_info['ingredient']] < recipe_ingredient_count]
+                            pot_cells = [pot.location for pot in self.world_state['pot'] \
+                                if (pot.ingredient_count[task_info['ingredient']] < recipe_ingredient_count) \
+                                    and (pot.ingredient_count[task_info['ingredient']] > 0)]
                             if not pot_cells:
                                 pot_cells = [pot.location for pot in self.world_state['pot'] if pot.is_empty]
                             if pot_cells:
@@ -942,6 +944,7 @@ class OvercookedAgent():
     def serve(self, task_id: int, serve_info):
         print('agent@serve')
         self.world_state['explicit_rewards']['serve'] += 1
+        self.world_state['total_score'] += self.world_state['score'].pop(0)
         is_last = serve_info['is_last']
 
         # plate returns to return point (in clean form for now)

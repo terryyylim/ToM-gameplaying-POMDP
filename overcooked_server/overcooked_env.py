@@ -10,12 +10,13 @@ import numpy as np
 import random
 
 from map_env import MapEnv
+from astar_search import AStarGraph
 from human_agent import HumanAgent
 from overcooked_agent import OvercookedAgent
 from overcooked_item_classes import ChoppingBoard, Extinguisher, Plate, Pot
 from settings import MAP_ACTIONS, RECIPES, RECIPES_INFO, RECIPES_ACTION_MAPPING, \
     ITEMS_INITIALIZATION, INGREDIENTS_INITIALIZATION, WORLD_STATE, WALLS, \
-        FLATTENED_RECIPES_ACTION_MAPPING
+        FLATTENED_RECIPES_ACTION_MAPPING, MAP
 
 
 class OvercookedEnv(MapEnv):
@@ -30,6 +31,8 @@ class OvercookedEnv(MapEnv):
         self.recipes = RECIPES
         self.order_queue = []
         self.episode = 0
+        self.walls = AStarGraph(WALLS)
+        self.results_filename = MAP
         self.human_agents = human_agents
         self.ai_agents = ai_agents
         self.queue_episodes = queue_episodes
@@ -47,13 +50,15 @@ class OvercookedEnv(MapEnv):
 
     def update_episode(self):
         self.episode += 1
+        self.world_state['score'] = [score-1 for score in self.world_state['score']]
 
         # if self.episode%self.queue_episodes == 0:
         #     self.random_queue_order()
         pick_idx = FLATTENED_RECIPES_ACTION_MAPPING['PICK']
         queue_flag = True
+        total_count = sum([v for k,v in self.world_state['goal_space_count'].items()])
         for idx in pick_idx:
-            if self.world_state['goal_space_count'][idx] > 1:
+            if self.world_state['goal_space_count'][idx] > 1 and total_count > 1:
                 queue_flag = False
                 break
         if queue_flag:
@@ -77,6 +82,7 @@ class OvercookedEnv(MapEnv):
                         'ingredient': ingredient
                     })
         self.world_state['order_count'] += 1
+        self.world_state['score'].append(150)
 
     def initialize_world_state(self, items: Dict[str, List[Tuple]], ingredients: Dict[str, List[Tuple]]):
         """ 
@@ -93,6 +99,8 @@ class OvercookedEnv(MapEnv):
         self.world_state['order_count'] = 0
         self.world_state['goal_space_count'] = defaultdict(int)
         self.world_state['goal_space'] = defaultdict(list)
+        self.world_state['score'] = []
+        self.world_state['total_score'] = 0
 
         for dish in RECIPES_ACTION_MAPPING:
             for action_header in RECIPES_ACTION_MAPPING[dish]:
@@ -131,21 +139,19 @@ class OvercookedEnv(MapEnv):
 
     def custom_map_update(self):
         for agent in self.agents:
-            print('in custom update')
-            print(agent)
-            print(type(self.agents[agent]))
             self.agents[agent].world_state = self.world_state
-        
-        temp_astar_map = None
         for agent in self.world_state['agents']:
-            if isinstance(agent, OvercookedAgent):
-                temp_astar_map = agent.astar_map
-        
+            self.walls.barriers.append(agent.location)
+
+        temp_astar_map = AStarGraph(WALLS)
+
         # Update agent locations into map barriers for A* Search
         for agent in self.world_state['agents']:
-            temp_astar_map.barriers.append(agent.location)
+            temp_astar_map.barriers[0].append(agent.location)
         for agent in self.world_state['agents']:
             if isinstance(agent, OvercookedAgent):
+                agent.astar_map = temp_astar_map
+            if isinstance(agent, HumanAgent):
                 agent.astar_map = temp_astar_map
 
     def setup_agents(self):
@@ -158,6 +164,7 @@ class OvercookedEnv(MapEnv):
                     coords
                 )
                 self.world_state['agents'].append(self.agents[agent_id])
+                self.results_filename += '_human'
         human_agent_count = len(self.human_agents) if self.human_agents else 0
         ai_agent_count = human_agent_count
         if self.ai_agents:
@@ -173,7 +180,11 @@ class OvercookedEnv(MapEnv):
                                         is_inference_agent=is_ToM
                                     )
                 self.world_state['agents'].append(self.agents[agent_id])
-                
+                self.results_filename += '_ai'
+                if is_ToM:
+                    self.results_filename += '_ToM'
+                else:
+                    self.results_filename += '_dummy'
         self.custom_map_update()
 
     def find_agents_possible_goals(self, observers_task_to_not_do=[]):
