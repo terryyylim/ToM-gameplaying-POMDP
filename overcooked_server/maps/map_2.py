@@ -1,6 +1,7 @@
 # ======================= World State =======================
 # As of now: DO NOT ALLOW DROPPING ITEMS INFRONT OF TASK_PERFORMING CELL
 MAP = 'map2'
+COMPLEX_RECIPE = False
 
 WORLD_STATE = {
     'invalid_movement_cells': [

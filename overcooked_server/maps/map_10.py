@@ -1,6 +1,7 @@
 # ======================= World State =======================
 # As of now: DO NOT ALLOW DROPPING ITEMS INFRONT OF TASK_PERFORMING CELL
 MAP = 'map10'
+COMPLEX_RECIPE = False
 
 WORLD_STATE = {
     'valid_optimal_table_tops': [],

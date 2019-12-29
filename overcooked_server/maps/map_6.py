@@ -1,6 +1,7 @@
 # ======================= World State =======================
 # As of now: DO NOT ALLOW DROPPING ITEMS INFRONT OF TASK_PERFORMING CELL
 MAP = 'map6'
+COMPLEX_RECIPE = False
 
 WORLD_STATE = {
     'valid_optimal_table_tops': [],
@@ -145,7 +146,7 @@ HUMAN_AGENTS = {
 AI_AGENTS = {
     '1': {
         'coords': (6,10),
-        'ToM': False
+        'ToM': True
     },
     '2': {
         'coords': (2,10),

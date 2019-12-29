@@ -52,15 +52,17 @@ class OvercookedEnv(MapEnv):
         self.episode += 1
         self.world_state['score'] = [score-1 for score in self.world_state['score']]
 
-        # if self.episode%self.queue_episodes == 0:
-        #     self.random_queue_order()
-        pick_idx = FLATTENED_RECIPES_ACTION_MAPPING['PICK']
+        # pick_idx = FLATTENED_RECIPES_ACTION_MAPPING['PICK']
         queue_flag = True
         total_count = sum([v for k,v in self.world_state['goal_space_count'].items()])
-        for idx in pick_idx:
-            if self.world_state['goal_space_count'][idx] > 1 and total_count > 1:
+
+        complex_recipe = False
+        if complex_recipe:
+            if total_count > 1:
                 queue_flag = False
-                break
+        else:
+            if total_count > 2:
+                queue_flag = False
         if queue_flag:
             self.random_queue_order()
 
