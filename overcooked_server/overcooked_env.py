@@ -16,7 +16,7 @@ from overcooked_agent import OvercookedAgent
 from overcooked_item_classes import ChoppingBoard, Extinguisher, Plate, Pot
 from settings import MAP_ACTIONS, RECIPES, RECIPES_INFO, RECIPES_ACTION_MAPPING, \
     ITEMS_INITIALIZATION, INGREDIENTS_INITIALIZATION, WORLD_STATE, WALLS, \
-        FLATTENED_RECIPES_ACTION_MAPPING, MAP
+        FLATTENED_RECIPES_ACTION_MAPPING, MAP, COMPLEX_RECIPE
 
 
 class OvercookedEnv(MapEnv):
@@ -56,8 +56,7 @@ class OvercookedEnv(MapEnv):
         queue_flag = True
         total_count = sum([v for k,v in self.world_state['goal_space_count'].items()])
 
-        complex_recipe = False
-        if complex_recipe:
+        if COMPLEX_RECIPE:
             if total_count > 1:
                 queue_flag = False
         else:
