@@ -42,6 +42,7 @@ MAP_ACTIONS = {
 
 # ====================== Chosen Map ======================
 MAP = selected_map.MAP
+COMPLEX_RECIPE = selected_map.COMPLEX_RECIPE
 RECIPES = selected_map.RECIPES
 RECIPES_INFO = selected_map.RECIPES_INFO
 RECIPES_ACTION_MAPPING = selected_map.RECIPES_ACTION_MAPPING
