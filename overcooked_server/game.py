@@ -736,8 +736,11 @@ class Game:
         simulations_folder = os.path.join(game_folder, 'simulations')
         video_folder = os.path.join(game_folder, 'videos')
 
+        map_folder = os.path.join(*[game_folder, 'videos', MAP])
+
         helpers.check_dir_exist(simulations_folder)
         helpers.check_dir_exist(video_folder)
+        helpers.check_dir_exist(map_folder)
 
         helpers.clean_dir(simulations_folder)
         
@@ -786,6 +789,7 @@ class Game:
             if (self.env.episode+1)%50 == 0:
                 self.results[str(self.env.episode+1)] = self.env.world_state['total_score']
             if self.env.episode == TERMINATING_EPISODE:
+                print('saving results')
                 self.save_results()
 
         print(f'======================= Done with simulation =======================')
@@ -805,7 +809,7 @@ class Game:
         agent_types = [agent.is_inference_agent for agent in self.env.world_state['agents']]
         video_name_ext = helpers.get_video_name_ext(agent_types, episodes)
         helpers.make_video_from_image_dir(
-            video_folder,
+            map_folder,
             simulations_folder,
             video_name_ext
         )
