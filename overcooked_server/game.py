@@ -807,7 +807,7 @@ class Game:
         print(f'Simulation Experiment took {experiment_runtime_min} mins, {experiment_runtime_sec} secs to run.')
 
         agent_types = [agent.is_inference_agent for agent in self.env.world_state['agents']]
-        video_name_ext = helpers.get_video_name_ext(agent_types, episodes)
+        video_name_ext = helpers.get_video_name_ext(agent_types, episodes, MAP)
         helpers.make_video_from_image_dir(
             map_folder,
             simulations_folder,
