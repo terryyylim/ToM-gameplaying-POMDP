@@ -16,7 +16,7 @@ from overcooked_agent import OvercookedAgent
 from overcooked_item_classes import ChoppingBoard, Extinguisher, Plate, Pot
 from settings import MAP_ACTIONS, RECIPES, RECIPES_INFO, RECIPES_ACTION_MAPPING, \
     ITEMS_INITIALIZATION, INGREDIENTS_INITIALIZATION, WORLD_STATE, WALLS, \
-        FLATTENED_RECIPES_ACTION_MAPPING, MAP
+        FLATTENED_RECIPES_ACTION_MAPPING, MAP, COMPLEX_RECIPE
 
 
 class OvercookedEnv(MapEnv):
@@ -52,15 +52,16 @@ class OvercookedEnv(MapEnv):
         self.episode += 1
         self.world_state['score'] = [score-1 for score in self.world_state['score']]
 
-        # if self.episode%self.queue_episodes == 0:
-        #     self.random_queue_order()
-        pick_idx = FLATTENED_RECIPES_ACTION_MAPPING['PICK']
+        # pick_idx = FLATTENED_RECIPES_ACTION_MAPPING['PICK']
         queue_flag = True
         total_count = sum([v for k,v in self.world_state['goal_space_count'].items()])
-        for idx in pick_idx:
-            if self.world_state['goal_space_count'][idx] > 1 and total_count > 1:
+
+        if COMPLEX_RECIPE:
+            if total_count > 1:
                 queue_flag = False
-                break
+        else:
+            if total_count > 2:
+                queue_flag = False
         if queue_flag:
             self.random_queue_order()
 
