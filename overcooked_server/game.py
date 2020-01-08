@@ -22,26 +22,37 @@ class Game:
         self,
         num_ai_agents: int=1,
         is_simulation: bool=False,
-        simulation_episodes: int=500
+        simulation_episodes: int=500,
+        is_paired: bool=False,
+        is_tom: bool=False,
+        experiment_id: str='1'
     ) -> None:
         pg.init()
         self.screen = pg.display.set_mode((WIDTH, HEIGHT))
         pg.display.set_caption(TITLE)
         self.clock = pg.time.Clock()
         pg.key.set_repeat(500, 100)
+        self.is_simulation = is_simulation
+        self.is_paired = is_paired
+        self.is_tom = is_tom
+        self.experiment_id = experiment_id
 
         AI_AGENTS_TO_INITIALIZE = {}
         for idx in range(1, num_ai_agents+1):
             idx = str(idx)
             AI_AGENTS_TO_INITIALIZE[idx] = AI_AGENTS[idx]
-        if is_simulation:
+        game_folder = os.path.dirname(__file__)
+        self.experiment_folder = os.path.join(game_folder, experiment_id)
+        helpers.check_dir_exist(self.experiment_folder)
+
+        if self.is_simulation:
             self.env = OvercookedEnv(
                 ai_agents=AI_AGENTS_TO_INITIALIZE,
                 queue_episodes=QUEUE_EPISODES
             )
             self.load_data()
 
-            self.results_filename = 'results/' + self.env.results_filename + '.csv'
+            self.results_filename = self.experiment_folder + '/' + self.env.results_filename + '.csv'
             self.results = defaultdict(int)
             self.results_col = []
             for i in range(TERMINATING_EPISODE+1):
@@ -57,8 +68,20 @@ class Game:
                 ai_agents=AI_AGENTS_TO_INITIALIZE,
                 queue_episodes=QUEUE_EPISODES
             )
+            if self.is_paired:
+                self.info_df = pd.DataFrame(
+                    columns=[
+                        'episode', 'player1_coords', 'player2_coords', 'player1_action', 'player2_action', 'available_orders', 'score', 'total_score'
+                    ]
+                )
+            else:
+                self.info_df = pd.DataFrame(
+                    columns=[
+                        'episode', 'player_coords', 'agent_coords', 'player_action', 'agent_action', 'available_orders', 'score', 'total_score'
+                    ]
+                )
             self.load_data()
-        self.results_filename = 'results/' + self.env.results_filename + '.csv'
+        self.results_filename = self.experiment_folder + '/' + self.env.results_filename + '.csv'
         self.results = defaultdict(int)
         self.results_col = []
         for i in range(TERMINATING_EPISODE+1):
@@ -207,6 +230,9 @@ class Game:
             results_df = pd.DataFrame([self.results], columns=self.results.keys())
         results_df = results_df[self.results_col]
         results_df.to_csv(self.results_filename, index=False)
+
+        if not self.is_simulation:
+            self.info_df.to_csv(self.experiment_folder + '/experiments_' + self.env.results_filename + '.csv', index=False)
 
     def run(self):
         # game loop - set self.playing = False to end the game
@@ -694,6 +720,33 @@ class Game:
         
         return drop_validity, action_task, goal_id
 
+    def update_experiment_results(self, info_df, is_paired=False):
+        agent_1_info = [(agent.location, agent.last_action) for agent in self.env.world_state['agents'] if agent.id == '1'][0]
+        agent_2_info = [(agent.location, agent.last_action) for agent in self.env.world_state['agents'] if agent.id == '2'][0]
+        if is_paired:    
+            temp_info_df = info_df.append({
+                'episode': self.env.episode,
+                'player1_coords': agent_1_info[0],
+                'player2_coords': agent_2_info[0],
+                'player1_action': agent_1_info[1],
+                'player2_action': agent_2_info[1],
+                'available_orders': self.env.world_state['order_count'],
+                'score': self.env.world_state['score'],
+                'total_score': self.env.world_state['total_score']
+            }, ignore_index=True)
+        else:
+            temp_info_df = info_df.append({
+                'episode': self.env.episode,
+                'player_coords': agent_1_info[0],
+                'agent_coords': agent_2_info[0],
+                'player_action': agent_1_info[1],
+                'agent_action': agent_2_info[1],
+                'available_orders': self.env.world_state['order_count'],
+                'score': self.env.world_state['score'],
+                'total_score': self.env.world_state['total_score']
+            }, ignore_index=True)
+        return temp_info_df
+
     def rollout(self, best_goals, horizon=50, save_path=None):
         """
         Save deep copy of current world state to be used as previous world state in next timestep.
@@ -714,11 +767,16 @@ class Game:
                 best_goals[agent][0],
                 best_goals[agent][1]['steps'][0]
             )
+            if type(best_goals[agent][1]['steps'][0]) == int:
+                agent.last_action = str(best_goals[agent][1]['steps'][0])
+            else:
+                agent.last_action = best_goals[agent][1]['steps'][0][0]
         for agent in action_mapping:
             self.env.world_state['historical_actions'][agent.id] = [action_mapping[agent][1]]
 
         print(action_mapping)
         print('@rollout - Starting step function')
+        print([agent.last_action for agent in self.env.world_state['agents']])
         self.env.step(action_mapping)
 
         # print(f'Historical World State')
@@ -730,6 +788,8 @@ class Game:
         print(f'Current EXPLICIT chop rewards: {explicit_chop_rewards}')
         print(f'Current EXPLICIT cook rewards: {explicit_cook_rewards}')
         print(f'Current EXPLICIT serve rewards: {explicit_serve_rewards}')
+
+        self.info_df = self.update_experiment_results(self.info_df, self.is_paired)
 
     def run_simulation(self, episodes:int=500):
         game_folder = os.path.dirname(__file__)
@@ -825,9 +885,12 @@ class Game:
 @click.option('--num_ai_agents', default=1, help='Number of AI agents to initialize')
 @click.option('--is_simulation', default=False, help='Run Simulation or Human Experiment?')
 @click.option('--simulation_episodes', default=500, help='Number of simulations to run')
-def main(num_ai_agents, is_simulation, simulation_episodes):
+@click.option('--is_paired', default=False, help='Is it a paired experiment?')
+@click.option('--is_tom', default=False, help='Is agent ToM-based?')
+@click.option('--experiment_id', default='1', help='ID of the experiment')
+def main(num_ai_agents, is_simulation, simulation_episodes, is_paired, is_tom, experiment_id):
     # create the game object
-    g = Game(num_ai_agents, is_simulation, simulation_episodes)
+    g = Game(num_ai_agents, is_simulation, simulation_episodes, is_paired, is_tom, experiment_id)
     g.show_start_screen()
     while True:
         g.new(
