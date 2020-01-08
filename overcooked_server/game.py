@@ -41,9 +41,13 @@ class Game:
         for idx in range(1, num_ai_agents+1):
             idx = str(idx)
             AI_AGENTS_TO_INITIALIZE[idx] = AI_AGENTS[idx]
+
+        # Logs saving
         game_folder = os.path.dirname(__file__)
         self.experiment_folder = os.path.join(game_folder, experiment_id)
         helpers.check_dir_exist(self.experiment_folder)
+        self.images_folder = os.path.join(self.experiment_folder, 'images')
+        helpers.check_dir_exist(self.images_folder)
 
         if self.is_simulation:
             self.env = OvercookedEnv(
@@ -233,6 +237,15 @@ class Game:
 
         if not self.is_simulation:
             self.info_df.to_csv(self.experiment_folder + '/experiments_' + self.env.results_filename + '.csv', index=False)
+
+            # agent_types = [agent.is_inference_agent for agent in self.env.world_state['agents']]
+            video_name_ext = helpers.get_video_name_ext(self.env.world_state['agents'], TERMINATING_EPISODE, MAP)
+            # video_name_ext = helpers.get_video_name_ext(agent_types, TERMINATING_EPISODE, MAP)
+            helpers.make_video_from_image_dir(
+                self.experiment_folder,
+                self.images_folder,
+                video_name_ext
+            )
 
     def run(self):
         # game loop - set self.playing = False to end the game
@@ -789,7 +802,9 @@ class Game:
         print(f'Current EXPLICIT cook rewards: {explicit_cook_rewards}')
         print(f'Current EXPLICIT serve rewards: {explicit_serve_rewards}')
 
-        self.info_df = self.update_experiment_results(self.info_df, self.is_paired)
+        if not self.is_simulation:
+            self.info_df = self.update_experiment_results(self.info_df, self.is_paired)
+            pg.image.save(self.screen, self.images_folder+f'/episode_{self.env.episode}.png')
 
     def run_simulation(self, episodes:int=500):
         game_folder = os.path.dirname(__file__)
@@ -867,7 +882,8 @@ class Game:
         print(f'Simulation Experiment took {experiment_runtime_min} mins, {experiment_runtime_sec} secs to run.')
 
         agent_types = [agent.is_inference_agent for agent in self.env.world_state['agents']]
-        video_name_ext = helpers.get_video_name_ext(agent_types, episodes, MAP)
+        # video_name_ext = helpers.get_video_name_ext(agent_types, episodes, MAP)
+        video_name_ext = helpers.get_video_name_ext(self.env.world_state['agents'], TERMINATING_EPISODE, MAP)
         helpers.make_video_from_image_dir(
             map_folder,
             simulations_folder,
