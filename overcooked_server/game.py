@@ -52,7 +52,7 @@ class Game:
             )
             self.load_data()
 
-            self.results_filename = self.experiment_folder + '/' + self.env.results_filename + '.csv'
+            self.results_filename = 'results/' + self.env.results_filename + '.csv'
             self.results = defaultdict(int)
             self.results_col = []
             for i in range(TERMINATING_EPISODE+1):
@@ -81,7 +81,7 @@ class Game:
                     ]
                 )
             self.load_data()
-        self.results_filename = self.experiment_folder + '/' + self.env.results_filename + '.csv'
+            self.results_filename = self.experiment_folder + '/' + self.env.results_filename + '.csv'
         self.results = defaultdict(int)
         self.results_col = []
         for i in range(TERMINATING_EPISODE+1):
