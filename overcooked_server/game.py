@@ -23,7 +23,6 @@ class Game:
         num_ai_agents: int=1,
         is_simulation: bool=False,
         simulation_episodes: int=500,
-        is_paired: bool=False,
         is_tom: bool=False,
         experiment_id: str='1'
     ) -> None:
@@ -33,7 +32,6 @@ class Game:
         self.clock = pg.time.Clock()
         pg.key.set_repeat(500, 100)
         self.is_simulation = is_simulation
-        self.is_paired = is_paired
         self.is_tom = is_tom
         self.experiment_id = experiment_id
 
@@ -72,18 +70,11 @@ class Game:
                 ai_agents=AI_AGENTS_TO_INITIALIZE,
                 queue_episodes=QUEUE_EPISODES
             )
-            if self.is_paired:
-                self.info_df = pd.DataFrame(
-                    columns=[
-                        'episode', 'player1_coords', 'player2_coords', 'player1_action', 'player2_action', 'available_orders', 'score', 'total_score'
-                    ]
-                )
-            else:
-                self.info_df = pd.DataFrame(
-                    columns=[
-                        'episode', 'player_coords', 'agent_coords', 'player_action', 'agent_action', 'available_orders', 'score', 'total_score'
-                    ]
-                )
+            self.info_df = pd.DataFrame(
+                columns=[
+                    'episode', 'player_coords', 'agent_coords', 'player_action', 'agent_action', 'available_orders', 'score', 'total_score'
+                ]
+            )
             self.load_data()
             self.results_filename = self.experiment_folder + '/' + self.env.results_filename + '.csv'
         self.results = defaultdict(int)
@@ -733,31 +724,19 @@ class Game:
         
         return drop_validity, action_task, goal_id
 
-    def update_experiment_results(self, info_df, is_paired=False):
+    def update_experiment_results(self, info_df):
         agent_1_info = [(agent.location, agent.last_action) for agent in self.env.world_state['agents'] if agent.id == '1'][0]
         agent_2_info = [(agent.location, agent.last_action) for agent in self.env.world_state['agents'] if agent.id == '2'][0]
-        if is_paired:    
-            temp_info_df = info_df.append({
-                'episode': self.env.episode,
-                'player1_coords': agent_1_info[0],
-                'player2_coords': agent_2_info[0],
-                'player1_action': agent_1_info[1],
-                'player2_action': agent_2_info[1],
-                'available_orders': self.env.world_state['order_count'],
-                'score': self.env.world_state['score'],
-                'total_score': self.env.world_state['total_score']
-            }, ignore_index=True)
-        else:
-            temp_info_df = info_df.append({
-                'episode': self.env.episode,
-                'player_coords': agent_1_info[0],
-                'agent_coords': agent_2_info[0],
-                'player_action': agent_1_info[1],
-                'agent_action': agent_2_info[1],
-                'available_orders': self.env.world_state['order_count'],
-                'score': self.env.world_state['score'],
-                'total_score': self.env.world_state['total_score']
-            }, ignore_index=True)
+        temp_info_df = info_df.append({
+            'episode': self.env.episode,
+            'player_coords': agent_1_info[0],
+            'agent_coords': agent_2_info[0],
+            'player_action': agent_1_info[1],
+            'agent_action': agent_2_info[1],
+            'available_orders': self.env.world_state['order_count'],
+            'score': self.env.world_state['score'],
+            'total_score': self.env.world_state['total_score']
+        }, ignore_index=True)
         return temp_info_df
 
     def rollout(self, best_goals, horizon=50, save_path=None):
@@ -803,7 +782,7 @@ class Game:
         print(f'Current EXPLICIT serve rewards: {explicit_serve_rewards}')
 
         if not self.is_simulation:
-            self.info_df = self.update_experiment_results(self.info_df, self.is_paired)
+            self.info_df = self.update_experiment_results(self.info_df)
             pg.image.save(self.screen, self.images_folder+f'/episode_{self.env.episode}.png')
 
     def run_simulation(self, episodes:int=500):
@@ -901,12 +880,11 @@ class Game:
 @click.option('--num_ai_agents', default=1, help='Number of AI agents to initialize')
 @click.option('--is_simulation', default=False, help='Run Simulation or Human Experiment?')
 @click.option('--simulation_episodes', default=500, help='Number of simulations to run')
-@click.option('--is_paired', default=False, help='Is it a paired experiment?')
 @click.option('--is_tom', default=False, help='Is agent ToM-based?')
 @click.option('--experiment_id', default='1', help='ID of the experiment')
-def main(num_ai_agents, is_simulation, simulation_episodes, is_paired, is_tom, experiment_id):
+def main(num_ai_agents, is_simulation, simulation_episodes, is_tom, experiment_id):
     # create the game object
-    g = Game(num_ai_agents, is_simulation, simulation_episodes, is_paired, is_tom, experiment_id)
+    g = Game(num_ai_agents, is_simulation, simulation_episodes, is_tom, experiment_id)
     g.show_start_screen()
     while True:
         g.new(
