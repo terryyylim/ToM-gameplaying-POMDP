@@ -23,18 +23,29 @@ class Game:
         self,
         num_ai_agents: int=1,
         is_simulation: bool=False,
-        simulation_episodes: int=500
+        simulation_episodes: int=500,
+        experiment_id: str='1'
     ) -> None:
         pg.init()
         self.screen = pg.display.set_mode((WIDTH, HEIGHT))
         pg.display.set_caption(TITLE)
         self.clock = pg.time.Clock()
         pg.key.set_repeat(500, 100)
+        self.is_simulation = is_simulation
+        self.experiment_id = experiment_id
 
         AI_AGENTS_TO_INITIALIZE = {}
         for idx in range(1, num_ai_agents+1):
             idx = str(idx)
             AI_AGENTS_TO_INITIALIZE[idx] = AI_AGENTS[idx]
+
+        # Logs saving
+        game_folder = os.path.dirname(__file__)
+        self.experiment_folder = os.path.join(game_folder, experiment_id)
+        helpers.check_dir_exist(self.experiment_folder)
+        self.images_folder = os.path.join(self.experiment_folder, 'images')
+        helpers.check_dir_exist(self.images_folder)
+
         if is_simulation:
             self.env = OvercookedEnv(
                 ai_agents=AI_AGENTS_TO_INITIALIZE,
@@ -52,7 +63,13 @@ class Game:
             self.player_1_input = None
             self.player_2_input = None
             self.load_data()
-        self.results_filename = 'results/' + self.env.results_filename + '.csv'
+
+            self.info_df = pd.DataFrame(
+                columns=[
+                    'episode', 'player1_coords', 'player2_coords', 'player1_action', 'player2_action', 'available_orders', 'score', 'total_score'
+                ]
+            )
+        self.results_filename = self.experiment_folder + '/' + self.env.results_filename + '.csv'
         self.results = defaultdict(int)
         self.results_col = []
         for i in range(TERMINATING_EPISODE):
@@ -201,6 +218,15 @@ class Game:
             results_df = pd.DataFrame([self.results], columns=self.results.keys())
         results_df = results_df[self.results_col]
         results_df.to_csv(self.results_filename, index=False)
+
+        if not self.is_simulation:
+            self.info_df.to_csv(self.experiment_folder + '/experiments_' + self.env.results_filename + '.csv', index=False)
+            video_name_ext = helpers.get_video_name_ext(self.env.world_state['agents'], TERMINATING_EPISODE, MAP)
+            helpers.make_video_from_image_dir(
+                self.experiment_folder,
+                self.images_folder,
+                video_name_ext
+            )
 
     def run(self):
         # game loop - set self.playing = False to end the game
@@ -750,6 +776,21 @@ class Game:
             drop_validity = True
         
         return drop_validity, action_task, goal_id
+    
+    def update_experiment_results(self, info_df):
+        agent_1_info = [(agent.location, agent.last_action) for agent in self.env.world_state['agents'] if agent.id == '1'][0]
+        agent_2_info = [(agent.location, agent.last_action) for agent in self.env.world_state['agents'] if agent.id == '2'][0]
+        temp_info_df = info_df.append({
+            'episode': self.env.episode,
+            'player1_coords': agent_1_info[0],
+            'player2_coords': agent_2_info[0],
+            'player1_action': agent_1_info[1],
+            'player2_action': agent_2_info[1],
+            'available_orders': self.env.world_state['order_count'],
+            'score': self.env.world_state['score'],
+            'total_score': self.env.world_state['total_score']
+        }, ignore_index=True)
+        return temp_info_df
 
     def rollout(self, best_goals, horizon=50, save_path=None):
         """
@@ -771,6 +812,10 @@ class Game:
                 best_goals[agent][0],
                 best_goals[agent][1]['steps'][0]
             )
+            if type(best_goals[agent][1]['steps'][0]) == int:
+                agent.last_action = str(best_goals[agent][1]['steps'][0])
+            else:
+                agent.last_action = best_goals[agent][1]['steps'][0][0]
         for agent in action_mapping:
             self.env.world_state['historical_actions'][agent.id] = [action_mapping[agent][1]]
 
@@ -784,6 +829,10 @@ class Game:
         print(f'Current EXPLICIT chop rewards: {explicit_chop_rewards}')
         print(f'Current EXPLICIT cook rewards: {explicit_cook_rewards}')
         print(f'Current EXPLICIT serve rewards: {explicit_serve_rewards}')
+
+        if not self.is_simulation:
+            self.info_df = self.update_experiment_results(self.info_df)
+            pg.image.save(self.screen, self.images_folder+f'/episode_{self.env.episode}.png')
 
     def run_simulation(self, episodes:int=500):
         game_folder = os.path.dirname(__file__)
@@ -868,9 +917,10 @@ class Game:
 @click.option('--num_ai_agents', default=0, help='Number of AI agents to initialize')
 @click.option('--is_simulation', default=False, help='Run Simulation or Human Experiment?')
 @click.option('--simulation_episodes', default=500, help='Number of simulations to run')
-def main(num_ai_agents, is_simulation, simulation_episodes):
+@click.option('--experiment_id', default='1', help='ID of the experiment')
+def main(num_ai_agents, is_simulation, simulation_episodes, experiment_id):
     # create the game object
-    g = Game(num_ai_agents, is_simulation, simulation_episodes)
+    g = Game(num_ai_agents, is_simulation, simulation_episodes, experiment_id)
     g.show_start_screen()
     while True:
         g.new(
