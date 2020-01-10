@@ -157,6 +157,7 @@ class Game:
         walls: List[Tuple[int,int]]=WALLS,
         score: Tuple[int,int]=SCOREBOARD_SCORE,
         orders: Tuple[int,int]=SCOREBOARD_ORDERS,
+        timer: Tuple[int,int]=SCOREBOARD_TIMER,
         scoreboard: List[Tuple[int,int]]=SCOREBOARD
     ) -> None:
         # initialize all variables and do all the setup for a new game
@@ -171,6 +172,7 @@ class Game:
         self.return_station = pg.sprite.Group()
         self.score = pg.sprite.Group()
         self.orders = pg.sprite.Group()
+        self.timer = pg.sprite.Group()
         self.scoreboard = pg.sprite.Group()
         self.walls = walls
         self.player_count = len(players)
@@ -213,6 +215,7 @@ class Game:
         ReturnStation(self, return_station['state'], return_station['coords'][1], return_station['coords'][0])
         Score(self, score[1], score[0])
         Orders(self, orders[1], orders[0])
+        Timer(self, timer[1], timer[0])
         for scoreboard_coord in scoreboard:
             ScoreBoard(self, scoreboard_coord[1], scoreboard_coord[0])
 
@@ -278,10 +281,13 @@ class Game:
         # current_score = self.env.world_state['explicit_rewards']['serve']
         current_score = self.env.world_state['total_score']
         current_order = self.env.world_state['order_count']
+        episodes_left = TERMINATING_EPISODE - self.env.episode
         score = font.render(str(current_score), True, GREEN, SCOREBOARD_BG)
         order = font.render(str(current_order), True, GREEN, SCOREBOARD_BG)
+        ep_countdown = font.render(str(episodes_left), True, GREEN, SCOREBOARD_BG)
         scoreRect = score.get_rect()
         orderRect = order.get_rect()
+        countdownRect = ep_countdown.get_rect()
         scoreRect.center = (
             (SCOREBOARD_SCORE[1]+1)*TILESIZE+TILESIZE//2,
             HEIGHT-TILESIZE//2
@@ -290,8 +296,13 @@ class Game:
             (SCOREBOARD_ORDERS[1]+1)*TILESIZE+TILESIZE//2,
             HEIGHT-TILESIZE//2    
         )
+        countdownRect.center = (
+            (SCOREBOARD_TIMER[1]+1)*TILESIZE+TILESIZE//2,
+            HEIGHT-TILESIZE//2    
+        )
         self.screen.blit(score, scoreRect)
         self.screen.blit(order, orderRect)
+        self.screen.blit(ep_countdown, countdownRect)
         pg.display.flip()
 
     def events(self):    
@@ -735,6 +746,7 @@ class Game:
             'agent_action': agent_2_info[1],
             'available_orders': self.env.world_state['order_count'],
             'score': self.env.world_state['score'],
+            'timer': TERMINATING_EPISODE - self.env.episode,
             'total_score': self.env.world_state['total_score']
         }, ignore_index=True)
         return temp_info_df
