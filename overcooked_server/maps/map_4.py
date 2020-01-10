@@ -161,21 +161,21 @@ RETURN_STATION = {
 
 HUMAN_AGENTS = {
     '1': {
-        'coords': (2,4),
+        'coords': (2,3),
     },
     '2': {
-        'coords': (2,3),
+        'coords': (2,4),
     }
 }
 
 AI_AGENTS = {
     '1': {
-        'coords': (2,3),
-        'ToM': True
+        'coords': (2,4),
+        'ToM': False
     },
     '2': {
-        'coords': (2,4),
-        'ToM': True
+        'coords': (2,3),
+        'ToM': False
     },
     '3': {
         'coords': (3,3),
