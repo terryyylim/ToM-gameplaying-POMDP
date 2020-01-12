@@ -311,52 +311,58 @@ class Game:
             if event.type == pg.QUIT:
                 self.quit()
             if event.type == pg.KEYUP:
-                print(f'\nStart of episode {self.env.episode}')
-                goal_space = self.env.world_state['goal_space']
-                goal_info = self.env.world_state['goal_space_count']
-                print(f'Current goal space: \n{goal_space}\n')
-                print(f'Current goal info: \n{goal_info}\n')
-                print([agent.holding for agent in self.env.world_state['agents']])
+                if event.key in [
+                    pg.K_LEFT, pg.K_RIGHT, pg.K_UP, pg.K_DOWN,
+                    pg.K_COMMA, pg.K_PERIOD, pg.K_SLASH, pg.K_RSHIFT, pg.K_m,
+                    pg.K_z, pg.K_x, pg.K_c, pg.K_v, pg.K_b, pg.K_n
+                ]:
+                    print(f'\nStart of episode {self.env.episode}')
+                    goal_space = self.env.world_state['goal_space']
+                    goal_info = self.env.world_state['goal_space_count']
+                    print(f'Current goal space: \n{goal_space}\n')
+                    print(f'Current goal info: \n{goal_info}\n')
+                    print([agent.holding for agent in self.env.world_state['agents']])
 
-                player_action_validity, action_type, action_task, goal_id = self._check_action_validity(1, event.key)
-                player_object = [agent for agent in self.env.world_state['agents'] if agent.id == '1'][0]
-                best_goals = self.env.find_agents_best_goal()
-                print('found best goals')
-                print(best_goals)
+                    player_action_validity, action_type, action_task, goal_id = self._check_action_validity(1, event.key)
+                    player_object = [agent for agent in self.env.world_state['agents'] if agent.id == '1'][0]
+                    best_goals = self.env.find_agents_best_goal()
+                    print('found best goals')
+                    print(best_goals)
 
-                if not player_action_validity:
-                    best_goals[player_object] = [-1, {'steps': [8], 'rewards': -2}]
-                else:
-                    action_mapping, reward_mapping = self._get_action_mapping_info(event.key)
-                    if action_type == 'movement':
-                        best_goals[player_object] = [-1, {'steps': [action_mapping], 'rewards': reward_mapping}]
+                    if not player_action_validity:
+                        best_goals[player_object] = [-1, {'steps': [8], 'rewards': -2}]
                     else:
-                        # its a task_action being taken
-                        # goal_id = player_object._find_suitable_goal(action_mapping, action_task)
-                        best_goals[player_object] = [goal_id, {'steps': action_task, 'rewards': reward_mapping}]
+                        action_mapping, reward_mapping = self._get_action_mapping_info(event.key)
+                        if action_type == 'movement':
+                            best_goals[player_object] = [-1, {'steps': [action_mapping], 'rewards': reward_mapping}]
+                        else:
+                            # its a task_action being taken
+                            # goal_id = player_object._find_suitable_goal(action_mapping, action_task)
+                            best_goals[player_object] = [goal_id, {'steps': action_task, 'rewards': reward_mapping}]
 
-                print('best goals')
-                print(best_goals)
-                print('before rolling out')
-                print([agent.location for agent in self.env.world_state['agents']])
+                    print('best goals')
+                    print(best_goals)
+                    print('before rolling out')
+                    print([agent.location for agent in self.env.world_state['agents']])
 
-                self.rollout(best_goals, self.env.episode)
-                self.load_data()
-                self.update()
-                self.draw()
+                    self.rollout(best_goals, self.env.episode)
+                    self.load_data()
+                    self.update()
+                    self.draw()
 
-                self.new(
-                    self.PLAYERS, self.TABLE_TOPS, self.INGREDIENTS, self.CHOPPING_BOARDS, self.PLATES, self.POTS,
-                    self.INGREDIENTS_STATION, self.SERVING_STATION, self.RETURN_STATION
-                )
-
-                if event.key == pg.K_ESCAPE:
-                    self.quit()
-                print(f'Just completed episode {self.env.episode}')
-                print([agent.location for agent in self.env.world_state['agents']])
-                print([agent.holding for agent in self.env.world_state['agents']])
-                self.env.update_episode()
-                # pg.image.save(self.screen, f'episodes/episode_{self.env.episode}.png')
+                    self.new(
+                        self.PLAYERS, self.TABLE_TOPS, self.INGREDIENTS, self.CHOPPING_BOARDS, self.PLATES, self.POTS,
+                        self.INGREDIENTS_STATION, self.SERVING_STATION, self.RETURN_STATION
+                    )
+                    if event.key == pg.K_ESCAPE:
+                        self.quit()
+                    print(f'Just completed episode {self.env.episode}')
+                    print([agent.location for agent in self.env.world_state['agents']])
+                    print([agent.holding for agent in self.env.world_state['agents']])
+                    self.env.update_episode()
+                    # pg.image.save(self.screen, f'episodes/episode_{self.env.episode}.png')
+                else:
+                    print('Not valid key press')
 
     def _get_pos(self, player_id):
         if player_id == 1:
@@ -538,7 +544,7 @@ class Game:
         if player_object.holding:
             pick_validity = False
 
-        if action_task:
+        if action_task and not player_object.holding:
             pick_validity = True
             
         return pick_validity, action_task, goal_id
