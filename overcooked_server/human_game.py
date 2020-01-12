@@ -585,7 +585,7 @@ class Game:
                     ingredient_name = self._get_ingredient(surrounding_cell)
                     goal_id = self._get_goal_id(ingredient_name, 'PICK')
         # Have to drop before picking again
-        player_object = [agent for agent in self.env.world_state['agents'] if agent.id == '1'][0]
+        player_object = [agent for agent in self.env.world_state['agents'] if agent.id == str(player_id)][0]
         if player_object.holding:
             pick_validity = False
 
