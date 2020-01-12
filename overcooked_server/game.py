@@ -538,7 +538,7 @@ class Game:
         if player_object.holding:
             pick_validity = False
 
-        if action_task:
+        if action_task and not player_object.holding:
             pick_validity = True
             
         return pick_validity, action_task, goal_id
