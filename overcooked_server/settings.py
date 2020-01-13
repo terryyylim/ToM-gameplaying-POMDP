@@ -14,13 +14,13 @@ BROWN = (160, 82, 4)
 SCOREBOARD_BG = (143, 186, 200)
 
 # ======================= Game Settings =======================
-WIDTH = 416 # 13x32  # 16 * 64 or 32 * 32 or 64 * 16
-HEIGHT = 320 # 9x32 # 16 * 48 or 32 * 24 or 64 * 12
+WIDTH = 832 # 13x32  # 16 * 64 (832) or 32 * 32 or 64 * 16
+HEIGHT = 640 # 9x32 # 16 * 48 (640) or 32 * 24 or 64 * 12
 FPS = 60
 TITLE = "Overcooked Simulation"
 BGCOLOR = BACKGROUND_BLUE
 
-TILESIZE = 32
+TILESIZE = 64
 GRIDWIDTH = WIDTH / TILESIZE
 GRIDHEIGHT = HEIGHT / TILESIZE
 
