@@ -90,6 +90,7 @@ class OvercookedEnv(MapEnv):
         world_state:
             a dictionary indicating world state (coordinates of items in map)
         """
+        self.world_state['invalid_stay_cells'] = WORLD_STATE['invalid_stay_cells']
         self.world_state['invalid_movement_cells'] = WORLD_STATE['invalid_movement_cells']
         self.world_state['valid_cells'] = WORLD_STATE['valid_movement_cells']
         self.world_state['valid_item_cells'] = WORLD_STATE['valid_item_cells']
@@ -275,8 +276,7 @@ class OvercookedEnv(MapEnv):
                 assigned_best_goal[agent] = [softmax_best_goal, agents_possible_goals[agent][softmax_best_goal]]
             else:
                 # If no task at hand, but blocking stations, move to valid cell randomly
-                # TO-DO: Fix case in stage 1 where agent is in cell (4,10) and blocks movements
-                if tuple(agent.location) in [(1,3), (1,8), (3,7), (3,5)]:
+                if tuple(agent.location) in self.world_state['invalid_stay_cells']:
                     print(f'Entered find random valid action')
                     random_valid_cell_move = self._find_random_valid_action(agent)
                     assigned_best_goal[agent] = [-1, {'steps': [random_valid_cell_move], 'rewards': -1}]
