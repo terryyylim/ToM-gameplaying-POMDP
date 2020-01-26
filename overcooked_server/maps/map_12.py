@@ -4,7 +4,7 @@ MAP = 'map12'
 COMPLEX_RECIPE = False
 
 WORLD_STATE = {
-    'valid_optimal_table_tops': [],
+    'invalid_stay_cells': [(3,1), (5,5), (7,5))],
     'invalid_movement_cells': [],
     'valid_item_cells': [
         (0,1), (0,2), (0,4), (0,5), (0,6), (0,7), (0,8), (0,10), (0,11),
