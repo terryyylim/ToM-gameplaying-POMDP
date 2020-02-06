@@ -18,12 +18,12 @@ from torch.optim import optimizer
 
 class Base_Agent():
 
-    def __init__(self, config):
+    def __init__(self, config, environment):
         self.logger = self.setup_logger()
         self.debug_mode = config.debug_mode
         self.config = config
         self.set_random_seeds(config.seed)
-        
+        self.environment = environment
         #to edit
         self.action_types = "DISCRETE" if self.environment.action_space.dtype == np.int64 else "CONTINUOUS"
         self.action_size = int(self.get_action_size())
@@ -52,24 +52,20 @@ class Base_Agent():
     
     def get_action_size(self):
         """Gets the action_size for the gym env into the correct shape for a neural network"""
-        #most likely have to retrieve this from the config
-        pass
+        if "overwrite_action_size" in self.config.__dict__: return self.config.overwrite_action_size
+        if "action_size" in self.environment.__dict__: return self.environment.action_size
+        if self.action_types == "DISCRETE": return self.environment.action_space.n
+        else: return self.environment.action_space.shape[0]
 
     def get_state_size(self):
         """Gets the state_size for the gym env into the correct shape for a neural network"""
-        #most likely have to retrieve this from the config
-        pass
-    
-    def get_score_required_to_win(self):
-        """Gets average score required to win game"""
-        # not sure if this is still needed, but its basically a bunch of if,else statement
-        # for different environments
-        pass
+        random_state = self.environment.world_state
+        if isinstance(random_state, dict):
+            state_size = 
+            return state_size
+        else:
+            return random_state.size
 
-    def get_trials(self):
-        """Gets the number of trials to average a score over"""
-        # not sure if this is needed
-        pass
 
     def setup_logger(self):
         """Sets up the logger"""
@@ -114,6 +110,9 @@ class Base_Agent():
         # Interact with the environment by giving env an action
         # Update rewards
         # may need to implement clipping
+
+    def update_reward(self, reward):
+        self.total_episode_score_so_far += self.reward
 
     def save_and_print_result(self):
         """Saves and prints results of the game"""
