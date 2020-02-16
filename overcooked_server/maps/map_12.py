@@ -4,7 +4,7 @@ MAP = 'map12'
 COMPLEX_RECIPE = False
 
 WORLD_STATE = {
-    'invalid_stay_cells': [(3,1), (5,5), (7,5))],
+    'invalid_stay_cells': [(3,1), (5,5), (7,5)],
     'invalid_movement_cells': [],
     'valid_item_cells': [
         (0,1), (0,2), (0,4), (0,5), (0,6), (0,7), (0,8), (0,10), (0,11),
@@ -153,14 +153,14 @@ AI_AGENTS = {
         'coords': (3,4),
         'ToM': True
     },
-    # '3': {
-    #     'coords': (3,3),
-    #     'ToM': False
-    # },
-    # '4': {
-    #     'coords': (3,4),
-    #     'ToM': False
-    # }
+    '3': {
+        'coords': (2,5),
+        'ToM': True
+    },
+    '4': {
+        'coords': (2,5),
+        'ToM': False
+    }
 }
 
 # ================== Game Scoreboard Initialization ==================
