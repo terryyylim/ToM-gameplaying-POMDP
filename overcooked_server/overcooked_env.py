@@ -16,7 +16,7 @@ from overcooked_agent import OvercookedAgent
 from overcooked_item_classes import ChoppingBoard, Extinguisher, Plate, Pot
 from settings import MAP_ACTIONS, RECIPES, RECIPES_INFO, RECIPES_ACTION_MAPPING, \
     ITEMS_INITIALIZATION, INGREDIENTS_INITIALIZATION, WORLD_STATE, WALLS, \
-        FLATTENED_RECIPES_ACTION_MAPPING, MAP
+        FLATTENED_RECIPES_ACTION_MAPPING, MAP, TABLE_TOPS, INGREDIENTS_STATION
 
 
 class OvercookedEnv(MapEnv):
@@ -89,6 +89,8 @@ class OvercookedEnv(MapEnv):
         world_state:
             a dictionary indicating world state (coordinates of items in map)
         """
+        self.world_state['ingredients_station'] = INGREDIENTS_STATION
+        self.world_state['table_tops'] = TABLE_TOPS
         self.world_state['invalid_movement_cells'] = WORLD_STATE['invalid_movement_cells']
         self.world_state['valid_cells'] = WORLD_STATE['valid_movement_cells']
         self.world_state['valid_item_cells'] = WORLD_STATE['valid_item_cells']
