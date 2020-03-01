@@ -13,7 +13,7 @@ def get_state_shape(world_state):
     coordinates = world_state['valid_item_cells'] + world_state['valid_movement_cells']
     x = max(x for y,x in coordinates) + 1
     y = max(y for y,x in coordinates) + 1
-    return (y,x) #pygame uses (y,x)
+    return (x,y) #pygame uses (y,x)
 
 def get_loc(world_state, object_name):
     """ Obtains (x,y) coordinates of objects in Overcooked world_state"""
@@ -63,7 +63,7 @@ def vectorize_world_state(world_state):
             
     for plate in world_state['plate']:
         state_mask_dict['plates'][plate.location] = 1
-        if #something in plate.state:
+        if  plate.state == 'plated':
             state_mask_dict['soup'][plate.location] = 1
 
     if 'cooked_dish' in world_state.keys():
