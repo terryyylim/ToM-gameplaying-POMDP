@@ -427,10 +427,27 @@ class OvercookedAgent():
                             ])
                         elif self.holding.state == task_info['state']:
                             recipe_ingredient_count = self.get_recipe_ingredient_count(task_info['recipe'], task_info['ingredient'])
+                            recipe_total_ingredients_count = self.get_recipe_total_ingredient_count(task_info['recipe'])
                             # Fill pot with ingredient before considering empty pots
-                            pot_cells = [pot.location for pot in self.world_state['pot'] \
-                                if (pot.ingredient_count[task_info['ingredient']] < recipe_ingredient_count) \
-                                    and (pot.ingredient_count[task_info['ingredient']] > 0)]
+                            # pot_cells = [pot.location for pot in self.world_state['pot'] if pot.ingredient_count[task_info['ingredient']] < recipe_ingredient_count]
+                            pot_cells = []
+                            for pot in self.world_state['pot']:
+                                # complex recipe
+                                curr_pot_ingredient_count = sum(pot.ingredient_count.values())
+                                if curr_pot_ingredient_count > 1:
+                                    if (pot.ingredient_count[task_info['ingredient']] < recipe_ingredient_count) and (pot.ingredient_count[task_info['ingredient']] == 0) and (recipe_total_ingredients_count > 0):
+                                        pot_cells.append(pot.location)
+                                    elif (pot.ingredient_count[task_info['ingredient']] < recipe_ingredient_count) and (pot.ingredient_count[task_info['ingredient']] == 0) and (recipe_total_ingredients_count == 0):
+                                        pot_cells.append(pot.location)
+                                    elif (pot.ingredient_count[task_info['ingredient']] < recipe_ingredient_count) and (curr_pot_ingredient_count > 0):
+                                        pot_cells.append(pot.location)
+                                else:
+                                    # > 0 to prioritize filling up pot already with ingredients
+                                    if (pot.ingredient_count[task_info['ingredient']] < recipe_ingredient_count) and (curr_pot_ingredient_count > 0):
+                                        pot_cells.append(pot.location)
+                            # pot_cells = [pot.location for pot in self.world_state['pot'] \
+                            #     if (pot.ingredient_count[task_info['ingredient']] < recipe_ingredient_count) \
+                            #         and (pot.ingredient_count[task_info['ingredient']] > 0)]
                             if not pot_cells:
                                 pot_cells = [pot.location for pot in self.world_state['pot'] if pot.is_empty]
                             if pot_cells:
@@ -690,6 +707,9 @@ class OvercookedAgent():
                 recipe_dish = recipe
         
         return recipe_dish
+    
+    def get_recipe_total_ingredient_count(self, recipe):
+        return sum(RECIPES_INFO[recipe].values())
 
     def get_ingredient_name(self, task_id):
         ingredient_name = None

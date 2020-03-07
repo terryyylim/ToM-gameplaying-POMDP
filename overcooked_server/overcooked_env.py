@@ -52,15 +52,16 @@ class OvercookedEnv(MapEnv):
         self.episode += 1
         self.world_state['score'] = [score-1 for score in self.world_state['score']]
 
-        # if self.episode%self.queue_episodes == 0:
-        #     self.random_queue_order()
-        pick_idx = FLATTENED_RECIPES_ACTION_MAPPING['PICK']
+        # pick_idx = FLATTENED_RECIPES_ACTION_MAPPING['PICK']
         queue_flag = True
         total_count = sum([v for k,v in self.world_state['goal_space_count'].items()])
-        for idx in pick_idx:
-            if self.world_state['goal_space_count'][idx] > 1 and total_count > 1:
+
+        if COMPLEX_RECIPE:
+            if total_count > 1:
                 queue_flag = False
-                break
+        else:
+            if total_count > 2:
+                queue_flag = False
         if queue_flag:
             self.random_queue_order()
 
@@ -276,8 +277,7 @@ class OvercookedEnv(MapEnv):
                 assigned_best_goal[agent] = [softmax_best_goal, agents_possible_goals[agent][softmax_best_goal]]
             else:
                 # If no task at hand, but blocking stations, move to valid cell randomly
-                # TO-DO: Fix case in stage 1 where agent is in cell (4,10) and blocks movements
-                if tuple(agent.location) in [(1,3), (1,8), (3,7), (3,5)]:
+                if tuple(agent.location) in self.world_state['invalid_stay_cells']:
                     print(f'Entered find random valid action')
                     random_valid_cell_move = self._find_random_valid_action(agent)
                     assigned_best_goal[agent] = [-1, {'steps': [random_valid_cell_move], 'rewards': -1}]

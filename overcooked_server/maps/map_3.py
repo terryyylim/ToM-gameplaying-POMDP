@@ -1,10 +1,12 @@
 # ======================= World State =======================
 # As of now: DO NOT ALLOW DROPPING ITEMS INFRONT OF TASK_PERFORMING CELL
 MAP = 'map3'
+COMPLEX_RECIPE = False
 
 WORLD_STATE = {
+    'invalid_stay_cells': [(1,1), (2,7), (2,5), (5,5), (5,7)],
     'invalid_movement_cells': [
-        (0,6), (1,6), (2,6), (3,6), (4,6), (5,6), (7,6), (8,6)
+        (0,6), (1,6), (2,6), (3,6), (4,6), (5,6), (6,6), (7,6), (8,6)
     ],
     'valid_item_cells': [
         (0,1), (0,2), (0,4), (0,9), (0,10), (0,11),

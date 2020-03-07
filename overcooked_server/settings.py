@@ -14,17 +14,24 @@ BROWN = (160, 82, 4)
 SCOREBOARD_BG = (143, 186, 200)
 
 # ======================= Game Settings =======================
-WIDTH = 416 # 13x32  # 16 * 64 or 32 * 32 or 64 * 16
-HEIGHT = 320 # 9x32 # 16 * 48 or 32 * 24 or 64 * 12
+WIDTH = 832 # 13x32  # 16 * 64 (832) or 32 * 32 or 64 * 16
+HEIGHT = 640 # 9x32 # 16 * 48 (640) or 32 * 24 or 64 * 12
 FPS = 60
 TITLE = "Overcooked Simulation"
 BGCOLOR = BACKGROUND_BLUE
 
-TILESIZE = 32
+TILESIZE = 64
 GRIDWIDTH = WIDTH / TILESIZE
 GRIDHEIGHT = HEIGHT / TILESIZE
 
-TERMINATING_EPISODE = 1000
+SCOREBOARD_SCORE = (9,0)
+SCOREBOARD_ORDERS = (9,4)
+SCOREBOARD_TIMER = (9,8)
+SCOREBOARD = [
+    (9,1), (9,2), (9,3), (9,5), (9,6), (9,7), (9,8), (9,9), (9,10), (9,11), (9,12)
+]
+
+TERMINATING_EPISODE = 500
 
 # ====================== Actions ======================= 
 MAP_ACTIONS = {
@@ -42,6 +49,7 @@ MAP_ACTIONS = {
 
 # ====================== Chosen Map ======================
 MAP = selected_map.MAP
+COMPLEX_RECIPE = selected_map.COMPLEX_RECIPE
 RECIPES = selected_map.RECIPES
 RECIPES_INFO = selected_map.RECIPES_INFO
 RECIPES_ACTION_MAPPING = selected_map.RECIPES_ACTION_MAPPING
@@ -58,7 +66,7 @@ INGREDIENTS_STATION = selected_map.INGREDIENTS_STATION
 SERVING_STATION = selected_map.SERVING_STATION
 WALLS = selected_map.WALLS
 WORLD_STATE = selected_map.WORLD_STATE
-SCOREBOARD_SCORE = selected_map.SCOREBOARD_SCORE
-SCOREBOARD_ORDERS = selected_map.SCOREBOARD_ORDERS
-SCOREBOARD = selected_map.SCOREBOARD
+# SCOREBOARD_SCORE = selected_map.SCOREBOARD_SCORE
+# SCOREBOARD_ORDERS = selected_map.SCOREBOARD_ORDERS
+# SCOREBOARD = selected_map.SCOREBOARD
 QUEUE_EPISODES = selected_map.QUEUE_EPISODES

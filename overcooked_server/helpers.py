@@ -1,8 +1,11 @@
 from typing import List
+from typing import Union
 
 import os
 import cv2
 import glob
+from human_agent import HumanAgent
+from overcooked_agent import OvercookedAgent
 
 def check_dir_exist(dir_path: str) -> None:
     if not os.path.isdir(dir_path):
@@ -11,21 +14,29 @@ def check_dir_exist(dir_path: str) -> None:
 def clean_dir(dir_path: str) -> None:
     for file in os.listdir(dir_path):
         # CASE: Images directory
-        if dir_path == 'new_overcooked/simulations':
+        if dir_path == 'overcooked_server/simulations':
             if file.endswith('.png'):
                 os.remove(dir_path+'/'+file)
 
-def get_video_count(dir_path):
+def get_video_count(dir_path: str, map_no: str):
     game_folder = os.path.dirname(__file__)
-    video_folder = os.path.join(game_folder, 'videos')
+    video_folder = os.path.join(*[game_folder, 'videos', map_no])
     video_count = str(len(glob.glob1(video_folder, dir_path+'*.*')))
     return video_count
 
-def get_video_name_ext(agent_type: List[bool], episodes: int) -> str:
-    video_name_ext = ['ToM' if a_type else 'Dummy' for a_type in agent_type]
-    video_name_ext = '_'.join(video_name_ext) + '_' + str(episodes) + '_ep'
-    video_type_count = get_video_count(video_name_ext)
-    return video_name_ext + '_' + video_type_count
+def get_video_name_ext(agents: Union[OvercookedAgent,HumanAgent], episodes: int, map_no: str) -> str:
+    video_name_ext = []
+    for agent in agents:
+        if isinstance(agent, OvercookedAgent):
+            if agent.is_inference_agent:
+                video_name_ext.append('ToM')
+            else:
+                video_name_ext.append('Dummy')
+        elif isinstance(agent, HumanAgent):
+            video_name_ext.append('Human')
+    video_name_ext = '_'.join(video_name_ext) + '_' + str(episodes) + 'ep'
+    video_type_count = get_video_count(video_name_ext, map_no)
+    return video_name_ext + '_' + map_no + '_' + video_type_count
 
 def make_video_from_rgb_imgs(rgb_arrs, vid_path, video_name='trajectory',
                              fps=1, format="mp4v", resize=(640, 480)):
