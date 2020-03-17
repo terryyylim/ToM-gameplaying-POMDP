@@ -77,7 +77,7 @@ def vectorize_world_state(world_state):
         state_mask_dict["player_{}".format(i)][loc] = 1
 
     state_mask_stack = np.array([[state_mask_dict[layer] for layer in LAYERS]])
-    return np.array(state_mask_stack).astype(int)    
+    return np.array(state_mask_stack).astype(float)    
 
 def flip_array(agent_id, vec_world_state):
     MAIN_AGENT_IDX = 0
