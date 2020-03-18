@@ -1,25 +1,15 @@
 import copy
 import sys
 import torch
+import random
 import numpy as np
 from torch import optim
 from overcooked_server.rl_base_agent import Base_Agent
-from overcooked_server.rl_utils import vectorize_world_state, flip_array
-from exploration_strategies.Epsilon_Greedy_Exploration import Epsilon_Greedy_Exploration
-from utilities.Utility_Functions import normalise_rewards, create_actor_distribution
+from overcooked_server.utilities.rl_utils import flip_array
+from overcooked_server.utilities.Epsilon_Greedy_Exploration import Epsilon_Greedy_Exploration
+from overcooked_server.utilities.Utility_Functions import normalise_rewards, create_actor_distribution
 
-
-
-
-
-# Init policies
-# init agents that take in these polices
-# Step 
-# for every episode end, end_episode()
-
-
-#Left to do: refactor policy_learn(), equalise_policy(), 
-
+#Left to do: refactor policy_learn() LGTM!
 
 class PPO(Base_Agent):
     """Proximal Policy Optimization agent"""
@@ -28,7 +18,6 @@ class PPO(Base_Agent):
     def __init__(self, config, agent_id, policy_old, policy_new):
         Base_Agent.__init__(self, config)
         self.agent_id = agent_id
-        self.policy_output_size = self.calculate_policy_output_size()
         self.policy_new = policy_old
         self.policy_old = policy_new
         self.policy_old.load_state_dict(copy.deepcopy(self.policy_new.state_dict()))
@@ -38,9 +27,9 @@ class PPO(Base_Agent):
         self.many_episode_actions = []
         self.many_episode_rewards = []
         self.exploration_strategy = Epsilon_Greedy_Exploration(self.config)
-        self.reset_game()
+        self.reset_agent()
 
-    def reset_game(self):
+    def reset_agent(self):
         self.current_episode_state = []
         self.current_episode_action = []
         self.current_episode_rewards = []
@@ -48,10 +37,10 @@ class PPO(Base_Agent):
 
     def step(self, state):
         """Runs a single timestep for PPO agent"""
-        self.current_episode_state.append(state)
+        flipped_arr = flip_array(self.agent_id, state)
+        self.current_episode_state.append(flipped_arr)
         exploration_epsilon =  self.exploration_strategy.get_updated_epsilon_exploration({"episode_number": self.episode_number})
         action_dict = {}
-        flipped_arr = flip_array(agent, world_state_arr)
         action = self.pick_action(flipped_arr, exploration_epsilon)
         self.current_episode_action.append(action)
         action_dict[self.agent_id] = [-1, {'goal': [action], 'rewards':-1}]
@@ -69,13 +58,6 @@ class PPO(Base_Agent):
         action_distribution = create_actor_distribution(self.action_types, actor_output, self.action_size)
         action = action_distribution.sample().cpu()
         return action
-
-    def calculate_policy_output_size(self):
-        """Initialises the policies"""
-        if self.action_types == "DISCRETE":
-            return self.action_size
-        elif self.action_types == "CONTINUOUS":
-            return self.action_size * 2 #Because we need 1 parameter for mean and 1 for std of distribution
 
     def policy_learn(self):
         """A learning iteration for the policy"""
@@ -96,7 +78,7 @@ class PPO(Base_Agent):
             self.policy_learn()
             self.update_learning_rate(self.hyperparameters['learning_rate'], self.policy_new_optimizer)
             self.equalise_policies()
-            self.reset_game()
+            self.reset_agent()
 
     def calculate_all_discounted_returns(self):
         """Calculates the cumulative discounted return for each episode which we will then use in a learning iteration"""
