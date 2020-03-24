@@ -11,6 +11,7 @@ from settings import MAP_ACTIONS, WALLS
 from overcooked_agent import OvercookedAgent
 from human_agent import HumanAgent
 from overcooked_item_classes import Plate, Ingredient
+from agent_configs import REWARDS
 
 class MapEnv(MultiAgentEnv):
     def __init__(
@@ -81,7 +82,7 @@ class MapEnv(MultiAgentEnv):
         return arr
 
     # Undone
-    def step(self, agent_actions):
+    def step(self, agent_actions, reward_mapping):
         """Takes in a dict of actions and converts them to a map update
         Parameters
         ----------
@@ -101,12 +102,29 @@ class MapEnv(MultiAgentEnv):
         print('@map_env - step()')
         print(agent_actions)
         
-        orig_pos = {agent:tuple(agent.location) for agent in self.world_state['agents']}
+        orig_pos = {agent: tuple(agent.location) for agent in self.world_state['agents']}
         orig_holding = {agent:agent.holding for agent in self.world_state['agents']}
 
-        self.update_moves(agent_actions)
-
+        agent_executed = self.update_moves(agent_actions)
         curr_pos = {agent: tuple(agent.location) for agent in self.world_state['agents']}
+
+        final_rewards = {}
+        # Calculate task rewards
+        for agent in reward_mapping:
+            # Performed task action
+            if agent in agent_executed:
+                final_rewards[agent.id] = agent_executed[agent]
+            else:
+                # Stayed
+                if orig_pos[agent] == curr_pos[agent]:
+                    final_rewards[agent.id] = REWARDS['STAY']
+                # Moved 
+                else:
+                    movement = list(np.subtract(curr_pos[agent], orig_pos[agent]))
+                    if movement in [[0,1], [0,-1], [1,0], [-1,0]]:
+                        final_rewards[agent.id] = -1
+                    else:
+                        final_rewards[agent.id] = -2
         
         # Update map barriers for agent's A* Search
         temp_astar_map = None
@@ -168,10 +186,9 @@ class MapEnv(MultiAgentEnv):
         for agent in self.world_state['agents']:
             if isinstance(agent, OvercookedAgent):
                 agent.astar_map = temp_astar_map
-
-        print('after 1 cycle')
-        print(self.world_state['valid_cells'])
+        
         # TO-DO: Add mechanism to store past observations, rewards
+        return final_rewards
 
     # Taking only 1 grid cell movement now (correct?)
     def update_moves(self, actions):
@@ -378,28 +395,38 @@ class MapEnv(MultiAgentEnv):
 
         # All possible action handlers
         print('@map_env - Executing Task Handlers')
+        agent_executed = {}
         for agent in agent_tasks:
             print('conducting tasks now')
             task_id = agent_tasks[agent][0]
             task_action = agent_tasks[agent][1]
             print(task_action)
+            agent_rewards = REWARDS[task_action[0]]
             # do we still need the second check?
             if task_action[0] == 'PICK' and task_action[2] == agent.location:
                 print('@map_env - Executing Pick Action')
                 # agent.pick(task_id, task_action[1], task_action[2], task_action[3])
                 agent.pick(task_id, task_action[1])
+                agent_executed[agent] = agent_rewards
             elif task_action[0] == 'CHOP' and task_action[3] == agent.location:
                 print('@map_env - Executing Chop Action')
                 agent.chop(task_id, task_action[1], task_action[2])
+                agent_executed[agent] = agent_rewards
             elif task_action[0] == 'COOK' and task_action[3] == agent.location:
                 print('@map_env - Executing Cook Action')
                 agent.cook(task_id, task_action[1], task_action[2])
+                agent_executed[agent] = agent_rewards
             elif task_action[0] == 'SCOOP' and task_action[2] == agent.location:
                 print('@map_env - Executing Scoop Action')
                 agent.scoop(task_id, task_action[1])
+                agent_executed[agent] = agent_rewards
             elif task_action[0] == 'SERVE' and task_action[2] == agent.location:
                 print('@map_env - Executing Serve Action')
                 agent.serve(task_id, task_action[1])
+                agent_executed[agent] = agent_rewards
             elif task_action[0] == 'DROP':
                 print('@map_env - Executing Drop Action')
                 agent.drop(task_id)
+                agent_executed[agent] = agent_rewards
+        
+        return agent_executed
