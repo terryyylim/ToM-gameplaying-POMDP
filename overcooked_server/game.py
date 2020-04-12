@@ -771,8 +771,10 @@ class Game:
         temp_copy['historical_world_state'] = {}
         self.env.world_state['historical_world_state'] = temp_copy
         
+        reward_mapping = {}
         action_mapping = {}
         for agent in best_goals:
+            reward_mapping[agent] = best_goals[agent][1]['rewards']
             action_mapping[agent] = (
                 best_goals[agent][0],
                 best_goals[agent][1]['steps'][0]
@@ -787,7 +789,7 @@ class Game:
         print(action_mapping)
         print('@rollout - Starting step function')
         print([agent.last_action for agent in self.env.world_state['agents']])
-        self.env.step(action_mapping)
+        self.env.step(action_mapping, reward_mapping)
 
         # print(f'Historical World State')
         # print(self.env.world_state['historical_world_state'])
