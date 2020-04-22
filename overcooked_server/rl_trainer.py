@@ -1,4 +1,7 @@
 import copy
+import os
+import logging
+import sys
 import random
 import torch
 import numpy as np
@@ -7,37 +10,70 @@ import torch.nn.functional as F
 from torch import optim
 
 from .rl_networks import ConvMLPNetwork
-from .utilities.rl_utils import flip_array, vectorize_world_state
+from .utilities.rl_utils import flip_array, vectorize_world_state, setup_logger
+from .utilities.Epsilon_Greedy_Exploration import Epsilon_Greedy_Exploration
+from .utilities.Utility_Functions import normalise_rewards, create_actor_distribution
 
 class PPOTrainer():
     """Master class to orchestrate training of PPO Algorithm in Overcooked AI"""
     def __init__(self, config):
         self.config = config
-        self.logger = self.setup_logger()
+        self.logger = setup_logger()
         self.policy_new = self.create_NN(input_dim, output_dim, hyperparameters) # what are the configs for inputdim, outputdim, and hyperparams?
         self.policy_old = self.create_NN(input_dim, output_dim, hyperparameters)
         self.policy_old.load_state_dict(copy.deepcopy(self.policy_new.state_dict()))
         self.policy_new_optim = optim.Adam(self.policy_new.parameters(), lr = self.config['learning_rate'], eps=1e-4)
         self.episode_number = 0
         self.timesteps_number = 0
-        self.many_episode_states = []
-        self.many_episode_actions = []
-        self.many_episode_rewards = []
+
+        self.all_states = []
+        self.all_actions = []
+        self.all_rewards = []
+        self.rolling_results = []
+        self.init_batch_lists()
         self.setup_agents()
         self.reset_game()
+
+    def init_batch_lists(self):
+        if self.states_batched:
+            self.all_states.append(self.states_batched)
+            self.all_actions.append(self.actions_batched)
+            self.all_rewards.append(self.rewards_batched)
+        self.states_batched = []
+        self.actions_batched = []
+        self.rewards_batched = []
 
     def setup_agents(self):
         # Parse through configs and init agents, append it back to the env. 
         pass
     
-    def reset_game(self):
-        # how to handle this for multi-agent?
-        self.current_episode_state = []
-        self.current_episode_action = []
-        self.current_episode_rewards= []
+    def update_learning_rate(self, starting_lr,  optimizer):
+        """Lowers the learning rate according to how close we are to the solution"""
+        if len(self.rolling_results) > 0:
+            last_rolling_score = self.rolling_results[-1]
+            if last_rolling_score > 0.75 * self.average_score_required_to_win:
+                new_lr = starting_lr / 100.0
+            elif last_rolling_score > 0.6 * self.average_score_required_to_win:
+                new_lr = starting_lr / 20.0
+            elif last_rolling_score > 0.5 * self.average_score_required_to_win:
+                new_lr = starting_lr / 10.0
+            elif last_rolling_score > 0.25 * self.average_score_required_to_win:
+                new_lr = starting_lr / 2.0
+            else:
+                new_lr = starting_lr
+            for g in optimizer.param_groups:
+                g['lr'] = new_lr
+        if random.random() < 0.001: self.logger.info("Learning rate {}".format(new_lr))
 
-    def update_learning_rate(self, starting_lr, optimizer):
-        pass
+    def reset_game(self):
+        self.current_episode_state = {}
+        self.current_episode_action = {}
+        self.current_episode_rewards= {}
+        for agent in self.agents:
+            self.current_episode_state[agent] = []
+            self.current_episode_action[agent] = []
+            self.current_episode_reward[agent] = []
+            
 
     def pick_action(self, state, exploration_episilon):
         if random.random() <= exploration_episilon:
@@ -54,11 +90,11 @@ class PPOTrainer():
 
     def step(self, world_state):
         action_dict = {}
-        #world_state to np array
-        #exploration_epsilon =  self.exploration_strategy.get_updated_epsilon_exploration({"episode_number": self.episode_number})
-        for agent in agents:
-            #flip_array
-            action = self.pick_action(flipped_arr, exploration_episilon) #maybe just need to do policy.forward dont need to update via agent
+        world_state_np = vectorize_world_state(world_state)
+        exploration_epsilon =  self.exploration_strategy.get_updated_epsilon_exploration({"episode_number": self.episode_number})
+        for agent in self.agents:
+            flipped_arr = flip_array(agent, world_state_np)
+            action = self.pick_action(flipped_arr, exploration_epsilon)
             action_dict[agent.agent_id] = [-1, {'goal': [action], 'rewards': -1}]
         self.timesteps_number += 1
         return action_dict
@@ -71,12 +107,13 @@ class PPOTrainer():
             all_ratio_of_policy_probabilities = self.calculate_all_ratio_of_policy_probabilities()
             loss = self.calculate_loss([all_ratio_of_policy_probabilities], all_discounted_returns)
             self.take_policy_new_optimisation_step(loss)
+        self.init_batch_lists()
 
     def end_episode(self):
         self.episode_number += 1
-        self.many_episode_states.append(self.current_episode_state)
-        self.many_episode_actions.append(self.current_episode_action)
-        self.many_episode_rewards.append(self.current_episode_rewards)
+        self.states_batched.append(self.current_episode_state)
+        self.actions_batched.append(self.current_episode_action)
+        self.rewards_batched.append(self.current_episode_rewards)
         if episode_number % self.hyperparameters['episodes_per_learning_round'] == 0:
             loss = self.policy_learn()
             self.update_learning_rate(self.hyperparameters['learning_rate'], self.policy_new_optimizer)
@@ -86,8 +123,8 @@ class PPOTrainer():
     def calculate_all_ratio_of_policy_probabilities(self):
         """For each action calculates the ratio of the probability that the new policy would have picked the action vs.
          the probability the old policy would have picked it. This will then be used to inform the loss"""
-        all_states = [state for states in self.many_episode_states for state in states]
-        all_actions = [[action] if self.action_types == "DISCRETE" else action for actions in self.many_episode_actions for action in actions ]
+        all_states = [state for states in self.states_batched for state in states]
+        all_actions = [[action] for actions in self.actions_batched for action in actions]
         all_states = torch.stack([torch.Tensor(states).float().to(self.device) for states in all_states])
 
         all_actions = torch.stack([torch.Tensor(actions).float().to(self.device) for actions in all_actions])
@@ -138,26 +175,6 @@ class PPOTrainer():
     
     def create_NN(self, input_dim, output_dim, hyperparameters):
         return ConvMLPNetwork(input_dim, output_dim, hyperparameters)
-
-    def setup_logger(self):
-        """Sets up the logger"""
-        filename = "Training.log"
-        try: 
-            if os.path.isfile(filename): 
-                os.remove(filename)
-        except: pass
-
-        logger = logging.getLogger(__name__)
-        logger.setLevel(logging.INFO)
-        # create a file handler
-        handler = logging.FileHandler(filename)
-        handler.setLevel(logging.INFO)
-        # create a logging format
-        formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-        handler.setFormatter(formatter)
-        # add the handlers to the logger
-        logger.addHandler(handler)
-        return logger
 
     def set_random_seeds(self, random_seed):
         """Sets all possible random seeds so results can be reproduced"""
