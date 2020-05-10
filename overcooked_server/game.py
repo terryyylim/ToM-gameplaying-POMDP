@@ -21,6 +21,8 @@ class Game:
     def __init__(
         self,
         num_ai_agents: int=1,
+        num_rl_agents: int=0,
+        RLTrainer = None,
         is_simulation: bool=False,
         simulation_episodes: int=500,
         is_tom: bool=False,
@@ -34,11 +36,19 @@ class Game:
         self.is_simulation = is_simulation
         self.is_tom = is_tom
         self.experiment_id = experiment_id
+        self.RLTrainer = RLTrainer
 
         AI_AGENTS_TO_INITIALIZE = {}
+        RL_AGENTS_TO_INITIALIZE = {}
+        agent_id = 0
         for idx in range(1, num_ai_agents+1):
             idx = str(idx)
             AI_AGENTS_TO_INITIALIZE[idx] = AI_AGENTS[idx]
+            agent_id = idx
+        
+        for idx in range(agent_id+1, num_rl_agents+1):
+            idx = str(idx)
+            RL_AGENTS_TO_INITIALIZE[idx] = AI_AGENTS[idx]
 
         # Logs saving
         game_folder = os.path.dirname(__file__)
@@ -50,6 +60,8 @@ class Game:
         if self.is_simulation:
             self.env = OvercookedEnv(
                 ai_agents=AI_AGENTS_TO_INITIALIZE,
+                rl_agents=RL_AGENTS_TO_INITIALIZE,
+                rl_trainer= self.RLTrainer,
                 queue_episodes=QUEUE_EPISODES
             )
             self.load_data()
@@ -789,8 +801,9 @@ class Game:
         print(action_mapping)
         print('@rollout - Starting step function')
         print([agent.last_action for agent in self.env.world_state['agents']])
-        self.env.step(action_mapping, reward_mapping)
-
+        final_rewards = self.env.step(action_mapping, reward_mapping)
+        if self.RLTrainer:
+            self.env.rl_trainer.receive_rewards(final_rewards)
         # print(f'Historical World State')
         # print(self.env.world_state['historical_world_state'])
 
@@ -880,15 +893,15 @@ class Game:
         experiment_runtime_sec = experiment_runtime%60
         print(f'Simulation Experiment took {experiment_runtime_min} mins, {experiment_runtime_sec} secs to run.')
 
-        agent_types = [agent.is_inference_agent for agent in self.env.world_state['agents']]
+        # agent_types = [agent.is_inference_agent for agent in self.env.world_state['agents']]
         # video_name_ext = helpers.get_video_name_ext(agent_types, episodes, MAP)
-        video_name_ext = helpers.get_video_name_ext(self.env.world_state['agents'], TERMINATING_EPISODE, MAP)
-        helpers.make_video_from_image_dir(
-            map_folder,
-            simulations_folder,
-            video_name_ext
-        )
-        sys.exit()
+        # video_name_ext = helpers.get_video_name_ext(self.env.world_state['agents'], TERMINATING_EPISODE, MAP)
+        # helpers.make_video_from_image_dir(
+        #     map_folder,
+        #     simulations_folder,
+        #     video_name_ext
+        # )
+        #sys.exit()
 
     def show_start_screen(self):
         pass
@@ -898,13 +911,24 @@ class Game:
 
 @click.command()
 @click.option('--num_ai_agents', default=1, help='Number of AI agents to initialize')
+@click.option('--num_rl_agents', default=0, help='Number of RL agents to initialize')
 @click.option('--is_simulation', default=False, help='Run Simulation or Human Experiment?')
-@click.option('--simulation_episodes', default=500, help='Number of simulations to run')
+@click.option('--episodes', default=1, help='Number of episodes to run')
+@click.option('--simulation_episodes', default=500, help='Number of timesteps to run')
 @click.option('--is_tom', default=False, help='Is agent ToM-based?')
 @click.option('--experiment_id', default='1', help='ID of the experiment')
-def main(num_ai_agents, is_simulation, simulation_episodes, is_tom, experiment_id):
+def main(num_ai_agents, num_rl_agents, is_simulation, episodes, simulation_episodes, is_tom, experiment_id):
     # create the game object
-    g = Game(num_ai_agents, is_simulation, simulation_episodes, is_tom, experiment_id)
+    if num_rl_agents > 0:
+        from overcooked_server.rl_trainer import PPOTrainer
+        from overcooked_server.rl_config import config
+        RLTrainer = PPOTrainer(config)
+    else: RLTrainer = None
+
+    for episode in range(episodes):
+        print ("======== STARTING EPISODE {}=======".format(episode))
+        g = Game(num_ai_agents, num_rl_agents, RLTrainer, is_simulation, simulation_episodes, is_tom, experiment_id)
+    sys.exit()
     g.show_start_screen()
     while True:
         g.new(

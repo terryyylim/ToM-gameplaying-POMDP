@@ -12,7 +12,7 @@ import random
 from map_env import MapEnv
 from astar_search import AStarGraph
 from human_agent import HumanAgent
-from overcooked_agent import OvercookedAgent
+from overcooked_agent import OvercookedAgent, RLAgent
 from overcooked_item_classes import ChoppingBoard, Extinguisher, Plate, Pot
 from settings import MAP_ACTIONS, RECIPES, RECIPES_INFO, RECIPES_ACTION_MAPPING, \
     ITEMS_INITIALIZATION, INGREDIENTS_INITIALIZATION, WORLD_STATE, WALLS, \
@@ -24,6 +24,8 @@ class OvercookedEnv(MapEnv):
         self,
         human_agents=None,
         ai_agents=None,
+        rl_agents=None,
+        rl_trainer=None,
         queue_episodes=None
     ) -> None:
         super().__init__()
@@ -35,6 +37,8 @@ class OvercookedEnv(MapEnv):
         self.results_filename = MAP
         self.human_agents = human_agents
         self.ai_agents = ai_agents
+        self.rl_agents = rl_agents
+        self.rl_trainer = rl_trainer
         self.queue_episodes = queue_episodes
         self.setup_agents()
         self.random_queue_order()
@@ -188,6 +192,18 @@ class OvercookedEnv(MapEnv):
                     self.results_filename += '_ToM'
                 else:
                     self.results_filename += '_dummy'
+        if self.rl_agents:
+            agent_list = []
+            for agent in self.rl_agents:
+                ai_agent_count += 1 
+                coords = self.rl_agents[agent]['coords']
+                agent_id = str(ai_agent_count)
+                agent_list.append(agent_id)
+                self.agents[agent_id] = RLAgent(agent_id,
+                                                coords)
+                self.world_state['agents'].append(self.agents[agent_id])
+                self.results_filename += '_rl'
+            self.rl_trainer.setup_agents(agent_list)
         self.custom_map_update()
 
     def find_agents_possible_goals(self, observers_task_to_not_do=[]):
@@ -203,7 +219,7 @@ class OvercookedEnv(MapEnv):
                     observer_task_to_not_do = observers_task_to_not_do[agent]
                 agent_goals[agent] = agent.find_best_goal(observer_task_to_not_do)
             else:
-                if isinstance(agent, HumanAgent):
+                if isinstance(agent, HumanAgent) or isinstance(agent, RLAgent):
                     print(f'Dummy Agent goals')
                     temp_OvercookedAgent = OvercookedAgent(
                         agent.id,
@@ -240,49 +256,52 @@ class OvercookedEnv(MapEnv):
 
         assigned_best_goal = {}
         for agent in agents_possible_goals:
-            tasks_rewards = [agents_possible_goals[agent][task]['rewards'] for task in agents_possible_goals[agent]]
-            print(f'Agent {agent.id} Task Rewards')
-            print(tasks_rewards)
-
-            if tasks_rewards:
-                softmax_best_goal = self._softmax(agents_possible_goals[agent], beta=0.5)
-
-                # # Greedy solution
-                # max_task_rewards = max(tasks_rewards)
-                # max_rewards_task_idx = [idx for idx in range(len(tasks_rewards)) if tasks_rewards[idx] == max_task_rewards]
-
-                # # If more than one task with the same cost
-                # if len(max_rewards_task_idx) > 1:
-                #     assigned_task_idx = random.choice(max_rewards_task_idx)
-                # else:
-                #     # not random
-                #     assigned_task_idx = max_rewards_task_idx[0]
-                # assigned_task = list(agents_possible_goals[agent])[assigned_task_idx]
-                # assigned_best_goal[agent] = [assigned_task, agents_possible_goals[agent][assigned_task]]
-
-                print(f'Softmax Best Goal:')
-                print(softmax_best_goal)
-                all_best_paths = self.generate_possible_paths(agent, agents_possible_goals[agent][softmax_best_goal])
-
-                # best_path == -1; means there's no valid permutations, use the original path
-                if all_best_paths != -1:
-                    best_path = random.choice(all_best_paths)
-                    best_path.append(agents_possible_goals[agent][softmax_best_goal]['steps'][-1])
-                    agents_possible_goals[agent][softmax_best_goal]['steps'] = best_path
-                else:
-                    # Eg. Edge Case [1, {'steps': [], 'rewards': 0}]
-                    if not agents_possible_goals[agent][softmax_best_goal]['steps']:
-                        agents_possible_goals[agent][softmax_best_goal]['steps'] = [8] # STAY
-
-                assigned_best_goal[agent] = [softmax_best_goal, agents_possible_goals[agent][softmax_best_goal]]
+            if isinstance(agent, RLAgent):
+                assigned_best_goal[agent] = self.rl_trainer.step(agent.id, self.world_state)
             else:
-                # If no task at hand, but blocking stations, move to valid cell randomly
-                if tuple(agent.location) in self.world_state['invalid_stay_cells']:
-                    print(f'Entered find random valid action')
-                    random_valid_cell_move = self._find_random_valid_action(agent)
-                    assigned_best_goal[agent] = [-1, {'steps': [random_valid_cell_move], 'rewards': -1}]
+                tasks_rewards = [agents_possible_goals[agent][task]['rewards'] for task in agents_possible_goals[agent]]
+                print(f'Agent {agent.id} Task Rewards')
+                print(tasks_rewards)
+
+                if tasks_rewards:
+                    softmax_best_goal = self._softmax(agents_possible_goals[agent], beta=0.5)
+
+                    # # Greedy solution
+                    # max_task_rewards = max(tasks_rewards)
+                    # max_rewards_task_idx = [idx for idx in range(len(tasks_rewards)) if tasks_rewards[idx] == max_task_rewards]
+
+                    # # If more than one task with the same cost
+                    # if len(max_rewards_task_idx) > 1:
+                    #     assigned_task_idx = random.choice(max_rewards_task_idx)
+                    # else:
+                    #     # not random
+                    #     assigned_task_idx = max_rewards_task_idx[0]
+                    # assigned_task = list(agents_possible_goals[agent])[assigned_task_idx]
+                    # assigned_best_goal[agent] = [assigned_task, agents_possible_goals[agent][assigned_task]]
+
+                    print(f'Softmax Best Goal:')
+                    print(softmax_best_goal)
+                    all_best_paths = self.generate_possible_paths(agent, agents_possible_goals[agent][softmax_best_goal])
+
+                    # best_path == -1; means there's no valid permutations, use the original path
+                    if all_best_paths != -1:
+                        best_path = random.choice(all_best_paths)
+                        best_path.append(agents_possible_goals[agent][softmax_best_goal]['steps'][-1])
+                        agents_possible_goals[agent][softmax_best_goal]['steps'] = best_path
+                    else:
+                        # Eg. Edge Case [1, {'steps': [], 'rewards': 0}]
+                        if not agents_possible_goals[agent][softmax_best_goal]['steps']:
+                            agents_possible_goals[agent][softmax_best_goal]['steps'] = [8] # STAY
+
+                    assigned_best_goal[agent] = [softmax_best_goal, agents_possible_goals[agent][softmax_best_goal]]
                 else:
-                    assigned_best_goal[agent] = [-1, {'steps': [8], 'rewards': -2}]
+                    # If no task at hand, but blocking stations, move to valid cell randomly
+                    if tuple(agent.location) in self.world_state['invalid_stay_cells']:
+                        print(f'Entered find random valid action')
+                        random_valid_cell_move = self._find_random_valid_action(agent)
+                        assigned_best_goal[agent] = [-1, {'steps': [random_valid_cell_move], 'rewards': -1}]
+                    else:
+                        assigned_best_goal[agent] = [-1, {'steps': [8], 'rewards': -2}]
         return assigned_best_goal
 
     def _softmax(self, rewards_dict, beta:int=1):

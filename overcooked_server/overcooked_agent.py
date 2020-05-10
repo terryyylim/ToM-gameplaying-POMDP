@@ -1194,6 +1194,21 @@ class OvercookedAgent():
 
         return p_distribution
 
+class RLAgent(OvercookedAgent):
+    def __init__(self,agent_id, location, barriers, is_inference_agent=False, is_assigned=False, can_update=True, goals=None,
+                    holding=None,actions=ACTIONS, rewards=REWARDS):
+        super.__init__(
+        agent_id,
+        location,
+        barriers,
+        is_inference_agent=False,
+        is_assigned=False,
+        can_update=True,
+        goals=None,
+        holding=None,
+        actions=ACTIONS,
+        rewards=REWARDS
+    )
 def _get_conditional_distribution(sampled_goal_space_actions):
     """
     Calculates conditional probability of taking each goal given action using Bayes rule.

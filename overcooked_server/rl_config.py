@@ -1,13 +1,18 @@
+from .utilities import Config
+from .utilities.rl_utils import get_state_shape, LAYERS
+from .settings import WORLD_STATE
+ 
+
+x,y = get_state_shape(WORLD_STATE)
 ###################
 # Training Params #
 ###################
 
 config = Config()
 config.seed = 1
-config.environment = gym.make("CartPole-v0")
 config.num_episodes_to_run = 100
-config.file_to_save_data_results = "results/data_and_graphs/Cart_Pole_Results_Data.pkl"
-config.file_to_save_results_graph = "results/data_and_graphs/Cart_Pole_Results_Graph.png"
+#config.file_to_save_data_results = "results/data_and_graphs/Cart_Pole_Results_Data.pkl"
+#config.file_to_save_results_graph = "results/data_and_graphs/Cart_Pole_Results_Graph.png"
 config.show_solution_score = False
 config.visualise_individual_results = False
 config.visualise_overall_agent_results = True
@@ -19,14 +24,12 @@ config.randomise_random_seed = True
 config.save_model = False
 
 
-##############
+# ##############
 # PPO Params #
 ##############
 
 
 config.hyperparameters = {
-
-    "Policy_Gradient_Agents": {
         "learning_rate": 0.05,
         "linear_hidden_units": [20, 20],
         "final_layer_activation": "SOFTMAX",
@@ -41,15 +44,12 @@ config.hyperparameters = {
         "theta": 0.0, #only required for continuous action games
         "sigma": 0.0, #only required for continuous action games
         "epsilon_decay_rate_denominator": 1.0,
-        "clip_rewards": False
+        "clip_rewards": False,
+        "action_space": 15,
+        "obs_space": len(LAYERS),
+        "nn_params": {'NUM_HIDDEN_LAYERS':3,
+                      'SIZE_HIDDEN_LAYERS':64,
+                      'NUM_FILTERS':25,
+                      'NUM_CONV_LAYERS':3,
+                      'OBS_STATE_SHAPE':(y,x)} 
     }
-
-#########################
-# Neural Network Params #
-#########################
-
-params={'NUM_HIDDEN_LAYERS':3,
-          'SIZE_HIDDEN_LAYERS':64,
-          'NUM_FILTERS':25,
-          'NUM_CONV_LAYERS':3,
-         'OBS_STATE_SHAPE':(sample_world_state.shape[-1],sample_world_state.shape[-2])}

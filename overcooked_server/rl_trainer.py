@@ -19,34 +19,42 @@ class PPOTrainer():
     def __init__(self, config):
         self.config = config
         self.logger = setup_logger()
-        self.policy_new = self.create_NN(input_dim, output_dim, hyperparameters) # what are the configs for inputdim, outputdim, and hyperparams?
-        self.policy_old = self.create_NN(input_dim, output_dim, hyperparameters)
+        self.policy_new = self.create_NN(self.config.hyperparameters["obs_space"], 
+                                        self.config.hyperparameters["action_space"], 
+                                        self.config.hyperparameters["nn_params"])
+                                        
+        self.policy_old = self.create_NN(self.config.hyperparameters["obs_space"], 
+                                        self.config.hyperparameters["action_space"], 
+                                        self.config.hyperparameters["nn_params"])
+
         self.policy_old.load_state_dict(copy.deepcopy(self.policy_new.state_dict()))
         self.policy_new_optim = optim.Adam(self.policy_new.parameters(), lr = self.config['learning_rate'], eps=1e-4)
+        self.exploration_strategy = Epsilon_Greedy_Exploration(self.config)
         self.episode_number = 0
-        self.timesteps_number = 0
+        self.timesteps = 0
 
         self.all_states = []
         self.all_actions = []
         self.all_rewards = []
+        self.states_batched = []
+        self.actions_batched = []
+        self.rewards_batched = []
         self.rolling_results = []
-        self.init_batch_lists()
-        self.setup_agents()
-        self.reset_game()
 
     def init_batch_lists(self):
         if self.states_batched:
-            self.all_states.append(self.states_batched)
-            self.all_actions.append(self.actions_batched)
-            self.all_rewards.append(self.rewards_batched)
+            self.all_states.extend(self.states_batched)
+            self.all_actions.extend(self.actions_batched)
+            self.all_rewards.extend(self.rewards_batched)
         self.states_batched = []
         self.actions_batched = []
         self.rewards_batched = []
 
-    def setup_agents(self):
-        # Parse through configs and init agents, append it back to the env. 
-        pass
-    
+    def setup_agents(self, agent_list):
+        self.agents = agent_list
+        self.num_agents = len(agent_list)
+        self.reset_game()
+
     def update_learning_rate(self, starting_lr,  optimizer):
         """Lowers the learning rate according to how close we are to the solution"""
         if len(self.rolling_results) > 0:
@@ -74,7 +82,6 @@ class PPOTrainer():
             self.current_episode_action[agent] = []
             self.current_episode_reward[agent] = []
             
-
     def pick_action(self, state, exploration_episilon):
         if random.random() <= exploration_episilon:
             action = random.randint(0, self.output_dim - 1)
@@ -88,16 +95,13 @@ class PPOTrainer():
         action = action_distribution.sample().cpu()
         return action
 
-    def step(self, world_state):
-        action_dict = {}
+    def step(self, agent_id, world_state):
         world_state_np = vectorize_world_state(world_state)
         exploration_epsilon =  self.exploration_strategy.get_updated_epsilon_exploration({"episode_number": self.episode_number})
-        for agent in self.agents:
-            flipped_arr = flip_array(agent, world_state_np)
-            action = self.pick_action(flipped_arr, exploration_epsilon)
-            action_dict[agent.agent_id] = [-1, {'goal': [action], 'rewards': -1}]
-        self.timesteps_number += 1
-        return action_dict
+        flipped_arr = flip_array(agent_id, world_state_np)
+        action = self.pick_action(flipped_arr, exploration_epsilon)
+        best_goal = [-1, {'steps': [action], 'rewards': -1}]
+        return best_goal
 
     def policy_learn(self):
         all_discounted_returns = self.calculate_all_discounted_returns()
@@ -111,9 +115,9 @@ class PPOTrainer():
 
     def end_episode(self):
         self.episode_number += 1
-        self.states_batched.append(self.current_episode_state)
-        self.actions_batched.append(self.current_episode_action)
-        self.rewards_batched.append(self.current_episode_rewards)
+        self.states_batched.extend(list(self.current_episode_state.values()))
+        self.actions_batched.extend(list(self.current_episode_action.values()))
+        self.rewards_batched.extend(list(self.current_episode_rewards.values()))
         if episode_number % self.hyperparameters['episodes_per_learning_round'] == 0:
             loss = self.policy_learn()
             self.update_learning_rate(self.hyperparameters['learning_rate'], self.policy_new_optimizer)
@@ -175,6 +179,11 @@ class PPOTrainer():
     
     def create_NN(self, input_dim, output_dim, hyperparameters):
         return ConvMLPNetwork(input_dim, output_dim, hyperparameters)
+
+    def receive_rewards(self, rewards):
+        for agent_id in self.agents:
+            self.current_episode_rewards[agent_id].append(rewards[agent_id])
+        self.timesteps += 1
 
     def set_random_seeds(self, random_seed):
         """Sets all possible random seeds so results can be reproduced"""

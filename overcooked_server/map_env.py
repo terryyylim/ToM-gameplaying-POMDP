@@ -8,7 +8,7 @@ from ray.rllib.env import MultiAgentEnv
 
 from astar_search import AStarGraph
 from settings import MAP_ACTIONS, WALLS
-from overcooked_agent import OvercookedAgent
+from overcooked_agent import OvercookedAgent, RLAgent
 from human_agent import HumanAgent
 from overcooked_item_classes import Plate, Ingredient
 from agent_configs import REWARDS
