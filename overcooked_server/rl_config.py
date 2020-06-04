@@ -22,9 +22,10 @@ config.use_GPU = True
 config.overwrite_existing_results_file = False
 config.randomise_random_seed = True
 config.save_model = False
-
-
-# ##############
+config.model_path = None
+config.train = True
+config.reward_horizon = 1e6
+##############
 # PPO Params #
 ##############
 
@@ -40,9 +41,6 @@ config.hyperparameters = {
         "episodes_per_learning_round": 4,
         "normalise_rewards": True,
         "gradient_clipping_norm": 7.0,
-        "mu": 0.0, #only required for continuous action games
-        "theta": 0.0, #only required for continuous action games
-        "sigma": 0.0, #only required for continuous action games
         "epsilon_decay_rate_denominator": 1.0,
         "clip_rewards": False,
         "action_space": 15,

@@ -869,7 +869,9 @@ class Game:
             print([agent.location for agent in self.env.world_state['agents']])
             print([agent.holding for agent in self.env.world_state['agents']])
             self.env.update_episode()
-            pg.image.save(self.screen, simulations_folder+f'/episode_{self.env.episode}.png')
+            if self.env.rl_trainer:
+                    if self.env.rl_trainer.episode_number % 100 == 0:
+                        pg.image.save(self.screen, simulations_folder+f'/episode_{self.env.episode}.png')
 
             if self.env.episode == 0:
                 self.results[str(self.env.episode)] = self.env.world_state['total_score']
@@ -878,6 +880,8 @@ class Game:
             if self.env.episode == TERMINATING_EPISODE:
                 print('saving results')
                 self.save_results()
+                if self.RLTrainer:
+                    self.env.rl_trainer.end_episode()
 
         print(f'======================= Done with simulation =======================')
         explicit_chop_rewards = self.env.world_state['explicit_rewards']['chop']
@@ -895,12 +899,15 @@ class Game:
 
         # agent_types = [agent.is_inference_agent for agent in self.env.world_state['agents']]
         # video_name_ext = helpers.get_video_name_ext(agent_types, episodes, MAP)
-        # video_name_ext = helpers.get_video_name_ext(self.env.world_state['agents'], TERMINATING_EPISODE, MAP)
-        # helpers.make_video_from_image_dir(
-        #     map_folder,
-        #     simulations_folder,
-        #     video_name_ext
-        # )
+        if self.env.rl_trainer:
+            if self.env.rl_trainer.episode_number % 100 == 0:
+
+                video_name_ext = helpers.get_video_name_ext(self.env.world_state['agents'], TERMINATING_EPISODE, MAP)
+                helpers.make_video_from_image_dir(
+                    map_folder,
+                    simulations_folder,
+                    video_name_ext
+                    )
         #sys.exit()
 
     def show_start_screen(self):

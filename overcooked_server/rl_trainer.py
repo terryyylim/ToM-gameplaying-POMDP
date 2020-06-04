@@ -19,6 +19,7 @@ class PPOTrainer():
     def __init__(self, config):
         self.config = config
         self.logger = setup_logger()
+        self.set_random_seeds(self.config.seed)
         self.policy_new = self.create_NN(self.config.hyperparameters["obs_space"], 
                                         self.config.hyperparameters["action_space"], 
                                         self.config.hyperparameters["nn_params"])
@@ -32,7 +33,7 @@ class PPOTrainer():
         self.exploration_strategy = Epsilon_Greedy_Exploration(self.config)
         self.episode_number = 0
         self.timesteps = 0
-
+        self.reward_horizon = self.config.reward_horizon
         self.all_states = []
         self.all_actions = []
         self.all_rewards = []
@@ -91,7 +92,7 @@ class PPOTrainer():
         actor_output = self.policy_new.forward(state)
         if self.action_choice_output_columns is not None: #whats this?
             actor_output = actor_output[:, self.action_choice_output_columns]
-        action_distribution = create_actor_distribution(self.action_types, actor_output, self.action_size)
+        action_distribution = create_actor_distribution(self.action_types, actor_output, self.config.hyperparameters['action_space'])
         action = action_distribution.sample().cpu()
         return action
 
@@ -100,17 +101,20 @@ class PPOTrainer():
         exploration_epsilon =  self.exploration_strategy.get_updated_epsilon_exploration({"episode_number": self.episode_number})
         flipped_arr = flip_array(agent_id, world_state_np)
         action = self.pick_action(flipped_arr, exploration_epsilon)
-        best_goal = [-1, {'steps': [action], 'rewards': -1}]
+        best_goal = [-1, {'steps': [action.item()], 'rewards': -1}]
+        self.current_episode_action[agent_id].append(action)
         return best_goal
 
     def policy_learn(self):
         all_discounted_returns = self.calculate_all_discounted_returns()
-        if self.hyperparameters["normalise_rewards"]:
+        if self.config.hyperparameters["normalise_rewards"]:
             all_discounted_returns = normalise_rewards(all_discounted_returns)
-        for _ in range(self.hyperparameters["learning_iterations_per_round"]):   #number of epochs 
+        for _ in range(self.config.hyperparameters["learning_iterations_per_round"]):   #number of epochs 
             all_ratio_of_policy_probabilities = self.calculate_all_ratio_of_policy_probabilities()
             loss = self.calculate_loss([all_ratio_of_policy_probabilities], all_discounted_returns)
             self.take_policy_new_optimisation_step(loss)
+        if self.config.save_model:
+            torch.save(self.policy_new.state_dict(), self.config.model_path)
         self.init_batch_lists()
 
     def end_episode(self):
@@ -118,9 +122,9 @@ class PPOTrainer():
         self.states_batched.extend(list(self.current_episode_state.values()))
         self.actions_batched.extend(list(self.current_episode_action.values()))
         self.rewards_batched.extend(list(self.current_episode_rewards.values()))
-        if episode_number % self.hyperparameters['episodes_per_learning_round'] == 0:
+        if (episode_number % self.config.hyperparameters['episodes_per_learning_round'] == 0) and (self.config.train):
             loss = self.policy_learn()
-            self.update_learning_rate(self.hyperparameters['learning_rate'], self.policy_new_optimizer)
+            self.update_learning_rate(self.config.hyperparameters['learning_rate'], self.policy_new_optimizer)
             self.equalise_policies()
         self.reset_game()
     
@@ -163,14 +167,14 @@ class PPOTrainer():
         """Takes an optimisation step for the new policy"""
         self.policy_new_optimizer.zero_grad()  # reset gradients to 0
         loss.backward()  # this calculates the gradients
-        torch.nn.utils.clip_grad_norm_(self.policy_new.parameters(), self.hyperparameters[
+        torch.nn.utils.clip_grad_norm_(self.policy_new.parameters(), self.config.hyperparameters[
             "gradient_clipping_norm"])  # clip gradients to help stabilise training
         self.policy_new_optimizer.step()  # this applies the gradients
 
     def clamp_probability_ratio(self, value):
         """Clamps a value between a certain range determined by hyperparameter clip epsilon"""
-        return torch.clamp(input=value, min=1.0 - self.hyperparameters["clip_epsilon"],
-                                  max=1.0 + self.hyperparameters["clip_epsilon"])
+        return torch.clamp(input=value, min=1.0 - self.confighyperparameters["clip_epsilon"],
+                                  max=1.0 + self.config.hyperparameters["clip_epsilon"])
 
     def equalise_policies(self):
         """Sets the old policy's parameters equal to the new policy's parameters"""
@@ -180,9 +184,17 @@ class PPOTrainer():
     def create_NN(self, input_dim, output_dim, hyperparameters):
         return ConvMLPNetwork(input_dim, output_dim, hyperparameters)
 
+    def anneal_reward(self, reward):
+        if reward == -1:
+            return -1
+        else:
+            reward_annealed = reward * (self.reward_horizon - self.timesteps)/self.reward_horizon
+            return reward_annealed
+
     def receive_rewards(self, rewards):
         for agent_id in self.agents:
-            self.current_episode_rewards[agent_id].append(rewards[agent_id])
+            reward_annealed = self.anneal_reward(rewards[agent_id])
+            self.current_episode_rewards[agent_id].append(reward_annealed)
         self.timesteps += 1
 
     def set_random_seeds(self, random_seed):
