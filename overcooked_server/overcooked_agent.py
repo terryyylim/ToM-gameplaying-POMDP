@@ -1197,7 +1197,7 @@ class OvercookedAgent():
 class RLAgent(OvercookedAgent):
     def __init__(self,agent_id, location, barriers, is_inference_agent=False, is_assigned=False, can_update=True, goals=None,
                     holding=None,actions=ACTIONS, rewards=REWARDS):
-        super.__init__(
+        super().__init__(
         agent_id,
         location,
         barriers,

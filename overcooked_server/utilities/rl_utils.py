@@ -1,3 +1,4 @@
+import logging
 import numpy as np
 from settings import HUMAN_AGENTS, AI_AGENTS
 
@@ -82,10 +83,10 @@ def vectorize_world_state(world_state):
 def flip_array(agent_id, vec_world_state):
     MAIN_AGENT_IDX = 0
     agent_idx = LAYERS.index('player_{}'.format(agent_id))
-    vec_world_state[MAIN_AGENT_IDX], vec_world_state[agent_idx] = vec_world_state[agent_idx], vec_world_state[MAIN_AGENT_IDX]
+    vec_world_state[0][MAIN_AGENT_IDX], vec_world_state[0][agent_idx] = vec_world_state[0][agent_idx], vec_world_state[0][MAIN_AGENT_IDX]
     return vec_world_state
 
-def setup_logger(self):
+def setup_logger():
     """Sets up the logger"""
     filename = "Training.log"
     try: 

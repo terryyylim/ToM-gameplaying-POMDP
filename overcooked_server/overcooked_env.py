@@ -16,7 +16,7 @@ from overcooked_agent import OvercookedAgent, RLAgent
 from overcooked_item_classes import ChoppingBoard, Extinguisher, Plate, Pot
 from settings import MAP_ACTIONS, RECIPES, RECIPES_INFO, RECIPES_ACTION_MAPPING, \
     ITEMS_INITIALIZATION, INGREDIENTS_INITIALIZATION, WORLD_STATE, WALLS, \
-        FLATTENED_RECIPES_ACTION_MAPPING, MAP, TABLE_TOPS, INGREDIENTS_STATION
+        FLATTENED_RECIPES_ACTION_MAPPING, MAP, TABLE_TOPS, INGREDIENTS_STATION, COMPLEX_RECIPE
 
 
 class OvercookedEnv(MapEnv):
@@ -44,7 +44,7 @@ class OvercookedEnv(MapEnv):
         self.random_queue_order()
 
         # Initialization: Update agent's current cell to be not available
-        print(f'Removing agent current location from valid_cells, valid_item_cells list')
+        print(f'Removing agent current location fdefm valid_cells, valid_item_cells list')
         try:
             for agent in self.agents:
                 self.world_state['valid_cells'].remove(self.agents[agent].location)
@@ -200,7 +200,8 @@ class OvercookedEnv(MapEnv):
                 agent_id = str(ai_agent_count)
                 agent_list.append(agent_id)
                 self.agents[agent_id] = RLAgent(agent_id,
-                                                coords)
+                                                coords,
+                                                WALLS)
                 self.world_state['agents'].append(self.agents[agent_id])
                 self.results_filename += '_rl'
             self.rl_trainer.setup_agents(agent_list)

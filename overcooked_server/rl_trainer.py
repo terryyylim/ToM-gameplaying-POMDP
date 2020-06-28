@@ -9,10 +9,10 @@ import torch.nn as nn
 import torch.nn.functional as F
 from torch import optim
 
-from .rl_networks import ConvMLPNetwork
-from .utilities.rl_utils import flip_array, vectorize_world_state, setup_logger
-from .utilities.Epsilon_Greedy_Exploration import Epsilon_Greedy_Exploration
-from .utilities.Utility_Functions import normalise_rewards, create_actor_distribution
+from rl_networks import ConvMLPNetwork
+from utilities.rl_utils import flip_array, vectorize_world_state, setup_logger
+from utilities.Epsilon_Greedy_Exploration import Epsilon_Greedy_Exploration
+from utilities.Utility_Functions import normalise_rewards, create_actor_distribution
 
 class PPOTrainer():
     """Master class to orchestrate training of PPO Algorithm in Overcooked AI"""
@@ -29,7 +29,7 @@ class PPOTrainer():
                                         self.config.hyperparameters["nn_params"])
 
         self.policy_old.load_state_dict(copy.deepcopy(self.policy_new.state_dict()))
-        self.policy_new_optim = optim.Adam(self.policy_new.parameters(), lr = self.config['learning_rate'], eps=1e-4)
+        self.policy_new_optim = optim.Adam(self.policy_new.parameters(), lr = self.config.hyperparameters['learning_rate'], eps=1e-4)
         self.exploration_strategy = Epsilon_Greedy_Exploration(self.config)
         self.episode_number = 0
         self.timesteps = 0
@@ -77,7 +77,7 @@ class PPOTrainer():
     def reset_game(self):
         self.current_episode_state = {}
         self.current_episode_action = {}
-        self.current_episode_rewards= {}
+        self.current_episode_reward= {}
         for agent in self.agents:
             self.current_episode_state[agent] = []
             self.current_episode_action[agent] = []
@@ -85,7 +85,7 @@ class PPOTrainer():
             
     def pick_action(self, state, exploration_episilon):
         if random.random() <= exploration_episilon:
-            action = random.randint(0, self.output_dim - 1)
+            action = random.randint(0, self.config.hyperparameters['action_space'] - 1)
             return action
         
         state = torch.from_numpy(state).float()
@@ -101,7 +101,7 @@ class PPOTrainer():
         exploration_epsilon =  self.exploration_strategy.get_updated_epsilon_exploration({"episode_number": self.episode_number})
         flipped_arr = flip_array(agent_id, world_state_np)
         action = self.pick_action(flipped_arr, exploration_epsilon)
-        best_goal = [-1, {'steps': [action.item()], 'rewards': -1}]
+        best_goal = [-1, {'steps': [action], 'rewards': -1}]
         self.current_episode_action[agent_id].append(action)
         return best_goal
 
@@ -173,7 +173,7 @@ class PPOTrainer():
 
     def clamp_probability_ratio(self, value):
         """Clamps a value between a certain range determined by hyperparameter clip epsilon"""
-        return torch.clamp(input=value, min=1.0 - self.confighyperparameters["clip_epsilon"],
+        return torch.clamp(input=value, min=1.0 - self.config.hyperparameters["clip_epsilon"],
                                   max=1.0 + self.config.hyperparameters["clip_epsilon"])
 
     def equalise_policies(self):

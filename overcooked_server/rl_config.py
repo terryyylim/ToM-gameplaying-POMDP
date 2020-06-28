@@ -1,7 +1,6 @@
-from .utilities import Config
-from .utilities.rl_utils import get_state_shape, LAYERS
-from .settings import WORLD_STATE
- 
+from utilities.Config import Config
+from utilities.rl_utils import get_state_shape, LAYERS
+from settings import WORLD_STATE
 
 x,y = get_state_shape(WORLD_STATE)
 ###################

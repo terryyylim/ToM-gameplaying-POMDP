@@ -1,7 +1,8 @@
-from exploration_strategies.Base_Exploration_Strategy import Base_Exploration_Strategy
 import numpy as np
 import random
 import torch
+
+from .Base_Exploration_Strategy import Base_Exploration_Strategy
 
 class Epsilon_Greedy_Exploration(Base_Exploration_Strategy):
     """Implements an epsilon greedy exploration strategy"""
