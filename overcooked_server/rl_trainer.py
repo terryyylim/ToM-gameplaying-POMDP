@@ -101,9 +101,8 @@ class PPOTrainer():
         exploration_epsilon =  self.exploration_strategy.get_updated_epsilon_exploration({"episode_number": self.episode_number})
         flipped_arr = flip_array(agent_id, world_state_np)
         action = self.pick_action(flipped_arr, exploration_epsilon)
-        best_goal = [-1, {'steps': [action], 'rewards': -1}]
         self.current_episode_action[agent_id].append(action)
-        return best_goal
+        return action
 
     def policy_learn(self):
         all_discounted_returns = self.calculate_all_discounted_returns()

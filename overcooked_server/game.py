@@ -23,7 +23,7 @@ class Game:
         self,
         num_ai_agents: int=1,
         num_rl_agents: int=0,
-        RLTrainer = None,
+        RLTrainer= None,
         is_simulation: bool=False,
         simulation_episodes: int=500,
         is_tom: bool=False,

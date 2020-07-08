@@ -8,6 +8,7 @@ import itertools
 import logging
 import numpy as np
 import random
+import pygame as pg
 
 from map_env import MapEnv
 from astar_search import AStarGraph
@@ -17,7 +18,8 @@ from overcooked_item_classes import ChoppingBoard, Extinguisher, Plate, Pot
 from settings import MAP_ACTIONS, RECIPES, RECIPES_INFO, RECIPES_ACTION_MAPPING, \
     ITEMS_INITIALIZATION, INGREDIENTS_INITIALIZATION, WORLD_STATE, WALLS, \
         FLATTENED_RECIPES_ACTION_MAPPING, MAP, TABLE_TOPS, INGREDIENTS_STATION, COMPLEX_RECIPE
-
+from agent_configs import REWARDS, ACTIONS
+from sprites import *
 
 class OvercookedEnv(MapEnv):
     def __init__(
@@ -258,7 +260,18 @@ class OvercookedEnv(MapEnv):
         assigned_best_goal = {}
         for agent in agents_possible_goals:
             if isinstance(agent, RLAgent):
-                assigned_best_goal[agent] = self.rl_trainer.step(agent.id, self.world_state)
+                agent_action = self.rl_trainer.step(agent.id, self.world_state)               
+                agent_action_str = ACTIONS[agent_action]
+                action_validity, action_type, action_task, goal_id = self._check_action_validity(agent.id, agent_action_str)
+                if not action_validity:
+                    assigned_best_goal[agent] = [-1, {'steps': [8], 'rewards': -2}]
+                else:
+                    agent_rewards = REWARDS[agent_action_str]
+                    if action_type == 'movement':
+                        assigned_best_goal[agent] = [-1, {'steps': [action_task], 'rewards': agent_rewards}]
+                    else:
+                        # its a task_action being taken
+                        assigned_best_goal[agent] = [goal_id, {'steps': [action_task], 'rewards': agent_rewards}]
             else:
                 tasks_rewards = [agents_possible_goals[agent][task]['rewards'] for task in agents_possible_goals[agent]]
                 print(f'Agent {agent.id} Task Rewards')
@@ -534,7 +547,387 @@ class OvercookedEnv(MapEnv):
         print(f'Done with generating valid permutations')
 
         return valid_permutations
+       
+    def _keys_to_str(self, pg_key):
+        MOVEMENT_KEYS = [
+                        pg.K_LEFT, pg.K_RIGHT, pg.K_UP, pg.K_DOWN,
+                        pg.K_COMMA, pg.K_PERIOD, pg.K_SLASH, pg.K_RSHIFT, pg.K_m,
+                        pg.K_g, pg.K_j, pg.K_y, pg.K_h, 
+                        pg.K_q, pg.K_w, pg.K_e, pg.K_r, pg.K_7
+                        ]
+        ACTION_KEYS = [
+                        pg.K_z, pg.K_1, pg.K_x, pg.K_2, pg.K_c, pg.K_3,
+                        pg.K_v, pg.K_4, pg.K_b, pg.K_5, pg.K_n, pg.K_6
+        ]
+
+        MOVEMENT_STR = [
+                        'MOVE_LEFT','MOVE_RIGHT','MOVE_UP','MOVE_DOWN',
+                        'MOVE_DIAGONAL_LEFT_UP','MOVE_DIAGONAL_RIGHT_UP','MOVE_DIAGONAL_LEFT_DOWN',
+                        'MOVE_DIAGONAL_RIGHT_DOWN','STAY','MOVE_LEFT','MOVE_RIGHT','MOVE_UP','MOVE_DOWN',
+                        'MOVE_DIAGONAL_LEFT_UP','MOVE_DIAGONAL_RIGHT_UP','MOVE_DIAGONAL_LEFT_DOWN',
+                        'MOVE_DIAGONAL_RIGHT_DOWN','STAY'
+                        ]
+
+        ACTION_STR = ['PICK', 'PICK','CHOP','CHOP','COOK','COOK',
+                        'SCOOP','SCOOP','SERVE','SERVE','DROP','DROP']
+
+        movement_dict = dict(zip(MOVEMENT_KEYS, MOVEMENT_STR))
+        action_dict = dict(zip(ACTION_KEYS, ACTION_STR))
+        action_dict.update(movement_dict)
+
+        return action_dict[pg_key]
+
+    def _check_action_validity(self, agent_id, action):
+        action_coords_mapping = {
+            'MOVE_LEFT': [0, -1],
+            'MOVE_RIGHT': [0, 1],
+            'MOVE_UP': [-1, 0],
+            'MOVE_DOWN': [1, 0],
+            'MOVE_DIAGONAL_LEFT_UP': [-1, -1],
+            'MOVE_DIAGONAL_RIGHT_UP': [-1, 1],
+            'MOVE_DIAGONAL_LEFT_DOWN': [1, -1],
+            'MOVE_DIAGONAL_RIGHT_DOWN': [1, 1],
+            'STAY': [0, 0]
+        }
+
+        valid_flag = False
+        action_type = None
+
+        player_pos = self._get_pos(agent_id)
+        if action in action_coords_mapping.keys():
+            print(f'Its a movement!')
+            action_type = 'movement'
+            action_task = None
+            temp_player_pos = [sum(x) for x in zip(list(player_pos), action_coords_mapping[action])]
+
+            if temp_player_pos not in WALLS:
+                valid_flag = True
+            goal_id = -1
+        else:
+            # Do actions
+            action_type = 'action'
+            if action == 'PICK':
+                # Check if there's anything to pick in (UP, DOWN, LEFT, RIGHT)
+                valid_flag, action_task, goal_id = self._check_pick_validity(agent_id)
+            elif action == 'CHOP':
+                valid_flag, action_task, goal_id = self._check_chop_validity(agent_id)
+            elif action == 'COOK':
+                valid_flag, action_task, goal_id = self._check_cook_validity(agent_id)
+            elif action == 'SCOOP':
+                valid_flag, action_task, goal_id = self._check_scoop_validity(agent_id)
+            elif action == 'SERVE':
+                valid_flag, action_task, goal_id = self._check_serve_validity(agent_id)
+            elif action == 'DROP':
+                valid_flag, action_task, goal_id = self._check_drop_validity(agent_id)
+            else:
+                pass
+
+        return valid_flag, action_type, action_task, goal_id
+
+    def _get_pos(self, agent_id):
+        return self.world_state['agents'][agent_id].location
     
+    def _get_ingredient(self, coords):
+        ingredient_name = None
+        for ingredient in INGREDIENTS_INITIALIZATION:
+            if INGREDIENTS_INITIALIZATION[ingredient]['location'][0] == coords:
+                ingredient_name = ingredient
+        return ingredient_name
+
+    def _get_recipe_ingredient_count(self, ingredient):
+        recipe_ingredient_count = None
+        for recipe in RECIPES_INFO:
+            if ingredient in RECIPES_INFO[recipe]:
+                recipe_ingredient_count = RECIPES_INFO[recipe][ingredient]
+        
+        return recipe_ingredient_count
+
+    def _get_ingredient_dish(self, recipe):
+        ingredient = RECIPES_INFO[recipe]['ingredient']
+        
+        return ingredient
+
+    def _get_goal_id(self, ingredient, action):
+        goal_id = None
+        for recipe in RECIPES_ACTION_MAPPING:
+            if ingredient in RECIPES_ACTION_MAPPING[recipe]:
+                goal_id = RECIPES_ACTION_MAPPING[recipe][ingredient][action]
+                break
+        return goal_id
+    
+    def _get_general_goal_id(self, recipe, action):
+        return RECIPES_ACTION_MAPPING[recipe]['general'][action]
+
+    def _check_pick_validity(self, agent_id):
+        print('agent@_check_pick_validity')
+        pick_validity = False
+        player_pos = self._get_pos(agent_id)
+        all_valid_pick_items = []
+        all_valid_pick_items_pos = []
+        action_task = []
+        goal_id = None
+
+        # Plates, ingredients
+        for plate in self.world_state['plate']:
+            all_valid_pick_items.append(plate)
+            all_valid_pick_items_pos.append(plate.location)
+        for ingredient in self.world_state['ingredients']:
+            all_valid_pick_items.append(ingredient)
+            all_valid_pick_items_pos.append(ingredient.location)
+        for ingredient in INGREDIENTS_STATION:
+            for ingredient_coords in INGREDIENTS_STATION[ingredient]:
+                all_valid_pick_items_pos.append(ingredient_coords)
+
+        surrounding_cells_xy = [[-1,0], [0,1], [1,0], [0,-1]]
+        for surrounding_cell_xy in surrounding_cells_xy:
+            surrounding_cell = [sum(x) for x in zip(list(player_pos), surrounding_cell_xy)]
+            surrounding_cell = tuple(surrounding_cell)
+            if surrounding_cell in all_valid_pick_items_pos:
+                item = [item for item in all_valid_pick_items if item.location == surrounding_cell]
+                if item:
+                    item = item[0]
+                    if isinstance(item, Plate):
+                        action_task.append([
+                            'PICK',
+                            {
+                            'is_new': False,
+                                'is_last': True,
+                                'pick_type': 'plate',
+                                'task_coord': surrounding_cell 
+                            },
+                            player_pos
+                        ])
+                        ingredient_name = self._get_ingredient(surrounding_cell)
+                        goal_id = self._get_goal_id(ingredient_name, 'PICK')
+                    else:
+                        action_task.append([
+                            'PICK',
+                            {
+                                'is_new': False,
+                                'is_last': False,
+                                'pick_type': 'ingredient',
+                                'task_coord': surrounding_cell
+                            },
+                            player_pos
+                        ])
+                        ingredient_name = self._get_ingredient(surrounding_cell)
+                        goal_id = self._get_goal_id(ingredient_name, 'PICK')
+                else:
+                    # new item from ingredient station
+                    action_task.append([
+                        'PICK',
+                        {
+                            'is_new': True,
+                            'is_last': True,
+                            'pick_type': 'ingredient',
+                            'task_coord': surrounding_cell
+                        },
+                        player_pos
+                    ])
+                    ingredient_name = self._get_ingredient(surrounding_cell)
+                    goal_id = self._get_goal_id(ingredient_name, 'PICK')
+        # Have to drop before picking again
+        player_object = [agent for agent in self.world_state['agents'] if agent.id == str(agent_id)][0]
+        if player_object.holding:
+            pick_validity = False
+
+        if action_task and not player_object.holding:
+            pick_validity = True
+
+        return pick_validity, action_task, goal_id
+
+    def _check_chop_validity(self, agent_id):
+        print('agent@_check_chop_validity')
+        chop_validity = False
+        player_pos = self._get_pos(agent_id)
+        action_task = []
+        goal_id = None
+
+        # Have to hold unchopped ingredient before chopping
+        player_object = [agent for agent in self.world_state['agents'] if int(agent.id) == agent_id][0]
+        if not player_object.holding:
+            chop_validity = False
+        elif not isinstance(player_object.holding, Ingredient):
+            chop_validity = False
+        elif player_object.holding.state != 'unchopped':
+            chop_validity = False
+        else:
+            # Ensure chopping board is not occupied
+            all_valid_chopping_boards_pos = [cb.location for cb in self.world_state['chopping_board'] if cb.state != 'taken']
+
+            surrounding_cells_xy = [[-1,0], [0,1], [1,0], [0,-1]]
+            for surrounding_cell_xy in surrounding_cells_xy:
+                surrounding_cell = [sum(x) for x in zip(list(player_pos), surrounding_cell_xy)]
+                surrounding_cell = tuple(surrounding_cell)
+                if surrounding_cell in all_valid_chopping_boards_pos:
+                    action_task.append(
+                        ['CHOP', True, surrounding_cell, player_pos]
+                    )
+                    ingredient_name = player_object.holding.name
+                    goal_id = self._get_goal_id(ingredient_name, 'CHOP')
+        if action_task:
+            chop_validity = True
+
+        return chop_validity, action_task, goal_id
+
+    def _check_cook_validity(self, agent_id):
+        print(f'human@_check_cook_validity')
+        cook_validity = False
+        player_pos = self._get_pos(agent_id)
+        action_task = []
+        goal_id = None
+
+        # Have to hold chopped ingredient before chopping
+        player_object = [agent for agent in self.world_state['agents'] if int(agent.id) == agent_id][0]
+        if not player_object.holding:
+            cook_validity = False
+        elif not isinstance(player_object.holding, Ingredient):
+            cook_validity = False
+        elif player_object.holding.state != 'chopped':
+            cook_validity = False
+        else:
+            # Ensure pot is not full / pot ingredient is same as ingredient in hand
+            all_valid_pots = [pot for pot in self.world_state['pot']]
+            all_valid_pots_pos = [pot.location for pot in self.world_state['pot']]
+
+            surrounding_cells_xy = [[-1,0], [0,1], [1,0], [0,-1]]
+            for surrounding_cell_xy in surrounding_cells_xy:
+                surrounding_cell = [sum(x) for x in zip(list(player_pos), surrounding_cell_xy)]
+                surrounding_cell = tuple(surrounding_cell)
+                if surrounding_cell in all_valid_pots_pos:
+                    pot = [pot for pot in all_valid_pots if pot.location == surrounding_cell][0]
+                    ingredient_name = player_object.holding.name
+                    recipe_ingredient_count = self._get_recipe_ingredient_count(ingredient_name) #assumes no recipe with same ingredient in map
+                    # CASE: No ingredient pot yet
+                    if pot.is_empty:
+                        action_task.append(
+                            ['COOK', True, surrounding_cell, player_pos]
+                        )
+                        goal_id = self._get_goal_id(ingredient_name, 'COOK')
+                    # CASE: Already has an ingredient in pot and is same ingredient as hand's ingredient
+                    elif pot.ingredient_count[ingredient_name] != recipe_ingredient_count:
+                        action_task.append(
+                                ['COOK', True, surrounding_cell, player_pos]
+                            )
+                        goal_id = self._get_goal_id(ingredient_name, 'COOK')
+        if action_task:
+            cook_validity = True
+
+        return cook_validity, action_task, goal_id
+    
+    def _check_scoop_validity(self, agent_id):
+        print('human@_check_scoop_validity')
+        scoop_validity = False
+        player_pos = self._get_pos(agent_id)
+        action_task = []
+        goal_id = None
+
+        # Have to hold empty plate before scooping
+        player_object = [agent for agent in self.world_state['agents'] if int(agent.id) == agent_id][0]
+        if not player_object.holding:
+            scoop_validity = False
+        elif not isinstance(player_object.holding, Plate):
+            scoop_validity = False
+        elif player_object.holding.state != 'empty':
+            scoop_validity = False
+        else:
+            all_valid_pots = [pot for pot in self.world_state['pot']]
+            all_valid_pots_pos = [pot.location for pot in self.world_state['pot']]
+
+            surrounding_cells_xy = [[-1,0], [0,1], [1,0], [0,-1]]
+            for surrounding_cell_xy in surrounding_cells_xy:
+                surrounding_cell = [sum(x) for x in zip(list(player_pos), surrounding_cell_xy)]
+                surrounding_cell = tuple(surrounding_cell)
+                if surrounding_cell in all_valid_pots_pos:
+                    pot = [pot for pot in all_valid_pots if pot.location == surrounding_cell][0]
+                    # Ensure pot is full
+                    if pot.dish:
+                        action_task.append([
+                            'SCOOP',
+                            {
+                                'is_last': True,
+                                'task_coord': surrounding_cell
+                            },
+                            player_pos
+                        ])
+                        goal_id = self._get_general_goal_id(pot.dish, 'SCOOP')
+        if action_task:
+            scoop_validity = True
+        return scoop_validity, action_task, goal_id
+    
+    def _check_serve_validity(self, agent_id):
+        serve_validity = False
+        player_pos = self._get_pos(agent_id)
+        action_task = []
+        goal_id = None
+
+        # Have to hold plate with dish before serving
+        player_object = [agent for agent in self.world_state['agents'] if int(agent.id) == agent_id][0]
+        if not player_object.holding:
+            serve_validity = False
+        elif not isinstance(player_object.holding, Plate):
+            serve_validity = False
+        elif player_object.holding.state != 'plated':
+            serve_validity = False
+        else:
+            valid_serving_cells = SERVING_STATION
+
+            surrounding_cells_xy = [[-1,0], [0,1], [1,0], [0,-1]]
+            for surrounding_cell_xy in surrounding_cells_xy:
+                surrounding_cell = [sum(x) for x in zip(list(player_pos), surrounding_cell_xy)]
+                surrounding_cell = tuple(surrounding_cell)
+                if surrounding_cell in valid_serving_cells:
+                    action_task.append([
+                        'SERVE',
+                        {
+                            'is_last': True,
+                            'task_coord': surrounding_cell
+                        },
+                        player_pos
+                    ])
+                    dish_name = player_object.holding.dish.name
+                    goal_id = self._get_general_goal_id(dish_name, 'SERVE')
+        if action_task:
+            serve_validity = True
+
+        return serve_validity, action_task, goal_id
+
+    def _check_drop_validity(self, agent_id):
+        drop_validity = False
+        player_pos = self._get_pos(agent_id)
+        action_task = []
+        goal_id = -1
+
+        # Have to hold something before dropping
+        player_object = [agent for agent in self.world_state['agents'] if int(agent.id) == agent_id][0]
+        if not player_object.holding:
+            drop_validity = False
+        else:
+            valid_item_cells = self.world_state['valid_item_cells']
+
+            surrounding_cells_xy = [[-1,0], [0,1], [1,0], [0,-1]]
+            for surrounding_cell_xy in surrounding_cells_xy:
+                surrounding_cell = [sum(x) for x in zip(list(player_pos), surrounding_cell_xy)]
+                surrounding_cell = tuple(surrounding_cell)
+                if surrounding_cell in valid_item_cells:
+                    if isinstance(player_object.holding, Ingredient):
+                        action_task.append([
+                            'DROP',
+                            {
+                                'for_task': 'INGREDIENT'
+                            }
+                        ])
+                    elif isinstance(player_object.holding, Plate):
+                        action_task.append([
+                            'DROP',
+                            {
+                                'for_task': 'PLATE'
+                            }
+                        ])
+        if action_task:
+            drop_validity = True
+        
+        return drop_validity, action_task, goal_id
 def heuristic_second_action(diagonal_action, taken_adj_action):
     heuristic_action_mapping_alt = {
         'MOVE_DIAGONAL_LEFT_UP': {
