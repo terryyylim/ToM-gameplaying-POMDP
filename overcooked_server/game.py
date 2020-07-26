@@ -38,7 +38,7 @@ class Game:
         self.is_tom = is_tom
         self.experiment_id = experiment_id
         self.RLTrainer = RLTrainer
-
+        self.TERMINATING_EPISODE = simulation_episodes
         AI_AGENTS_TO_INITIALIZE = {}
         RL_AGENTS_TO_INITIALIZE = {}
         agent_id = 0
@@ -70,7 +70,7 @@ class Game:
             self.results_filename = 'results/' + self.env.results_filename + '.csv'
             self.results = defaultdict(int)
             self.results_col = []
-            for i in range(TERMINATING_EPISODE+1):
+            for i in range(self.TERMINATING_EPISODE+1):
                 if i%50 == 0:
                     self.results[str(i)] = 0
                     self.results_col.append(str(i))
@@ -92,7 +92,7 @@ class Game:
             self.results_filename = self.experiment_folder + '/' + self.env.results_filename + '.csv'
         self.results = defaultdict(int)
         self.results_col = []
-        for i in range(TERMINATING_EPISODE+1):
+        for i in range(self.TERMINATING_EPISODE+1):
             if i%50 == 0:
                 self.results[str(i)] = 0
                 self.results_col.append(str(i))
@@ -246,8 +246,8 @@ class Game:
             self.info_df.to_csv(self.experiment_folder + '/experiments_' + self.env.results_filename + '.csv', index=False)
 
             # agent_types = [agent.is_inference_agent for agent in self.env.world_state['agents']]
-            video_name_ext = helpers.get_video_name_ext(self.env.world_state['agents'], TERMINATING_EPISODE, MAP)
-            # video_name_ext = helpers.get_video_name_ext(agent_types, TERMINATING_EPISODE, MAP)
+            video_name_ext = helpers.get_video_name_ext(self.env.world_state['agents'], self.TERMINATING_EPISODE, MAP)
+            # video_name_ext = helpers.get_video_name_ext(agent_types, self.TERMINATING_EPISODE, MAP)
             helpers.make_video_from_image_dir(
                 self.experiment_folder,
                 self.images_folder,
@@ -261,7 +261,7 @@ class Game:
         while self.playing:
             if self.env.episode%50 == 0:
                 self.results[str(self.env.episode)] = self.env.world_state['total_score']
-            if self.env.episode >= TERMINATING_EPISODE:
+            if self.env.episode >= self.TERMINATING_EPISODE:
                 self.save_results()
                 pg.display.quit()
                 self.quit()
@@ -294,7 +294,7 @@ class Game:
         # current_score = self.env.world_state['explicit_rewards']['serve']
         current_score = self.env.world_state['total_score']
         current_order = self.env.world_state['order_count']
-        episodes_left = TERMINATING_EPISODE - self.env.episode
+        episodes_left = self.TERMINATING_EPISODE - self.env.episode
         score = font.render(str(current_score), True, GREEN, SCOREBOARD_BG)
         order = font.render(str(current_order), True, GREEN, SCOREBOARD_BG)
         ep_countdown = font.render(str(episodes_left), True, GREEN, SCOREBOARD_BG)
@@ -410,7 +410,7 @@ class Game:
             'agent_action': agent_2_info[1],
             'available_orders': self.env.world_state['order_count'],
             'score': self.env.world_state['score'],
-            'timer': TERMINATING_EPISODE - self.env.episode,
+            'timer': self.TERMINATING_EPISODE - self.env.episode,
             'total_score': self.env.world_state['total_score']
         }, ignore_index=True)
         return temp_info_df
@@ -523,7 +523,7 @@ class Game:
                 self.results[str(self.env.episode)] = self.env.world_state['total_score']
             if (self.env.episode+1)%50 == 0:
                 self.results[str(self.env.episode+1)] = self.env.world_state['total_score']
-            if self.env.episode == TERMINATING_EPISODE:
+            if self.env.episode == self.TERMINATING_EPISODE:
                 print('saving results')
                 self.save_results()
                 if self.RLTrainer:
@@ -548,7 +548,7 @@ class Game:
         if self.env.rl_trainer:
             if self.env.rl_trainer.episode_number % 100 == 0:
 
-                video_name_ext = helpers.get_video_name_ext(self.env.world_state['agents'], TERMINATING_EPISODE, MAP)
+                video_name_ext = helpers.get_video_name_ext(self.env.world_state['agents'], self.TERMINATING_EPISODE, MAP)
                 helpers.make_video_from_image_dir(
                     map_folder,
                     simulations_folder,

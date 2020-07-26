@@ -602,6 +602,7 @@ class OvercookedEnv(MapEnv):
 
             if temp_player_pos not in WALLS:
                 valid_flag = True
+                action_task = action
             goal_id = -1
         else:
             # Do actions
@@ -625,7 +626,8 @@ class OvercookedEnv(MapEnv):
         return valid_flag, action_type, action_task, goal_id
 
     def _get_pos(self, agent_id):
-        return self.world_state['agents'][agent_id].location
+        agent_pos = [agent.location for agent in self.world_state['agents'] if agent.id == agent_id][0]
+        return agent_pos
     
     def _get_ingredient(self, coords):
         ingredient_name = None
@@ -727,7 +729,7 @@ class OvercookedEnv(MapEnv):
                     ingredient_name = self._get_ingredient(surrounding_cell)
                     goal_id = self._get_goal_id(ingredient_name, 'PICK')
         # Have to drop before picking again
-        player_object = [agent for agent in self.world_state['agents'] if agent.id == str(agent_id)][0]
+        player_object = [agent for agent in self.world_state['agents'] if agent.id == agent_id][0]
         if player_object.holding:
             pick_validity = False
 
@@ -744,7 +746,7 @@ class OvercookedEnv(MapEnv):
         goal_id = None
 
         # Have to hold unchopped ingredient before chopping
-        player_object = [agent for agent in self.world_state['agents'] if int(agent.id) == agent_id][0]
+        player_object = [agent for agent in self.world_state['agents'] if agent.id == agent_id][0]
         if not player_object.holding:
             chop_validity = False
         elif not isinstance(player_object.holding, Ingredient):
@@ -778,7 +780,7 @@ class OvercookedEnv(MapEnv):
         goal_id = None
 
         # Have to hold chopped ingredient before chopping
-        player_object = [agent for agent in self.world_state['agents'] if int(agent.id) == agent_id][0]
+        player_object = [agent for agent in self.world_state['agents'] if agent.id == agent_id][0]
         if not player_object.holding:
             cook_validity = False
         elif not isinstance(player_object.holding, Ingredient):
@@ -823,7 +825,7 @@ class OvercookedEnv(MapEnv):
         goal_id = None
 
         # Have to hold empty plate before scooping
-        player_object = [agent for agent in self.world_state['agents'] if int(agent.id) == agent_id][0]
+        player_object = [agent for agent in self.world_state['agents'] if agent.id == agent_id][0]
         if not player_object.holding:
             scoop_validity = False
         elif not isinstance(player_object.holding, Plate):
@@ -862,7 +864,7 @@ class OvercookedEnv(MapEnv):
         goal_id = None
 
         # Have to hold plate with dish before serving
-        player_object = [agent for agent in self.world_state['agents'] if int(agent.id) == agent_id][0]
+        player_object = [agent for agent in self.world_state['agents'] if agent.id == agent_id][0]
         if not player_object.holding:
             serve_validity = False
         elif not isinstance(player_object.holding, Plate):
@@ -899,7 +901,7 @@ class OvercookedEnv(MapEnv):
         goal_id = -1
 
         # Have to hold something before dropping
-        player_object = [agent for agent in self.world_state['agents'] if int(agent.id) == agent_id][0]
+        player_object = [agent for agent in self.world_state['agents'] if agent.id == agent_id][0]
         if not player_object.holding:
             drop_validity = False
         else:

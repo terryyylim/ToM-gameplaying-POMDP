@@ -20,6 +20,7 @@ class PPOTrainer():
         self.config = config
         self.logger = setup_logger()
         self.set_random_seeds(self.config.seed)
+        self.device = "cuda:0" if self.config.use_GPU and torch.cuda.is_available() else "cpu"
         self.policy_new = self.create_NN(self.config.hyperparameters["obs_space"], 
                                         self.config.hyperparameters["action_space"], 
                                         self.config.hyperparameters["nn_params"])
@@ -101,6 +102,7 @@ class PPOTrainer():
         exploration_epsilon =  self.exploration_strategy.get_updated_epsilon_exploration({"episode_number": self.episode_number})
         flipped_arr = flip_array(agent_id, world_state_np)
         action = self.pick_action(flipped_arr, exploration_epsilon)
+        self.current_episode_state[agent_id].append(flipped_arr[0])
         self.current_episode_action[agent_id].append(action)
         return action
 
@@ -120,10 +122,10 @@ class PPOTrainer():
         self.episode_number += 1
         self.states_batched.extend(list(self.current_episode_state.values()))
         self.actions_batched.extend(list(self.current_episode_action.values()))
-        self.rewards_batched.extend(list(self.current_episode_rewards.values()))
-        if (episode_number % self.config.hyperparameters['episodes_per_learning_round'] == 0) and (self.config.train):
+        self.rewards_batched.extend(list(self.current_episode_reward.values()))
+        if (self.episode_number % self.config.hyperparameters['episodes_per_learning_round'] == 0) and (self.config.train):
             loss = self.policy_learn()
-            self.update_learning_rate(self.config.hyperparameters['learning_rate'], self.policy_new_optimizer)
+            self.update_learning_rate(self.config.hyperparameters['learning_rate'], self.policy_new_optim)
             self.equalise_policies()
         self.reset_game()
     
@@ -145,7 +147,7 @@ class PPOTrainer():
     def calculate_log_probability_of_actions(self, policy, states, actions):
         """Calculates the log probability of an action occuring given a policy and starting state"""
         policy_output = policy.forward(states).to(self.device)
-        policy_distribution = create_actor_distribution("DISCRETE", policy_output, self.action_size)
+        policy_distribution = create_actor_distribution("DISCRETE", policy_output, self.config.hyperparameters["action_space"])
         policy_distribution_log_prob = policy_distribution.log_prob(actions)
         return policy_distribution_log_prob
 
@@ -164,11 +166,11 @@ class PPOTrainer():
 
     def take_policy_new_optimisation_step(self, loss):
         """Takes an optimisation step for the new policy"""
-        self.policy_new_optimizer.zero_grad()  # reset gradients to 0
+        self.policy_new_optim.zero_grad()  # reset gradients to 0
         loss.backward()  # this calculates the gradients
         torch.nn.utils.clip_grad_norm_(self.policy_new.parameters(), self.config.hyperparameters[
             "gradient_clipping_norm"])  # clip gradients to help stabilise training
-        self.policy_new_optimizer.step()  # this applies the gradients
+        self.policy_new_optim.step()  # this applies the gradients
 
     def clamp_probability_ratio(self, value):
         """Clamps a value between a certain range determined by hyperparameter clip epsilon"""
@@ -193,7 +195,7 @@ class PPOTrainer():
     def receive_rewards(self, rewards):
         for agent_id in self.agents:
             reward_annealed = self.anneal_reward(rewards[agent_id])
-            self.current_episode_rewards[agent_id].append(reward_annealed)
+            self.current_episode_reward[agent_id].append(reward_annealed)
         self.timesteps += 1
 
     def set_random_seeds(self, random_seed):
@@ -207,3 +209,15 @@ class PPOTrainer():
         if torch.cuda.is_available():
             torch.cuda.manual_seed_all(random_seed)
             torch.cuda.manual_seed(random_seed)
+
+    def calculate_all_discounted_returns(self):
+        """Calculates the cumulative discounted return for each episode which we will then use in a learning iteration"""
+        all_discounted_returns = []
+        for episode in range(len(self.states_batched)):
+            discounted_returns = [0]
+            for ix in range(len(self.states_batched[episode])):
+                return_value = self.rewards_batched[episode][-(ix + 1)] + self.config.hyperparameters["discount_rate"]*discounted_returns[-1]
+                discounted_returns.append(return_value)
+            discounted_returns = discounted_returns[1:]
+            all_discounted_returns.extend(discounted_returns[::-1])
+        return all_discounted_returns

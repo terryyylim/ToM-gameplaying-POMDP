@@ -403,6 +403,8 @@ class MapEnv(MultiAgentEnv):
             task_id = agent_tasks[agent][0]
             task_action = agent_tasks[agent][1]
             print(task_action)
+            if type(task_action) != list:
+                task_action = [task_action]
             agent_rewards = REWARDS[task_action[0]]
             # do we still need the second check?
             if task_action[0] == 'PICK' and task_action[2] == agent.location:
