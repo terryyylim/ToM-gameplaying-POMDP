@@ -10,7 +10,7 @@ import torch.nn.functional as F
 from torch import optim
 
 from rl_networks import ConvMLPNetwork
-from utilities.rl_utils import flip_array, vectorize_world_state, setup_logger
+from utilities.rl_utils import flip_array, vectorize_world_state, setup_logger, init_layers
 from utilities.Epsilon_Greedy_Exploration import Epsilon_Greedy_Exploration
 from utilities.Utility_Functions import normalise_rewards, create_actor_distribution
 
@@ -21,16 +21,6 @@ class PPOTrainer():
         self.logger = setup_logger()
         self.set_random_seeds(self.config.seed)
         self.device = "cuda:0" if self.config.use_GPU and torch.cuda.is_available() else "cpu"
-        self.policy_new = self.create_NN(self.config.hyperparameters["obs_space"], 
-                                        self.config.hyperparameters["action_space"], 
-                                        self.config.hyperparameters["nn_params"])
-                                        
-        self.policy_old = self.create_NN(self.config.hyperparameters["obs_space"], 
-                                        self.config.hyperparameters["action_space"], 
-                                        self.config.hyperparameters["nn_params"])
-
-        self.policy_old.load_state_dict(copy.deepcopy(self.policy_new.state_dict()))
-        self.policy_new_optim = optim.Adam(self.policy_new.parameters(), lr = self.config.hyperparameters['learning_rate'], eps=1e-4)
         self.exploration_strategy = Epsilon_Greedy_Exploration(self.config)
         self.episode_number = 0
         self.timesteps = 0
@@ -42,6 +32,23 @@ class PPOTrainer():
         self.actions_batched = []
         self.rewards_batched = []
         self.rolling_results = []
+        self.init_step = False
+
+    def first_step(self, world_state):
+        self.layers = init_layers(len(world_state['agents']))
+        self.config.hyperparameters["obs_space"] = len(self.layers)
+        
+        self.policy_new = self.create_NN(self.config.hyperparameters["obs_space"], 
+                                        self.config.hyperparameters["action_space"], 
+                                        self.config.hyperparameters["nn_params"])
+                                        
+        self.policy_old = self.create_NN(self.config.hyperparameters["obs_space"], 
+                                        self.config.hyperparameters["action_space"], 
+                                        self.config.hyperparameters["nn_params"])
+
+        self.policy_old.load_state_dict(copy.deepcopy(self.policy_new.state_dict()))
+        self.policy_new_optim = optim.Adam(self.policy_new.parameters(), lr = self.config.hyperparameters['learning_rate'], eps=1e-4)
+        self.init_step = True
 
     def init_batch_lists(self):
         if self.states_batched:
@@ -98,9 +105,11 @@ class PPOTrainer():
         return action
 
     def step(self, agent_id, world_state):
-        world_state_np = vectorize_world_state(world_state)
-        exploration_epsilon =  self.exploration_strategy.get_updated_epsilon_exploration({"episode_number": self.episode_number})
-        flipped_arr = flip_array(agent_id, world_state_np)
+        if not self.init_step :
+            self.first_step(world_state)
+        exploration_epsilon = self.exploration_strategy.get_updated_epsilon_exploration({"episode_number": self.episode_number})
+        world_state_np = vectorize_world_state(world_state, self.layers)
+        flipped_arr = flip_array(agent_id, world_state_np, self.layers)
         action = self.pick_action(flipped_arr, exploration_epsilon)
         self.current_episode_state[agent_id].append(flipped_arr[0])
         self.current_episode_action[agent_id].append(action)

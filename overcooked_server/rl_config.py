@@ -1,5 +1,5 @@
 from utilities.Config import Config
-from utilities.rl_utils import get_state_shape, LAYERS
+from utilities.rl_utils import get_state_shape
 from settings import WORLD_STATE
 
 x,y = get_state_shape(WORLD_STATE)
@@ -43,7 +43,7 @@ config.hyperparameters = {
         "epsilon_decay_rate_denominator": 1.0,
         "clip_rewards": False,
         "action_space": 15,
-        "obs_space": len(LAYERS),
+        "obs_space": None,
         "nn_params": {'NUM_HIDDEN_LAYERS':3,
                       'SIZE_HIDDEN_LAYERS':64,
                       'NUM_FILTERS':25,

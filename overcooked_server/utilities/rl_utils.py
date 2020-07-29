@@ -1,15 +1,13 @@
 import logging
 import numpy as np
-from settings import HUMAN_AGENTS, AI_AGENTS
 
-base_map_features = ['table_tops', 'pot_loc', 'chop_loc', 'dish_disp_loc',
-                    'onion_disp_loc', 'serve_loc']
-variable_features = ['onions_fresh', 'onions_chopped', 'plates', 'soup']
-num_agents = len(HUMAN_AGENTS) + len(AI_AGENTS) #need to add in RL agents too here #need to check if there is idx
-
-agent_features = ["player_{}".format(idx) for idx in range(num_agents)]
-
-LAYERS = agent_features + base_map_features + variable_features
+def init_layers(num_agents):
+    base_map_features = ['table_tops', 'pot_loc', 'chop_loc', 'dish_disp_loc',
+                        'onion_disp_loc', 'serve_loc']
+    variable_features = ['onions_fresh', 'onions_chopped', 'plates', 'soup']
+    agent_features = ["player_{}".format(idx+1) for idx in range(num_agents)]
+    LAYERS = agent_features + base_map_features + variable_features
+    return LAYERS
 
 def get_state_shape(world_state):
     coordinates = world_state['valid_item_cells'] + world_state['valid_movement_cells']
@@ -22,7 +20,7 @@ def get_loc(world_state, object_name):
     coords = [game_object.location for game_object in world_state[object_name]]
     return coords
 
-def vectorize_world_state(world_state):
+def vectorize_world_state(world_state, layers):
     """ Transforms overcooked_ai world_state into numpy array for CNN"""
     shape = get_state_shape(world_state)
     def make_layer(position, value):
@@ -30,7 +28,7 @@ def vectorize_world_state(world_state):
         layer[position] = value
         return layer
 
-    state_mask_dict = {layer:np.zeros(shape) for layer in LAYERS}
+    state_mask_dict = {layer:np.zeros(shape) for layer in layers}
 
     # MAP LAYERS
     for loc in world_state['table_tops']:
@@ -75,14 +73,14 @@ def vectorize_world_state(world_state):
 
     #AGENT LAYER
     for i, loc in enumerate(get_loc(world_state, 'agents')):
-        state_mask_dict["player_{}".format(i)][loc] = 1
+        state_mask_dict["player_{}".format(i+1)][loc] = 1
 
-    state_mask_stack = np.array([[state_mask_dict[layer] for layer in LAYERS]])
+    state_mask_stack = np.array([[state_mask_dict[layer] for layer in layers]])
     return np.array(state_mask_stack).astype(float)    
 
-def flip_array(agent_id, vec_world_state):
+def flip_array(agent_id, vec_world_state, layers):
     MAIN_AGENT_IDX = 0
-    agent_idx = LAYERS.index('player_{}'.format(agent_id))
+    agent_idx = layers.index('player_{}'.format(agent_id))
     vec_world_state[0][MAIN_AGENT_IDX], vec_world_state[0][agent_idx] = vec_world_state[0][agent_idx], vec_world_state[0][MAIN_AGENT_IDX]
     return vec_world_state
 
