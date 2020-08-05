@@ -1,4 +1,5 @@
 import logging
+import os
 import numpy as np
 
 def init_layers(num_agents):
@@ -84,13 +85,9 @@ def flip_array(agent_id, vec_world_state, layers):
     vec_world_state[0][MAIN_AGENT_IDX], vec_world_state[0][agent_idx] = vec_world_state[0][agent_idx], vec_world_state[0][MAIN_AGENT_IDX]
     return vec_world_state
 
-def setup_logger():
+def setup_logger(filepath):
     """Sets up the logger"""
-    filename = "Training.log"
-    try: 
-        if os.path.isfile(filename): 
-            os.remove(filename)
-    except: pass
+    filename = os.path.join(filepath, "Training.log")
 
     logger = logging.getLogger(__name__)
     logger.setLevel(logging.INFO)

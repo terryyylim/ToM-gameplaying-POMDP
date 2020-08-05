@@ -18,7 +18,7 @@ class PPOTrainer():
     """Master class to orchestrate training of PPO Algorithm in Overcooked AI"""
     def __init__(self, config):
         self.config = config
-        self.logger = setup_logger()
+        self.logger = setup_logger(self.config.results_filepath)
         self.set_random_seeds(self.config.seed)
         self.device = "cuda:0" if self.config.use_GPU and torch.cuda.is_available() else "cpu"
         self.exploration_strategy = Epsilon_Greedy_Exploration(self.config)
@@ -37,7 +37,7 @@ class PPOTrainer():
     def first_step(self, world_state):
         self.layers = init_layers(len(world_state['agents']))
         self.config.hyperparameters["obs_space"] = len(self.layers)
-        
+        self.logger.info(config)
         self.policy_new = self.create_NN(self.config.hyperparameters["obs_space"], 
                                         self.config.hyperparameters["action_space"], 
                                         self.config.hyperparameters["nn_params"])
@@ -83,9 +83,10 @@ class PPOTrainer():
         if random.random() < 0.001: self.logger.info("Learning rate {}".format(new_lr))
 
     def reset_game(self):
+        self.write_results()
         self.current_episode_state = {}
         self.current_episode_action = {}
-        self.current_episode_reward= {}
+        self.current_episode_reward = {}
         for agent in self.agents:
             self.current_episode_state[agent] = []
             self.current_episode_action[agent] = []
@@ -137,6 +138,7 @@ class PPOTrainer():
             self.update_learning_rate(self.config.hyperparameters['learning_rate'], self.policy_new_optim)
             self.equalise_policies()
         self.reset_game()
+        self.logger.info("======== END OF EPISODE =======")
     
     def calculate_all_ratio_of_policy_probabilities(self):
         """For each action calculates the ratio of the probability that the new policy would have picked the action vs.
@@ -230,3 +232,22 @@ class PPOTrainer():
             discounted_returns = discounted_returns[1:]
             all_discounted_returns.extend(discounted_returns[::-1])
         return all_discounted_returns
+
+    def write_to_output(self, mode, array):
+        with open(self.config.results_filepath + mode + '.txt','a+') as output:
+            output.write(str(array) + '\n')
+            output.close()
+
+    def write_results(self):
+        self.write_to_output('state', self.current_episode_state)
+        self.write_to_output('reward', self.current_episode_reward)
+        self.write_to_output('action', self.current_episode_action)
+
+    def log_explicit_results(self, chop_rewards, cook_rewards, serve_rewards):
+        self.logger.info(f'Current explicit CHOP rewards: {chop_rewards}')
+        self.logger.info(f'Current explicit COOK rewards: {cook_rewards}')
+        self.logger.info(f'Current explicit SERVE rewards: {serve_rewards}')
+        
+        current_episode_explicit = (chop_rewards, cook_rewards, serve_rewards)
+        self.write_to_output('explicit', current_episode_explicit)
+

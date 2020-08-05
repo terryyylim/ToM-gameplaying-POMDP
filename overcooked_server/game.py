@@ -66,7 +66,6 @@ class Game:
                 queue_episodes=QUEUE_EPISODES
             )
             self.load_data()
-
             self.results_filename = 'results/' + self.env.results_filename + '.csv'
             self.results = defaultdict(int)
             self.results_col = []
@@ -469,7 +468,10 @@ class Game:
         simulations_folder = os.path.join(game_folder, 'simulations')
         video_folder = os.path.join(game_folder, 'videos')
 
-        map_folder = os.path.join(*[game_folder, 'videos', MAP])
+        if self.RLTrainer:
+            map_folder = os.path.join(*[self.RLTrainer.config.results_filepath, 'videos', MAP])
+        else:
+            map_folder = os.path.join(*[game_folder, 'videos', MAP])
 
         helpers.check_dir_exist(simulations_folder)
         helpers.check_dir_exist(video_folder)
@@ -546,13 +548,17 @@ class Game:
         # agent_types = [agent.is_inference_agent for agent in self.env.world_state['agents']]
         # video_name_ext = helpers.get_video_name_ext(agent_types, episodes, MAP)
         if self.env.rl_trainer:
+            self.env.rl_trainer.log_explicit_results(explicit_chop_rewards, explicit_cook_rewards, explicit_serve_rewards)
+            self.env.rl_trainer.logger.info(f'Simulation Experiment took {experiment_runtime_min} mins, {experiment_runtime_sec} secs to run.')
             if self.env.rl_trainer.episode_number % 100 == 0:
-
-                video_name_ext = helpers.get_video_name_ext(self.env.world_state['agents'], self.TERMINATING_EPISODE, MAP)
+                self.env.rl_trainer.logger.info(f'Saving video at {map_folder}')
+                video_name_ext = helpers.get_video_name_ext(self.env.world_state['agents'], 
+                                                            self.env.rl_trainer.episode_number, MAP)
                 helpers.make_video_from_image_dir(
                     map_folder,
                     simulations_folder,
-                    video_name_ext
+                    video_name_ext,
+                    0.5
                     )
         #sys.exit()
 
@@ -583,8 +589,9 @@ def main(num_ai_agents, num_rl_agents, is_simulation, episodes, simulation_episo
     else: RLTrainer = None
 
     for episode in range(episodes):
-        print ("======== STARTING EPISODE {}=======".format(episode))
+        RLTrainer.logger.info("======== STARTING EPISODE {}=======".format(episode+1))
         g = Game(num_ai_agents, num_rl_agents, RLTrainer, is_simulation, simulation_episodes, is_tom, experiment_id)
+    RLTrainer.logger.info(f"{episodes} COMPLETED")
     sys.exit()
     g.show_start_screen()
     while True:
