@@ -9,7 +9,7 @@ from overcooked_agent import OvercookedAgent, RLAgent
 
 def check_dir_exist(dir_path: str) -> None:
     if not os.path.isdir(dir_path):
-        os.mkdir(dir_path)
+        os.makedirs(dir_path)
 
 def clean_dir(dir_path: str) -> None:
     for file in os.listdir(dir_path):
@@ -34,7 +34,7 @@ def get_video_name_ext(agents: Union[OvercookedAgent,HumanAgent], episodes: int,
                 video_name_ext.append('Dummy')
         elif isinstance(agent, HumanAgent):
             video_name_ext.append('Human')
-        elif isinstance(agent, RLAgent)
+        elif isinstance(agent, RLAgent):
             video_name_ext.append('RL')
     video_name_ext = '_'.join(video_name_ext) + '_' + str(episodes) + 'ep'
     video_type_count = get_video_count(video_name_ext, map_no)

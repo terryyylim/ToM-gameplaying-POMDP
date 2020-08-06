@@ -37,7 +37,7 @@ class PPOTrainer():
     def first_step(self, world_state):
         self.layers = init_layers(len(world_state['agents']))
         self.config.hyperparameters["obs_space"] = len(self.layers)
-        self.logger.info(config)
+        self.logger.info(self.config)
         self.policy_new = self.create_NN(self.config.hyperparameters["obs_space"], 
                                         self.config.hyperparameters["action_space"], 
                                         self.config.hyperparameters["nn_params"])
@@ -83,7 +83,6 @@ class PPOTrainer():
         if random.random() < 0.001: self.logger.info("Learning rate {}".format(new_lr))
 
     def reset_game(self):
-        self.write_results()
         self.current_episode_state = {}
         self.current_episode_action = {}
         self.current_episode_reward = {}
@@ -106,7 +105,7 @@ class PPOTrainer():
         return action
 
     def step(self, agent_id, world_state):
-        if not self.init_step :
+        if not self.init_step:
             self.first_step(world_state)
         exploration_epsilon = self.exploration_strategy.get_updated_epsilon_exploration({"episode_number": self.episode_number})
         world_state_np = vectorize_world_state(world_state, self.layers)
@@ -137,6 +136,7 @@ class PPOTrainer():
             loss = self.policy_learn()
             self.update_learning_rate(self.config.hyperparameters['learning_rate'], self.policy_new_optim)
             self.equalise_policies()
+        self.write_results()
         self.reset_game()
         self.logger.info("======== END OF EPISODE =======")
     
