@@ -37,7 +37,6 @@ class PPOTrainer():
     def first_step(self, world_state):
         self.layers = init_layers(len(world_state['agents']))
         self.config.hyperparameters["obs_space"] = len(self.layers)
-        self.logger.info(self.config)
         self.policy_new = self.create_NN(self.config.hyperparameters["obs_space"], 
                                         self.config.hyperparameters["action_space"], 
                                         self.config.hyperparameters["nn_params"])
@@ -173,6 +172,7 @@ class PPOTrainer():
         potential_loss_value_2 = all_discounted_returns * self.clamp_probability_ratio(all_ratio_of_policy_probabilities)
         loss = torch.min(potential_loss_value_1, potential_loss_value_2)
         loss = -torch.mean(loss)
+        self.logger.info(f'Loss: {loss}')
         return loss
 
     def take_policy_new_optimisation_step(self, loss):

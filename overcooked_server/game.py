@@ -550,7 +550,7 @@ class Game:
         if self.env.rl_trainer:
             self.env.rl_trainer.log_explicit_results(explicit_chop_rewards, explicit_cook_rewards, explicit_serve_rewards)
             self.env.rl_trainer.logger.info(f'Simulation Experiment took {experiment_runtime_min} mins, {experiment_runtime_sec} secs to run.')
-            if self.env.rl_trainer.episode_number % 100 == 0:
+            if self.env.rl_trainer.episode_number % 1 == 0:
                 self.env.rl_trainer.logger.info(f'Saving video at {map_folder}')
                 video_name_ext = helpers.get_video_name_ext(self.env.world_state['agents'], 
                                                             self.env.rl_trainer.episode_number, MAP)
@@ -586,12 +586,15 @@ def main(num_ai_agents, num_rl_agents, is_simulation, episodes, simulation_episo
         from rl_trainer import PPOTrainer
         from rl_config import config
         RLTrainer = PPOTrainer(config)
+        RLTrainer.logger.info(str(config.hyperparameters))
     else: RLTrainer = None
 
     for episode in range(episodes):
-        RLTrainer.logger.info("======== STARTING EPISODE {}=======".format(episode+1))
+        time_now = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
+        RLTrainer.logger.info("======== STARTING EPISODE {} AT {} =======".format(episode+1, time_now))
         g = Game(num_ai_agents, num_rl_agents, RLTrainer, is_simulation, simulation_episodes, is_tom, experiment_id)
-    RLTrainer.logger.info(f"{episodes} COMPLETED")
+    time_now = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
+    RLTrainer.logger.info("============= A TOTAL OF {} COMPLETED at {} ==================".format(episodes, time_now))
     sys.exit()
     g.show_start_screen()
     while True:

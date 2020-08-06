@@ -27,15 +27,15 @@ def get_video_count(dir_path: str, map_no: str):
 def get_video_name_ext(agents: Union[OvercookedAgent,HumanAgent], episodes: int, map_no: str) -> str:
     video_name_ext = []
     for agent in agents:
-        if isinstance(agent, OvercookedAgent):
+        if isinstance(agent, RLAgent):
+            video_name_ext.append('RL')
+        elif isinstance(agent, OvercookedAgent):
             if agent.is_inference_agent:
                 video_name_ext.append('ToM')
             else:
                 video_name_ext.append('Dummy')
         elif isinstance(agent, HumanAgent):
             video_name_ext.append('Human')
-        elif isinstance(agent, RLAgent):
-            video_name_ext.append('RL')
     video_name_ext = '_'.join(video_name_ext) + '_' + str(episodes) + 'ep'
     video_type_count = get_video_count(video_name_ext, map_no)
     return video_name_ext + '_' + map_no + '_' + video_type_count
