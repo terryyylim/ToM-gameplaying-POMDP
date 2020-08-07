@@ -105,6 +105,7 @@ class PPOTrainer():
         if not self.init_step:
             self.first_step(world_state)
         exploration_epsilon = self.exploration_strategy.get_updated_epsilon_exploration({"episode_number": self.episode_number})
+        self.logger.info("Epsilon = {:.4f} @ Episode {}".format(exploration_epsilon, self.episode_number))
         world_state_np = vectorize_world_state(world_state, self.layers)
         flipped_arr = flip_array(agent_id, world_state_np, self.layers)
         action = self.pick_action(flipped_arr, exploration_epsilon)
