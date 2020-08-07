@@ -97,9 +97,9 @@ class PPOTrainer():
         
         state = torch.from_numpy(state).float()
         actor_output = self.policy_new.forward(state)
-        action_distribution = create_actor_distribution(self.action_types, actor_output, self.config.hyperparameters['action_space'])
+        action_distribution = create_actor_distribution("DISCRETE", actor_output, self.config.hyperparameters['action_space'])
         action = action_distribution.sample().cpu()
-        return action
+        return action.item()
 
     def step(self, agent_id, world_state):
         if not self.init_step:
