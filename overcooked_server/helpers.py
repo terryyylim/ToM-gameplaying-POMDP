@@ -68,7 +68,7 @@ def make_video_from_rgb_imgs(rgb_arrs, vid_path, video_name='trajectory',
         video.write(image)
 
     video.release()
-    cv2.destroyAllWindows()
+#    cv2.destroyAllWindows()
 
 def make_video_from_image_dir(vid_path, img_folder, video_name='trajectory', fps=1):
     """
