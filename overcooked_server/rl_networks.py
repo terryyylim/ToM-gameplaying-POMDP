@@ -25,9 +25,7 @@ class ConvMLPNetwork(nn.Module):
         x = self.conv_initial(x)
         for convs in self.conv_layers:
             x = F.leaky_relu(convs(x))
-            print (x.shape)
         x = self.conv_final(x)
-        print (x.shape)
         x = x.view(x.size()[0], -1)
         x = self.linear_initial(x)
         for linear in self.linear_layers:
