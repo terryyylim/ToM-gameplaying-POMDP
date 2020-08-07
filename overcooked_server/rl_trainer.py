@@ -97,7 +97,7 @@ class PPOTrainer():
         
         state = torch.from_numpy(state).float()
         actor_output = self.policy_new.forward(state)
-        if self.action_choice_output_columns is not None: #whats this?
+        if self.action_choice_output_columns: #whats this?
             actor_output = actor_output[:, self.action_choice_output_columns]
         action_distribution = create_actor_distribution(self.action_types, actor_output, self.config.hyperparameters['action_space'])
         action = action_distribution.sample().cpu()

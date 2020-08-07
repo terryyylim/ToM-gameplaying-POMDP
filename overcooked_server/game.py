@@ -66,6 +66,8 @@ class Game:
                 queue_episodes=QUEUE_EPISODES
             )
             self.load_data()
+            results_folder = os.path.join(game_folder, 'results')
+            helpers.check_dir_exist(results_folder)
             self.results_filename = 'results/' + self.env.results_filename + '.csv'
             self.results = defaultdict(int)
             self.results_col = []
@@ -550,7 +552,7 @@ class Game:
         if self.env.rl_trainer:
             self.env.rl_trainer.log_explicit_results(explicit_chop_rewards, explicit_cook_rewards, explicit_serve_rewards)
             self.env.rl_trainer.logger.info(f'Simulation Experiment took {experiment_runtime_min} mins, {experiment_runtime_sec} secs to run.')
-            if self.env.rl_trainer.episode_number % 1 == 0:
+            if self.env.rl_trainer.episode_number % 100 == 0:
                 self.env.rl_trainer.logger.info(f'Saving video at {map_folder}')
                 video_name_ext = helpers.get_video_name_ext(self.env.world_state['agents'], 
                                                             self.env.rl_trainer.episode_number, MAP)
@@ -558,7 +560,7 @@ class Game:
                     map_folder,
                     simulations_folder,
                     video_name_ext,
-                    0.5
+                    2
                     )
         #sys.exit()
 
