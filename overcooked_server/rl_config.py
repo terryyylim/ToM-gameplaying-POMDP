@@ -40,7 +40,7 @@ config.hyperparameters = {
         "episodes_per_learning_round": 5,
         "normalise_rewards": True,
         "gradient_clipping_norm": 7.0,
-        "epsilon_decay_rate_denominator": 100,
+        "epsilon_decay_rate_denominator": 1000,
         "clip_rewards": False,
         "action_space": 15,
         "obs_space": None,

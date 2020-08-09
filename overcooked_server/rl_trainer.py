@@ -14,8 +14,10 @@ from utilities.rl_utils import flip_array, vectorize_world_state, setup_logger, 
 from utilities.Epsilon_Greedy_Exploration import Epsilon_Greedy_Exploration
 from utilities.Utility_Functions import normalise_rewards, create_actor_distribution
 
+
 class PPOTrainer():
     """Master class to orchestrate training of PPO Algorithm in Overcooked AI"""
+
     def __init__(self, config):
         self.config = config
         self.logger = setup_logger(self.config.results_filepath)
@@ -31,22 +33,23 @@ class PPOTrainer():
         self.states_batched = []
         self.actions_batched = []
         self.rewards_batched = []
-        self.average_score_required_to_win = 100 #reward for 1 serve
+        self.average_score_required_to_win = 100  # reward for 1 serve
         self.init_step = False
 
     def first_step(self, world_state):
         self.layers = init_layers(len(world_state['agents']))
         self.config.hyperparameters["obs_space"] = len(self.layers)
-        self.policy_new = self.create_NN(self.config.hyperparameters["obs_space"], 
-                                        self.config.hyperparameters["action_space"], 
-                                        self.config.hyperparameters["nn_params"])
-                                        
-        self.policy_old = self.create_NN(self.config.hyperparameters["obs_space"], 
-                                        self.config.hyperparameters["action_space"], 
-                                        self.config.hyperparameters["nn_params"])
+        self.policy_new = self.create_NN(self.config.hyperparameters["obs_space"],
+                                         self.config.hyperparameters["action_space"],
+                                         self.config.hyperparameters["nn_params"])
+
+        self.policy_old = self.create_NN(self.config.hyperparameters["obs_space"],
+                                         self.config.hyperparameters["action_space"],
+                                         self.config.hyperparameters["nn_params"])
 
         self.policy_old.load_state_dict(copy.deepcopy(self.policy_new.state_dict()))
-        self.policy_new_optim = optim.Adam(self.policy_new.parameters(), lr = self.config.hyperparameters['learning_rate'], eps=1e-4)
+        self.policy_new_optim = optim.Adam(self.policy_new.parameters(
+        ), lr=self.config.hyperparameters['learning_rate'], eps=1e-4)
         self.init_step = True
 
     def init_batch_lists(self):
@@ -79,7 +82,8 @@ class PPOTrainer():
                 new_lr = starting_lr
             for g in optimizer.param_groups:
                 g['lr'] = new_lr
-        if random.random() < 0.001: self.logger.info("Learning rate {}".format(new_lr))
+            if random.random() < 0.001:
+                self.logger.info("Learning rate {}".format(new_lr))
 
     def reset_game(self):
         self.current_episode_state = {}
@@ -89,22 +93,24 @@ class PPOTrainer():
             self.current_episode_state[agent] = []
             self.current_episode_action[agent] = []
             self.current_episode_reward[agent] = []
-            
+
     def pick_action(self, state, exploration_episilon):
         if random.random() <= exploration_episilon:
             action = random.randint(0, self.config.hyperparameters['action_space'] - 1)
             return action
-        
+
         state = torch.from_numpy(state).float()
         actor_output = self.policy_new.forward(state)
-        action_distribution = create_actor_distribution("DISCRETE", actor_output, self.config.hyperparameters['action_space'])
+        action_distribution = create_actor_distribution(
+            "DISCRETE", actor_output, self.config.hyperparameters['action_space'])
         action = action_distribution.sample().cpu()
         return action.item()
 
     def step(self, agent_id, world_state):
         if not self.init_step:
             self.first_step(world_state)
-        self.exploration_epsilon = self.exploration_strategy.get_updated_epsilon_exploration({"episode_number": self.episode_number})
+        self.exploration_epsilon = self.exploration_strategy.get_updated_epsilon_exploration(
+            {"episode_number": self.episode_number})
         world_state_np = vectorize_world_state(world_state, self.layers)
         flipped_arr = flip_array(agent_id, world_state_np, self.layers)
         action = self.pick_action(flipped_arr, self.exploration_epsilon)
@@ -116,7 +122,8 @@ class PPOTrainer():
         all_discounted_returns = self.calculate_all_discounted_returns()
         if self.config.hyperparameters["normalise_rewards"]:
             all_discounted_returns = normalise_rewards(all_discounted_returns)
-        for _ in range(self.config.hyperparameters["learning_iterations_per_round"]):   #number of epochs 
+        # number of epochs
+        for _ in range(self.config.hyperparameters["learning_iterations_per_round"]):
             all_ratio_of_policy_probabilities = self.calculate_all_ratio_of_policy_probabilities()
             loss = self.calculate_loss([all_ratio_of_policy_probabilities], all_discounted_returns)
             self.take_policy_new_optimisation_step(loss)
@@ -126,49 +133,60 @@ class PPOTrainer():
 
     def end_episode(self):
         self.episode_number += 1
-        self.logger.info("Epsilon = {:.4f} @ Episode {}".format(self.exploration_epsilon, self.episode_number))
+        self.logger.info("Epsilon = {:.4f} @ Episode {}".format(
+            self.exploration_epsilon, self.episode_number))
         self.states_batched.extend(list(self.current_episode_state.values()))
         self.actions_batched.extend(list(self.current_episode_action.values()))
         self.rewards_batched.extend(list(self.current_episode_reward.values()))
         if (self.episode_number % self.config.hyperparameters['episodes_per_learning_round'] == 0) and (self.config.train):
-            loss = self.policy_learn()
-            self.update_learning_rate(self.config.hyperparameters['learning_rate'], self.policy_new_optim)
+            self.policy_learn()
+            self.update_learning_rate(
+                self.config.hyperparameters['learning_rate'], self.policy_new_optim)
             self.equalise_policies()
         self.write_results()
         self.reset_game()
         self.logger.info("======== END OF EPISODE =======")
-    
+
     def calculate_all_ratio_of_policy_probabilities(self):
         """For each action calculates the ratio of the probability that the new policy would have picked the action vs.
          the probability the old policy would have picked it. This will then be used to inform the loss"""
         all_states = [state for states in self.states_batched for state in states]
         all_actions = [[action] for actions in self.actions_batched for action in actions]
-        all_states = torch.stack([torch.Tensor(states).float().to(self.device) for states in all_states])
+        all_states = torch.stack([torch.Tensor(states).float().to(self.device)
+                                  for states in all_states])
 
-        all_actions = torch.stack([torch.Tensor(actions).float().to(self.device) for actions in all_actions])
+        all_actions = torch.stack([torch.Tensor(actions).float().to(self.device)
+                                   for actions in all_actions])
         all_actions = all_actions.view(-1, len(all_states))
 
-        new_policy_distribution_log_prob = self.calculate_log_probability_of_actions(self.policy_new, all_states, all_actions)
-        old_policy_distribution_log_prob = self.calculate_log_probability_of_actions(self.policy_old, all_states, all_actions)
-        ratio_of_policy_probabilities = torch.exp(new_policy_distribution_log_prob) / (torch.exp(old_policy_distribution_log_prob) + 1e-8)
+        new_policy_distribution_log_prob = self.calculate_log_probability_of_actions(
+            self.policy_new, all_states, all_actions)
+        old_policy_distribution_log_prob = self.calculate_log_probability_of_actions(
+            self.policy_old, all_states, all_actions)
+        ratio_of_policy_probabilities = torch.exp(
+            new_policy_distribution_log_prob) / (torch.exp(old_policy_distribution_log_prob) + 1e-8)
         return ratio_of_policy_probabilities
 
     def calculate_log_probability_of_actions(self, policy, states, actions):
         """Calculates the log probability of an action occuring given a policy and starting state"""
         policy_output = policy.forward(states).to(self.device)
-        policy_distribution = create_actor_distribution("DISCRETE", policy_output, self.config.hyperparameters["action_space"])
+        policy_distribution = create_actor_distribution(
+            "DISCRETE", policy_output, self.config.hyperparameters["action_space"])
         policy_distribution_log_prob = policy_distribution.log_prob(actions)
         return policy_distribution_log_prob
 
     def calculate_loss(self, all_ratio_of_policy_probabilities, all_discounted_returns):
         """Calculates the PPO loss"""
-        all_ratio_of_policy_probabilities = torch.squeeze(torch.stack(all_ratio_of_policy_probabilities))
+        all_ratio_of_policy_probabilities = torch.squeeze(
+            torch.stack(all_ratio_of_policy_probabilities))
         all_ratio_of_policy_probabilities = torch.clamp(input=all_ratio_of_policy_probabilities,
-                                                        min = -sys.maxsize,
-                                                        max = sys.maxsize)
-        all_discounted_returns = torch.tensor(all_discounted_returns).to(all_ratio_of_policy_probabilities)
+                                                        min=-sys.maxsize,
+                                                        max=sys.maxsize)
+        all_discounted_returns = torch.tensor(
+            all_discounted_returns).to(all_ratio_of_policy_probabilities)
         potential_loss_value_1 = all_discounted_returns * all_ratio_of_policy_probabilities
-        potential_loss_value_2 = all_discounted_returns * self.clamp_probability_ratio(all_ratio_of_policy_probabilities)
+        potential_loss_value_2 = all_discounted_returns * \
+            self.clamp_probability_ratio(all_ratio_of_policy_probabilities)
         loss = torch.min(potential_loss_value_1, potential_loss_value_2)
         loss = -torch.mean(loss)
         self.logger.info(f'Loss: {loss}')
@@ -185,13 +203,13 @@ class PPOTrainer():
     def clamp_probability_ratio(self, value):
         """Clamps a value between a certain range determined by hyperparameter clip epsilon"""
         return torch.clamp(input=value, min=1.0 - self.config.hyperparameters["clip_epsilon"],
-                                  max=1.0 + self.config.hyperparameters["clip_epsilon"])
+                           max=1.0 + self.config.hyperparameters["clip_epsilon"])
 
     def equalise_policies(self):
         """Sets the old policy's parameters equal to the new policy's parameters"""
         for old_param, new_param in zip(self.policy_old.parameters(), self.policy_new.parameters()):
             old_param.data.copy_(new_param.data)
-    
+
     def create_NN(self, input_dim, output_dim, hyperparameters):
         return ConvMLPNetwork(input_dim, output_dim, hyperparameters)
 
@@ -226,14 +244,15 @@ class PPOTrainer():
         for episode in range(len(self.states_batched)):
             discounted_returns = [0]
             for ix in range(len(self.states_batched[episode])):
-                return_value = self.rewards_batched[episode][-(ix + 1)] + self.config.hyperparameters["discount_rate"]*discounted_returns[-1]
+                return_value = self.rewards_batched[episode][-(
+                    ix + 1)] + self.config.hyperparameters["discount_rate"]*discounted_returns[-1]
                 discounted_returns.append(return_value)
             discounted_returns = discounted_returns[1:]
             all_discounted_returns.extend(discounted_returns[::-1])
         return all_discounted_returns
 
     def write_to_output(self, mode, array):
-        with open(self.config.results_filepath + mode + '.txt','a+') as output:
+        with open(self.config.results_filepath + mode + '.txt', 'a+') as output:
             output.write(str(array) + '\n')
             output.close()
 
@@ -246,7 +265,6 @@ class PPOTrainer():
         self.logger.info(f'Current explicit CHOP rewards: {chop_rewards}')
         self.logger.info(f'Current explicit COOK rewards: {cook_rewards}')
         self.logger.info(f'Current explicit SERVE rewards: {serve_rewards}')
-        
+
         current_episode_explicit = (chop_rewards, cook_rewards, serve_rewards)
         self.write_to_output('explicit', current_episode_explicit)
-
