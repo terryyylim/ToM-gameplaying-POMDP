@@ -31,7 +31,7 @@ class PPOTrainer():
         self.states_batched = []
         self.actions_batched = []
         self.rewards_batched = []
-        self.rolling_results = []
+        self.average_score_required_to_win = 100 #reward for 1 serve
         self.init_step = False
 
     def first_step(self, world_state):
@@ -65,8 +65,8 @@ class PPOTrainer():
 
     def update_learning_rate(self, starting_lr,  optimizer):
         """Lowers the learning rate according to how close we are to the solution"""
-        if len(self.rolling_results) > 0:
-            last_rolling_score = self.rolling_results[-1]
+        if len(self.rewards_batched) > 0:
+            last_rolling_score = self.rewards_batched[-1][-1]
             if last_rolling_score > 0.75 * self.average_score_required_to_win:
                 new_lr = starting_lr / 100.0
             elif last_rolling_score > 0.6 * self.average_score_required_to_win:
@@ -104,11 +104,10 @@ class PPOTrainer():
     def step(self, agent_id, world_state):
         if not self.init_step:
             self.first_step(world_state)
-        exploration_epsilon = self.exploration_strategy.get_updated_epsilon_exploration({"episode_number": self.episode_number})
-        self.logger.info("Epsilon = {:.4f} @ Episode {}".format(exploration_epsilon, self.episode_number))
+        self.exploration_epsilon = self.exploration_strategy.get_updated_epsilon_exploration({"episode_number": self.episode_number})
         world_state_np = vectorize_world_state(world_state, self.layers)
         flipped_arr = flip_array(agent_id, world_state_np, self.layers)
-        action = self.pick_action(flipped_arr, exploration_epsilon)
+        action = self.pick_action(flipped_arr, self.exploration_epsilon)
         self.current_episode_state[agent_id].append(flipped_arr[0])
         self.current_episode_action[agent_id].append(action)
         return action
@@ -127,6 +126,7 @@ class PPOTrainer():
 
     def end_episode(self):
         self.episode_number += 1
+        self.logger.info("Epsilon = {:.4f} @ Episode {}".format(self.exploration_epsilon, self.episode_number))
         self.states_batched.extend(list(self.current_episode_state.values()))
         self.actions_batched.extend(list(self.current_episode_action.values()))
         self.rewards_batched.extend(list(self.current_episode_reward.values()))
