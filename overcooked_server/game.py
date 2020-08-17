@@ -570,7 +570,7 @@ class Game:
                 explicit_chop_rewards, explicit_cook_rewards, explicit_serve_rewards)
             self.env.rl_trainer.logger.info(
                 f'Simulation Experiment took {experiment_runtime_min} mins, {experiment_runtime_sec} secs to run.')
-            if self.env.rl_trainer.episode_number % 1 == 0:
+            if self.env.rl_trainer.episode_number % 100 == 0:
                 self.env.rl_trainer.logger.info(f'Saving video at {map_folder}')
                 video_name_ext = helpers.get_video_name_ext(self.env.world_state['agents'],
                                                             self.env.rl_trainer.episode_number, MAP)

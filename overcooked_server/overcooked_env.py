@@ -268,10 +268,10 @@ class OvercookedEnv(MapEnv):
                 else:
                     agent_rewards = REWARDS[agent_action_str]
                     if action_type == 'movement':
-                        assigned_best_goal[agent] = [-1, {'steps': [action_task], 'rewards': agent_rewards}]
+                        assigned_best_goal[agent] = [-1, {'steps': [agent_action], 'rewards': agent_rewards}]
                     else:
                         # its a task_action being taken
-                        assigned_best_goal[agent] = [goal_id, {'steps': [action_task], 'rewards': agent_rewards}]
+                        assigned_best_goal[agent] = [goal_id, {'steps': action_task, 'rewards': agent_rewards}]
             else:
                 tasks_rewards = [agents_possible_goals[agent][task]['rewards'] for task in agents_possible_goals[agent]]
                 print(f'Agent {agent.id} Task Rewards')

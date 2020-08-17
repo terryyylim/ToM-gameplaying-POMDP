@@ -8,7 +8,7 @@ x,y = get_state_shape(WORLD_STATE)
 ###################
 
 config = Config()
-config.seed = 1
+config.seed = 42
 config.num_episodes_to_run = 100
 config.results_filepath = "/polyaxon-exp-output/sidney_tio/"
 #config.file_to_save_results_graph = "results/data_and_graphs/Cart_Pole_Results_Graph.png"
@@ -40,7 +40,7 @@ config.hyperparameters = {
         "episodes_per_learning_round": 5,
         "normalise_rewards": True,
         "gradient_clipping_norm": 7.0,
-        "epsilon_decay_rate_denominator": 1000,
+        "epsilon_decay_rate_denominator": 2500,
         "clip_rewards": False,
         "action_space": 15,
         "obs_space": None,
