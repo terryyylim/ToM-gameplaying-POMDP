@@ -223,7 +223,11 @@ class PPOTrainer():
     def receive_rewards(self, rewards):
         for agent_id in self.agents:
             reward_annealed = self.anneal_reward(rewards[agent_id])
-            self.current_episode_reward[agent_id].append(reward_annealed)
+            if not self.current_episode_reward[agent_id]:
+                self.current_episode_reward[agent_id].append(reward_annealed)
+            else:
+                accum_rewards = self.current_episode_reward[agent_id][-1] + reward_annealed
+                self.current_episode_reward[agent_id].append(accum_rewards)
         self.timesteps += 1
 
     def set_random_seeds(self, random_seed):
