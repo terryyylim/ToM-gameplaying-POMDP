@@ -230,8 +230,11 @@ class PPOTrainer():
                 self.current_episode_reward[agent_id].append(accum_rewards)
         self.timesteps += 1
 
-    def set_random_seeds(self, random_seed):
+    def set_random_seeds(self, random_seed=None):
         """Sets all possible random seeds so results can be reproduced"""
+        if not random_seed:
+            random_seed = np.random.randint(100)
+            self.logger.info("Random seed @ {}".format(random_seed))
         os.environ['PYTHONHASHSEED'] = str(random_seed)
         torch.backends.cudnn.deterministic = True
         torch.backends.cudnn.benchmark = False
