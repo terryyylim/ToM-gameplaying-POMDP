@@ -263,7 +263,7 @@ class PPOTrainer():
             for agent, state in array.items():
                 filepath = f"{self.config.results_filepath}state/agent{agent}_{self.episode_number}.npy"
                 with open(filepath, 'wb+') as output:
-                    np.save(filepath, np.array(state).flatten())
+                    np.save(filepath, np.array(state))
                     output.close()
         else:
             filepath = self.config.results_filepath + mode + '.txt'

@@ -533,10 +533,8 @@ class Game:
             print([agent.location for agent in self.env.world_state['agents']])
             print([agent.holding for agent in self.env.world_state['agents']])
             self.env.update_episode()
-            if self.env.rl_trainer:
-                if self.env.rl_trainer.episode_number % 100 == 0:
-                    pg.image.save(self.screen, simulations_folder +
-                                  f'/episode_{self.env.episode}.png')
+            pg.image.save(self.screen, simulations_folder +
+                        f'/episode_{self.env.episode}.png')
 
             if self.env.episode == 0:
                 self.results[str(self.env.episode)] = self.env.world_state['total_score']
