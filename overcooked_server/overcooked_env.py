@@ -46,13 +46,14 @@ class OvercookedEnv(MapEnv):
         self.random_queue_order()
 
         # Initialization: Update agent's current cell to be not available
-        print(f'Removing agent current location fdefm valid_cells, valid_item_cells list')
-        try:
-            for agent in self.agents:
-                self.world_state['valid_cells'].remove(self.agents[agent].location)
-                self.world_state['valid_item_cells'].remove(self.agents[agent].location)
-        except ValueError:
-            print('Valid cell is already updated')
+        print(f'Removing agent current location valid_cells, valid_item_cells list')
+        for agent in self.agents:
+            start_loc = self.agents[agent].location
+            if start_loc in self.world_state['valid_cells']:
+                self.world_state['valid_cells'].remove(start_loc)
+            if start_loc in self.world_state['valid_item_cells']:
+                self.world_state['valid_item_cells'].remove(start_loc)
+
 
     def update_episode(self):
         self.episode += 1
