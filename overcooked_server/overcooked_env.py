@@ -99,10 +99,10 @@ class OvercookedEnv(MapEnv):
         """
         self.world_state['ingredients_station'] = INGREDIENTS_STATION
         self.world_state['table_tops'] = TABLE_TOPS
-        self.world_state['invalid_movement_cells'] = WORLD_STATE['invalid_movement_cells']
-        self.world_state['valid_cells'] = WORLD_STATE['valid_movement_cells']
-        self.world_state['valid_item_cells'] = WORLD_STATE['valid_item_cells']
-        self.world_state['service_counter'] = WORLD_STATE['service_counter']
+        self.world_state['invalid_movement_cells'] = WORLD_STATE['invalid_movement_cells'].copy()
+        self.world_state['valid_cells'] = WORLD_STATE['valid_movement_cells'].copy()
+        self.world_state['valid_item_cells'] = WORLD_STATE['valid_item_cells'].copy()
+        self.world_state['service_counter'] = WORLD_STATE['service_counter'].copy()
         self.world_state['return_counter'] = WORLD_STATE['return_counter'][0]
         self.world_state['explicit_rewards'] = {'chop': 0, 'cook': 0, 'serve': 0}
         self.world_state['cooked_dish_count'] = {}
