@@ -28,7 +28,8 @@ class Game:
         is_simulation: bool = False,
         simulation_episodes: int = 500,
         is_tom: bool = False,
-        experiment_id: str = '1'
+        experiment_id: str = '1',
+        num_episodes_video: int = 100
     ) -> None:
         pg.init()
         self.screen = pg.display.set_mode((WIDTH, HEIGHT))
@@ -40,6 +41,7 @@ class Game:
         self.experiment_id = experiment_id
         self.RLTrainer = RLTrainer
         self.TERMINATING_EPISODE = simulation_episodes
+        self.num_episodes_video = num_episodes_video
         AI_AGENTS_TO_INITIALIZE = {}
         RL_AGENTS_TO_INITIALIZE = {}
         agent_id = 0
@@ -534,7 +536,7 @@ class Game:
             print([agent.holding for agent in self.env.world_state['agents']])
             self.env.update_episode()
             pg.image.save(self.screen, simulations_folder +
-                        f'/episode_{self.env.episode}.png')
+                          f'/episode_{self.env.episode}.png')
 
             if self.env.episode == 0:
                 self.results[str(self.env.episode)] = self.env.world_state['total_score']
@@ -568,7 +570,7 @@ class Game:
                 explicit_chop_rewards, explicit_cook_rewards, explicit_serve_rewards)
             self.env.rl_trainer.logger.info(
                 f'Simulation Experiment took {experiment_runtime_min} mins, {experiment_runtime_sec} secs to run.')
-            if self.env.rl_trainer.episode_number % 100 == 0:
+            if self.env.rl_trainer.episode_number % self.num_episodes_video == 0:
                 self.env.rl_trainer.logger.info(f'Saving video at {map_folder}')
                 video_name_ext = helpers.get_video_name_ext(self.env.world_state['agents'],
                                                             self.env.rl_trainer.episode_number, MAP)
@@ -596,7 +598,8 @@ class Game:
 @click.option('--is_tom', default=False, help='Is agent ToM-based?')
 @click.option('--experiment_id', default='1', help='ID of the experiment')
 @click.option('--gui', default=False, help='To use GUI of Pygame')
-def main(num_ai_agents, num_rl_agents, is_simulation, episodes, simulation_episodes, is_tom, experiment_id, gui):
+@click.option('--num_episodes_video', default=100, help='Frequency (in episodes) of video saving')
+def main(num_ai_agents, num_rl_agents, is_simulation, episodes, simulation_episodes, is_tom, experiment_id, gui, num_episodes_video):
     # create the game object
     if not gui:
         os.environ["SDL_VIDEODRIVER"] = "dummy"
@@ -614,7 +617,7 @@ def main(num_ai_agents, num_rl_agents, is_simulation, episodes, simulation_episo
         RLTrainer.logger.info(
             "======== STARTING EPISODE {} AT {} =======".format(episode+1, time_now))
         g = Game(num_ai_agents, num_rl_agents, RLTrainer, is_simulation,
-                 simulation_episodes, is_tom, experiment_id)
+                 simulation_episodes, is_tom, experiment_id, num_episodes_video)
         RLTrainer.set_random_seeds()
     time_now = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
     RLTrainer.logger.info(

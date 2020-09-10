@@ -103,9 +103,9 @@ class MapEnv(MultiAgentEnv):
         """
         print('@map_env - step()')
         print(agent_actions)
-        
+
         orig_pos = {agent: tuple(agent.location) for agent in self.world_state['agents']}
-        orig_holding = {agent:agent.holding for agent in self.world_state['agents']}
+        orig_holding = {agent: agent.holding for agent in self.world_state['agents']}
 
         agent_executed = self.update_moves(agent_actions)
         curr_pos = {agent: tuple(agent.location) for agent in self.world_state['agents']}
@@ -120,14 +120,14 @@ class MapEnv(MultiAgentEnv):
                 # Stayed
                 if orig_pos[agent] == curr_pos[agent]:
                     final_rewards[agent.id] = REWARDS['STAY']
-                # Moved 
+                # Moved
                 else:
                     movement = list(np.subtract(curr_pos[agent], orig_pos[agent]))
-                    if movement in [[0,1], [0,-1], [1,0], [-1,0]]:
+                    if movement in [[0, 1], [0, -1], [1, 0], [-1, 0]]:
                         final_rewards[agent.id] = -1
                     else:
                         final_rewards[agent.id] = -2
-        
+
         # Update map barriers for agent's A* Search
         temp_astar_map = None
         # Get A* Search map
@@ -136,7 +136,7 @@ class MapEnv(MultiAgentEnv):
                 temp_astar_map = agent.astar_map
             elif isinstance(agent, HumanAgent):
                 temp_astar_map = self.walls
-        
+
         for agent in curr_pos:
             if curr_pos[agent] != orig_pos[agent]:
                 self.world_state['valid_cells'].append(orig_pos[agent])
@@ -145,7 +145,7 @@ class MapEnv(MultiAgentEnv):
                 # Update barriers in map used for A* Search
                 temp_astar_map.barriers[0].remove(orig_pos[agent])
                 temp_astar_map.barriers[0].append(curr_pos[agent])
-        
+
         for agent in agent_actions:
             action = agent_actions[agent][1]
 
@@ -163,11 +163,13 @@ class MapEnv(MultiAgentEnv):
 
                     elif action[1]['pick_type'] == 'ingredient':
                         if agent.holding:
-                            all_raw_chop_locations = [cb.location for cb in self.world_state['chopping_board']]
-                            all_raw_ingredients_locations = [self.world_state['ingredient_'+agent.holding.name][0]]
-                            
+                            all_raw_chop_locations = [
+                                cb.location for cb in self.world_state['chopping_board']]
+                            all_raw_ingredients_locations = [
+                                self.world_state['ingredient_'+agent.holding.name][0]]
+
                             cur_ingredient_pos = action[1]['task_coord']
-                            if cur_ingredient_pos not in all_raw_chop_locations and cur_ingredient_pos not in all_raw_ingredients_locations: 
+                            if cur_ingredient_pos not in all_raw_chop_locations and cur_ingredient_pos not in all_raw_ingredients_locations:
                                 self.world_state['valid_item_cells'].append(cur_ingredient_pos)
 
                 if action[0] == 'DROP':
@@ -188,7 +190,7 @@ class MapEnv(MultiAgentEnv):
         for agent in self.world_state['agents']:
             if isinstance(agent, OvercookedAgent):
                 agent.astar_map = temp_astar_map
-        
+
         # TO-DO: Add mechanism to store past observations, rewards
         return final_rewards
 
@@ -223,12 +225,12 @@ class MapEnv(MultiAgentEnv):
                 agent_tasks[agent] = [task, action]
                 agent_action = agent.action_map(8)
                 agent_actions[agent] = agent_action
-                
+
         reserved_slots = []
         agent_moves = {}
         for agent, action in agent_actions.items():
             selected_action = MAP_ACTIONS[action]
-            
+
             new_pos = tuple([x + y for x, y in zip(list(agent.location), selected_action)])
             new_pos = agent.return_valid_pos(new_pos)
             agent_moves[agent] = new_pos
@@ -285,7 +287,7 @@ class MapEnv(MultiAgentEnv):
                             moves_copy = agent_moves.copy()
                             # TODO(ev) code duplication, simplify
                             locs = [list(agent.location) for agent in self.world_state['agents']]
-                            if move.tolist() in locs: #self.agent_pos
+                            if move.tolist() in locs:  # self.agent_pos
                                 # find the agent that is currently at that spot and make sure
                                 # that the move is possible. If it won't be, remove it.
                                 conflicting_agent = agent_by_pos[tuple(move)]
@@ -318,7 +320,8 @@ class MapEnv(MultiAgentEnv):
                         # if the conflict cell is open, let one of the conflicting agents
                         # move into it
                         if conflict_cell_free:
-                            agent_idx = [idx for idx, agent_obj in enumerate(self.world_state['agents']) if id(agent_obj) == id(agent_to_slot[index])][0]
+                            agent_idx = [idx for idx, agent_obj in enumerate(
+                                self.world_state['agents']) if id(agent_obj) == id(agent_to_slot[index])][0]
                             self.world_state['agents'][agent_idx].update_agent_pos(move)
                             agent_by_pos = {tuple(agent.location):
                                             agent for agent in self.world_state['agents']}
@@ -330,7 +333,7 @@ class MapEnv(MultiAgentEnv):
                         # to stay in place
                         for agent in all_agents:
                             agent_moves[agent] = agent.location
-            
+
             print('@map_env - Ended fix (if any)')
             print(move_slots)
             print(agent_to_slot)
@@ -340,7 +343,8 @@ class MapEnv(MultiAgentEnv):
             print('@map_env - Starting un-conflicted moves (if any)')
             # make the remaining un-conflicted moves
             while len(agent_moves.items()) > 0:
-                agent_by_pos = {tuple(agent.location): agent for agent in self.world_state['agents']}
+                agent_by_pos = {tuple(agent.location)
+                                      : agent for agent in self.world_state['agents']}
                 num_moves = len(agent_moves.items())
                 moves_copy = agent_moves.copy()
                 del_keys = []
@@ -382,7 +386,8 @@ class MapEnv(MultiAgentEnv):
                                 del_keys.append(conflicting_agent)
                     # this move is unconflicted so go ahead and move
                     else:
-                        agent_idx = [idx for idx, agent_obj in enumerate(self.world_state['agents']) if id(agent_obj) == id(agent)][0]
+                        agent_idx = [idx for idx, agent_obj in enumerate(
+                            self.world_state['agents']) if id(agent_obj) == id(agent)][0]
                         self.world_state['agents'][agent_idx].update_agent_pos(move)
                         del agent_moves[agent]
                         del_keys.append(agent)
@@ -432,5 +437,5 @@ class MapEnv(MultiAgentEnv):
                 print('@map_env - Executing Drop Action')
                 agent.drop(task_id)
                 agent_executed[agent] = agent_rewards
-        
+
         return agent_executed

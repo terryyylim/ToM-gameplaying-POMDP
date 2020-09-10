@@ -4,14 +4,17 @@ import torch
 
 from .Base_Exploration_Strategy import Base_Exploration_Strategy
 
+
 class Epsilon_Greedy_Exploration(Base_Exploration_Strategy):
     """Implements an epsilon greedy exploration strategy"""
+
     def __init__(self, config):
         super().__init__(config)
         self.notified_that_exploration_turned_off = False
         if "exploration_cycle_episodes_length" in self.config.hyperparameters.keys():
             print("Using a cyclical exploration strategy")
-            self.exploration_cycle_episodes_length = self.config.hyperparameters["exploration_cycle_episodes_length"]
+            self.exploration_cycle_episodes_length = self.config.hyperparameters[
+                "exploration_cycle_episodes_length"]
         else:
             self.exploration_cycle_episodes_length = None
 
@@ -33,10 +36,9 @@ class Epsilon_Greedy_Exploration(Base_Exploration_Strategy):
             self.notified_that_exploration_turned_off = True
         epsilon = self.get_updated_epsilon_exploration(action_info)
 
-
         if (random.random() > epsilon or turn_off_exploration) and (episode_number >= self.random_episodes_to_run):
             return torch.argmax(action_values).item()
-        return  np.random.randint(0, action_values.shape[1])
+        return np.random.randint(0, action_values.shape[1])
 
     def get_updated_epsilon_exploration(self, action_info, epsilon=1.0):
         """Gets the probability that we just pick a random action. This probability decays the more episodes we have seen"""
