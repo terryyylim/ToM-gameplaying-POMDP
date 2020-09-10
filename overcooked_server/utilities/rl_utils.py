@@ -15,9 +15,9 @@ def init_layers(num_agents):
 
 
 def get_state_shape(world_state):
-    x = GRIDWIDTH
-    y = GRIDHEIGHT - 1
-    return (x, y)  # pygame uses (y,x)
+    x = int(GRIDWIDTH)
+    y = int(GRIDHEIGHT - 1)
+    return (y, x)  # pygame uses (y,x)
 
 
 def get_loc(world_state, object_name):
