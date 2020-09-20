@@ -618,7 +618,8 @@ def main(num_ai_agents, num_rl_agents, is_simulation, episodes, simulation_episo
             "======== STARTING EPISODE {} AT {} =======".format(episode+1, time_now))
         g = Game(num_ai_agents, num_rl_agents, RLTrainer, is_simulation,
                  simulation_episodes, is_tom, experiment_id, num_episodes_video)
-        RLTrainer.set_random_seeds()
+        if config.randomise_random_seed:
+            RLTrainer.set_random_seeds()
     time_now = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
     RLTrainer.logger.info(
         "============= A TOTAL OF {} EPISODES COMPLETED at {} ==================".format(episodes, time_now))
