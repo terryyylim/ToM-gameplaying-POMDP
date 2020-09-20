@@ -47,6 +47,9 @@ class PPOTrainer():
                                          self.config.hyperparameters["action_space"],
                                          self.config.hyperparameters["nn_params"])
 
+        if self.config.old_policy_path:
+            self.policy_new.load_state_dict(torch.load(self.config.old_policy_path))
+
         self.policy_old.load_state_dict(copy.deepcopy(self.policy_new.state_dict()))
         self.policy_new_optim = optim.Adam(self.policy_new.parameters(
         ), lr=self.config.hyperparameters['learning_rate'], eps=1e-4)
@@ -95,7 +98,7 @@ class PPOTrainer():
             self.current_episode_reward[agent] = []
 
     def pick_action(self, state, exploration_episilon):
-        if random.random() <= exploration_episilon:
+        if self.config.hyperparameters['random_policy'] and random.random() <= exploration_episilon:
             action = random.randint(0, self.config.hyperparameters['action_space'] - 1)
             return action
 

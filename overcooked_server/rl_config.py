@@ -8,7 +8,7 @@ x,y = get_state_shape(WORLD_STATE)
 ###################
 
 config = Config()
-config.seed = 42
+config.seed = 4
 config.num_episodes_to_run = 100
 config.results_filepath = "/polyaxon-exp-output/sidney_tio/"
 #config.file_to_save_results_graph = "results/data_and_graphs/Cart_Pole_Results_Graph.png"
@@ -21,14 +21,14 @@ config.use_GPU = True
 config.overwrite_existing_results_file = False
 config.randomise_random_seed = True
 config.save_model = False
-config.model_path = None
+config.model_path = "/polyaxon-exp-output/sidney_tio/policy.pth"
 config.train = True
 config.reward_horizon = 1e6
+config.old_policy_path = "/polyaxon-exp-output/sidney_tio/policy.pth"
+
 ##############
 # PPO Params #
 ##############
-
-
 config.hyperparameters = {
         "learning_rate": 0.05,
         "linear_hidden_units": [20, 20],
@@ -40,10 +40,11 @@ config.hyperparameters = {
         "episodes_per_learning_round": 5,
         "normalise_rewards": True,
         "gradient_clipping_norm": 7.0,
-        "epsilon_decay_rate_denominator": 2500,
+        "epsilon_decay_rate_denominator": 100,
         "clip_rewards": False,
         "action_space": 15,
         "obs_space": None,
+        "random_policy": True,
         "nn_params": {'NUM_HIDDEN_LAYERS':3,
                       'SIZE_HIDDEN_LAYERS':64,
                       'NUM_FILTERS':25,
