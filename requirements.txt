@@ -35,7 +35,7 @@ pytest==5.1.2
 python-dateutil==2.8.0
 python-igraph==0.7.1.post6
 pytz==2019.3
-PyYAML==5.1.2
+PyYAML==5.4
 ray==0.7.4
 redis==3.3.8
 requests==2.22.0
