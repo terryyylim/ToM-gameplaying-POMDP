@@ -90,7 +90,7 @@ class OvercookedEnv(MapEnv):
         world_state:
             a dictionary indicating world state (coordinates of items in map)
         """
-        self.world_state['invalid_stay_cells'] = WORLD_STATE['invalid_stay_cells']
+        #self.world_state['invalid_stay_cells'] = WORLD_STATE['invalid_stay_cells']
         self.world_state['invalid_movement_cells'] = WORLD_STATE['invalid_movement_cells']
         self.world_state['valid_cells'] = WORLD_STATE['valid_movement_cells']
         self.world_state['valid_item_cells'] = WORLD_STATE['valid_item_cells']
