@@ -1,0 +1,1178 @@
+run_id,ID,trial_type,stimulus_name,response,trial_category
+12,semep0hq8,preload,"""","""",""""
+12,semep0hq8,html-keyboard-response,"""", ,""""
+12,semep0hq8,html-keyboard-response,"""",y,""""
+12,semep0hq8,survey-text,"""","{""instructions1"":""To collect water from a water source and bring it back to the wooden storage bucket, and the faster they do it, the more points they receive.""}",instructions
+12,semep0hq8,survey-text,"""","{""instructions2"":""One""}",instructions
+12,semep0hq8,survey-text,"""","{""instructions4"":""Think about what would happen if everyone felt at liberty to leave the line and try to get water faster for themselves, instead of staying in line. Then answer if it was better or worse if everyone stayed in line.""}",instructions
+12,semep0hq8,video-slider-response,maybe_line_new_6_1cut,-50,maybe_1
+12,semep0hq8,video-slider-response,yes_line_8_1cut,-50,yes_1
+12,semep0hq8,video-slider-response,no_line_1_1cut,50,no_1
+12,semep0hq8,video-slider-response,no_line_2_1cut,50,no_1
+12,semep0hq8,video-slider-response,maybe_line_new_2_1cut,50,maybe_1
+12,semep0hq8,video-slider-response,maybe_line_new_5_1cut,-50,maybe_1
+12,semep0hq8,video-slider-response,yes_line_9_1cut,-50,yes_1
+12,semep0hq8,video-slider-response,maybe_line_new_3_1cut,50,maybe_1
+12,semep0hq8,video-slider-response,maybe_line_new_4_1cut,-50,maybe_1
+12,semep0hq8,video-slider-response,maybe_line_new_1_1cut,-50,maybe_1
+12,semep0hq8,video-slider-response,no_line_3_1cut,50,no_1
+12,semep0hq8,video-slider-response,yes_line_7_1cut,-50,yes_1
+12,semep0hq8,video-slider-response,yes_line_10_1cut,-50,yes_1
+12,semep0hq8,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""No problems at all!""},{""name"":""age"",""value"":""44""},{""name"":""gender"",""value"":""male""},{""name"":""comments"",""value"":""MTURK ID:   A2VAL2BRKVSUB5""}]",debrief
+12,semep0hq8,html-keyboard-response,"""", ,""""
+10,rhhm6gcs8,preload,"""","""",""""
+10,rhhm6gcs8,html-keyboard-response,"""", ,""""
+10,rhhm6gcs8,html-keyboard-response,"""",y,""""
+10,rhhm6gcs8,survey-text,"""","{""instructions1"":""collect water""}",instructions
+10,rhhm6gcs8,survey-text,"""","{""instructions2"":""1""}",instructions
+10,rhhm6gcs8,survey-text,"""","{""instructions4"":""Everyone feeling at liberty to leave and how that will affect everyone""}",instructions
+10,rhhm6gcs8,video-slider-response,maybe_line_new_5_1cut,-40,maybe_1
+10,rhhm6gcs8,video-slider-response,yes_line_7_1cut,0,yes_1
+10,rhhm6gcs8,video-slider-response,yes_line_9_1cut,-21,yes_1
+10,rhhm6gcs8,video-slider-response,no_line_2_1cut,0,no_1
+10,rhhm6gcs8,video-slider-response,maybe_line_new_6_1cut,0,maybe_1
+10,rhhm6gcs8,video-slider-response,yes_line_10_1cut,-26,yes_1
+10,rhhm6gcs8,video-slider-response,no_line_3_1cut,-25,no_1
+10,rhhm6gcs8,video-slider-response,maybe_line_new_1_1cut,-28,maybe_1
+10,rhhm6gcs8,video-slider-response,maybe_line_new_4_1cut,-24,maybe_1
+10,rhhm6gcs8,video-slider-response,maybe_line_new_2_1cut,0,maybe_1
+10,rhhm6gcs8,video-slider-response,yes_line_8_1cut,-30,yes_1
+10,rhhm6gcs8,video-slider-response,maybe_line_new_3_1cut,-20,maybe_1
+10,rhhm6gcs8,video-slider-response,no_line_1_1cut,0,no_1
+10,rhhm6gcs8,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""No""},{""name"":""age"",""value"":""45""},{""name"":""gender"",""value"":""female""},{""name"":""comments"",""value"":""No""}]",debrief
+10,rhhm6gcs8,html-keyboard-response,"""", ,""""
+15,6t4mp6pdc,preload,"""","""",""""
+15,6t4mp6pdc,html-keyboard-response,"""", ,""""
+15,6t4mp6pdc,html-keyboard-response,"""",y,""""
+15,6t4mp6pdc,survey-text,"""","{""instructions1"":""collect water from a water source and bring it back to the wooden storage buckets""}",instructions
+15,6t4mp6pdc,survey-text,"""","{""instructions2"":""1""}",instructions
+15,6t4mp6pdc,survey-text,"""","{""instructions4"":""what would happen if EVERYONE felt at liberty to leave the line and how much better or worse off everyone would be if everyone stayed in line""}",instructions
+15,6t4mp6pdc,video-slider-response,maybe_line_new_3_1cut,-45,maybe_1
+15,6t4mp6pdc,video-slider-response,maybe_line_new_6_1cut,-49,maybe_1
+15,6t4mp6pdc,video-slider-response,no_line_1_1cut,43,no_1
+15,6t4mp6pdc,video-slider-response,yes_line_7_1cut,-48,yes_1
+15,6t4mp6pdc,video-slider-response,no_line_3_1cut,23,no_1
+15,6t4mp6pdc,video-slider-response,maybe_line_new_2_1cut,7,maybe_1
+15,6t4mp6pdc,video-slider-response,maybe_line_new_1_1cut,-11,maybe_1
+15,6t4mp6pdc,video-slider-response,yes_line_8_1cut,-45,yes_1
+15,6t4mp6pdc,video-slider-response,yes_line_10_1cut,-50,yes_1
+15,6t4mp6pdc,video-slider-response,maybe_line_new_4_1cut,8,maybe_1
+15,6t4mp6pdc,video-slider-response,maybe_line_new_5_1cut,-47,maybe_1
+15,6t4mp6pdc,video-slider-response,yes_line_9_1cut,7,yes_1
+15,6t4mp6pdc,video-slider-response,no_line_2_1cut,45,no_1
+15,6t4mp6pdc,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""no""},{""name"":""age"",""value"":""35""},{""name"":""gender"",""value"":""male""},{""name"":""comments"",""value"":""The instructions should make it clear that there can be multiple types of water sources.""}]",debrief
+15,6t4mp6pdc,html-keyboard-response,"""", ,""""
+17,ayq8yj6hc,preload,"""","""",""""
+17,ayq8yj6hc,html-keyboard-response,"""", ,""""
+17,ayq8yj6hc,html-keyboard-response,"""",y,""""
+17,ayq8yj6hc,survey-text,"""","{""instructions1"":""Collect water and place it in the wooden bucket.""}",instructions
+17,ayq8yj6hc,survey-text,"""","{""instructions2"":""1""}",instructions
+17,ayq8yj6hc,survey-text,"""","{""instructions4"":""How everyone else would feel in regards to staying in line or leaving the line.""}",instructions
+17,ayq8yj6hc,video-slider-response,no_line_3_1cut,45,no_1
+17,ayq8yj6hc,video-slider-response,yes_line_9_1cut,-35,yes_1
+17,ayq8yj6hc,video-slider-response,no_line_2_1cut,50,no_1
+17,ayq8yj6hc,video-slider-response,no_line_1_1cut,50,no_1
+17,ayq8yj6hc,video-slider-response,maybe_line_new_5_1cut,-50,maybe_1
+17,ayq8yj6hc,video-slider-response,maybe_line_new_1_1cut,-41,maybe_1
+17,ayq8yj6hc,video-slider-response,maybe_line_new_2_1cut,-48,maybe_1
+17,ayq8yj6hc,video-slider-response,maybe_line_new_4_1cut,-25,maybe_1
+17,ayq8yj6hc,video-slider-response,yes_line_10_1cut,-50,yes_1
+17,ayq8yj6hc,video-slider-response,maybe_line_new_6_1cut,-33,maybe_1
+17,ayq8yj6hc,video-slider-response,maybe_line_new_3_1cut,21,maybe_1
+17,ayq8yj6hc,video-slider-response,yes_line_8_1cut,-50,yes_1
+17,ayq8yj6hc,video-slider-response,yes_line_7_1cut,-50,yes_1
+17,ayq8yj6hc,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""No""},{""name"":""age"",""value"":""33""},{""name"":""gender"",""value"":""male""},{""name"":""comments"",""value"":""None""}]",debrief
+17,ayq8yj6hc,html-keyboard-response,"""", ,""""
+18,5qrg0dtdr,preload,"""","""",""""
+18,5qrg0dtdr,html-keyboard-response,"""", ,""""
+18,5qrg0dtdr,html-keyboard-response,"""",y,""""
+18,5qrg0dtdr,survey-text,"""","{""instructions1"":""Each person needs to collect one bucket of water for each level the fastest for more points.""}",instructions
+18,5qrg0dtdr,survey-text,"""","{""instructions2"":""One""}",instructions
+18,5qrg0dtdr,survey-text,"""","{""instructions4"":""What would happen if everyone left the line instead of staying in line. Then how much better or worse it would be if everyone did stay in line.""}",instructions
+18,5qrg0dtdr,video-slider-response,yes_line_8_1cut,-50,yes_1
+18,5qrg0dtdr,video-slider-response,no_line_1_1cut,50,no_1
+18,5qrg0dtdr,video-slider-response,no_line_3_1cut,-12,no_1
+18,5qrg0dtdr,video-slider-response,yes_line_9_1cut,-50,yes_1
+18,5qrg0dtdr,video-slider-response,maybe_line_new_5_1cut,-50,maybe_1
+18,5qrg0dtdr,video-slider-response,yes_line_10_1cut,-50,yes_1
+18,5qrg0dtdr,video-slider-response,no_line_2_1cut,-1,no_1
+18,5qrg0dtdr,video-slider-response,maybe_line_new_1_1cut,0,maybe_1
+18,5qrg0dtdr,video-slider-response,maybe_line_new_3_1cut,26,maybe_1
+18,5qrg0dtdr,video-slider-response,maybe_line_new_4_1cut,-30,maybe_1
+18,5qrg0dtdr,video-slider-response,maybe_line_new_2_1cut,1,maybe_1
+18,5qrg0dtdr,video-slider-response,maybe_line_new_6_1cut,-50,maybe_1
+18,5qrg0dtdr,video-slider-response,yes_line_7_1cut,-50,yes_1
+18,5qrg0dtdr,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""None""},{""name"":""age"",""value"":""49""},{""name"":""gender"",""value"":""female""},{""name"":""comments"",""value"":""None""}]",debrief
+18,5qrg0dtdr,html-keyboard-response,"""", ,""""
+19,cyfv1xre1,preload,"""","""",""""
+19,cyfv1xre1,html-keyboard-response,"""", ,""""
+19,cyfv1xre1,html-keyboard-response,"""",y,""""
+19,cyfv1xre1,survey-text,"""","{""instructions1"":""get water in wooden bucket""}",instructions
+19,cyfv1xre1,survey-text,"""","{""instructions2"":""1""}",instructions
+19,cyfv1xre1,survey-text,"""","{""instructions4"":""what happens if all leave and better or worse to stay in line""}",instructions
+19,cyfv1xre1,video-slider-response,yes_line_9_1cut,-46,yes_1
+19,cyfv1xre1,video-slider-response,maybe_line_new_6_1cut,0,maybe_1
+19,cyfv1xre1,video-slider-response,yes_line_7_1cut,-7,yes_1
+19,cyfv1xre1,video-slider-response,yes_line_8_1cut,-37,yes_1
+19,cyfv1xre1,video-slider-response,maybe_line_new_1_1cut,9,maybe_1
+19,cyfv1xre1,video-slider-response,yes_line_10_1cut,-50,yes_1
+19,cyfv1xre1,video-slider-response,maybe_line_new_3_1cut,44,maybe_1
+19,cyfv1xre1,video-slider-response,maybe_line_new_4_1cut,19,maybe_1
+19,cyfv1xre1,video-slider-response,maybe_line_new_2_1cut,37,maybe_1
+19,cyfv1xre1,video-slider-response,no_line_1_1cut,50,no_1
+19,cyfv1xre1,video-slider-response,maybe_line_new_5_1cut,-49,maybe_1
+19,cyfv1xre1,video-slider-response,no_line_2_1cut,40,no_1
+19,cyfv1xre1,video-slider-response,no_line_3_1cut,50,no_1
+19,cyfv1xre1,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""no""},{""name"":""age"",""value"":""54""},{""name"":""gender"",""value"":""female""},{""name"":""comments"",""value"":""I have been enjoying these""}]",debrief
+19,cyfv1xre1,html-keyboard-response,"""", ,""""
+2,7m4u2l1no,preload,"""","""",""""
+2,7m4u2l1no,html-keyboard-response,"""", ,""""
+2,7m4u2l1no,html-keyboard-response,"""",y,""""
+2,7m4u2l1no,survey-text,"""","{""instructions1"":""To get one bucket of water and return it as fast as they can""}",instructions
+2,7m4u2l1no,survey-text,"""","{""instructions2"":""1""}",instructions
+2,7m4u2l1no,survey-text,"""","{""instructions4"":""What would happen if everyone left the line, and how better or worse it'd be if everyone stayed in line.""}",instructions
+2,7m4u2l1no,video-slider-response,no_line_2_1cut,50,no_1
+2,7m4u2l1no,video-slider-response,no_line_1_1cut,28,no_1
+2,7m4u2l1no,video-slider-response,maybe_line_new_1_1cut,13,maybe_1
+2,7m4u2l1no,video-slider-response,yes_line_10_1cut,-25,yes_1
+2,7m4u2l1no,video-slider-response,maybe_line_new_6_1cut,-31,maybe_1
+2,7m4u2l1no,video-slider-response,maybe_line_new_2_1cut,15,maybe_1
+2,7m4u2l1no,video-slider-response,maybe_line_new_5_1cut,-50,maybe_1
+2,7m4u2l1no,video-slider-response,no_line_3_1cut,30,no_1
+2,7m4u2l1no,video-slider-response,yes_line_8_1cut,-30,yes_1
+2,7m4u2l1no,video-slider-response,yes_line_9_1cut,-20,yes_1
+2,7m4u2l1no,video-slider-response,yes_line_7_1cut,-35,yes_1
+2,7m4u2l1no,video-slider-response,maybe_line_new_4_1cut,14,maybe_1
+2,7m4u2l1no,video-slider-response,maybe_line_new_3_1cut,-17,maybe_1
+2,7m4u2l1no,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""No""},{""name"":""age"",""value"":""23""},{""name"":""gender"",""value"":""male""},{""name"":""comments"",""value"":""Thanks, fun stuff.""}]",debrief
+2,7m4u2l1no,html-keyboard-response,"""", ,""""
+25,cwna6yvlm,preload,"""","""",""""
+25,cwna6yvlm,html-keyboard-response,"""", ,""""
+25,cwna6yvlm,html-keyboard-response,"""",y,""""
+25,cwna6yvlm,survey-text,"""","{""instructions1"":""collect water and store in bucket as fast as possible""}",instructions
+25,cwna6yvlm,survey-text,"""","{""instructions2"":""one""}",instructions
+25,cwna6yvlm,survey-text,"""","{""instructions4"":""what would happen if everyone left the line and if it would be better or worse if they stayed in line""}",instructions
+25,cwna6yvlm,video-slider-response,yes_line_7_1cut,-50,yes_1
+25,cwna6yvlm,video-slider-response,maybe_line_new_2_1cut,50,maybe_1
+25,cwna6yvlm,video-slider-response,maybe_line_new_3_1cut,18,maybe_1
+25,cwna6yvlm,video-slider-response,no_line_3_1cut,50,no_1
+25,cwna6yvlm,video-slider-response,maybe_line_new_6_1cut,-33,maybe_1
+25,cwna6yvlm,video-slider-response,yes_line_9_1cut,-40,yes_1
+25,cwna6yvlm,video-slider-response,no_line_2_1cut,50,no_1
+25,cwna6yvlm,video-slider-response,maybe_line_new_4_1cut,19,maybe_1
+25,cwna6yvlm,video-slider-response,yes_line_8_1cut,-50,yes_1
+25,cwna6yvlm,video-slider-response,yes_line_10_1cut,-50,yes_1
+25,cwna6yvlm,video-slider-response,no_line_1_1cut,50,no_1
+25,cwna6yvlm,video-slider-response,maybe_line_new_1_1cut,19,maybe_1
+25,cwna6yvlm,video-slider-response,maybe_line_new_5_1cut,-50,maybe_1
+25,cwna6yvlm,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""no""},{""name"":""age"",""value"":""35""},{""name"":""gender"",""value"":""male""},{""name"":""comments"",""value"":""}]",debrief
+25,cwna6yvlm,html-keyboard-response,"""", ,""""
+23,glyy5f8pb,preload,"""","""",""""
+23,glyy5f8pb,html-keyboard-response,"""", ,""""
+23,glyy5f8pb,html-keyboard-response,"""",y,""""
+23,glyy5f8pb,survey-text,"""","{""instructions1"":""The goal is for everyone to collect water from a source and then bring it back to storage buckets quickly.""}",instructions
+23,glyy5f8pb,survey-text,"""","{""instructions2"":""1""}",instructions
+23,glyy5f8pb,survey-text,"""","{""instructions4"":""What would happen if everyone could leave the line and quickly get water for themselves. Also, how much better or worse off everyone would be if everyone stayed in line.""}",instructions
+23,glyy5f8pb,video-slider-response,maybe_line_new_1_1cut,17,maybe_1
+23,glyy5f8pb,video-slider-response,no_line_3_1cut,-28,no_1
+23,glyy5f8pb,video-slider-response,maybe_line_new_3_1cut,-10,maybe_1
+23,glyy5f8pb,video-slider-response,no_line_1_1cut,27,no_1
+23,glyy5f8pb,video-slider-response,yes_line_7_1cut,-13,yes_1
+23,glyy5f8pb,video-slider-response,yes_line_8_1cut,-45,yes_1
+23,glyy5f8pb,video-slider-response,yes_line_9_1cut,19,yes_1
+23,glyy5f8pb,video-slider-response,maybe_line_new_4_1cut,5,maybe_1
+23,glyy5f8pb,video-slider-response,maybe_line_new_2_1cut,18,maybe_1
+23,glyy5f8pb,video-slider-response,yes_line_10_1cut,-50,yes_1
+23,glyy5f8pb,video-slider-response,maybe_line_new_6_1cut,9,maybe_1
+23,glyy5f8pb,video-slider-response,no_line_2_1cut,50,no_1
+23,glyy5f8pb,video-slider-response,maybe_line_new_5_1cut,-48,maybe_1
+23,glyy5f8pb,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""No""},{""name"":""age"",""value"":""41""},{""name"":""gender"",""value"":""female""},{""name"":""comments"",""value"":""That was fun, thanks!""}]",debrief
+23,glyy5f8pb,html-keyboard-response,"""", ,""""
+20,pm97h7a47,preload,"""","""",""""
+20,pm97h7a47,html-keyboard-response,"""", ,""""
+20,pm97h7a47,html-keyboard-response,"""",y,""""
+20,pm97h7a47,survey-text,"""","{""instructions1"":""To collect water and bring it back to the wooden storage buckets.""}",instructions
+20,pm97h7a47,survey-text,"""","{""instructions2"":""one""}",instructions
+20,pm97h7a47,survey-text,"""","{""instructions4"":""what would happen if everyone left the line and how much better or worse everyone would be if everyone stayed in line""}",instructions
+20,pm97h7a47,video-slider-response,maybe_line_new_4_1cut,-15,maybe_1
+20,pm97h7a47,video-slider-response,maybe_line_new_1_1cut,-34,maybe_1
+20,pm97h7a47,video-slider-response,no_line_3_1cut,24,no_1
+20,pm97h7a47,video-slider-response,yes_line_10_1cut,3,yes_1
+20,pm97h7a47,video-slider-response,maybe_line_new_3_1cut,-33,maybe_1
+20,pm97h7a47,video-slider-response,maybe_line_new_6_1cut,-33,maybe_1
+20,pm97h7a47,video-slider-response,yes_line_7_1cut,-30,yes_1
+20,pm97h7a47,video-slider-response,no_line_1_1cut,35,no_1
+20,pm97h7a47,video-slider-response,no_line_2_1cut,-39,no_1
+20,pm97h7a47,video-slider-response,yes_line_8_1cut,-29,yes_1
+20,pm97h7a47,video-slider-response,maybe_line_new_5_1cut,-29,maybe_1
+20,pm97h7a47,video-slider-response,yes_line_9_1cut,-24,yes_1
+20,pm97h7a47,video-slider-response,maybe_line_new_2_1cut,3,maybe_1
+20,pm97h7a47,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""No""},{""name"":""age"",""value"":""37""},{""name"":""gender"",""value"":""female""},{""name"":""comments"",""value"":""n/a""}]",debrief
+20,pm97h7a47,html-keyboard-response,"""", ,""""
+26,fhv35yd8k,preload,"""","""",""""
+26,fhv35yd8k,html-keyboard-response,"""", ,""""
+26,fhv35yd8k,html-keyboard-response,"""",y,""""
+26,fhv35yd8k,survey-text,"""","{""instructions1"":""Collect water from a water source and bring it back to the wooden storage bucket. The faster a person collects the bucket of water, the more points they receive.""}",instructions
+26,fhv35yd8k,survey-text,"""","{""instructions2"":""each person can move one square per time step""}",instructions
+26,fhv35yd8k,survey-text,"""","{""instructions4"":""What would happen if everyone felt at liberty to leave the line and try to get water faster for themselves, instead of everyone staying in line. Think about how much better or worse off everyone would be if everyone stayed in line.""}",instructions
+26,fhv35yd8k,video-slider-response,maybe_line_new_5_1cut,-45,maybe_1
+26,fhv35yd8k,video-slider-response,no_line_2_1cut,50,no_1
+26,fhv35yd8k,video-slider-response,maybe_line_new_2_1cut,35,maybe_1
+26,fhv35yd8k,video-slider-response,yes_line_8_1cut,12,yes_1
+26,fhv35yd8k,video-slider-response,no_line_3_1cut,50,no_1
+26,fhv35yd8k,video-slider-response,maybe_line_new_4_1cut,8,maybe_1
+26,fhv35yd8k,video-slider-response,maybe_line_new_1_1cut,9,maybe_1
+26,fhv35yd8k,video-slider-response,yes_line_7_1cut,-30,yes_1
+26,fhv35yd8k,video-slider-response,maybe_line_new_6_1cut,6,maybe_1
+26,fhv35yd8k,video-slider-response,yes_line_10_1cut,-22,yes_1
+26,fhv35yd8k,video-slider-response,maybe_line_new_3_1cut,31,maybe_1
+26,fhv35yd8k,video-slider-response,no_line_1_1cut,50,no_1
+26,fhv35yd8k,video-slider-response,yes_line_9_1cut,-22,yes_1
+26,fhv35yd8k,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""I did not experience any problems or bugs in the study.""},{""name"":""age"",""value"":""29""},{""name"":""gender"",""value"":""male""},{""name"":""comments"",""value"":""I have no additional comments to share.""}]",debrief
+26,fhv35yd8k,html-keyboard-response,"""", ,""""
+27,q8jmom16o,preload,"""","""",""""
+27,q8jmom16o,html-keyboard-response,"""", ,""""
+27,q8jmom16o,html-keyboard-response,"""",y,""""
+27,q8jmom16o,survey-text,"""","{""instructions1"":""To collect a bucket of water and bring it to a wooden storage bucket as quickly as possible.""}",instructions
+27,q8jmom16o,survey-text,"""","{""instructions2"":""1""}",instructions
+27,q8jmom16o,survey-text,"""","{""instructions4"":""What would happen if everyone left the line to get water for themselves, and whether or not everyone would be better off if they stayed in line.""}",instructions
+27,q8jmom16o,video-slider-response,no_line_1_1cut,25,no_1
+27,q8jmom16o,video-slider-response,maybe_line_new_1_1cut,-39,maybe_1
+27,q8jmom16o,video-slider-response,yes_line_9_1cut,-43,yes_1
+27,q8jmom16o,video-slider-response,yes_line_10_1cut,-50,yes_1
+27,q8jmom16o,video-slider-response,maybe_line_new_3_1cut,-23,maybe_1
+27,q8jmom16o,video-slider-response,no_line_3_1cut,16,no_1
+27,q8jmom16o,video-slider-response,yes_line_7_1cut,-44,yes_1
+27,q8jmom16o,video-slider-response,maybe_line_new_5_1cut,-50,maybe_1
+27,q8jmom16o,video-slider-response,maybe_line_new_6_1cut,-41,maybe_1
+27,q8jmom16o,video-slider-response,maybe_line_new_2_1cut,-20,maybe_1
+27,q8jmom16o,video-slider-response,maybe_line_new_4_1cut,-30,maybe_1
+27,q8jmom16o,video-slider-response,no_line_2_1cut,50,no_1
+27,q8jmom16o,video-slider-response,yes_line_8_1cut,-47,yes_1
+27,q8jmom16o,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""Nope.""},{""name"":""age"",""value"":""37""},{""name"":""gender"",""value"":""male""},{""name"":""comments"",""value"":""None.""}]",debrief
+27,q8jmom16o,html-keyboard-response,"""", ,""""
+29,j7evf4x3g,preload,"""","""",""""
+29,j7evf4x3g,html-keyboard-response,"""", ,""""
+29,j7evf4x3g,html-keyboard-response,"""",y,""""
+29,j7evf4x3g,survey-text,"""","{""instructions1"":""collect water""}",instructions
+29,j7evf4x3g,survey-text,"""","{""instructions2"":""one""}",instructions
+29,j7evf4x3g,survey-text,"""","{""instructions4"":""how much better or worse off everyone would be if everyone stayed in line""}",instructions
+29,j7evf4x3g,video-slider-response,maybe_line_new_5_1cut,-50,maybe_1
+29,j7evf4x3g,video-slider-response,no_line_3_1cut,9,no_1
+29,j7evf4x3g,video-slider-response,no_line_1_1cut,42,no_1
+29,j7evf4x3g,video-slider-response,yes_line_10_1cut,1,yes_1
+29,j7evf4x3g,video-slider-response,no_line_2_1cut,31,no_1
+29,j7evf4x3g,video-slider-response,maybe_line_new_2_1cut,12,maybe_1
+29,j7evf4x3g,video-slider-response,yes_line_7_1cut,0,yes_1
+29,j7evf4x3g,video-slider-response,maybe_line_new_3_1cut,-8,maybe_1
+29,j7evf4x3g,video-slider-response,yes_line_8_1cut,-5,yes_1
+29,j7evf4x3g,video-slider-response,maybe_line_new_1_1cut,23,maybe_1
+29,j7evf4x3g,video-slider-response,maybe_line_new_4_1cut,0,maybe_1
+29,j7evf4x3g,video-slider-response,maybe_line_new_6_1cut,9,maybe_1
+29,j7evf4x3g,video-slider-response,yes_line_9_1cut,4,yes_1
+29,j7evf4x3g,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""no""},{""name"":""age"",""value"":""41""},{""name"":""gender"",""value"":""other""},{""name"":""comments"",""value"":""no""}]",debrief
+29,j7evf4x3g,html-keyboard-response,"""", ,""""
+28,vqvvq2fus,preload,"""","""",""""
+28,vqvvq2fus,html-keyboard-response,"""", ,""""
+28,vqvvq2fus,html-keyboard-response,"""",y,""""
+28,vqvvq2fus,survey-text,"""","{""instructions1"":""collect water from a water source""}",instructions
+28,vqvvq2fus,survey-text,"""","{""instructions2"":""1""}",instructions
+28,vqvvq2fus,survey-text,"""","{""instructions4"":""if everyone stayed in line, or if everyone was at liberty to leave the line""}",instructions
+28,vqvvq2fus,video-slider-response,maybe_line_new_1_1cut,-35,maybe_1
+28,vqvvq2fus,video-slider-response,maybe_line_new_4_1cut,22,maybe_1
+28,vqvvq2fus,video-slider-response,no_line_1_1cut,50,no_1
+28,vqvvq2fus,video-slider-response,yes_line_10_1cut,-21,yes_1
+28,vqvvq2fus,video-slider-response,maybe_line_new_2_1cut,21,maybe_1
+28,vqvvq2fus,video-slider-response,yes_line_8_1cut,8,yes_1
+28,vqvvq2fus,video-slider-response,maybe_line_new_3_1cut,25,maybe_1
+28,vqvvq2fus,video-slider-response,yes_line_9_1cut,6,yes_1
+28,vqvvq2fus,video-slider-response,no_line_3_1cut,40,no_1
+28,vqvvq2fus,video-slider-response,no_line_2_1cut,50,no_1
+28,vqvvq2fus,video-slider-response,maybe_line_new_5_1cut,-38,maybe_1
+28,vqvvq2fus,video-slider-response,yes_line_7_1cut,-37,yes_1
+28,vqvvq2fus,video-slider-response,maybe_line_new_6_1cut,16,maybe_1
+28,vqvvq2fus,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""No""},{""name"":""age"",""value"":""41""},{""name"":""gender"",""value"":""male""},{""name"":""comments"",""value"":""}]",debrief
+28,vqvvq2fus,html-keyboard-response,"""", ,""""
+31,9qy669hkk,preload,"""","""",""""
+31,9qy669hkk,html-keyboard-response,"""", ,""""
+31,9qy669hkk,html-keyboard-response,"""",y,""""
+31,9qy669hkk,survey-text,"""","{""instructions1"":""To collect one bucket of water each level.""}",instructions
+31,9qy669hkk,survey-text,"""","{""instructions2"":""one""}",instructions
+31,9qy669hkk,survey-text,"""","{""instructions4"":""I have to think about if everyone would be better off waiting in line to collect the water or leaving the line and heading straight for the water source.""}",instructions
+31,9qy669hkk,video-slider-response,no_line_3_1cut,-24,no_1
+31,9qy669hkk,video-slider-response,yes_line_10_1cut,-50,yes_1
+31,9qy669hkk,video-slider-response,maybe_line_new_1_1cut,-27,maybe_1
+31,9qy669hkk,video-slider-response,maybe_line_new_4_1cut,-50,maybe_1
+31,9qy669hkk,video-slider-response,yes_line_7_1cut,-50,yes_1
+31,9qy669hkk,video-slider-response,maybe_line_new_3_1cut,-28,maybe_1
+31,9qy669hkk,video-slider-response,yes_line_9_1cut,-18,yes_1
+31,9qy669hkk,video-slider-response,maybe_line_new_2_1cut,-18,maybe_1
+31,9qy669hkk,video-slider-response,no_line_2_1cut,22,no_1
+31,9qy669hkk,video-slider-response,yes_line_8_1cut,-12,yes_1
+31,9qy669hkk,video-slider-response,no_line_1_1cut,-14,no_1
+31,9qy669hkk,video-slider-response,maybe_line_new_5_1cut,-50,maybe_1
+31,9qy669hkk,video-slider-response,maybe_line_new_6_1cut,0,maybe_1
+31,9qy669hkk,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""No, there were not.""},{""name"":""age"",""value"":""29""},{""name"":""gender"",""value"":""male""},{""name"":""comments"",""value"":""}]",debrief
+31,9qy669hkk,html-keyboard-response,"""", ,""""
+34,nc57l67lp,preload,"""","""",""""
+34,nc57l67lp,html-keyboard-response,"""", ,""""
+34,nc57l67lp,html-keyboard-response,"""",y,""""
+34,nc57l67lp,survey-text,"""","{""instructions1"":""Quickly collect a bucket of water.""}",instructions
+34,nc57l67lp,survey-text,"""","{""instructions2"":""1""}",instructions
+34,nc57l67lp,survey-text,"""","{""instructions4"":""Thinking about how much better or worse people would be for staying in line.""}",instructions
+34,nc57l67lp,video-slider-response,maybe_line_new_2_1cut,-38,maybe_1
+34,nc57l67lp,video-slider-response,maybe_line_new_4_1cut,-50,maybe_1
+34,nc57l67lp,video-slider-response,no_line_3_1cut,50,no_1
+34,nc57l67lp,video-slider-response,yes_line_9_1cut,-50,yes_1
+34,nc57l67lp,video-slider-response,yes_line_8_1cut,-50,yes_1
+34,nc57l67lp,video-slider-response,no_line_2_1cut,50,no_1
+34,nc57l67lp,video-slider-response,yes_line_10_1cut,-50,yes_1
+34,nc57l67lp,video-slider-response,maybe_line_new_6_1cut,-50,maybe_1
+34,nc57l67lp,video-slider-response,maybe_line_new_1_1cut,8,maybe_1
+34,nc57l67lp,video-slider-response,no_line_1_1cut,50,no_1
+34,nc57l67lp,video-slider-response,maybe_line_new_5_1cut,-50,maybe_1
+34,nc57l67lp,video-slider-response,yes_line_7_1cut,-46,yes_1
+34,nc57l67lp,video-slider-response,maybe_line_new_3_1cut,-50,maybe_1
+34,nc57l67lp,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""n/a""},{""name"":""age"",""value"":""31""},{""name"":""gender"",""value"":""male""},{""name"":""comments"",""value"":""Some of the areas had more surface areas with water, and lines weren't as important. Some had bottlenecked areas, where lines were paramount. It appeared to be situational. ""}]",debrief
+34,nc57l67lp,html-keyboard-response,"""", ,""""
+35,7ym1e15xg,preload,"""","""",""""
+35,7ym1e15xg,html-keyboard-response,"""", ,""""
+35,7ym1e15xg,html-keyboard-response,"""",y,""""
+35,7ym1e15xg,survey-text,"""","{""instructions1"":""The people are collecting buckets of water""}",instructions
+35,7ym1e15xg,survey-text,"""","{""instructions2"":""One""}",instructions
+35,7ym1e15xg,survey-text,"""","{""instructions4"":""Whether everyone would be better or worse off if they all stayed in line""}",instructions
+35,7ym1e15xg,video-slider-response,maybe_line_new_6_1cut,-43,maybe_1
+35,7ym1e15xg,video-slider-response,maybe_line_new_4_1cut,32,maybe_1
+35,7ym1e15xg,video-slider-response,maybe_line_new_2_1cut,50,maybe_1
+35,7ym1e15xg,video-slider-response,maybe_line_new_1_1cut,1,maybe_1
+35,7ym1e15xg,video-slider-response,no_line_1_1cut,-50,no_1
+35,7ym1e15xg,video-slider-response,maybe_line_new_5_1cut,50,maybe_1
+35,7ym1e15xg,video-slider-response,no_line_3_1cut,-39,no_1
+35,7ym1e15xg,video-slider-response,yes_line_10_1cut,50,yes_1
+35,7ym1e15xg,video-slider-response,yes_line_9_1cut,50,yes_1
+35,7ym1e15xg,video-slider-response,yes_line_7_1cut,-49,yes_1
+35,7ym1e15xg,video-slider-response,no_line_2_1cut,50,no_1
+35,7ym1e15xg,video-slider-response,maybe_line_new_3_1cut,44,maybe_1
+35,7ym1e15xg,video-slider-response,yes_line_8_1cut,-46,yes_1
+35,7ym1e15xg,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""I had no issues""},{""name"":""age"",""value"":""23""},{""name"":""gender"",""value"":""male""},{""name"":""comments"",""value"":""Thank you for the unique survey. Have a wonderful day.""}]",debrief
+35,7ym1e15xg,html-keyboard-response,"""", ,""""
+36,1dus8zkhp,preload,"""","""",""""
+36,1dus8zkhp,html-keyboard-response,"""", ,""""
+36,1dus8zkhp,html-keyboard-response,"""",y,""""
+36,1dus8zkhp,survey-text,"""","{""instructions1"":""Each person needs to collect one bucket of water for each level. The faster a person collects the bucket of water, the more points they receive.""}",instructions
+36,1dus8zkhp,survey-text,"""","{""instructions2"":""1""}",instructions
+36,1dus8zkhp,survey-text,"""","{""instructions4"":""Your job is to think about what would happen if EVERYONE felt at liberty to leave the line and try to get water faster for themselves, instead of everyone staying in line. Then, answer how much better or worse off everyone would be if everyone stayed in line.""}",instructions
+36,1dus8zkhp,video-slider-response,yes_line_7_1cut,-36,yes_1
+36,1dus8zkhp,video-slider-response,maybe_line_new_6_1cut,-16,maybe_1
+36,1dus8zkhp,video-slider-response,maybe_line_new_5_1cut,-37,maybe_1
+36,1dus8zkhp,video-slider-response,maybe_line_new_1_1cut,-7,maybe_1
+36,1dus8zkhp,video-slider-response,no_line_2_1cut,10,no_1
+36,1dus8zkhp,video-slider-response,yes_line_8_1cut,-34,yes_1
+36,1dus8zkhp,video-slider-response,maybe_line_new_4_1cut,-32,maybe_1
+36,1dus8zkhp,video-slider-response,maybe_line_new_3_1cut,-14,maybe_1
+36,1dus8zkhp,video-slider-response,yes_line_9_1cut,-41,yes_1
+36,1dus8zkhp,video-slider-response,no_line_3_1cut,38,no_1
+36,1dus8zkhp,video-slider-response,yes_line_10_1cut,-36,yes_1
+36,1dus8zkhp,video-slider-response,no_line_1_1cut,44,no_1
+36,1dus8zkhp,video-slider-response,maybe_line_new_2_1cut,14,maybe_1
+36,1dus8zkhp,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""no""},{""name"":""age"",""value"":""47""},{""name"":""gender"",""value"":""male""},{""name"":""comments"",""value"":""A3FGT6EU39C6S4""}]",debrief
+36,1dus8zkhp,html-keyboard-response,"""", ,""""
+42,5pwjf03un,preload,"""","""",""""
+42,5pwjf03un,html-keyboard-response,"""", ,""""
+42,5pwjf03un,html-keyboard-response,"""",y,""""
+42,5pwjf03un,survey-text,"""","{""instructions1"":""To collect water from a water source and bring it back to the wooden storage buckets.""}",instructions
+42,5pwjf03un,survey-text,"""","{""instructions2"":""one""}",instructions
+42,5pwjf03un,survey-text,"""","{""instructions4"":""What would happen if everyone felt at liberty to leave the line to get water faster and how much better or worse off everyone would be if everyone stayed in line.""}",instructions
+42,5pwjf03un,video-slider-response,yes_line_9_1cut,-38,yes_1
+42,5pwjf03un,video-slider-response,maybe_line_new_1_1cut,-33,maybe_1
+42,5pwjf03un,video-slider-response,maybe_line_new_5_1cut,-49,maybe_1
+42,5pwjf03un,video-slider-response,no_line_1_1cut,43,no_1
+42,5pwjf03un,video-slider-response,no_line_2_1cut,34,no_1
+42,5pwjf03un,video-slider-response,yes_line_10_1cut,-19,yes_1
+42,5pwjf03un,video-slider-response,maybe_line_new_3_1cut,-16,maybe_1
+42,5pwjf03un,video-slider-response,maybe_line_new_2_1cut,22,maybe_1
+42,5pwjf03un,video-slider-response,yes_line_7_1cut,-48,yes_1
+42,5pwjf03un,video-slider-response,maybe_line_new_6_1cut,-21,maybe_1
+42,5pwjf03un,video-slider-response,no_line_3_1cut,17,no_1
+42,5pwjf03un,video-slider-response,maybe_line_new_4_1cut,-31,maybe_1
+42,5pwjf03un,video-slider-response,yes_line_8_1cut,-37,yes_1
+42,5pwjf03un,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""No""},{""name"":""age"",""value"":""37""},{""name"":""gender"",""value"":""female""},{""name"":""comments"",""value"":""No""}]",debrief
+42,5pwjf03un,html-keyboard-response,"""", ,""""
+46,79s8w9gvz,preload,"""","""",""""
+46,79s8w9gvz,html-keyboard-response,"""", ,""""
+46,79s8w9gvz,html-keyboard-response,"""",y,""""
+46,79s8w9gvz,survey-text,"""","{""instructions1"":""collect water ""}",instructions
+46,79s8w9gvz,survey-text,"""","{""instructions2"":""1""}",instructions
+46,79s8w9gvz,survey-text,"""","{""instructions4"":""how much better or worse it would be if they stayed in line""}",instructions
+46,79s8w9gvz,video-slider-response,no_line_3_1cut,-17,no_1
+46,79s8w9gvz,video-slider-response,yes_line_10_1cut,-12,yes_1
+46,79s8w9gvz,video-slider-response,maybe_line_new_3_1cut,15,maybe_1
+46,79s8w9gvz,video-slider-response,maybe_line_new_5_1cut,0,maybe_1
+46,79s8w9gvz,video-slider-response,yes_line_8_1cut,-17,yes_1
+46,79s8w9gvz,video-slider-response,maybe_line_new_4_1cut,20,maybe_1
+46,79s8w9gvz,video-slider-response,maybe_line_new_2_1cut,30,maybe_1
+46,79s8w9gvz,video-slider-response,maybe_line_new_6_1cut,-16,maybe_1
+46,79s8w9gvz,video-slider-response,no_line_2_1cut,34,no_1
+46,79s8w9gvz,video-slider-response,no_line_1_1cut,-4,no_1
+46,79s8w9gvz,video-slider-response,maybe_line_new_1_1cut,30,maybe_1
+46,79s8w9gvz,video-slider-response,yes_line_7_1cut,27,yes_1
+46,79s8w9gvz,video-slider-response,yes_line_9_1cut,15,yes_1
+46,79s8w9gvz,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""no""},{""name"":""age"",""value"":""50""},{""name"":""gender"",""value"":""female""},{""name"":""comments"",""value"":""}]",debrief
+46,79s8w9gvz,html-keyboard-response,"""", ,""""
+48,22rslq5mx,preload,"""","""",""""
+48,22rslq5mx,html-keyboard-response,"""", ,""""
+48,22rslq5mx,html-keyboard-response,"""",y,""""
+48,22rslq5mx,survey-text,"""","{""instructions1"":""Collect water from the water source and bring it back to the wooden storage bucket.""}",instructions
+48,22rslq5mx,survey-text,"""","{""instructions2"":""one square per time""}",instructions
+48,22rslq5mx,survey-text,"""","{""instructions4"":""what would happen if everyone felt at liberty to leave the line and try to get water for themselves, instead staying in line. Then answer how much better or worse off everyone would be if everyone stayed in line""}",instructions
+48,22rslq5mx,video-slider-response,no_line_1_1cut,50,no_1
+48,22rslq5mx,video-slider-response,yes_line_7_1cut,-44,yes_1
+48,22rslq5mx,video-slider-response,maybe_line_new_1_1cut,-50,maybe_1
+48,22rslq5mx,video-slider-response,maybe_line_new_6_1cut,50,maybe_1
+48,22rslq5mx,video-slider-response,no_line_3_1cut,43,no_1
+48,22rslq5mx,video-slider-response,maybe_line_new_4_1cut,50,maybe_1
+48,22rslq5mx,video-slider-response,maybe_line_new_3_1cut,-50,maybe_1
+48,22rslq5mx,video-slider-response,maybe_line_new_5_1cut,-48,maybe_1
+48,22rslq5mx,video-slider-response,yes_line_10_1cut,-46,yes_1
+48,22rslq5mx,video-slider-response,yes_line_9_1cut,-48,yes_1
+48,22rslq5mx,video-slider-response,yes_line_8_1cut,46,yes_1
+48,22rslq5mx,video-slider-response,maybe_line_new_2_1cut,48,maybe_1
+48,22rslq5mx,video-slider-response,no_line_2_1cut,-49,no_1
+48,22rslq5mx,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""No.""},{""name"":""age"",""value"":""41""},{""name"":""gender"",""value"":""female""},{""name"":""comments"",""value"":""This HIT was interesting.""}]",debrief
+48,22rslq5mx,html-keyboard-response,"""", ,""""
+43,91o1v0r5c,preload,"""","""",""""
+43,91o1v0r5c,html-keyboard-response,"""", ,""""
+43,91o1v0r5c,html-keyboard-response,"""",y,""""
+43,91o1v0r5c,survey-text,"""","{""instructions1"":""They are trying to collect water.""}",instructions
+43,91o1v0r5c,survey-text,"""","{""instructions2"":""1""}",instructions
+43,91o1v0r5c,survey-text,"""","{""instructions4"":""What if everyone felt at liberty to leave the line, and then asnwer how better or worse everyone would be if they all stayed in line.""}",instructions
+43,91o1v0r5c,video-slider-response,maybe_line_new_2_1cut,-29,maybe_1
+43,91o1v0r5c,video-slider-response,yes_line_10_1cut,-1,yes_1
+43,91o1v0r5c,video-slider-response,no_line_3_1cut,20,no_1
+43,91o1v0r5c,video-slider-response,yes_line_8_1cut,-30,yes_1
+43,91o1v0r5c,video-slider-response,yes_line_9_1cut,-16,yes_1
+43,91o1v0r5c,video-slider-response,maybe_line_new_1_1cut,-45,maybe_1
+43,91o1v0r5c,video-slider-response,maybe_line_new_6_1cut,-21,maybe_1
+43,91o1v0r5c,video-slider-response,maybe_line_new_5_1cut,-42,maybe_1
+43,91o1v0r5c,video-slider-response,no_line_1_1cut,43,no_1
+43,91o1v0r5c,video-slider-response,maybe_line_new_3_1cut,22,maybe_1
+43,91o1v0r5c,video-slider-response,no_line_2_1cut,23,no_1
+43,91o1v0r5c,video-slider-response,maybe_line_new_4_1cut,11,maybe_1
+43,91o1v0r5c,video-slider-response,yes_line_7_1cut,-40,yes_1
+43,91o1v0r5c,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""No issues""},{""name"":""age"",""value"":""38""},{""name"":""gender"",""value"":""male""},{""name"":""comments"",""value"":""Thanks, it looked like when there was lots of water it would be more efficient to all go in different directions to get it.""}]",debrief
+43,91o1v0r5c,html-keyboard-response,"""", ,""""
+5,qtgatluhh,preload,"""","""",""""
+5,qtgatluhh,html-keyboard-response,"""", ,""""
+5,qtgatluhh,html-keyboard-response,"""",y,""""
+5,qtgatluhh,survey-text,"""","{""instructions1"":""The faster a person collects the bucket of water, the more points they receive""}",instructions
+5,qtgatluhh,survey-text,"""","{""instructions2"":""one""}",instructions
+5,qtgatluhh,survey-text,"""","{""instructions4"":""evryone staying in line and evryone leaving the line""}",instructions
+5,qtgatluhh,video-slider-response,yes_line_9_1cut,-20,yes_1
+5,qtgatluhh,video-slider-response,no_line_1_1cut,43,no_1
+5,qtgatluhh,video-slider-response,maybe_line_new_1_1cut,-24,maybe_1
+5,qtgatluhh,video-slider-response,maybe_line_new_2_1cut,-10,maybe_1
+5,qtgatluhh,video-slider-response,yes_line_10_1cut,-28,yes_1
+5,qtgatluhh,video-slider-response,no_line_3_1cut,25,no_1
+5,qtgatluhh,video-slider-response,yes_line_7_1cut,-43,yes_1
+5,qtgatluhh,video-slider-response,yes_line_8_1cut,-41,yes_1
+5,qtgatluhh,video-slider-response,maybe_line_new_4_1cut,5,maybe_1
+5,qtgatluhh,video-slider-response,no_line_2_1cut,38,no_1
+5,qtgatluhh,video-slider-response,maybe_line_new_6_1cut,-45,maybe_1
+5,qtgatluhh,video-slider-response,maybe_line_new_3_1cut,34,maybe_1
+5,qtgatluhh,video-slider-response,maybe_line_new_5_1cut,-45,maybe_1
+5,qtgatluhh,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""no problems.""},{""name"":""age"",""value"":""56""},{""name"":""gender"",""value"":""male""},{""name"":""comments"",""value"":""no comments""}]",debrief
+5,qtgatluhh,html-keyboard-response,"""", ,""""
+53,ybxqm14fu,preload,"""","""",""""
+53,ybxqm14fu,html-keyboard-response,"""", ,""""
+53,ybxqm14fu,html-keyboard-response,"""",y,""""
+53,ybxqm14fu,survey-text,"""","{""instructions1"":""Collect water and bring it back to the wooden storage buckets""}",instructions
+53,ybxqm14fu,survey-text,"""","{""instructions2"":""one""}",instructions
+53,ybxqm14fu,survey-text,"""","{""instructions4"":""What would happen if everyone ignored the line and went for the water for themselves and how much better or worse would that be.""}",instructions
+53,ybxqm14fu,video-slider-response,maybe_line_new_2_1cut,-41,maybe_1
+53,ybxqm14fu,video-slider-response,maybe_line_new_3_1cut,32,maybe_1
+53,ybxqm14fu,video-slider-response,maybe_line_new_6_1cut,-9,maybe_1
+53,ybxqm14fu,video-slider-response,yes_line_10_1cut,-42,yes_1
+53,ybxqm14fu,video-slider-response,maybe_line_new_4_1cut,13,maybe_1
+53,ybxqm14fu,video-slider-response,no_line_2_1cut,50,no_1
+53,ybxqm14fu,video-slider-response,maybe_line_new_1_1cut,-39,maybe_1
+53,ybxqm14fu,video-slider-response,no_line_1_1cut,50,no_1
+53,ybxqm14fu,video-slider-response,maybe_line_new_5_1cut,-49,maybe_1
+53,ybxqm14fu,video-slider-response,yes_line_9_1cut,-6,yes_1
+53,ybxqm14fu,video-slider-response,yes_line_8_1cut,18,yes_1
+53,ybxqm14fu,video-slider-response,no_line_3_1cut,50,no_1
+53,ybxqm14fu,video-slider-response,yes_line_7_1cut,-50,yes_1
+53,ybxqm14fu,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""nope.""},{""name"":""age"",""value"":""32""},{""name"":""gender"",""value"":""male""},{""name"":""comments"",""value"":""}]",debrief
+53,ybxqm14fu,html-keyboard-response,"""", ,""""
+52,u52alqfnk,preload,"""","""",""""
+52,u52alqfnk,html-keyboard-response,"""", ,""""
+52,u52alqfnk,html-keyboard-response,"""",y,""""
+52,u52alqfnk,survey-text,"""","{""instructions1"":""To collect water from a water source and bring it back to the wooden storage buckets.""}",instructions
+52,u52alqfnk,survey-text,"""","{""instructions2"":""One""}",instructions
+52,u52alqfnk,survey-text,"""","{""instructions4"":""If everyone left the line to get water faster for themselves, and how much better or worse off everyone be if they all stayed in life""}",instructions
+52,u52alqfnk,video-slider-response,maybe_line_new_3_1cut,13,maybe_1
+52,u52alqfnk,video-slider-response,yes_line_8_1cut,8,yes_1
+52,u52alqfnk,video-slider-response,maybe_line_new_1_1cut,-19,maybe_1
+52,u52alqfnk,video-slider-response,yes_line_9_1cut,-18,yes_1
+52,u52alqfnk,video-slider-response,maybe_line_new_4_1cut,-22,maybe_1
+52,u52alqfnk,video-slider-response,maybe_line_new_6_1cut,-22,maybe_1
+52,u52alqfnk,video-slider-response,no_line_2_1cut,20,no_1
+52,u52alqfnk,video-slider-response,maybe_line_new_2_1cut,10,maybe_1
+52,u52alqfnk,video-slider-response,no_line_1_1cut,11,no_1
+52,u52alqfnk,video-slider-response,no_line_3_1cut,-22,no_1
+52,u52alqfnk,video-slider-response,yes_line_10_1cut,-35,yes_1
+52,u52alqfnk,video-slider-response,yes_line_7_1cut,-28,yes_1
+52,u52alqfnk,video-slider-response,maybe_line_new_5_1cut,-26,maybe_1
+52,u52alqfnk,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""No""},{""name"":""age"",""value"":""29""},{""name"":""gender"",""value"":""male""},{""name"":""comments"",""value"":""}]",debrief
+52,u52alqfnk,html-keyboard-response,"""", ,""""
+6,0neggxjxn,preload,"""","""",""""
+6,0neggxjxn,html-keyboard-response,"""", ,""""
+6,0neggxjxn,html-keyboard-response,"""",y,""""
+6,0neggxjxn,survey-text,"""","{""instructions1"":""To collect water as fast as possible in order to get the most points.""}",instructions
+6,0neggxjxn,survey-text,"""","{""instructions2"":""1""}",instructions
+6,0neggxjxn,survey-text,"""","{""instructions4"":""Everyone feeling at liberty to leave the line and try to get water faster for themselves, and everyone staying in line.""}",instructions
+6,0neggxjxn,video-slider-response,maybe_line_new_5_1cut,1,maybe_1
+6,0neggxjxn,video-slider-response,maybe_line_new_6_1cut,22,maybe_1
+6,0neggxjxn,video-slider-response,no_line_1_1cut,50,no_1
+6,0neggxjxn,video-slider-response,yes_line_9_1cut,0,yes_1
+6,0neggxjxn,video-slider-response,no_line_2_1cut,35,no_1
+6,0neggxjxn,video-slider-response,yes_line_8_1cut,-21,yes_1
+6,0neggxjxn,video-slider-response,yes_line_10_1cut,-16,yes_1
+6,0neggxjxn,video-slider-response,maybe_line_new_4_1cut,7,maybe_1
+6,0neggxjxn,video-slider-response,yes_line_7_1cut,10,yes_1
+6,0neggxjxn,video-slider-response,maybe_line_new_1_1cut,17,maybe_1
+6,0neggxjxn,video-slider-response,maybe_line_new_2_1cut,30,maybe_1
+6,0neggxjxn,video-slider-response,maybe_line_new_3_1cut,-11,maybe_1
+6,0neggxjxn,video-slider-response,no_line_3_1cut,29,no_1
+6,0neggxjxn,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""No""},{""name"":""age"",""value"":""32""},{""name"":""gender"",""value"":""male""},{""name"":""comments"",""value"":""I was unclear about the task after the instructions phase, but once I started doing the task it made sense. Also, the example video in the instructions page was not great because it instantly autoplayed while I was reading the instructions and there was no way to replay it.  Regarding the task itself, I think it's hard to judge whether or not they will be better or worse off by leaving the line because I don't know how they will make decisions. I kind of just assumed they will behave in the most efficient manner in both cases (leaving the line or all staying in line).""}]",debrief
+6,0neggxjxn,html-keyboard-response,"""", ,""""
+50,ogep5brz4,preload,"""","""",""""
+50,ogep5brz4,html-keyboard-response,"""", ,""""
+50,ogep5brz4,html-keyboard-response,"""",y,""""
+50,ogep5brz4,survey-text,"""","{""instructions1"":""collect water from water source and bring back to wooden storage buckets""}",instructions
+50,ogep5brz4,survey-text,"""","{""instructions2"":""1""}",instructions
+50,ogep5brz4,survey-text,"""","{""instructions4"":""if everyone left the line or everyone stay in line is better ""}",instructions
+50,ogep5brz4,video-slider-response,no_line_3_1cut,-14,no_1
+50,ogep5brz4,video-slider-response,no_line_2_1cut,5,no_1
+50,ogep5brz4,video-slider-response,maybe_line_new_2_1cut,-42,maybe_1
+50,ogep5brz4,video-slider-response,maybe_line_new_3_1cut,0,maybe_1
+50,ogep5brz4,video-slider-response,yes_line_9_1cut,-14,yes_1
+50,ogep5brz4,video-slider-response,no_line_1_1cut,44,no_1
+50,ogep5brz4,video-slider-response,yes_line_7_1cut,0,yes_1
+50,ogep5brz4,video-slider-response,maybe_line_new_4_1cut,19,maybe_1
+50,ogep5brz4,video-slider-response,maybe_line_new_6_1cut,10,maybe_1
+50,ogep5brz4,video-slider-response,maybe_line_new_1_1cut,3,maybe_1
+50,ogep5brz4,video-slider-response,yes_line_8_1cut,-29,yes_1
+50,ogep5brz4,video-slider-response,yes_line_10_1cut,-43,yes_1
+50,ogep5brz4,video-slider-response,maybe_line_new_5_1cut,-43,maybe_1
+50,ogep5brz4,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""no""},{""name"":""age"",""value"":""38""},{""name"":""gender"",""value"":""male""},{""name"":""comments"",""value"":""thanks a lot, stay safe""}]",debrief
+50,ogep5brz4,html-keyboard-response,"""", ,""""
+58,f2fy6z99u,preload,"""","""",""""
+58,f2fy6z99u,html-keyboard-response,"""", ,""""
+58,f2fy6z99u,html-keyboard-response,"""",y,""""
+58,f2fy6z99u,survey-text,"""","{""instructions1"":""collect water from a water source and bring it back to the wooden storage buckets""}",instructions
+58,f2fy6z99u,survey-text,"""","{""instructions2"":""1""}",instructions
+58,f2fy6z99u,survey-text,"""","{""instructions4"":""What would happen if everyone left the line instead of staying in line and how much better worse off everybody would be if everyone stayed.""}",instructions
+58,f2fy6z99u,video-slider-response,no_line_3_1cut,17,no_1
+58,f2fy6z99u,video-slider-response,maybe_line_new_5_1cut,-34,maybe_1
+58,f2fy6z99u,video-slider-response,yes_line_10_1cut,-44,yes_1
+58,f2fy6z99u,video-slider-response,maybe_line_new_2_1cut,22,maybe_1
+58,f2fy6z99u,video-slider-response,maybe_line_new_3_1cut,-47,maybe_1
+58,f2fy6z99u,video-slider-response,maybe_line_new_1_1cut,15,maybe_1
+58,f2fy6z99u,video-slider-response,no_line_2_1cut,35,no_1
+58,f2fy6z99u,video-slider-response,no_line_1_1cut,48,no_1
+58,f2fy6z99u,video-slider-response,maybe_line_new_4_1cut,-28,maybe_1
+58,f2fy6z99u,video-slider-response,yes_line_7_1cut,-9,yes_1
+58,f2fy6z99u,video-slider-response,yes_line_8_1cut,-46,yes_1
+58,f2fy6z99u,video-slider-response,yes_line_9_1cut,-21,yes_1
+58,f2fy6z99u,video-slider-response,maybe_line_new_6_1cut,-46,maybe_1
+58,f2fy6z99u,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""No""},{""name"":""age"",""value"":""39""},{""name"":""gender"",""value"":""male""},{""name"":""comments"",""value"":""All of the potential bottlenecks made me anxious. Thanks for the survey. Good luck with your research.""}]",debrief
+58,f2fy6z99u,html-keyboard-response,"""", ,""""
+60,8kt09o84j,preload,"""","""",""""
+60,8kt09o84j,html-keyboard-response,"""", ,""""
+60,8kt09o84j,html-keyboard-response,"""",y,""""
+60,8kt09o84j,survey-text,"""","{""instructions1"":""People are collecting water and bring it to the storage and trying to gain more points by collecting water fast. ""}",instructions
+60,8kt09o84j,survey-text,"""","{""instructions2"":""1""}",instructions
+60,8kt09o84j,survey-text,"""","{""instructions4"":""I am to think about when people decide to leave the line and get water straightaway or if they wait in the line and wait for their turn to collect the water.""}",instructions
+60,8kt09o84j,video-slider-response,yes_line_8_1cut,-50,yes_1
+60,8kt09o84j,video-slider-response,no_line_3_1cut,28,no_1
+60,8kt09o84j,video-slider-response,maybe_line_new_6_1cut,-50,maybe_1
+60,8kt09o84j,video-slider-response,maybe_line_new_1_1cut,-21,maybe_1
+60,8kt09o84j,video-slider-response,yes_line_9_1cut,-41,yes_1
+60,8kt09o84j,video-slider-response,maybe_line_new_4_1cut,27,maybe_1
+60,8kt09o84j,video-slider-response,yes_line_10_1cut,-50,yes_1
+60,8kt09o84j,video-slider-response,yes_line_7_1cut,-50,yes_1
+60,8kt09o84j,video-slider-response,maybe_line_new_3_1cut,18,maybe_1
+60,8kt09o84j,video-slider-response,maybe_line_new_2_1cut,28,maybe_1
+60,8kt09o84j,video-slider-response,maybe_line_new_5_1cut,-50,maybe_1
+60,8kt09o84j,video-slider-response,no_line_1_1cut,50,no_1
+60,8kt09o84j,video-slider-response,no_line_2_1cut,46,no_1
+60,8kt09o84j,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""None""},{""name"":""age"",""value"":""37""},{""name"":""gender"",""value"":""female""},{""name"":""comments"",""value"":""None""}]",debrief
+60,8kt09o84j,html-keyboard-response,"""", ,""""
+63,a71dlcmno,preload,"""","""",""""
+63,a71dlcmno,html-keyboard-response,"""", ,""""
+63,a71dlcmno,html-keyboard-response,"""",y,""""
+63,a71dlcmno,survey-text,"""","{""instructions1"":""to collect one bucket of water as quickly as possible for each level""}",instructions
+63,a71dlcmno,survey-text,"""","{""instructions2"":""one""}",instructions
+63,a71dlcmno,survey-text,"""","{""instructions4"":""(1) what would happen if EVERYONE felt at liberty to leave the line and try to get water faster for themselves, instead of everyone staying in line; (2) how much better or worse off everyone would be if everyone stayed in line""}",instructions
+63,a71dlcmno,video-slider-response,no_line_1_1cut,36,no_1
+63,a71dlcmno,video-slider-response,no_line_3_1cut,27,no_1
+63,a71dlcmno,video-slider-response,yes_line_9_1cut,-25,yes_1
+63,a71dlcmno,video-slider-response,maybe_line_new_6_1cut,-33,maybe_1
+63,a71dlcmno,video-slider-response,yes_line_8_1cut,-36,yes_1
+63,a71dlcmno,video-slider-response,no_line_2_1cut,31,no_1
+63,a71dlcmno,video-slider-response,maybe_line_new_2_1cut,14,maybe_1
+63,a71dlcmno,video-slider-response,maybe_line_new_5_1cut,-42,maybe_1
+63,a71dlcmno,video-slider-response,yes_line_7_1cut,-11,yes_1
+63,a71dlcmno,video-slider-response,yes_line_10_1cut,-33,yes_1
+63,a71dlcmno,video-slider-response,maybe_line_new_3_1cut,-21,maybe_1
+63,a71dlcmno,video-slider-response,maybe_line_new_4_1cut,-20,maybe_1
+63,a71dlcmno,video-slider-response,maybe_line_new_1_1cut,10,maybe_1
+63,a71dlcmno,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""no""},{""name"":""age"",""value"":""55""},{""name"":""gender"",""value"":""male""},{""name"":""comments"",""value"":""I enjoyed the study and thinking about the challenges in each scene.""}]",debrief
+63,a71dlcmno,html-keyboard-response,"""", ,""""
+66,rfm0q2re7,preload,"""","""",""""
+66,rfm0q2re7,html-keyboard-response,"""", ,""""
+66,rfm0q2re7,html-keyboard-response,"""",y,""""
+66,rfm0q2re7,survey-text,"""","{""instructions1"":""Each person needs to collect one bucket of water for each level.""}",instructions
+66,rfm0q2re7,survey-text,"""","{""instructions2"":""one""}",instructions
+66,rfm0q2re7,survey-text,"""","{""instructions4"":""Think about how much better or worse off everyone would be if everyone stayed in line or if everyone decided to leave the line.""}",instructions
+66,rfm0q2re7,video-slider-response,yes_line_7_1cut,-50,yes_1
+66,rfm0q2re7,video-slider-response,maybe_line_new_2_1cut,22,maybe_1
+66,rfm0q2re7,video-slider-response,no_line_1_1cut,50,no_1
+66,rfm0q2re7,video-slider-response,no_line_2_1cut,50,no_1
+66,rfm0q2re7,video-slider-response,yes_line_8_1cut,-4,yes_1
+66,rfm0q2re7,video-slider-response,maybe_line_new_5_1cut,-29,maybe_1
+66,rfm0q2re7,video-slider-response,no_line_3_1cut,50,no_1
+66,rfm0q2re7,video-slider-response,yes_line_9_1cut,-38,yes_1
+66,rfm0q2re7,video-slider-response,maybe_line_new_1_1cut,-9,maybe_1
+66,rfm0q2re7,video-slider-response,yes_line_10_1cut,-50,yes_1
+66,rfm0q2re7,video-slider-response,maybe_line_new_3_1cut,18,maybe_1
+66,rfm0q2re7,video-slider-response,maybe_line_new_4_1cut,15,maybe_1
+66,rfm0q2re7,video-slider-response,maybe_line_new_6_1cut,-19,maybe_1
+66,rfm0q2re7,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""None.""},{""name"":""age"",""value"":""34""},{""name"":""gender"",""value"":""male""},{""name"":""comments"",""value"":""No.""}]",debrief
+66,rfm0q2re7,html-keyboard-response,"""", ,""""
+65,42lajc9nf,preload,"""","""",""""
+65,42lajc9nf,html-keyboard-response,"""", ,""""
+65,42lajc9nf,html-keyboard-response,"""",y,""""
+65,42lajc9nf,survey-text,"""","{""instructions1"":""Collect a bucket of water as fast as they can to receive more point in each level""}",instructions
+65,42lajc9nf,survey-text,"""","{""instructions2"":""one""}",instructions
+65,42lajc9nf,survey-text,"""","{""instructions4"":""Whether each player leave the line and head straight for the water source without waiting, or whether they should stay waiting in line until it’s their turn to collect water""}",instructions
+65,42lajc9nf,video-slider-response,maybe_line_new_5_1cut,-50,maybe_1
+65,42lajc9nf,video-slider-response,maybe_line_new_6_1cut,-17,maybe_1
+65,42lajc9nf,video-slider-response,no_line_1_1cut,50,no_1
+65,42lajc9nf,video-slider-response,yes_line_8_1cut,-22,yes_1
+65,42lajc9nf,video-slider-response,maybe_line_new_4_1cut,8,maybe_1
+65,42lajc9nf,video-slider-response,maybe_line_new_3_1cut,12,maybe_1
+65,42lajc9nf,video-slider-response,yes_line_9_1cut,-34,yes_1
+65,42lajc9nf,video-slider-response,yes_line_7_1cut,-43,yes_1
+65,42lajc9nf,video-slider-response,maybe_line_new_1_1cut,-1,maybe_1
+65,42lajc9nf,video-slider-response,no_line_3_1cut,50,no_1
+65,42lajc9nf,video-slider-response,maybe_line_new_2_1cut,25,maybe_1
+65,42lajc9nf,video-slider-response,no_line_2_1cut,50,no_1
+65,42lajc9nf,video-slider-response,yes_line_10_1cut,-30,yes_1
+65,42lajc9nf,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""I encountered no problems or bugs while completing this study""},{""name"":""age"",""value"":""39""},{""name"":""gender"",""value"":""male""},{""name"":""comments"",""value"":""}]",debrief
+65,42lajc9nf,html-keyboard-response,"""", ,""""
+61,xo2jh7ws4,preload,"""","""",""""
+61,xo2jh7ws4,html-keyboard-response,"""", ,""""
+61,xo2jh7ws4,html-keyboard-response,"""",y,""""
+61,xo2jh7ws4,survey-text,"""","{""instructions1"":""To collect a bucket of water; the faster they collect, the more points they gain.""}",instructions
+61,xo2jh7ws4,survey-text,"""","{""instructions2"":""One""}",instructions
+61,xo2jh7ws4,survey-text,"""","{""instructions4"":""About whether or not they would've been better off staying in line. And what would happen if everyone felt they were able to leave the line at any time to try to get water faster instead of staying in line.""}",instructions
+61,xo2jh7ws4,video-slider-response,yes_line_8_1cut,-50,yes_1
+61,xo2jh7ws4,video-slider-response,yes_line_7_1cut,-50,yes_1
+61,xo2jh7ws4,video-slider-response,maybe_line_new_2_1cut,36,maybe_1
+61,xo2jh7ws4,video-slider-response,no_line_1_1cut,50,no_1
+61,xo2jh7ws4,video-slider-response,no_line_3_1cut,50,no_1
+61,xo2jh7ws4,video-slider-response,maybe_line_new_4_1cut,27,maybe_1
+61,xo2jh7ws4,video-slider-response,maybe_line_new_5_1cut,-50,maybe_1
+61,xo2jh7ws4,video-slider-response,no_line_2_1cut,50,no_1
+61,xo2jh7ws4,video-slider-response,yes_line_10_1cut,-36,yes_1
+61,xo2jh7ws4,video-slider-response,maybe_line_new_3_1cut,28,maybe_1
+61,xo2jh7ws4,video-slider-response,yes_line_9_1cut,21,yes_1
+61,xo2jh7ws4,video-slider-response,maybe_line_new_6_1cut,-7,maybe_1
+61,xo2jh7ws4,video-slider-response,maybe_line_new_1_1cut,-30,maybe_1
+61,xo2jh7ws4,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""Several of the videos wouldn't play. Some that wouldn't play automatically or by using the play button, I was able to get moving by clicking on the progress bar. I'm using a Firefox based browser. I was also a little confused about the wording after watching the videos. The questions seemed to contradict one another as to how to answer on the scale. So I made all of my answer based off the first question on each page.""},{""name"":""age"",""value"":""32""},{""name"":""gender"",""value"":""male""},{""name"":""comments"",""value"":""I do hope I did this properly, as I stated above, it seemed like the two questions below each video contradicted each other. So I answered based on the first questions. Sorry if that's wrong. If it is, then all of my answers are in reverse, if that makes sense. Thank you. ""}]",debrief
+61,xo2jh7ws4,html-keyboard-response,"""", ,""""
+62,gcsjp7o5c,preload,"""","""",""""
+62,gcsjp7o5c,html-keyboard-response,"""", ,""""
+62,gcsjp7o5c,html-keyboard-response,"""",y,""""
+62,gcsjp7o5c,survey-text,"""","{""instructions1"":""Collect water from a water source and bring it back to the wooden storage buckets""}",instructions
+62,gcsjp7o5c,survey-text,"""","{""instructions2"":""one""}",instructions
+62,gcsjp7o5c,survey-text,"""","{""instructions4"":""What would happen if everyone decided leave the line at once and try to get water faster for themselves versus everyone staying in line.""}",instructions
+62,gcsjp7o5c,video-slider-response,no_line_2_1cut,-12,no_1
+62,gcsjp7o5c,video-slider-response,no_line_1_1cut,0,no_1
+62,gcsjp7o5c,video-slider-response,maybe_line_new_4_1cut,-22,maybe_1
+62,gcsjp7o5c,video-slider-response,yes_line_7_1cut,-24,yes_1
+62,gcsjp7o5c,video-slider-response,no_line_3_1cut,8,no_1
+62,gcsjp7o5c,video-slider-response,maybe_line_new_3_1cut,-6,maybe_1
+62,gcsjp7o5c,video-slider-response,maybe_line_new_6_1cut,-36,maybe_1
+62,gcsjp7o5c,video-slider-response,maybe_line_new_2_1cut,-24,maybe_1
+62,gcsjp7o5c,video-slider-response,maybe_line_new_1_1cut,-27,maybe_1
+62,gcsjp7o5c,video-slider-response,yes_line_8_1cut,-37,yes_1
+62,gcsjp7o5c,video-slider-response,yes_line_10_1cut,-21,yes_1
+62,gcsjp7o5c,video-slider-response,yes_line_9_1cut,-14,yes_1
+62,gcsjp7o5c,video-slider-response,maybe_line_new_5_1cut,-37,maybe_1
+62,gcsjp7o5c,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""No issues.""},{""name"":""age"",""value"":""42""},{""name"":""gender"",""value"":""female""},{""name"":""comments"",""value"":""No comments at the current time. ""}]",debrief
+62,gcsjp7o5c,html-keyboard-response,"""", ,""""
+67,1lvwgoboc,preload,"""","""",""""
+67,1lvwgoboc,html-keyboard-response,"""", ,""""
+67,1lvwgoboc,html-keyboard-response,"""",y,""""
+67,1lvwgoboc,survey-text,"""","{""instructions1"":""To collect one bucket of water for each level""}",instructions
+67,1lvwgoboc,survey-text,"""","{""instructions2"":""one""}",instructions
+67,1lvwgoboc,survey-text,"""","{""instructions4"":""You should think about what would happen if everyone stayed in line, or if everyone left the line.""}",instructions
+67,1lvwgoboc,video-slider-response,no_line_1_1cut,-6,no_1
+67,1lvwgoboc,video-slider-response,maybe_line_new_1_1cut,6,maybe_1
+67,1lvwgoboc,video-slider-response,no_line_3_1cut,6,no_1
+67,1lvwgoboc,video-slider-response,maybe_line_new_4_1cut,-24,maybe_1
+67,1lvwgoboc,video-slider-response,maybe_line_new_5_1cut,-8,maybe_1
+67,1lvwgoboc,video-slider-response,yes_line_7_1cut,-23,yes_1
+67,1lvwgoboc,video-slider-response,maybe_line_new_2_1cut,7,maybe_1
+67,1lvwgoboc,video-slider-response,no_line_2_1cut,50,no_1
+67,1lvwgoboc,video-slider-response,yes_line_8_1cut,-50,yes_1
+67,1lvwgoboc,video-slider-response,maybe_line_new_3_1cut,-7,maybe_1
+67,1lvwgoboc,video-slider-response,yes_line_9_1cut,-9,yes_1
+67,1lvwgoboc,video-slider-response,yes_line_10_1cut,-50,yes_1
+67,1lvwgoboc,video-slider-response,maybe_line_new_6_1cut,-40,maybe_1
+67,1lvwgoboc,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""None that I saw.""},{""name"":""age"",""value"":""38""},{""name"":""gender"",""value"":""male""},{""name"":""comments"",""value"":""Seems as if the less options spaces/options, the worse it was for everyone else. Interesting study. Best of luck.""}]",debrief
+67,1lvwgoboc,html-keyboard-response,"""", ,""""
+70,aws3p2hc6,preload,"""","""",""""
+70,aws3p2hc6,html-keyboard-response,"""", ,""""
+70,aws3p2hc6,html-keyboard-response,"""",y,""""
+70,aws3p2hc6,survey-text,"""","{""instructions1"":""Pick up water from a water source and then store it in a wooden bucket.""}",instructions
+70,aws3p2hc6,survey-text,"""","{""instructions2"":""one""}",instructions
+70,aws3p2hc6,survey-text,"""","{""instructions4"":""What would happen if all of the people in the line decided to leave at once and attempt to get to the water faster, as well as how that would impact all of them versus if they had just stayed in line.""}",instructions
+70,aws3p2hc6,video-slider-response,maybe_line_new_4_1cut,-42,maybe_1
+70,aws3p2hc6,video-slider-response,maybe_line_new_2_1cut,9,maybe_1
+70,aws3p2hc6,video-slider-response,maybe_line_new_1_1cut,14,maybe_1
+70,aws3p2hc6,video-slider-response,yes_line_9_1cut,-15,yes_1
+70,aws3p2hc6,video-slider-response,yes_line_8_1cut,-40,yes_1
+70,aws3p2hc6,video-slider-response,no_line_2_1cut,50,no_1
+70,aws3p2hc6,video-slider-response,yes_line_10_1cut,-39,yes_1
+70,aws3p2hc6,video-slider-response,no_line_1_1cut,50,no_1
+70,aws3p2hc6,video-slider-response,maybe_line_new_5_1cut,-50,maybe_1
+70,aws3p2hc6,video-slider-response,no_line_3_1cut,50,no_1
+70,aws3p2hc6,video-slider-response,yes_line_7_1cut,0,yes_1
+70,aws3p2hc6,video-slider-response,maybe_line_new_3_1cut,9,maybe_1
+70,aws3p2hc6,video-slider-response,maybe_line_new_6_1cut,-20,maybe_1
+70,aws3p2hc6,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""No""},{""name"":""age"",""value"":""30""},{""name"":""gender"",""value"":""male""},{""name"":""comments"",""value"":""}]",debrief
+70,aws3p2hc6,html-keyboard-response,"""", ,""""
+7,50k5hywsy,preload,"""","""",""""
+7,50k5hywsy,html-keyboard-response,"""", ,""""
+7,50k5hywsy,html-keyboard-response,"""",y,""""
+7,50k5hywsy,survey-text,"""","{""instructions1"":""to collect water from a water source and bring it back to the wooden storage buckets.""}",instructions
+7,50k5hywsy,survey-text,"""","{""instructions2"":""1""}",instructions
+7,50k5hywsy,survey-text,"""","{""instructions4"":""what would happen if EVERYONE felt at liberty to leave the line and try to get water faster for themselves, instead of everyone staying in line.""}",instructions
+7,50k5hywsy,video-slider-response,yes_line_7_1cut,-34,yes_1
+7,50k5hywsy,video-slider-response,yes_line_8_1cut,-47,yes_1
+7,50k5hywsy,video-slider-response,yes_line_9_1cut,-47,yes_1
+7,50k5hywsy,video-slider-response,maybe_line_new_5_1cut,-49,maybe_1
+7,50k5hywsy,video-slider-response,yes_line_10_1cut,-37,yes_1
+7,50k5hywsy,video-slider-response,maybe_line_new_2_1cut,19,maybe_1
+7,50k5hywsy,video-slider-response,maybe_line_new_3_1cut,-9,maybe_1
+7,50k5hywsy,video-slider-response,no_line_3_1cut,34,no_1
+7,50k5hywsy,video-slider-response,maybe_line_new_1_1cut,4,maybe_1
+7,50k5hywsy,video-slider-response,no_line_2_1cut,31,no_1
+7,50k5hywsy,video-slider-response,maybe_line_new_6_1cut,-37,maybe_1
+7,50k5hywsy,video-slider-response,maybe_line_new_4_1cut,-7,maybe_1
+7,50k5hywsy,video-slider-response,no_line_1_1cut,45,no_1
+7,50k5hywsy,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""No""},{""name"":""age"",""value"":""29""},{""name"":""gender"",""value"":""male""},{""name"":""comments"",""value"":""}]",debrief
+7,50k5hywsy,html-keyboard-response,"""", ,""""
+71,dtl6xz7sm,preload,"""","""",""""
+71,dtl6xz7sm,html-keyboard-response,"""", ,""""
+71,dtl6xz7sm,html-keyboard-response,"""",y,""""
+71,dtl6xz7sm,survey-text,"""","{""instructions1"":""collect water""}",instructions
+71,dtl6xz7sm,survey-text,"""","{""instructions2"":""1""}",instructions
+71,dtl6xz7sm,survey-text,"""","{""instructions4"":""what if everyone left, or if everyone stayed in line""}",instructions
+71,dtl6xz7sm,video-slider-response,yes_line_9_1cut,-39,yes_1
+71,dtl6xz7sm,video-slider-response,no_line_1_1cut,12,no_1
+71,dtl6xz7sm,video-slider-response,maybe_line_new_4_1cut,-40,maybe_1
+71,dtl6xz7sm,video-slider-response,maybe_line_new_1_1cut,-31,maybe_1
+71,dtl6xz7sm,video-slider-response,maybe_line_new_2_1cut,9,maybe_1
+71,dtl6xz7sm,video-slider-response,yes_line_7_1cut,-43,yes_1
+71,dtl6xz7sm,video-slider-response,no_line_2_1cut,26,no_1
+71,dtl6xz7sm,video-slider-response,maybe_line_new_5_1cut,-35,maybe_1
+71,dtl6xz7sm,video-slider-response,yes_line_10_1cut,-40,yes_1
+71,dtl6xz7sm,video-slider-response,yes_line_8_1cut,-45,yes_1
+71,dtl6xz7sm,video-slider-response,maybe_line_new_6_1cut,-33,maybe_1
+71,dtl6xz7sm,video-slider-response,maybe_line_new_3_1cut,-22,maybe_1
+71,dtl6xz7sm,video-slider-response,no_line_3_1cut,12,no_1
+71,dtl6xz7sm,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""no""},{""name"":""age"",""value"":""23""},{""name"":""gender"",""value"":""female""},{""name"":""comments"",""value"":""}]",debrief
+71,dtl6xz7sm,html-keyboard-response,"""", ,""""
+72,cnnfjyk72,preload,"""","""",""""
+72,cnnfjyk72,html-keyboard-response,"""", ,""""
+72,cnnfjyk72,html-keyboard-response,"""",y,""""
+72,cnnfjyk72,survey-text,"""","{""instructions1"":""Collect water from a water source and bring it back to a wooden storage bucket""}",instructions
+72,cnnfjyk72,survey-text,"""","{""instructions2"":""1""}",instructions
+72,cnnfjyk72,survey-text,"""","{""instructions4"":""What would happen if everyone felt like they should leave the line and then how much better or worse everyone would be if they all stayed in that line.""}",instructions
+72,cnnfjyk72,video-slider-response,yes_line_8_1cut,-23,yes_1
+72,cnnfjyk72,video-slider-response,no_line_3_1cut,-42,no_1
+72,cnnfjyk72,video-slider-response,yes_line_10_1cut,40,yes_1
+72,cnnfjyk72,video-slider-response,maybe_line_new_1_1cut,43,maybe_1
+72,cnnfjyk72,video-slider-response,maybe_line_new_6_1cut,48,maybe_1
+72,cnnfjyk72,video-slider-response,yes_line_9_1cut,9,yes_1
+72,cnnfjyk72,video-slider-response,maybe_line_new_3_1cut,-27,maybe_1
+72,cnnfjyk72,video-slider-response,maybe_line_new_4_1cut,25,maybe_1
+72,cnnfjyk72,video-slider-response,yes_line_7_1cut,48,yes_1
+72,cnnfjyk72,video-slider-response,maybe_line_new_5_1cut,-32,maybe_1
+72,cnnfjyk72,video-slider-response,maybe_line_new_2_1cut,-21,maybe_1
+72,cnnfjyk72,video-slider-response,no_line_1_1cut,-45,no_1
+72,cnnfjyk72,video-slider-response,no_line_2_1cut,-38,no_1
+72,cnnfjyk72,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""None""},{""name"":""age"",""value"":""32""},{""name"":""gender"",""value"":""male""},{""name"":""comments"",""value"":""None""}]",debrief
+72,cnnfjyk72,html-keyboard-response,"""", ,""""
+73,y48lex54p,preload,"""","""",""""
+73,y48lex54p,html-keyboard-response,"""", ,""""
+73,y48lex54p,html-keyboard-response,"""",y,""""
+73,y48lex54p,survey-text,"""","{""instructions1"":""collect water from a source and bring it back to a wooden storage""}",instructions
+73,y48lex54p,survey-text,"""","{""instructions2"":""one square""}",instructions
+73,y48lex54p,survey-text,"""","{""instructions4"":""What would happen if everyone felt at liberty to leave the line and try to get water the fastest for themselves and then answer how it would be if everyone stayed in line""}",instructions
+73,y48lex54p,video-slider-response,yes_line_10_1cut,-40,yes_1
+73,y48lex54p,video-slider-response,maybe_line_new_1_1cut,-25,maybe_1
+73,y48lex54p,video-slider-response,maybe_line_new_2_1cut,17,maybe_1
+73,y48lex54p,video-slider-response,no_line_2_1cut,31,no_1
+73,y48lex54p,video-slider-response,maybe_line_new_4_1cut,-36,maybe_1
+73,y48lex54p,video-slider-response,maybe_line_new_5_1cut,-38,maybe_1
+73,y48lex54p,video-slider-response,no_line_3_1cut,41,no_1
+73,y48lex54p,video-slider-response,yes_line_8_1cut,-47,yes_1
+73,y48lex54p,video-slider-response,yes_line_9_1cut,-43,yes_1
+73,y48lex54p,video-slider-response,maybe_line_new_6_1cut,-45,maybe_1
+73,y48lex54p,video-slider-response,maybe_line_new_3_1cut,-45,maybe_1
+73,y48lex54p,video-slider-response,yes_line_7_1cut,-42,yes_1
+73,y48lex54p,video-slider-response,no_line_1_1cut,45,no_1
+73,y48lex54p,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""No""},{""name"":""age"",""value"":""44""},{""name"":""gender"",""value"":""female""},{""name"":""comments"",""value"":""}]",debrief
+73,y48lex54p,html-keyboard-response,"""", ,""""
+76,xalo6rnvp,preload,"""","""",""""
+76,xalo6rnvp,html-keyboard-response,"""", ,""""
+76,xalo6rnvp,html-keyboard-response,"""",y,""""
+76,xalo6rnvp,survey-text,"""","{""instructions1"":""collect water in a storage bucket""}",instructions
+76,xalo6rnvp,survey-text,"""","{""instructions2"":""one""}",instructions
+76,xalo6rnvp,survey-text,"""","{""instructions4"":""if everyone left the line or everyone staying in line""}",instructions
+76,xalo6rnvp,video-slider-response,no_line_1_1cut,31,no_1
+76,xalo6rnvp,video-slider-response,yes_line_7_1cut,-50,yes_1
+76,xalo6rnvp,video-slider-response,no_line_2_1cut,49,no_1
+76,xalo6rnvp,video-slider-response,maybe_line_new_4_1cut,8,maybe_1
+76,xalo6rnvp,video-slider-response,maybe_line_new_2_1cut,16,maybe_1
+76,xalo6rnvp,video-slider-response,yes_line_9_1cut,-50,yes_1
+76,xalo6rnvp,video-slider-response,maybe_line_new_5_1cut,-30,maybe_1
+76,xalo6rnvp,video-slider-response,maybe_line_new_6_1cut,-30,maybe_1
+76,xalo6rnvp,video-slider-response,maybe_line_new_3_1cut,-6,maybe_1
+76,xalo6rnvp,video-slider-response,maybe_line_new_1_1cut,-27,maybe_1
+76,xalo6rnvp,video-slider-response,no_line_3_1cut,35,no_1
+76,xalo6rnvp,video-slider-response,yes_line_8_1cut,-50,yes_1
+76,xalo6rnvp,video-slider-response,yes_line_10_1cut,-34,yes_1
+76,xalo6rnvp,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""no""},{""name"":""age"",""value"":""47""},{""name"":""gender"",""value"":""female""},{""name"":""comments"",""value"":""}]",debrief
+76,xalo6rnvp,html-keyboard-response,"""", ,""""
+74,h4vz9f7ky,preload,"""","""",""""
+74,h4vz9f7ky,html-keyboard-response,"""", ,""""
+74,h4vz9f7ky,html-keyboard-response,"""",y,""""
+74,h4vz9f7ky,survey-text,"""","{""instructions1"":""collect water""}",instructions
+74,h4vz9f7ky,survey-text,"""","{""instructions2"":""1""}",instructions
+74,h4vz9f7ky,survey-text,"""","{""instructions4"":""everyone leaving, everyone staying""}",instructions
+74,h4vz9f7ky,video-slider-response,maybe_line_new_1_1cut,-31,maybe_1
+74,h4vz9f7ky,video-slider-response,maybe_line_new_3_1cut,-42,maybe_1
+74,h4vz9f7ky,video-slider-response,no_line_2_1cut,13,no_1
+74,h4vz9f7ky,video-slider-response,no_line_1_1cut,45,no_1
+74,h4vz9f7ky,video-slider-response,maybe_line_new_2_1cut,21,maybe_1
+74,h4vz9f7ky,video-slider-response,yes_line_7_1cut,-36,yes_1
+74,h4vz9f7ky,video-slider-response,maybe_line_new_4_1cut,13,maybe_1
+74,h4vz9f7ky,video-slider-response,maybe_line_new_5_1cut,-32,maybe_1
+74,h4vz9f7ky,video-slider-response,yes_line_10_1cut,-23,yes_1
+74,h4vz9f7ky,video-slider-response,yes_line_9_1cut,-17,yes_1
+74,h4vz9f7ky,video-slider-response,yes_line_8_1cut,-46,yes_1
+74,h4vz9f7ky,video-slider-response,no_line_3_1cut,19,no_1
+74,h4vz9f7ky,video-slider-response,maybe_line_new_6_1cut,-22,maybe_1
+74,h4vz9f7ky,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""no""},{""name"":""age"",""value"":""26""},{""name"":""gender"",""value"":""female""},{""name"":""comments"",""value"":""no""}]",debrief
+74,h4vz9f7ky,html-keyboard-response,"""", ,""""
+77,lx04hlwzb,preload,"""","""",""""
+77,lx04hlwzb,html-keyboard-response,"""", ,""""
+77,lx04hlwzb,html-keyboard-response,"""",y,""""
+77,lx04hlwzb,survey-text,"""","{""instructions1"":""To collect one bucket of water for each level""}",instructions
+77,lx04hlwzb,survey-text,"""","{""instructions2"":""one""}",instructions
+77,lx04hlwzb,survey-text,"""","{""instructions4"":""if it's better or worse for everyone if that person stayed in line""}",instructions
+77,lx04hlwzb,video-slider-response,no_line_2_1cut,23,no_1
+77,lx04hlwzb,video-slider-response,maybe_line_new_3_1cut,26,maybe_1
+77,lx04hlwzb,video-slider-response,yes_line_9_1cut,31,yes_1
+77,lx04hlwzb,video-slider-response,maybe_line_new_5_1cut,-34,maybe_1
+77,lx04hlwzb,video-slider-response,yes_line_10_1cut,-50,yes_1
+77,lx04hlwzb,video-slider-response,maybe_line_new_4_1cut,6,maybe_1
+77,lx04hlwzb,video-slider-response,maybe_line_new_6_1cut,-14,maybe_1
+77,lx04hlwzb,video-slider-response,no_line_1_1cut,32,no_1
+77,lx04hlwzb,video-slider-response,no_line_3_1cut,15,no_1
+77,lx04hlwzb,video-slider-response,yes_line_8_1cut,-40,yes_1
+77,lx04hlwzb,video-slider-response,yes_line_7_1cut,-28,yes_1
+77,lx04hlwzb,video-slider-response,maybe_line_new_1_1cut,-12,maybe_1
+77,lx04hlwzb,video-slider-response,maybe_line_new_2_1cut,11,maybe_1
+77,lx04hlwzb,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""no""},{""name"":""age"",""value"":""37""},{""name"":""gender"",""value"":""female""},{""name"":""comments"",""value"":""no""}]",debrief
+77,lx04hlwzb,html-keyboard-response,"""", ,""""
+75,avg85zbzp,preload,"""","""",""""
+75,avg85zbzp,html-keyboard-response,"""", ,""""
+75,avg85zbzp,html-keyboard-response,"""",y,""""
+75,avg85zbzp,survey-text,"""","{""instructions1"":""to collect water from a water source, as quickly as possible, with each person filling one bucket each""}",instructions
+75,avg85zbzp,survey-text,"""","{""instructions2"":""one square""}",instructions
+75,avg85zbzp,survey-text,"""","{""instructions4"":""if everyone left the line to get water faster, and if everyone stayed in line to get water""}",instructions
+75,avg85zbzp,video-slider-response,yes_line_8_1cut,-41,yes_1
+75,avg85zbzp,video-slider-response,no_line_2_1cut,50,no_1
+75,avg85zbzp,video-slider-response,maybe_line_new_5_1cut,-20,maybe_1
+75,avg85zbzp,video-slider-response,maybe_line_new_4_1cut,-11,maybe_1
+75,avg85zbzp,video-slider-response,maybe_line_new_2_1cut,5,maybe_1
+75,avg85zbzp,video-slider-response,yes_line_10_1cut,-21,yes_1
+75,avg85zbzp,video-slider-response,yes_line_9_1cut,-21,yes_1
+75,avg85zbzp,video-slider-response,maybe_line_new_1_1cut,4,maybe_1
+75,avg85zbzp,video-slider-response,no_line_1_1cut,33,no_1
+75,avg85zbzp,video-slider-response,yes_line_7_1cut,-15,yes_1
+75,avg85zbzp,video-slider-response,no_line_3_1cut,29,no_1
+75,avg85zbzp,video-slider-response,maybe_line_new_3_1cut,-13,maybe_1
+75,avg85zbzp,video-slider-response,maybe_line_new_6_1cut,-37,maybe_1
+75,avg85zbzp,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""no""},{""name"":""age"",""value"":""47""},{""name"":""gender"",""value"":""male""},{""name"":""comments"",""value"":""}]",debrief
+75,avg85zbzp,html-keyboard-response,"""", ,""""
+83,qtmncp3fm,preload,"""","""",""""
+83,qtmncp3fm,html-keyboard-response,"""", ,""""
+83,qtmncp3fm,html-keyboard-response,"""",y,""""
+83,qtmncp3fm,survey-text,"""","{""instructions1"":""To collect buckets of water quickly to receive points.""}",instructions
+83,qtmncp3fm,survey-text,"""","{""instructions2"":""One square per time step""}",instructions
+83,qtmncp3fm,survey-text,"""","{""instructions4"":""Think about everyone leaving the line and what would happen.  Then answer how much better or worse everyone would be if they stayed in line. ""}",instructions
+83,qtmncp3fm,video-slider-response,maybe_line_new_1_1cut,50,maybe_1
+83,qtmncp3fm,video-slider-response,maybe_line_new_2_1cut,-21,maybe_1
+83,qtmncp3fm,video-slider-response,yes_line_9_1cut,50,yes_1
+83,qtmncp3fm,video-slider-response,yes_line_10_1cut,50,yes_1
+83,qtmncp3fm,video-slider-response,no_line_1_1cut,-50,no_1
+83,qtmncp3fm,video-slider-response,yes_line_7_1cut,38,yes_1
+83,qtmncp3fm,video-slider-response,maybe_line_new_6_1cut,50,maybe_1
+83,qtmncp3fm,video-slider-response,no_line_3_1cut,-34,no_1
+83,qtmncp3fm,video-slider-response,yes_line_8_1cut,50,yes_1
+83,qtmncp3fm,video-slider-response,no_line_2_1cut,-50,no_1
+83,qtmncp3fm,video-slider-response,maybe_line_new_5_1cut,50,maybe_1
+83,qtmncp3fm,video-slider-response,maybe_line_new_4_1cut,1,maybe_1
+83,qtmncp3fm,video-slider-response,maybe_line_new_3_1cut,50,maybe_1
+83,qtmncp3fm,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""There were no bugs.""},{""name"":""age"",""value"":""46""},{""name"":""gender"",""value"":""male""},{""name"":""comments"",""value"":""No comments. ""}]",debrief
+83,qtmncp3fm,html-keyboard-response,"""", ,""""
+81,c910ffhm2,preload,"""","""",""""
+81,c910ffhm2,html-keyboard-response,"""", ,""""
+81,c910ffhm2,html-keyboard-response,"""",y,""""
+81,c910ffhm2,survey-text,"""","{""instructions1"":""To collect water from a water source and bring it back to the wooden storage buckets""}",instructions
+81,c910ffhm2,survey-text,"""","{""instructions2"":""One""}",instructions
+81,c910ffhm2,survey-text,"""","{""instructions4"":""I should think about what would happen if everyone left the line to try to get water for themselves and what would happen if they waited in line.""}",instructions
+81,c910ffhm2,video-slider-response,maybe_line_new_4_1cut,-45,maybe_1
+81,c910ffhm2,video-slider-response,yes_line_8_1cut,-21,yes_1
+81,c910ffhm2,video-slider-response,yes_line_9_1cut,-13,yes_1
+81,c910ffhm2,video-slider-response,yes_line_7_1cut,-16,yes_1
+81,c910ffhm2,video-slider-response,maybe_line_new_6_1cut,13,maybe_1
+81,c910ffhm2,video-slider-response,no_line_2_1cut,19,no_1
+81,c910ffhm2,video-slider-response,no_line_3_1cut,22,no_1
+81,c910ffhm2,video-slider-response,maybe_line_new_3_1cut,-18,maybe_1
+81,c910ffhm2,video-slider-response,maybe_line_new_2_1cut,8,maybe_1
+81,c910ffhm2,video-slider-response,maybe_line_new_5_1cut,-17,maybe_1
+81,c910ffhm2,video-slider-response,no_line_1_1cut,19,no_1
+81,c910ffhm2,video-slider-response,yes_line_10_1cut,-17,yes_1
+81,c910ffhm2,video-slider-response,maybe_line_new_1_1cut,7,maybe_1
+81,c910ffhm2,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""No""},{""name"":""age"",""value"":""26""},{""name"":""gender"",""value"":""male""},{""name"":""comments"",""value"":""Nothing other than this one of the more interesting surveys I've done. Requires you to a do a bit of thinking in regards to throughput which was cool. Thanks for the survey!""}]",debrief
+81,c910ffhm2,html-keyboard-response,"""", ,""""
+22,o1lab47gp,preload,"""","""",""""
+22,o1lab47gp,html-keyboard-response,"""", ,""""
+22,o1lab47gp,html-keyboard-response,"""",y,""""
+22,o1lab47gp,survey-text,"""","{""instructions1"":""collect water from a water source and bring it back to the wooden storage buckets""}",instructions
+22,o1lab47gp,survey-text,"""","{""instructions2"":""one""}",instructions
+22,o1lab47gp,survey-text,"""","{""instructions4"":""what would happen if EVERYONE felt at liberty to leave the line and try to get water faster for themselves, instead of everyone staying in line.""}",instructions
+22,o1lab47gp,video-slider-response,maybe_line_new_5_1cut,-39,maybe_1
+22,o1lab47gp,video-slider-response,no_line_1_1cut,50,no_1
+22,o1lab47gp,video-slider-response,yes_line_8_1cut,-46,yes_1
+22,o1lab47gp,video-slider-response,maybe_line_new_3_1cut,18,maybe_1
+22,o1lab47gp,video-slider-response,maybe_line_new_4_1cut,30,maybe_1
+22,o1lab47gp,video-slider-response,maybe_line_new_2_1cut,0,maybe_1
+22,o1lab47gp,video-slider-response,yes_line_10_1cut,-34,yes_1
+22,o1lab47gp,video-slider-response,yes_line_7_1cut,0,yes_1
+22,o1lab47gp,video-slider-response,no_line_2_1cut,19,no_1
+22,o1lab47gp,video-slider-response,maybe_line_new_1_1cut,0,maybe_1
+22,o1lab47gp,video-slider-response,no_line_3_1cut,45,no_1
+22,o1lab47gp,video-slider-response,maybe_line_new_6_1cut,8,maybe_1
+22,o1lab47gp,video-slider-response,yes_line_9_1cut,-25,yes_1
+21,oygmy9pkv,preload,"""","""",""""
+21,oygmy9pkv,html-keyboard-response,"""", ,""""
+21,oygmy9pkv,html-keyboard-response,"""",y,""""
+21,oygmy9pkv,survey-text,"""","{""instructions1"":""collect water""}",instructions
+21,oygmy9pkv,survey-text,"""","{""instructions2"":""1""}",instructions
+21,oygmy9pkv,survey-text,"""","{""instructions4"":""how much better or worse off everyone would be by staying ""}",instructions
+21,oygmy9pkv,video-slider-response,maybe_line_new_3_1cut,3,maybe_1
+21,oygmy9pkv,video-slider-response,yes_line_8_1cut,-14,yes_1
+21,oygmy9pkv,video-slider-response,yes_line_10_1cut,-15,yes_1
+21,oygmy9pkv,video-slider-response,yes_line_7_1cut,-46,yes_1
+21,oygmy9pkv,video-slider-response,no_line_2_1cut,9,no_1
+21,oygmy9pkv,video-slider-response,maybe_line_new_4_1cut,5,maybe_1
+21,oygmy9pkv,video-slider-response,no_line_3_1cut,32,no_1
+21,oygmy9pkv,video-slider-response,maybe_line_new_5_1cut,-47,maybe_1
+21,oygmy9pkv,video-slider-response,maybe_line_new_1_1cut,-42,maybe_1
+21,oygmy9pkv,video-slider-response,no_line_1_1cut,46,no_1
+21,oygmy9pkv,video-slider-response,yes_line_9_1cut,-7,yes_1
+21,oygmy9pkv,video-slider-response,maybe_line_new_2_1cut,-7,maybe_1
+21,oygmy9pkv,video-slider-response,maybe_line_new_6_1cut,-14,maybe_1
+3,fexsjx0yl,preload,"""","""",""""
+3,fexsjx0yl,html-keyboard-response,"""", ,""""
+3,fexsjx0yl,html-keyboard-response,"""",y,""""
+3,fexsjx0yl,survey-text,"""","{""instructions1"":""To collect water from a water source and bring it back to the wooden storage buckets""}",instructions
+3,fexsjx0yl,survey-text,"""","{""instructions2"":""1""}",instructions
+3,fexsjx0yl,survey-text,"""","{""instructions4"":""people can leave the line and head straight for the water source without waiting or they can stay waiting in line until it's their turn to collect water""}",instructions
+3,fexsjx0yl,video-slider-response,maybe_line_new_3_1cut,-29,maybe_1
+3,fexsjx0yl,video-slider-response,yes_line_8_1cut,-15,yes_1
+3,fexsjx0yl,video-slider-response,yes_line_9_1cut,9,yes_1
+3,fexsjx0yl,video-slider-response,yes_line_7_1cut,-11,yes_1
+3,fexsjx0yl,video-slider-response,maybe_line_new_6_1cut,24,maybe_1
+3,fexsjx0yl,video-slider-response,no_line_1_1cut,-21,no_1
+3,fexsjx0yl,video-slider-response,maybe_line_new_5_1cut,-15,maybe_1
+3,fexsjx0yl,video-slider-response,maybe_line_new_2_1cut,-18,maybe_1
+3,fexsjx0yl,video-slider-response,maybe_line_new_4_1cut,-22,maybe_1
+3,fexsjx0yl,video-slider-response,no_line_2_1cut,-16,no_1
+3,fexsjx0yl,video-slider-response,no_line_3_1cut,-23,no_1
+3,fexsjx0yl,video-slider-response,maybe_line_new_1_1cut,-18,maybe_1
+3,fexsjx0yl,video-slider-response,yes_line_10_1cut,-22,yes_1
+33,9460xo6a1,preload,"""","""",""""
+33,9460xo6a1,html-keyboard-response,"""", ,""""
+33,9460xo6a1,html-keyboard-response,"""",y,""""
+33,9460xo6a1,survey-text,"""","{""instructions1"":""To collect water from a water source and bring it back to the wooden storage buckets.""}",instructions
+33,9460xo6a1,survey-text,"""","{""instructions2"":""1""}",instructions
+33,9460xo6a1,survey-text,"""","{""instructions4"":""To think about what would happen if everyone felt at liberty to leave the line and try to get water faster for themselves, instead of everyone staying in line. And how much better or worse off everyone would be if everyone stayed in line.""}",instructions
+33,9460xo6a1,video-slider-response,no_line_3_1cut,19,no_1
+33,9460xo6a1,video-slider-response,yes_line_9_1cut,-50,yes_1
+33,9460xo6a1,video-slider-response,maybe_line_new_4_1cut,-50,maybe_1
+33,9460xo6a1,video-slider-response,maybe_line_new_2_1cut,-32,maybe_1
+33,9460xo6a1,video-slider-response,yes_line_8_1cut,-50,yes_1
+33,9460xo6a1,video-slider-response,maybe_line_new_3_1cut,-50,maybe_1
+33,9460xo6a1,video-slider-response,no_line_2_1cut,50,no_1
+33,9460xo6a1,video-slider-response,maybe_line_new_5_1cut,-50,maybe_1
+33,9460xo6a1,video-slider-response,no_line_1_1cut,50,no_1
+33,9460xo6a1,video-slider-response,maybe_line_new_1_1cut,-50,maybe_1
+33,9460xo6a1,video-slider-response,maybe_line_new_6_1cut,-50,maybe_1
+33,9460xo6a1,video-slider-response,yes_line_7_1cut,-22,yes_1
+33,9460xo6a1,video-slider-response,yes_line_10_1cut,-50,yes_1
+37,qqq7okfl4,preload,"""","""",""""
+37,qqq7okfl4,html-keyboard-response,"""", ,""""
+37,qqq7okfl4,html-keyboard-response,"""",y,""""
+37,qqq7okfl4,survey-text,"""","{""instructions1"":""To collect water from a water source and bring it back to the wooden storage buckets.""}",instructions
+37,qqq7okfl4,survey-text,"""","{""instructions2"":""One""}",instructions
+37,qqq7okfl4,survey-text,"""","{""instructions4"":""What would happen if everyone left the line to get water for themselves, and what would happen if everyone stayed in line.""}",instructions
+37,qqq7okfl4,video-slider-response,yes_line_10_1cut,-42,yes_1
+37,qqq7okfl4,video-slider-response,maybe_line_new_4_1cut,-15,maybe_1
+37,qqq7okfl4,video-slider-response,yes_line_8_1cut,-40,yes_1
+37,qqq7okfl4,video-slider-response,no_line_1_1cut,50,no_1
+37,qqq7okfl4,video-slider-response,no_line_2_1cut,50,no_1
+37,qqq7okfl4,video-slider-response,maybe_line_new_3_1cut,-16,maybe_1
+37,qqq7okfl4,video-slider-response,no_line_3_1cut,50,no_1
+37,qqq7okfl4,video-slider-response,yes_line_9_1cut,-43,yes_1
+37,qqq7okfl4,video-slider-response,maybe_line_new_2_1cut,10,maybe_1
+37,qqq7okfl4,video-slider-response,maybe_line_new_5_1cut,-50,maybe_1
+37,qqq7okfl4,video-slider-response,maybe_line_new_1_1cut,16,maybe_1
+37,qqq7okfl4,video-slider-response,yes_line_7_1cut,-5,yes_1
+37,qqq7okfl4,video-slider-response,maybe_line_new_6_1cut,-50,maybe_1
+37,qqq7okfl4,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""None""},{""name"":""age"",""value"":""39""},{""name"":""gender"",""value"":""male""},{""name"":""comments"",""value"":""No""}]",debrief
+39,bjr6zd36y,preload,"""","""",""""
+39,bjr6zd36y,html-keyboard-response,"""", ,""""
+39,bjr6zd36y,html-keyboard-response,"""",y,""""
+39,bjr6zd36y,survey-text,"""","{""instructions1"":""collect water from a water source and bring it back to the wooden storage buckets""}",instructions
+39,bjr6zd36y,survey-text,"""","{""instructions2"":""1""}",instructions
+39,bjr6zd36y,survey-text,"""","{""instructions4"":""People leaving  the line and head straight for the water source without waiting, or they can stay waiting in line until it’s their turn to collect water""}",instructions
+39,bjr6zd36y,video-slider-response,maybe_line_new_4_1cut,19,maybe_1
+39,bjr6zd36y,video-slider-response,yes_line_10_1cut,-50,yes_1
+39,bjr6zd36y,video-slider-response,maybe_line_new_2_1cut,38,maybe_1
+39,bjr6zd36y,video-slider-response,maybe_line_new_5_1cut,-50,maybe_1
+39,bjr6zd36y,video-slider-response,maybe_line_new_6_1cut,4,maybe_1
+39,bjr6zd36y,video-slider-response,yes_line_9_1cut,-15,yes_1
+39,bjr6zd36y,video-slider-response,maybe_line_new_1_1cut,17,maybe_1
+39,bjr6zd36y,video-slider-response,yes_line_7_1cut,-50,yes_1
+39,bjr6zd36y,video-slider-response,no_line_3_1cut,50,no_1
+39,bjr6zd36y,video-slider-response,no_line_1_1cut,50,no_1
+39,bjr6zd36y,video-slider-response,no_line_2_1cut,50,no_1
+39,bjr6zd36y,video-slider-response,maybe_line_new_3_1cut,50,maybe_1
+39,bjr6zd36y,video-slider-response,yes_line_8_1cut,-36,yes_1
+39,bjr6zd36y,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""None at all""},{""name"":""age"",""value"":""44""},{""name"":""gender"",""value"":""male""},{""name"":""comments"",""value"":""Thank you""}]",debrief
+44,mfdz3upxt,preload,"""","""",""""
+44,mfdz3upxt,html-keyboard-response,"""", ,""""
+44,mfdz3upxt,html-keyboard-response,"""",y,""""
+44,mfdz3upxt,survey-text,"""","{""instructions1"":""collect water from a water source and bring it back to the wooden storage buckets""}",instructions
+44,mfdz3upxt,survey-text,"""","{""instructions2"":""one""}",instructions
+44,mfdz3upxt,survey-text,"""","{""instructions4"":""what would happen if EVERYONE felt at liberty to leave the line and try to get water faster for themselves, instead of everyone staying in line""}",instructions
+44,mfdz3upxt,video-slider-response,yes_line_8_1cut,-36,yes_1
+44,mfdz3upxt,video-slider-response,maybe_line_new_1_1cut,-38,maybe_1
+44,mfdz3upxt,video-slider-response,maybe_line_new_6_1cut,-31,maybe_1
+44,mfdz3upxt,video-slider-response,maybe_line_new_3_1cut,-11,maybe_1
+44,mfdz3upxt,video-slider-response,no_line_1_1cut,30,no_1
+44,mfdz3upxt,video-slider-response,no_line_2_1cut,45,no_1
+44,mfdz3upxt,video-slider-response,no_line_3_1cut,48,no_1
+44,mfdz3upxt,video-slider-response,maybe_line_new_2_1cut,-29,maybe_1
+44,mfdz3upxt,video-slider-response,maybe_line_new_4_1cut,-36,maybe_1
+44,mfdz3upxt,video-slider-response,yes_line_9_1cut,-17,yes_1
+44,mfdz3upxt,video-slider-response,maybe_line_new_5_1cut,-50,maybe_1
+44,mfdz3upxt,video-slider-response,yes_line_7_1cut,-37,yes_1
+44,mfdz3upxt,video-slider-response,yes_line_10_1cut,-50,yes_1
+51,duskvcbl3,preload,"""","""",""""
+51,duskvcbl3,html-keyboard-response,"""", ,""""
+51,duskvcbl3,html-keyboard-response,"""",y,""""
+51,duskvcbl3,survey-text,"""","{""instructions1"":""collect a bucket of water""}",instructions
+51,duskvcbl3,survey-text,"""","{""instructions2"":""one""}",instructions
+51,duskvcbl3,survey-text,"""","{""instructions4"":""What would happen if everyone left the line to get water faster for themselves, and how much better or worse off everyone would be if they all stayed in line. ""}",instructions
+51,duskvcbl3,video-slider-response,maybe_line_new_3_1cut,-34,maybe_1
+51,duskvcbl3,video-slider-response,maybe_line_new_1_1cut,21,maybe_1
+51,duskvcbl3,video-slider-response,no_line_2_1cut,50,no_1
+51,duskvcbl3,video-slider-response,yes_line_9_1cut,-43,yes_1
+51,duskvcbl3,video-slider-response,yes_line_7_1cut,-17,yes_1
+51,duskvcbl3,video-slider-response,yes_line_10_1cut,-35,yes_1
+51,duskvcbl3,video-slider-response,maybe_line_new_4_1cut,-2,maybe_1
+51,duskvcbl3,video-slider-response,maybe_line_new_6_1cut,-47,maybe_1
+51,duskvcbl3,video-slider-response,maybe_line_new_2_1cut,50,maybe_1
+51,duskvcbl3,video-slider-response,yes_line_8_1cut,-26,yes_1
+51,duskvcbl3,video-slider-response,no_line_1_1cut,50,no_1
+51,duskvcbl3,video-slider-response,no_line_3_1cut,50,no_1
+51,duskvcbl3,video-slider-response,maybe_line_new_5_1cut,-50,maybe_1
+54,a9wnw2yh9,preload,"""","""",""""
+54,a9wnw2yh9,html-keyboard-response,"""", ,""""
+54,a9wnw2yh9,html-keyboard-response,"""",y,""""
+54,a9wnw2yh9,survey-text,"""","{""instructions1"":""To move water from a source and put it in storage buckets.""}",instructions
+54,a9wnw2yh9,survey-text,"""","{""instructions2"":""Only one square.""}",instructions
+54,a9wnw2yh9,survey-text,"""","{""instructions4"":""Whether it is better for people to stay in line or for everyone to move on their own.""}",instructions
+54,a9wnw2yh9,video-slider-response,maybe_line_new_4_1cut,-8,maybe_1
+54,a9wnw2yh9,video-slider-response,maybe_line_new_5_1cut,-39,maybe_1
+54,a9wnw2yh9,video-slider-response,no_line_1_1cut,49,no_1
+54,a9wnw2yh9,video-slider-response,maybe_line_new_6_1cut,-36,maybe_1
+54,a9wnw2yh9,video-slider-response,yes_line_10_1cut,-37,yes_1
+54,a9wnw2yh9,video-slider-response,no_line_3_1cut,44,no_1
+54,a9wnw2yh9,video-slider-response,yes_line_7_1cut,0,yes_1
+54,a9wnw2yh9,video-slider-response,maybe_line_new_1_1cut,20,maybe_1
+54,a9wnw2yh9,video-slider-response,yes_line_9_1cut,-43,yes_1
+54,a9wnw2yh9,video-slider-response,maybe_line_new_2_1cut,30,maybe_1
+54,a9wnw2yh9,video-slider-response,maybe_line_new_3_1cut,-25,maybe_1
+54,a9wnw2yh9,video-slider-response,no_line_2_1cut,49,no_1
+54,a9wnw2yh9,video-slider-response,yes_line_8_1cut,-31,yes_1
+59,chvx095h5,preload,"""","""",""""
+59,chvx095h5,html-keyboard-response,"""", ,""""
+59,chvx095h5,html-keyboard-response,"""",y,""""
+59,chvx095h5,survey-text,"""","{""instructions1"":""Collect water faster.""}",instructions
+59,chvx095h5,survey-text,"""","{""instructions2"":""1""}",instructions
+59,chvx095h5,survey-text,"""","{""instructions4"":""if everyone stayed in line, and if no one stayed in line.""}",instructions
+59,chvx095h5,video-slider-response,no_line_2_1cut,47,no_1
+59,chvx095h5,video-slider-response,maybe_line_new_2_1cut,-36,maybe_1
+59,chvx095h5,video-slider-response,maybe_line_new_6_1cut,0,maybe_1
+59,chvx095h5,video-slider-response,yes_line_9_1cut,-19,yes_1
+59,chvx095h5,video-slider-response,yes_line_10_1cut,-46,yes_1
+59,chvx095h5,video-slider-response,maybe_line_new_3_1cut,19,maybe_1
+59,chvx095h5,video-slider-response,yes_line_7_1cut,-30,yes_1
+59,chvx095h5,video-slider-response,no_line_1_1cut,50,no_1
+59,chvx095h5,video-slider-response,yes_line_8_1cut,-50,yes_1
+59,chvx095h5,video-slider-response,maybe_line_new_5_1cut,-48,maybe_1
+59,chvx095h5,video-slider-response,maybe_line_new_1_1cut,0,maybe_1
+59,chvx095h5,video-slider-response,maybe_line_new_4_1cut,-42,maybe_1
+59,chvx095h5,video-slider-response,no_line_3_1cut,50,no_1
+79,d3hgzbzcm,preload,"""","""",""""
+79,d3hgzbzcm,html-keyboard-response,"""", ,""""
+79,d3hgzbzcm,html-keyboard-response,"""",y,""""
+79,d3hgzbzcm,survey-text,"""","{""instructions1"":""collect a bucket of water""}",instructions
+79,d3hgzbzcm,survey-text,"""","{""instructions2"":""one square per turn""}",instructions
+79,d3hgzbzcm,survey-text,"""","{""instructions4"":""whether it is better or worse to wait in line to gather water""}",instructions
+79,d3hgzbzcm,video-slider-response,maybe_line_new_6_1cut,0,maybe_1
+79,d3hgzbzcm,video-slider-response,maybe_line_new_3_1cut,4,maybe_1
+79,d3hgzbzcm,video-slider-response,yes_line_10_1cut,-5,yes_1
+79,d3hgzbzcm,video-slider-response,maybe_line_new_2_1cut,-7,maybe_1
+79,d3hgzbzcm,video-slider-response,maybe_line_new_1_1cut,-6,maybe_1
+79,d3hgzbzcm,video-slider-response,maybe_line_new_5_1cut,-30,maybe_1
+79,d3hgzbzcm,video-slider-response,no_line_1_1cut,4,no_1
+79,d3hgzbzcm,video-slider-response,yes_line_8_1cut,-29,yes_1
+79,d3hgzbzcm,video-slider-response,yes_line_7_1cut,-3,yes_1
+79,d3hgzbzcm,video-slider-response,no_line_2_1cut,23,no_1
+79,d3hgzbzcm,video-slider-response,no_line_3_1cut,13,no_1
+79,d3hgzbzcm,video-slider-response,maybe_line_new_4_1cut,-4,maybe_1
+79,d3hgzbzcm,video-slider-response,yes_line_9_1cut,-24,yes_1

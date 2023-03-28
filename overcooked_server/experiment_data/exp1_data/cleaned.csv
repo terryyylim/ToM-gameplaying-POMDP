@@ -1,0 +1,1650 @@
+run_id,ID,trial_type,stimulus_name,response,trial_category
+14,roebjr8x3,preload,"""","""",""""
+14,roebjr8x3,html-keyboard-response,"""", ,""""
+14,roebjr8x3,html-keyboard-response,"""",y,""""
+14,roebjr8x3,survey-text,"""","{""instructions1"":""collect water as fast as possible""}",instructions
+14,roebjr8x3,survey-text,"""","{""instructions2"":""when all 8 people collect water and store it in a wooden storage bucket""}",instructions
+14,roebjr8x3,survey-text,"""","{""instructions3"":""one""}",instructions
+14,roebjr8x3,video-button-response,yes_line_9_8cut,1,yes_8
+14,roebjr8x3,video-button-response,yes_line_10_3cut,0,yes_34
+14,roebjr8x3,video-button-response,no_line_3_8cut,1,no_8
+14,roebjr8x3,video-button-response,yes_line_10_1cut,0,yes_1
+14,roebjr8x3,video-button-response,yes_line_7_8cut,1,yes_8
+14,roebjr8x3,video-button-response,no_line_1_8cut,1,no_8
+14,roebjr8x3,video-button-response,yes_line_8_3cut,1,yes_34
+14,roebjr8x3,video-button-response,yes_line_8_1cut,0,yes_1
+14,roebjr8x3,video-button-response,no_line_2_1cut,1,no_1
+14,roebjr8x3,video-button-response,yes_line_7_4cut,0,yes_34
+14,roebjr8x3,video-button-response,no_line_2_4cut,1,no_34
+14,roebjr8x3,video-button-response,yes_line_9_3cut,1,yes_34
+14,roebjr8x3,video-button-response,no_line_2_8cut,1,no_8
+14,roebjr8x3,video-button-response,yes_line_8_8cut,1,yes_8
+14,roebjr8x3,video-button-response,no_line_3_1cut,1,no_1
+14,roebjr8x3,video-button-response,yes_line_9_1cut,0,yes_1
+14,roebjr8x3,video-button-response,yes_line_10_8cut,0,yes_8
+14,roebjr8x3,video-button-response,no_line_1_3cut,1,no_34
+14,roebjr8x3,video-button-response,no_line_1_1cut,1,no_1
+14,roebjr8x3,video-button-response,no_line_3_3cut,1,no_34
+14,roebjr8x3,video-button-response,yes_line_7_1cut,0,yes_1
+14,roebjr8x3,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""none""},{""name"":""age"",""value"":""43""},{""name"":""gender"",""value"":""male""},{""name"":""comments"",""value"":""}]",debrief
+14,roebjr8x3,html-keyboard-response,"""", ,""""
+10,2a206lrr6,preload,"""","""",""""
+10,2a206lrr6,html-keyboard-response,"""", ,""""
+10,2a206lrr6,html-keyboard-response,"""",y,""""
+10,2a206lrr6,survey-text,"""","{""instructions1"":""To collect water from a water source and bring it back to the wooden storage buckets ""}",instructions
+10,2a206lrr6,survey-text,"""","{""instructions2"":""When all 8 people collect water and store it in a wooden storage bucket.""}",instructions
+10,2a206lrr6,survey-text,"""","{""instructions3"":""1""}",instructions
+10,2a206lrr6,video-button-response,yes_line_7_8cut,1,yes_8
+10,2a206lrr6,video-button-response,yes_line_9_1cut,0,yes_1
+10,2a206lrr6,video-button-response,no_line_2_4cut,1,no_34
+10,2a206lrr6,video-button-response,no_line_1_1cut,1,no_1
+10,2a206lrr6,video-button-response,no_line_2_8cut,1,no_8
+10,2a206lrr6,video-button-response,yes_line_7_4cut,0,yes_34
+10,2a206lrr6,video-button-response,yes_line_7_1cut,0,yes_1
+10,2a206lrr6,video-button-response,no_line_1_8cut,1,no_8
+10,2a206lrr6,video-button-response,no_line_2_1cut,1,no_1
+10,2a206lrr6,video-button-response,yes_line_10_3cut,0,yes_34
+10,2a206lrr6,video-button-response,yes_line_8_3cut,1,yes_34
+10,2a206lrr6,video-button-response,no_line_1_3cut,1,no_34
+10,2a206lrr6,video-button-response,yes_line_10_1cut,0,yes_1
+10,2a206lrr6,video-button-response,no_line_3_8cut,1,no_8
+10,2a206lrr6,video-button-response,yes_line_8_8cut,1,yes_8
+10,2a206lrr6,video-button-response,no_line_3_1cut,1,no_1
+10,2a206lrr6,video-button-response,yes_line_9_8cut,1,yes_8
+10,2a206lrr6,video-button-response,no_line_3_3cut,1,no_34
+10,2a206lrr6,video-button-response,yes_line_9_3cut,1,yes_34
+10,2a206lrr6,video-button-response,yes_line_8_1cut,1,yes_1
+10,2a206lrr6,video-button-response,yes_line_10_8cut,1,yes_8
+10,2a206lrr6,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""none""},{""name"":""age"",""value"":""31""},{""name"":""gender"",""value"":""male""},{""name"":""comments"",""value"":""no""}]",debrief
+10,2a206lrr6,html-keyboard-response,"""", ,""""
+17,uobkqjws0,preload,"""","""",""""
+17,uobkqjws0,html-keyboard-response,"""", ,""""
+17,uobkqjws0,html-keyboard-response,"""",y,""""
+17,uobkqjws0,survey-text,"""","{""instructions1"":""Collect one bucket of water for each level""}",instructions
+17,uobkqjws0,survey-text,"""","{""instructions2"":""when all 8 people collect water in bucket""}",instructions
+17,uobkqjws0,survey-text,"""","{""instructions3"":""1""}",instructions
+17,uobkqjws0,video-button-response,no_line_3_3cut,1,no_34
+17,uobkqjws0,video-button-response,yes_line_10_1cut,0,yes_1
+17,uobkqjws0,video-button-response,yes_line_8_3cut,1,yes_34
+17,uobkqjws0,video-button-response,yes_line_10_3cut,1,yes_34
+17,uobkqjws0,video-button-response,no_line_2_1cut,1,no_1
+17,uobkqjws0,video-button-response,yes_line_9_8cut,1,yes_8
+17,uobkqjws0,video-button-response,no_line_2_4cut,1,no_34
+17,uobkqjws0,video-button-response,yes_line_7_4cut,0,yes_34
+17,uobkqjws0,video-button-response,yes_line_8_1cut,0,yes_1
+17,uobkqjws0,video-button-response,yes_line_8_8cut,0,yes_8
+17,uobkqjws0,video-button-response,no_line_3_1cut,1,no_1
+17,uobkqjws0,video-button-response,no_line_1_8cut,1,no_8
+17,uobkqjws0,video-button-response,no_line_3_8cut,1,no_8
+17,uobkqjws0,video-button-response,yes_line_9_3cut,1,yes_34
+17,uobkqjws0,video-button-response,yes_line_9_1cut,0,yes_1
+17,uobkqjws0,video-button-response,no_line_2_8cut,1,no_8
+17,uobkqjws0,video-button-response,yes_line_7_8cut,1,yes_8
+17,uobkqjws0,video-button-response,no_line_1_3cut,1,no_34
+17,uobkqjws0,video-button-response,yes_line_7_1cut,0,yes_1
+17,uobkqjws0,video-button-response,yes_line_10_8cut,0,yes_8
+17,uobkqjws0,video-button-response,no_line_1_1cut,1,no_1
+17,uobkqjws0,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""no""},{""name"":""age"",""value"":""54""},{""name"":""gender"",""value"":""female""},{""name"":""comments"",""value"":""Interesting study better than survey""}]",debrief
+17,uobkqjws0,html-keyboard-response,"""", ,""""
+13,bwj01feos,preload,"""","""",""""
+13,bwj01feos,html-keyboard-response,"""", ,""""
+13,bwj01feos,html-keyboard-response,"""",y,""""
+13,bwj01feos,survey-text,"""","{""instructions1"":""collect water from a water source and bring it back to the wooden storage buckets.""}",instructions
+13,bwj01feos,survey-text,"""","{""instructions2"":""When all 8 people collect water and store it in a wooden storage bucket.""}",instructions
+13,bwj01feos,survey-text,"""","{""instructions3"":""1 person""}",instructions
+13,bwj01feos,video-button-response,yes_line_8_1cut,0,yes_1
+13,bwj01feos,video-button-response,yes_line_7_1cut,0,yes_1
+13,bwj01feos,video-button-response,no_line_3_8cut,1,no_8
+13,bwj01feos,video-button-response,no_line_3_1cut,1,no_1
+13,bwj01feos,video-button-response,no_line_1_8cut,1,no_8
+13,bwj01feos,video-button-response,yes_line_9_1cut,0,yes_1
+13,bwj01feos,video-button-response,no_line_3_3cut,1,no_34
+13,bwj01feos,video-button-response,yes_line_10_8cut,0,yes_8
+13,bwj01feos,video-button-response,yes_line_7_8cut,1,yes_8
+13,bwj01feos,video-button-response,yes_line_10_1cut,0,yes_1
+13,bwj01feos,video-button-response,yes_line_9_3cut,1,yes_34
+13,bwj01feos,video-button-response,no_line_1_1cut,1,no_1
+13,bwj01feos,video-button-response,yes_line_10_3cut,0,yes_34
+13,bwj01feos,video-button-response,yes_line_8_8cut,1,yes_8
+13,bwj01feos,video-button-response,no_line_2_8cut,1,no_8
+13,bwj01feos,video-button-response,no_line_2_4cut,1,no_34
+13,bwj01feos,video-button-response,no_line_2_1cut,1,no_1
+13,bwj01feos,video-button-response,yes_line_9_8cut,1,yes_8
+13,bwj01feos,video-button-response,yes_line_7_4cut,0,yes_34
+13,bwj01feos,video-button-response,yes_line_8_3cut,1,yes_34
+13,bwj01feos,video-button-response,no_line_1_3cut,1,no_34
+13,bwj01feos,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""No""},{""name"":""age"",""value"":""47""},{""name"":""gender"",""value"":""male""},{""name"":""comments"",""value"":""A3FGT6EU39C6S4""}]",debrief
+13,bwj01feos,html-keyboard-response,"""", ,""""
+2,jwd3phdlb,preload,"""","""",""""
+2,jwd3phdlb,html-keyboard-response,"""", ,""""
+2,jwd3phdlb,html-keyboard-response,"""",y,""""
+2,jwd3phdlb,survey-text,"""","{""instructions1"":""To collect buckets of water and bring them to the storage buckets as quickly as possible""}",instructions
+2,jwd3phdlb,survey-text,"""","{""instructions2"":""When all 8 players collect and store water""}",instructions
+2,jwd3phdlb,survey-text,"""","{""instructions3"":""1""}",instructions
+2,jwd3phdlb,video-button-response,no_line_1_1cut,1,no_1
+2,jwd3phdlb,video-button-response,yes_line_9_3cut,0,yes_34
+2,jwd3phdlb,video-button-response,no_line_2_8cut,1,no_8
+2,jwd3phdlb,video-button-response,yes_line_8_8cut,0,yes_8
+2,jwd3phdlb,video-button-response,yes_line_7_1cut,1,yes_1
+2,jwd3phdlb,video-button-response,yes_line_10_1cut,1,yes_1
+2,jwd3phdlb,video-button-response,yes_line_7_4cut,1,yes_34
+2,jwd3phdlb,video-button-response,no_line_1_8cut,1,no_8
+2,jwd3phdlb,video-button-response,no_line_3_1cut,1,no_1
+2,jwd3phdlb,video-button-response,yes_line_8_3cut,1,yes_34
+2,jwd3phdlb,video-button-response,no_line_3_8cut,1,no_8
+2,jwd3phdlb,video-button-response,no_line_1_3cut,1,no_34
+2,jwd3phdlb,video-button-response,yes_line_8_1cut,1,yes_1
+2,jwd3phdlb,video-button-response,no_line_3_3cut,1,no_34
+2,jwd3phdlb,video-button-response,yes_line_10_8cut,1,yes_8
+2,jwd3phdlb,video-button-response,no_line_2_1cut,1,no_1
+2,jwd3phdlb,video-button-response,yes_line_10_3cut,1,yes_34
+2,jwd3phdlb,video-button-response,yes_line_7_8cut,1,yes_8
+2,jwd3phdlb,video-button-response,yes_line_9_1cut,1,yes_1
+2,jwd3phdlb,video-button-response,no_line_2_4cut,1,no_34
+2,jwd3phdlb,video-button-response,yes_line_9_8cut,1,yes_8
+2,jwd3phdlb,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""No""},{""name"":""age"",""value"":""23""},{""name"":""gender"",""value"":""male""},{""name"":""comments"",""value"":""I felt since there were no rules dictating everyone obey a line, someone disrupting the line was morally justified. ""}]",debrief
+2,jwd3phdlb,html-keyboard-response,"""", ,""""
+23,ucyvlyueb,preload,"""","""",""""
+23,ucyvlyueb,html-keyboard-response,"""", ,""""
+23,ucyvlyueb,html-keyboard-response,"""",y,""""
+23,ucyvlyueb,survey-text,"""","{""instructions1"":""To collect buckets of water for points""}",instructions
+23,ucyvlyueb,survey-text,"""","{""instructions2"":""when all 8 people collect water and store it in a bucket""}",instructions
+23,ucyvlyueb,survey-text,"""","{""instructions3"":""one""}",instructions
+23,ucyvlyueb,video-button-response,yes_line_8_1cut,1,yes_1
+23,ucyvlyueb,video-button-response,yes_line_10_3cut,1,yes_34
+23,ucyvlyueb,video-button-response,no_line_1_8cut,1,no_8
+23,ucyvlyueb,video-button-response,yes_line_8_3cut,1,yes_34
+23,ucyvlyueb,video-button-response,yes_line_7_1cut,1,yes_1
+23,ucyvlyueb,video-button-response,no_line_3_1cut,1,no_1
+23,ucyvlyueb,video-button-response,no_line_1_3cut,1,no_34
+23,ucyvlyueb,video-button-response,yes_line_9_1cut,1,yes_1
+23,ucyvlyueb,video-button-response,no_line_1_1cut,1,no_1
+23,ucyvlyueb,video-button-response,yes_line_7_4cut,0,yes_34
+23,ucyvlyueb,video-button-response,no_line_2_1cut,1,no_1
+23,ucyvlyueb,video-button-response,no_line_3_8cut,1,no_8
+23,ucyvlyueb,video-button-response,yes_line_9_3cut,0,yes_34
+23,ucyvlyueb,video-button-response,no_line_2_8cut,1,no_8
+23,ucyvlyueb,video-button-response,yes_line_7_8cut,1,yes_8
+23,ucyvlyueb,video-button-response,no_line_2_4cut,1,no_34
+23,ucyvlyueb,video-button-response,yes_line_9_8cut,1,yes_8
+23,ucyvlyueb,video-button-response,yes_line_8_8cut,1,yes_8
+23,ucyvlyueb,video-button-response,yes_line_10_8cut,1,yes_8
+23,ucyvlyueb,video-button-response,yes_line_10_1cut,0,yes_1
+23,ucyvlyueb,video-button-response,no_line_3_3cut,1,no_34
+23,ucyvlyueb,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""no""},{""name"":""age"",""value"":""43""},{""name"":""gender"",""value"":""male""},{""name"":""comments"",""value"":""None""}]",debrief
+23,ucyvlyueb,html-keyboard-response,"""", ,""""
+25,6fq214oty,preload,"""","""",""""
+25,6fq214oty,html-keyboard-response,"""", ,""""
+25,6fq214oty,html-keyboard-response,"""",y,""""
+25,6fq214oty,survey-text,"""","{""instructions1"":""Grab buckets of water and bring it back to the wooden storage buckets.""}",instructions
+25,6fq214oty,survey-text,"""","{""instructions2"":""When 8 people collect water and store it in a wooden storage bucket""}",instructions
+25,6fq214oty,survey-text,"""","{""instructions3"":""One person""}",instructions
+25,6fq214oty,video-button-response,yes_line_10_3cut,1,yes_34
+25,6fq214oty,video-button-response,yes_line_8_3cut,1,yes_34
+25,6fq214oty,video-button-response,yes_line_7_1cut,1,yes_1
+25,6fq214oty,video-button-response,no_line_3_8cut,1,no_8
+25,6fq214oty,video-button-response,yes_line_9_8cut,1,yes_8
+25,6fq214oty,video-button-response,yes_line_9_3cut,1,yes_34
+25,6fq214oty,video-button-response,yes_line_10_8cut,1,yes_8
+25,6fq214oty,video-button-response,yes_line_10_1cut,1,yes_1
+25,6fq214oty,video-button-response,yes_line_9_1cut,1,yes_1
+25,6fq214oty,video-button-response,yes_line_7_8cut,1,yes_8
+25,6fq214oty,video-button-response,no_line_2_8cut,1,no_8
+25,6fq214oty,video-button-response,no_line_3_1cut,1,no_1
+25,6fq214oty,video-button-response,no_line_1_3cut,1,no_34
+25,6fq214oty,video-button-response,no_line_3_3cut,1,no_34
+25,6fq214oty,video-button-response,yes_line_8_8cut,1,yes_8
+25,6fq214oty,video-button-response,yes_line_7_4cut,1,yes_34
+25,6fq214oty,video-button-response,no_line_1_8cut,1,no_8
+25,6fq214oty,video-button-response,no_line_2_1cut,0,no_1
+25,6fq214oty,video-button-response,no_line_1_1cut,1,no_1
+25,6fq214oty,video-button-response,no_line_2_4cut,1,no_34
+25,6fq214oty,video-button-response,yes_line_8_1cut,0,yes_1
+25,6fq214oty,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""none""},{""name"":""age"",""value"":""42""},{""name"":""gender"",""value"":""male""},{""name"":""comments"",""value"":""}]",debrief
+25,6fq214oty,html-keyboard-response,"""", ,""""
+30,f3t2eqka1,preload,"""","""",""""
+30,f3t2eqka1,html-keyboard-response,"""", ,""""
+30,f3t2eqka1,html-keyboard-response,"""",y,""""
+30,f3t2eqka1,survey-text,"""","{""instructions1"":""collect water""}",instructions
+30,f3t2eqka1,survey-text,"""","{""instructions2"":""when all 8 people collect water and store it""}",instructions
+30,f3t2eqka1,survey-text,"""","{""instructions3"":""1""}",instructions
+30,f3t2eqka1,video-button-response,no_line_2_1cut,1,no_1
+30,f3t2eqka1,video-button-response,yes_line_9_8cut,0,yes_8
+30,f3t2eqka1,video-button-response,yes_line_10_8cut,0,yes_8
+30,f3t2eqka1,video-button-response,yes_line_8_1cut,0,yes_1
+30,f3t2eqka1,video-button-response,no_line_3_3cut,1,no_34
+30,f3t2eqka1,video-button-response,yes_line_7_8cut,1,yes_8
+30,f3t2eqka1,video-button-response,no_line_2_4cut,1,no_34
+30,f3t2eqka1,video-button-response,yes_line_10_3cut,0,yes_34
+30,f3t2eqka1,video-button-response,no_line_2_8cut,1,no_8
+30,f3t2eqka1,video-button-response,yes_line_9_1cut,1,yes_1
+30,f3t2eqka1,video-button-response,yes_line_7_4cut,0,yes_34
+30,f3t2eqka1,video-button-response,no_line_1_1cut,1,no_1
+30,f3t2eqka1,video-button-response,yes_line_8_3cut,0,yes_34
+30,f3t2eqka1,video-button-response,yes_line_10_1cut,0,yes_1
+30,f3t2eqka1,video-button-response,yes_line_9_3cut,1,yes_34
+30,f3t2eqka1,video-button-response,no_line_1_8cut,1,no_8
+30,f3t2eqka1,video-button-response,yes_line_7_1cut,0,yes_1
+30,f3t2eqka1,video-button-response,no_line_1_3cut,1,no_34
+30,f3t2eqka1,video-button-response,no_line_3_8cut,1,no_8
+30,f3t2eqka1,video-button-response,no_line_3_1cut,1,no_1
+30,f3t2eqka1,video-button-response,yes_line_8_8cut,0,yes_8
+30,f3t2eqka1,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""No""},{""name"":""age"",""value"":""26""},{""name"":""gender"",""value"":""female""},{""name"":""comments"",""value"":""}]",debrief
+30,f3t2eqka1,html-keyboard-response,"""", ,""""
+3,s1qtcecrl,preload,"""","""",""""
+3,s1qtcecrl,html-keyboard-response,"""", ,""""
+3,s1qtcecrl,html-keyboard-response,"""",y,""""
+3,s1qtcecrl,survey-text,"""","{""instructions1"":""to collect buckets of water""}",instructions
+3,s1qtcecrl,survey-text,"""","{""instructions2"":""when everyone stores their water""}",instructions
+3,s1qtcecrl,survey-text,"""","{""instructions3"":""1""}",instructions
+3,s1qtcecrl,video-button-response,no_line_1_1cut,1,no_1
+3,s1qtcecrl,video-button-response,yes_line_8_3cut,1,yes_34
+3,s1qtcecrl,video-button-response,yes_line_7_1cut,1,yes_1
+3,s1qtcecrl,video-button-response,yes_line_8_8cut,1,yes_8
+3,s1qtcecrl,video-button-response,yes_line_7_4cut,1,yes_34
+3,s1qtcecrl,video-button-response,yes_line_10_1cut,1,yes_1
+3,s1qtcecrl,video-button-response,yes_line_7_8cut,1,yes_8
+3,s1qtcecrl,video-button-response,no_line_1_3cut,1,no_34
+3,s1qtcecrl,video-button-response,yes_line_10_8cut,1,yes_8
+3,s1qtcecrl,video-button-response,yes_line_10_3cut,1,yes_34
+3,s1qtcecrl,video-button-response,no_line_2_8cut,1,no_8
+3,s1qtcecrl,video-button-response,no_line_1_8cut,1,no_8
+3,s1qtcecrl,video-button-response,no_line_3_8cut,1,no_8
+3,s1qtcecrl,video-button-response,no_line_2_1cut,1,no_1
+3,s1qtcecrl,video-button-response,yes_line_9_1cut,1,yes_1
+3,s1qtcecrl,video-button-response,yes_line_9_3cut,1,yes_34
+3,s1qtcecrl,video-button-response,no_line_3_1cut,1,no_1
+3,s1qtcecrl,video-button-response,no_line_3_3cut,1,no_34
+3,s1qtcecrl,video-button-response,yes_line_9_8cut,1,yes_8
+3,s1qtcecrl,video-button-response,no_line_2_4cut,1,no_34
+3,s1qtcecrl,video-button-response,yes_line_8_1cut,1,yes_1
+3,s1qtcecrl,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""No""},{""name"":""age"",""value"":""31""},{""name"":""gender"",""value"":""male""},{""name"":""comments"",""value"":""}]",debrief
+3,s1qtcecrl,html-keyboard-response,"""", ,""""
+26,gja2fogys,preload,"""","""",""""
+26,gja2fogys,html-keyboard-response,"""", ,""""
+26,gja2fogys,html-keyboard-response,"""",y,""""
+26,gja2fogys,survey-text,"""","{""instructions1"":""Everyone is trying to collect water from a water source and bring it back to the wooden storage buckets. Each person needs to collect one bucket of water for each level.""}",instructions
+26,gja2fogys,survey-text,"""","{""instructions2"":""when all 8 people collect water and store it in a wooden bucket.""}",instructions
+26,gja2fogys,survey-text,"""","{""instructions3"":""1""}",instructions
+26,gja2fogys,video-button-response,yes_line_7_4cut,0,yes_34
+26,gja2fogys,video-button-response,no_line_1_8cut,1,no_8
+26,gja2fogys,video-button-response,no_line_2_1cut,1,no_1
+26,gja2fogys,video-button-response,yes_line_10_1cut,0,yes_1
+26,gja2fogys,video-button-response,no_line_2_4cut,1,no_34
+26,gja2fogys,video-button-response,yes_line_8_3cut,0,yes_34
+26,gja2fogys,video-button-response,yes_line_10_8cut,0,yes_8
+26,gja2fogys,video-button-response,yes_line_9_3cut,1,yes_34
+26,gja2fogys,video-button-response,no_line_1_3cut,1,no_34
+26,gja2fogys,video-button-response,no_line_3_8cut,1,no_8
+26,gja2fogys,video-button-response,no_line_3_1cut,1,no_1
+26,gja2fogys,video-button-response,yes_line_8_8cut,1,yes_8
+26,gja2fogys,video-button-response,yes_line_7_1cut,0,yes_1
+26,gja2fogys,video-button-response,no_line_1_1cut,1,no_1
+26,gja2fogys,video-button-response,yes_line_9_8cut,1,yes_8
+26,gja2fogys,video-button-response,yes_line_7_8cut,0,yes_8
+26,gja2fogys,video-button-response,yes_line_8_1cut,0,yes_1
+26,gja2fogys,video-button-response,yes_line_10_3cut,0,yes_34
+26,gja2fogys,video-button-response,no_line_3_3cut,1,no_34
+26,gja2fogys,video-button-response,no_line_2_8cut,1,no_8
+26,gja2fogys,video-button-response,yes_line_9_1cut,1,yes_1
+26,gja2fogys,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""No""},{""name"":""age"",""value"":""45""},{""name"":""gender"",""value"":""male""},{""name"":""comments"",""value"":""None""}]",debrief
+26,gja2fogys,html-keyboard-response,"""", ,""""
+32,8s87pnkln,preload,"""","""",""""
+32,8s87pnkln,html-keyboard-response,"""", ,""""
+32,8s87pnkln,html-keyboard-response,"""",y,""""
+32,8s87pnkln,survey-text,"""","{""instructions1"":""collect one bucket of water each level""}",instructions
+32,8s87pnkln,survey-text,"""","{""instructions2"":""when all eight people collect water and store it in a wooden storage bucket""}",instructions
+32,8s87pnkln,survey-text,"""","{""instructions3"":""1""}",instructions
+32,8s87pnkln,video-button-response,no_line_2_4cut,1,no_34
+32,8s87pnkln,video-button-response,no_line_3_8cut,1,no_8
+32,8s87pnkln,video-button-response,yes_line_10_1cut,0,yes_1
+32,8s87pnkln,video-button-response,no_line_2_1cut,1,no_1
+32,8s87pnkln,video-button-response,yes_line_7_4cut,1,yes_34
+32,8s87pnkln,video-button-response,yes_line_8_8cut,1,yes_8
+32,8s87pnkln,video-button-response,yes_line_7_1cut,0,yes_1
+32,8s87pnkln,video-button-response,no_line_1_1cut,0,no_1
+32,8s87pnkln,video-button-response,yes_line_7_8cut,1,yes_8
+32,8s87pnkln,video-button-response,no_line_1_8cut,1,no_8
+32,8s87pnkln,video-button-response,yes_line_10_3cut,0,yes_34
+32,8s87pnkln,video-button-response,yes_line_9_1cut,0,yes_1
+32,8s87pnkln,video-button-response,yes_line_8_3cut,1,yes_34
+32,8s87pnkln,video-button-response,no_line_2_8cut,1,no_8
+32,8s87pnkln,video-button-response,no_line_3_1cut,1,no_1
+32,8s87pnkln,video-button-response,no_line_1_3cut,1,no_34
+32,8s87pnkln,video-button-response,no_line_3_3cut,1,no_34
+32,8s87pnkln,video-button-response,yes_line_10_8cut,0,yes_8
+32,8s87pnkln,video-button-response,yes_line_8_1cut,1,yes_1
+32,8s87pnkln,video-button-response,yes_line_9_8cut,1,yes_8
+32,8s87pnkln,video-button-response,yes_line_9_3cut,1,yes_34
+32,8s87pnkln,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""No""},{""name"":""age"",""value"":""32""},{""name"":""gender"",""value"":""male""},{""name"":""comments"",""value"":""No, thanks""}]",debrief
+32,8s87pnkln,html-keyboard-response,"""", ,""""
+36,m9ywm9996,preload,"""","""",""""
+36,m9ywm9996,html-keyboard-response,"""", ,""""
+36,m9ywm9996,html-keyboard-response,"""",y,""""
+36,m9ywm9996,survey-text,"""","{""instructions1"":""To collect water and bring it to wooden storage buckets to gain levels and earn points. ""}",instructions
+36,m9ywm9996,survey-text,"""","{""instructions2"":""When all 8 people collect water and store it in a wooden storage bucket. ""}",instructions
+36,m9ywm9996,survey-text,"""","{""instructions3"":""1""}",instructions
+36,m9ywm9996,video-button-response,yes_line_9_1cut,0,yes_1
+36,m9ywm9996,video-button-response,yes_line_10_8cut,1,yes_8
+36,m9ywm9996,video-button-response,no_line_2_4cut,1,no_34
+36,m9ywm9996,video-button-response,yes_line_9_3cut,1,yes_34
+36,m9ywm9996,video-button-response,no_line_1_8cut,1,no_8
+36,m9ywm9996,video-button-response,yes_line_10_3cut,0,yes_34
+36,m9ywm9996,video-button-response,no_line_2_8cut,1,no_8
+36,m9ywm9996,video-button-response,yes_line_7_8cut,1,yes_8
+36,m9ywm9996,video-button-response,no_line_1_1cut,1,no_1
+36,m9ywm9996,video-button-response,yes_line_7_1cut,0,yes_1
+36,m9ywm9996,video-button-response,yes_line_10_1cut,0,yes_1
+36,m9ywm9996,video-button-response,no_line_3_3cut,1,no_34
+36,m9ywm9996,video-button-response,yes_line_8_3cut,1,yes_34
+36,m9ywm9996,video-button-response,no_line_1_3cut,1,no_34
+36,m9ywm9996,video-button-response,yes_line_8_8cut,0,yes_8
+36,m9ywm9996,video-button-response,no_line_3_1cut,1,no_1
+36,m9ywm9996,video-button-response,yes_line_8_1cut,0,yes_1
+36,m9ywm9996,video-button-response,yes_line_7_4cut,1,yes_34
+36,m9ywm9996,video-button-response,no_line_3_8cut,1,no_8
+36,m9ywm9996,video-button-response,yes_line_9_8cut,0,yes_8
+36,m9ywm9996,video-button-response,no_line_2_1cut,1,no_1
+36,m9ywm9996,survey-html-form,,,
+36,m9ywm9996,html-keyboard-response,"""", ,""""
+34,1o8z0prxh,preload,"""","""",""""
+34,1o8z0prxh,html-keyboard-response,"""", ,""""
+34,1o8z0prxh,html-keyboard-response,"""",y,""""
+34,1o8z0prxh,survey-text,"""","{""instructions1"":""To collect water""}",instructions
+34,1o8z0prxh,survey-text,"""","{""instructions2"":""When 8 people have collected water and stored it""}",instructions
+34,1o8z0prxh,survey-text,"""","{""instructions3"":""1""}",instructions
+34,1o8z0prxh,video-button-response,no_line_1_1cut,1,no_1
+34,1o8z0prxh,video-button-response,no_line_2_4cut,1,no_34
+34,1o8z0prxh,video-button-response,yes_line_9_3cut,0,yes_34
+34,1o8z0prxh,video-button-response,yes_line_9_1cut,0,yes_1
+34,1o8z0prxh,video-button-response,yes_line_8_3cut,1,yes_34
+34,1o8z0prxh,video-button-response,no_line_1_8cut,1,no_8
+34,1o8z0prxh,video-button-response,no_line_3_3cut,0,no_34
+34,1o8z0prxh,video-button-response,yes_line_10_1cut,0,yes_1
+34,1o8z0prxh,video-button-response,no_line_1_3cut,1,no_34
+34,1o8z0prxh,video-button-response,yes_line_7_8cut,0,yes_8
+34,1o8z0prxh,video-button-response,yes_line_8_8cut,0,yes_8
+34,1o8z0prxh,video-button-response,no_line_3_1cut,1,no_1
+34,1o8z0prxh,video-button-response,yes_line_7_4cut,1,yes_34
+34,1o8z0prxh,video-button-response,yes_line_7_1cut,0,yes_1
+34,1o8z0prxh,video-button-response,no_line_2_1cut,0,no_1
+34,1o8z0prxh,video-button-response,no_line_3_8cut,1,no_8
+34,1o8z0prxh,video-button-response,no_line_2_8cut,1,no_8
+34,1o8z0prxh,video-button-response,yes_line_10_3cut,0,yes_34
+34,1o8z0prxh,video-button-response,yes_line_8_1cut,0,yes_1
+34,1o8z0prxh,video-button-response,yes_line_10_8cut,1,yes_8
+34,1o8z0prxh,video-button-response,yes_line_9_8cut,0,yes_8
+34,1o8z0prxh,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""No""},{""name"":""age"",""value"":""37""},{""name"":""gender"",""value"":""male""},{""name"":""comments"",""value"":""}]",debrief
+34,1o8z0prxh,html-keyboard-response,"""", ,""""
+35,wsm75889x,preload,"""","""",""""
+35,wsm75889x,html-keyboard-response,"""", ,""""
+35,wsm75889x,html-keyboard-response,"""",y,""""
+35,wsm75889x,survey-text,"""","{""instructions1"":""collect water""}",instructions
+35,wsm75889x,survey-text,"""","{""instructions2"":""When all 8 people collect water and store it in a wooden storage bucket. ""}",instructions
+35,wsm75889x,survey-text,"""","{""instructions3"":""1""}",instructions
+35,wsm75889x,video-button-response,no_line_3_3cut,1,no_34
+35,wsm75889x,video-button-response,yes_line_9_8cut,0,yes_8
+35,wsm75889x,video-button-response,yes_line_10_3cut,1,yes_34
+35,wsm75889x,video-button-response,yes_line_7_1cut,0,yes_1
+35,wsm75889x,video-button-response,no_line_2_1cut,1,no_1
+35,wsm75889x,video-button-response,yes_line_9_1cut,1,yes_1
+35,wsm75889x,video-button-response,no_line_3_1cut,1,no_1
+35,wsm75889x,video-button-response,no_line_1_3cut,1,no_34
+35,wsm75889x,video-button-response,yes_line_10_8cut,1,yes_8
+35,wsm75889x,video-button-response,yes_line_8_8cut,1,yes_8
+35,wsm75889x,video-button-response,yes_line_9_3cut,1,yes_34
+35,wsm75889x,video-button-response,no_line_3_8cut,1,no_8
+35,wsm75889x,video-button-response,no_line_1_1cut,1,no_1
+35,wsm75889x,video-button-response,no_line_1_8cut,1,no_8
+35,wsm75889x,video-button-response,yes_line_8_3cut,1,yes_34
+35,wsm75889x,video-button-response,no_line_2_4cut,1,no_34
+35,wsm75889x,video-button-response,no_line_2_8cut,1,no_8
+35,wsm75889x,video-button-response,yes_line_8_1cut,0,yes_1
+35,wsm75889x,video-button-response,yes_line_7_4cut,0,yes_34
+35,wsm75889x,video-button-response,yes_line_7_8cut,1,yes_8
+35,wsm75889x,video-button-response,yes_line_10_1cut,0,yes_1
+35,wsm75889x,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""No there weren't any problems or bugs. ""},{""name"":""age"",""value"":""31""},{""name"":""gender"",""value"":""female""},{""name"":""comments"",""value"":""Thank you for fair pay. ""}]",debrief
+35,wsm75889x,html-keyboard-response,"""", ,""""
+37,hwzuynrxc,preload,"""","""",""""
+37,hwzuynrxc,html-keyboard-response,"""", ,""""
+37,hwzuynrxc,html-keyboard-response,"""",y,""""
+37,hwzuynrxc,survey-text,"""","{""instructions1"":""They need to collect a bucket of water the fastest ""}",instructions
+37,hwzuynrxc,survey-text,"""","{""instructions2"":""When 8 people have collected water and store it in the storage bucket""}",instructions
+37,hwzuynrxc,survey-text,"""","{""instructions3"":""One person""}",instructions
+37,hwzuynrxc,video-button-response,yes_line_10_1cut,1,yes_1
+37,hwzuynrxc,video-button-response,yes_line_9_1cut,1,yes_1
+37,hwzuynrxc,video-button-response,no_line_3_3cut,1,no_34
+37,hwzuynrxc,video-button-response,yes_line_8_1cut,0,yes_1
+37,hwzuynrxc,video-button-response,yes_line_7_8cut,1,yes_8
+37,hwzuynrxc,video-button-response,no_line_3_8cut,1,no_8
+37,hwzuynrxc,video-button-response,yes_line_7_4cut,0,yes_34
+37,hwzuynrxc,video-button-response,yes_line_8_3cut,1,yes_34
+37,hwzuynrxc,video-button-response,no_line_2_1cut,1,no_1
+37,hwzuynrxc,video-button-response,yes_line_9_8cut,1,yes_8
+37,hwzuynrxc,video-button-response,yes_line_7_1cut,0,yes_1
+37,hwzuynrxc,video-button-response,yes_line_8_8cut,1,yes_8
+37,hwzuynrxc,video-button-response,no_line_1_8cut,1,no_8
+37,hwzuynrxc,video-button-response,no_line_2_4cut,1,no_34
+37,hwzuynrxc,video-button-response,no_line_3_1cut,1,no_1
+37,hwzuynrxc,video-button-response,yes_line_10_3cut,0,yes_34
+37,hwzuynrxc,video-button-response,yes_line_10_8cut,0,yes_8
+37,hwzuynrxc,video-button-response,no_line_1_1cut,1,no_1
+37,hwzuynrxc,video-button-response,yes_line_9_3cut,1,yes_34
+37,hwzuynrxc,video-button-response,no_line_2_8cut,1,no_8
+37,hwzuynrxc,video-button-response,no_line_1_3cut,1,no_34
+37,hwzuynrxc,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""N/A""},{""name"":""age"",""value"":""44""},{""name"":""gender"",""value"":""female""},{""name"":""comments"",""value"":""}]",debrief
+37,hwzuynrxc,html-keyboard-response,"""", ,""""
+42,c73ah8af1,preload,"""","""",""""
+42,c73ah8af1,html-keyboard-response,"""", ,""""
+42,c73ah8af1,html-keyboard-response,"""",y,""""
+42,c73ah8af1,survey-text,"""","{""instructions1"":""to collect water the fastest""}",instructions
+42,c73ah8af1,survey-text,"""","{""instructions2"":""when all 8 people collect the water and store it""}",instructions
+42,c73ah8af1,survey-text,"""","{""instructions3"":""one""}",instructions
+42,c73ah8af1,video-button-response,no_line_1_8cut,1,no_8
+42,c73ah8af1,video-button-response,yes_line_7_4cut,1,yes_34
+42,c73ah8af1,video-button-response,yes_line_10_3cut,1,yes_34
+42,c73ah8af1,video-button-response,no_line_3_3cut,1,no_34
+42,c73ah8af1,video-button-response,yes_line_8_1cut,1,yes_1
+42,c73ah8af1,video-button-response,no_line_2_4cut,1,no_34
+42,c73ah8af1,video-button-response,yes_line_8_8cut,1,yes_8
+42,c73ah8af1,video-button-response,yes_line_7_8cut,1,yes_8
+42,c73ah8af1,video-button-response,no_line_1_1cut,1,no_1
+42,c73ah8af1,video-button-response,yes_line_9_8cut,1,yes_8
+42,c73ah8af1,video-button-response,yes_line_7_1cut,1,yes_1
+42,c73ah8af1,video-button-response,yes_line_10_8cut,1,yes_8
+42,c73ah8af1,video-button-response,yes_line_9_3cut,1,yes_34
+42,c73ah8af1,video-button-response,no_line_3_1cut,1,no_1
+42,c73ah8af1,video-button-response,no_line_2_8cut,1,no_8
+42,c73ah8af1,video-button-response,no_line_2_1cut,0,no_1
+42,c73ah8af1,video-button-response,no_line_1_3cut,1,no_34
+42,c73ah8af1,video-button-response,no_line_3_8cut,1,no_8
+42,c73ah8af1,video-button-response,yes_line_10_1cut,1,yes_1
+42,c73ah8af1,video-button-response,yes_line_9_1cut,1,yes_1
+42,c73ah8af1,video-button-response,yes_line_8_3cut,1,yes_34
+42,c73ah8af1,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""no""},{""name"":""age"",""value"":""34""},{""name"":""gender"",""value"":""male""},{""name"":""comments"",""value"":""no""}]",debrief
+42,c73ah8af1,html-keyboard-response,"""", ,""""
+45,gpdmmhlg1,preload,"""","""",""""
+45,gpdmmhlg1,html-keyboard-response,"""", ,""""
+45,gpdmmhlg1,html-keyboard-response,"""",y,""""
+45,gpdmmhlg1,survey-text,"""","{""instructions1"":""to collect water from a water source and bring it back to the wooden storage buckets. Each person needs to collect one bucket of water for each level.""}",instructions
+45,gpdmmhlg1,survey-text,"""","{""instructions2"":""when all 8 people collect water and store it in a wooden storage bucket.""}",instructions
+45,gpdmmhlg1,survey-text,"""","{""instructions3"":""1""}",instructions
+45,gpdmmhlg1,video-button-response,yes_line_9_8cut,1,yes_8
+45,gpdmmhlg1,video-button-response,yes_line_7_8cut,1,yes_8
+45,gpdmmhlg1,video-button-response,yes_line_9_1cut,1,yes_1
+45,gpdmmhlg1,video-button-response,no_line_2_1cut,1,no_1
+45,gpdmmhlg1,video-button-response,yes_line_7_1cut,1,yes_1
+45,gpdmmhlg1,video-button-response,no_line_3_1cut,1,no_1
+45,gpdmmhlg1,video-button-response,yes_line_7_4cut,1,yes_34
+45,gpdmmhlg1,video-button-response,no_line_1_3cut,1,no_34
+45,gpdmmhlg1,video-button-response,no_line_1_8cut,1,no_8
+45,gpdmmhlg1,video-button-response,yes_line_10_8cut,1,yes_8
+45,gpdmmhlg1,video-button-response,no_line_3_8cut,1,no_8
+45,gpdmmhlg1,video-button-response,no_line_2_4cut,1,no_34
+45,gpdmmhlg1,video-button-response,yes_line_10_3cut,1,yes_34
+45,gpdmmhlg1,video-button-response,no_line_2_8cut,1,no_8
+45,gpdmmhlg1,video-button-response,yes_line_8_3cut,1,yes_34
+45,gpdmmhlg1,video-button-response,yes_line_8_8cut,0,yes_8
+45,gpdmmhlg1,video-button-response,yes_line_8_1cut,1,yes_1
+45,gpdmmhlg1,video-button-response,yes_line_10_1cut,1,yes_1
+45,gpdmmhlg1,video-button-response,no_line_1_1cut,1,no_1
+45,gpdmmhlg1,video-button-response,yes_line_9_3cut,1,yes_34
+45,gpdmmhlg1,video-button-response,no_line_3_3cut,1,no_34
+45,gpdmmhlg1,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""n/a""},{""name"":""age"",""value"":""29""},{""name"":""gender"",""value"":""male""},{""name"":""comments"",""value"":""}]",debrief
+45,gpdmmhlg1,html-keyboard-response,"""", ,""""
+46,8x8nw9wm0,preload,"""","""",""""
+46,8x8nw9wm0,html-keyboard-response,"""", ,""""
+46,8x8nw9wm0,html-keyboard-response,"""",y,""""
+46,8x8nw9wm0,survey-text,"""","{""instructions1"":""Trying to collect water from a water source and bring it back to the wooden storage buckets""}",instructions
+46,8x8nw9wm0,survey-text,"""","{""instructions2"":""When all 8 people collect water and store it in a wooden storage bucket.""}",instructions
+46,8x8nw9wm0,survey-text,"""","{""instructions3"":""one""}",instructions
+46,8x8nw9wm0,video-button-response,yes_line_7_8cut,0,yes_8
+46,8x8nw9wm0,video-button-response,no_line_1_3cut,1,no_34
+46,8x8nw9wm0,video-button-response,yes_line_7_1cut,0,yes_1
+46,8x8nw9wm0,video-button-response,yes_line_10_3cut,0,yes_34
+46,8x8nw9wm0,video-button-response,yes_line_10_8cut,0,yes_8
+46,8x8nw9wm0,video-button-response,yes_line_8_3cut,1,yes_34
+46,8x8nw9wm0,video-button-response,no_line_2_8cut,1,no_8
+46,8x8nw9wm0,video-button-response,no_line_3_1cut,1,no_1
+46,8x8nw9wm0,video-button-response,yes_line_7_4cut,0,yes_34
+46,8x8nw9wm0,video-button-response,yes_line_10_1cut,0,yes_1
+46,8x8nw9wm0,video-button-response,no_line_2_1cut,1,no_1
+46,8x8nw9wm0,video-button-response,yes_line_9_3cut,0,yes_34
+46,8x8nw9wm0,video-button-response,yes_line_9_1cut,0,yes_1
+46,8x8nw9wm0,video-button-response,yes_line_8_8cut,1,yes_8
+46,8x8nw9wm0,video-button-response,no_line_1_1cut,1,no_1
+46,8x8nw9wm0,video-button-response,yes_line_8_1cut,0,yes_1
+46,8x8nw9wm0,video-button-response,no_line_1_8cut,1,no_8
+46,8x8nw9wm0,video-button-response,no_line_3_3cut,1,no_34
+46,8x8nw9wm0,video-button-response,no_line_2_4cut,1,no_34
+46,8x8nw9wm0,video-button-response,yes_line_9_8cut,0,yes_8
+46,8x8nw9wm0,video-button-response,no_line_3_8cut,1,no_8
+46,8x8nw9wm0,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""I did not experience any problems in this study.""},{""name"":""age"",""value"":""29""},{""name"":""gender"",""value"":""male""},{""name"":""comments"",""value"":""I have no additional comments.""}]",debrief
+46,8x8nw9wm0,html-keyboard-response,"""", ,""""
+39,lpvf7ha0u,preload,"""","""",""""
+39,lpvf7ha0u,html-keyboard-response,"""", ,""""
+39,lpvf7ha0u,html-keyboard-response,"""",y,""""
+39,lpvf7ha0u,survey-text,"""","{""instructions1"":""the goal is to collect one bucket of water for each level gaining points based on speed""}",instructions
+39,lpvf7ha0u,survey-text,"""","{""instructions2"":""the video will end when all 8 people collect water and store it""}",instructions
+39,lpvf7ha0u,survey-text,"""","{""instructions3"":""one""}",instructions
+39,lpvf7ha0u,video-button-response,yes_line_10_3cut,0,yes_34
+39,lpvf7ha0u,video-button-response,no_line_1_8cut,1,no_8
+39,lpvf7ha0u,video-button-response,yes_line_7_1cut,0,yes_1
+39,lpvf7ha0u,video-button-response,yes_line_7_8cut,0,yes_8
+39,lpvf7ha0u,video-button-response,yes_line_10_8cut,0,yes_8
+39,lpvf7ha0u,video-button-response,yes_line_10_1cut,0,yes_1
+39,lpvf7ha0u,video-button-response,no_line_1_3cut,1,no_34
+39,lpvf7ha0u,video-button-response,yes_line_8_3cut,0,yes_34
+39,lpvf7ha0u,video-button-response,no_line_2_8cut,1,no_8
+39,lpvf7ha0u,video-button-response,yes_line_8_1cut,0,yes_1
+39,lpvf7ha0u,video-button-response,yes_line_8_8cut,1,yes_8
+39,lpvf7ha0u,video-button-response,no_line_1_1cut,1,no_1
+39,lpvf7ha0u,video-button-response,yes_line_9_8cut,1,yes_8
+39,lpvf7ha0u,video-button-response,no_line_2_1cut,1,no_1
+39,lpvf7ha0u,video-button-response,no_line_3_3cut,1,no_34
+39,lpvf7ha0u,video-button-response,yes_line_9_3cut,1,yes_34
+39,lpvf7ha0u,video-button-response,no_line_2_4cut,1,no_34
+39,lpvf7ha0u,video-button-response,yes_line_7_4cut,0,yes_34
+39,lpvf7ha0u,video-button-response,no_line_3_1cut,1,no_1
+39,lpvf7ha0u,video-button-response,yes_line_9_1cut,0,yes_1
+39,lpvf7ha0u,video-button-response,no_line_3_8cut,1,no_8
+39,lpvf7ha0u,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""No""},{""name"":""age"",""value"":""35""},{""name"":""gender"",""value"":""male""},{""name"":""comments"",""value"":""}]",debrief
+39,lpvf7ha0u,html-keyboard-response,"""", ,""""
+51,05gd0l2z3,preload,"""","""",""""
+51,05gd0l2z3,html-keyboard-response,"""", ,""""
+51,05gd0l2z3,html-keyboard-response,"""",y,""""
+51,05gd0l2z3,survey-text,"""","{""instructions1"":""To collect one bucket of water from a source as fast as possible for each level""}",instructions
+51,05gd0l2z3,survey-text,"""","{""instructions2"":""when all 8 people collect water and store it in a wooden storage bucket""}",instructions
+51,05gd0l2z3,survey-text,"""","{""instructions3"":""One""}",instructions
+51,05gd0l2z3,video-button-response,yes_line_7_8cut,1,yes_8
+51,05gd0l2z3,video-button-response,yes_line_8_1cut,0,yes_1
+51,05gd0l2z3,video-button-response,yes_line_9_3cut,1,yes_34
+51,05gd0l2z3,video-button-response,yes_line_9_8cut,1,yes_8
+51,05gd0l2z3,video-button-response,yes_line_10_1cut,0,yes_1
+51,05gd0l2z3,video-button-response,yes_line_9_1cut,1,yes_1
+51,05gd0l2z3,video-button-response,no_line_1_3cut,1,no_34
+51,05gd0l2z3,video-button-response,yes_line_7_1cut,0,yes_1
+51,05gd0l2z3,video-button-response,yes_line_8_8cut,1,yes_8
+51,05gd0l2z3,video-button-response,no_line_1_8cut,1,no_8
+51,05gd0l2z3,video-button-response,yes_line_7_4cut,1,yes_34
+51,05gd0l2z3,video-button-response,no_line_3_8cut,1,no_8
+51,05gd0l2z3,video-button-response,yes_line_8_3cut,1,yes_34
+51,05gd0l2z3,video-button-response,no_line_2_1cut,1,no_1
+51,05gd0l2z3,video-button-response,yes_line_10_8cut,0,yes_8
+51,05gd0l2z3,video-button-response,no_line_3_3cut,1,no_34
+51,05gd0l2z3,video-button-response,no_line_3_1cut,1,no_1
+51,05gd0l2z3,video-button-response,yes_line_10_3cut,0,yes_34
+51,05gd0l2z3,video-button-response,no_line_1_1cut,1,no_1
+51,05gd0l2z3,video-button-response,no_line_2_4cut,1,no_34
+51,05gd0l2z3,video-button-response,no_line_2_8cut,1,no_8
+51,05gd0l2z3,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""I encountered no errors or problems with the study""},{""name"":""age"",""value"":""39""},{""name"":""gender"",""value"":""male""},{""name"":""comments"",""value"":""}]",debrief
+51,05gd0l2z3,html-keyboard-response,"""", ,""""
+48,nupxtjte9,preload,"""","""",""""
+48,nupxtjte9,html-keyboard-response,"""", ,""""
+48,nupxtjte9,html-keyboard-response,"""",y,""""
+48,nupxtjte9,survey-text,"""","{""instructions1"":""Collect one bucket of water each level ""}",instructions
+48,nupxtjte9,survey-text,"""","{""instructions2"":""When all 8 people collect water and store it ""}",instructions
+48,nupxtjte9,survey-text,"""","{""instructions3"":""1 person ""}",instructions
+48,nupxtjte9,video-button-response,yes_line_10_3cut,1,yes_34
+48,nupxtjte9,video-button-response,yes_line_10_1cut,1,yes_1
+48,nupxtjte9,video-button-response,yes_line_9_1cut,0,yes_1
+48,nupxtjte9,video-button-response,no_line_1_1cut,1,no_1
+48,nupxtjte9,video-button-response,yes_line_7_1cut,0,yes_1
+48,nupxtjte9,video-button-response,no_line_1_3cut,1,no_34
+48,nupxtjte9,video-button-response,yes_line_8_8cut,1,yes_8
+48,nupxtjte9,video-button-response,yes_line_7_4cut,0,yes_34
+48,nupxtjte9,video-button-response,no_line_2_4cut,1,no_34
+48,nupxtjte9,video-button-response,no_line_3_8cut,1,no_8
+48,nupxtjte9,video-button-response,no_line_1_8cut,1,no_8
+48,nupxtjte9,video-button-response,yes_line_10_8cut,1,yes_8
+48,nupxtjte9,video-button-response,yes_line_9_3cut,1,yes_34
+48,nupxtjte9,video-button-response,yes_line_8_1cut,0,yes_1
+48,nupxtjte9,video-button-response,no_line_3_3cut,1,no_34
+48,nupxtjte9,video-button-response,no_line_2_8cut,1,no_8
+48,nupxtjte9,video-button-response,yes_line_9_8cut,1,yes_8
+48,nupxtjte9,video-button-response,no_line_3_1cut,1,no_1
+48,nupxtjte9,video-button-response,yes_line_7_8cut,1,yes_8
+48,nupxtjte9,video-button-response,yes_line_8_3cut,1,yes_34
+48,nupxtjte9,video-button-response,no_line_2_1cut,1,no_1
+48,nupxtjte9,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""No""},{""name"":""age"",""value"":""32""},{""name"":""gender"",""value"":""male""},{""name"":""comments"",""value"":""}]",debrief
+48,nupxtjte9,html-keyboard-response,"""", ,""""
+57,b72fdzsqy,preload,"""","""",""""
+57,b72fdzsqy,html-keyboard-response,"""", ,""""
+57,b72fdzsqy,html-keyboard-response,"""",y,""""
+57,b72fdzsqy,survey-text,"""","{""instructions1"":"" Each person needs to collect one bucket of water for each level""}",instructions
+57,b72fdzsqy,survey-text,"""","{""instructions2"":""Each video will end when all 8 people collect water and store it in a wooden storage bucket""}",instructions
+57,b72fdzsqy,survey-text,"""","{""instructions3"":""1""}",instructions
+57,b72fdzsqy,video-button-response,no_line_1_8cut,1,no_8
+57,b72fdzsqy,video-button-response,yes_line_8_3cut,1,yes_34
+57,b72fdzsqy,video-button-response,yes_line_10_3cut,1,yes_34
+57,b72fdzsqy,video-button-response,no_line_1_3cut,1,no_34
+57,b72fdzsqy,video-button-response,no_line_3_8cut,1,no_8
+57,b72fdzsqy,video-button-response,yes_line_7_1cut,0,yes_1
+57,b72fdzsqy,video-button-response,no_line_2_1cut,1,no_1
+57,b72fdzsqy,video-button-response,no_line_2_8cut,1,no_8
+57,b72fdzsqy,video-button-response,yes_line_7_4cut,0,yes_34
+57,b72fdzsqy,video-button-response,no_line_3_3cut,1,no_34
+57,b72fdzsqy,video-button-response,yes_line_10_1cut,1,yes_1
+57,b72fdzsqy,video-button-response,yes_line_9_1cut,1,yes_1
+57,b72fdzsqy,video-button-response,yes_line_9_3cut,1,yes_34
+57,b72fdzsqy,video-button-response,yes_line_9_8cut,1,yes_8
+57,b72fdzsqy,video-button-response,no_line_2_4cut,1,no_34
+57,b72fdzsqy,video-button-response,yes_line_7_8cut,1,yes_8
+57,b72fdzsqy,video-button-response,yes_line_8_8cut,1,yes_8
+57,b72fdzsqy,video-button-response,yes_line_10_8cut,1,yes_8
+57,b72fdzsqy,video-button-response,no_line_3_1cut,1,no_1
+57,b72fdzsqy,video-button-response,yes_line_8_1cut,0,yes_1
+57,b72fdzsqy,video-button-response,no_line_1_1cut,1,no_1
+57,b72fdzsqy,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""no""},{""name"":""age"",""value"":""65""},{""name"":""gender"",""value"":""female""},{""name"":""comments"",""value"":""no""}]",debrief
+57,b72fdzsqy,html-keyboard-response,"""", ,""""
+66,ytq10mabz,preload,"""","""",""""
+66,ytq10mabz,html-keyboard-response,"""", ,""""
+66,ytq10mabz,html-keyboard-response,"""",y,""""
+66,ytq10mabz,survey-text,"""","{""instructions1"":""collect water and bring it back to the bucket""}",instructions
+66,ytq10mabz,survey-text,"""","{""instructions2"":""when all 8 people collected water and store it in the storage bucket""}",instructions
+66,ytq10mabz,survey-text,"""","{""instructions3"":""1""}",instructions
+66,ytq10mabz,video-button-response,no_line_3_1cut,1,no_1
+66,ytq10mabz,video-button-response,no_line_3_8cut,1,no_8
+66,ytq10mabz,video-button-response,yes_line_8_1cut,0,yes_1
+66,ytq10mabz,video-button-response,no_line_2_4cut,1,no_34
+66,ytq10mabz,video-button-response,yes_line_9_3cut,1,yes_34
+66,ytq10mabz,video-button-response,yes_line_7_1cut,0,yes_1
+66,ytq10mabz,video-button-response,yes_line_8_8cut,0,yes_8
+66,ytq10mabz,video-button-response,yes_line_7_4cut,0,yes_34
+66,ytq10mabz,video-button-response,yes_line_10_3cut,0,yes_34
+66,ytq10mabz,video-button-response,no_line_2_8cut,1,no_8
+66,ytq10mabz,video-button-response,no_line_2_1cut,1,no_1
+66,ytq10mabz,video-button-response,yes_line_7_8cut,1,yes_8
+66,ytq10mabz,video-button-response,yes_line_10_1cut,0,yes_1
+66,ytq10mabz,video-button-response,yes_line_9_8cut,1,yes_8
+66,ytq10mabz,video-button-response,yes_line_8_3cut,1,yes_34
+66,ytq10mabz,video-button-response,no_line_3_3cut,1,no_34
+66,ytq10mabz,video-button-response,no_line_1_3cut,1,no_34
+66,ytq10mabz,video-button-response,no_line_1_8cut,1,no_8
+66,ytq10mabz,video-button-response,yes_line_10_8cut,0,yes_8
+66,ytq10mabz,video-button-response,yes_line_9_1cut,1,yes_1
+66,ytq10mabz,video-button-response,no_line_1_1cut,1,no_1
+66,ytq10mabz,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""no""},{""name"":""age"",""value"":""33""},{""name"":""gender"",""value"":""male""},{""name"":""comments"",""value"":""no""}]",debrief
+66,ytq10mabz,html-keyboard-response,"""", ,""""
+61,vepjnhgge,preload,"""","""",""""
+61,vepjnhgge,html-keyboard-response,"""", ,""""
+61,vepjnhgge,html-keyboard-response,"""",y,""""
+61,vepjnhgge,survey-text,"""","{""instructions1"":""Collect one bucket of water as fast as possible for each level""}",instructions
+61,vepjnhgge,survey-text,"""","{""instructions2"":""When all 8 people collect water and store it in a wooden storage bucket""}",instructions
+61,vepjnhgge,survey-text,"""","{""instructions3"":""1""}",instructions
+61,vepjnhgge,video-button-response,no_line_2_8cut,1,no_8
+61,vepjnhgge,video-button-response,no_line_3_3cut,1,no_34
+61,vepjnhgge,video-button-response,yes_line_8_8cut,0,yes_8
+61,vepjnhgge,video-button-response,yes_line_7_1cut,0,yes_1
+61,vepjnhgge,video-button-response,no_line_2_1cut,1,no_1
+61,vepjnhgge,video-button-response,yes_line_9_3cut,1,yes_34
+61,vepjnhgge,video-button-response,no_line_2_4cut,1,no_34
+61,vepjnhgge,video-button-response,yes_line_10_1cut,0,yes_1
+61,vepjnhgge,video-button-response,no_line_1_8cut,1,no_8
+61,vepjnhgge,video-button-response,no_line_1_1cut,1,no_1
+61,vepjnhgge,video-button-response,no_line_3_8cut,1,no_8
+61,vepjnhgge,video-button-response,yes_line_8_1cut,0,yes_1
+61,vepjnhgge,video-button-response,yes_line_7_8cut,0,yes_8
+61,vepjnhgge,video-button-response,no_line_3_1cut,1,no_1
+61,vepjnhgge,video-button-response,yes_line_7_4cut,0,yes_34
+61,vepjnhgge,video-button-response,yes_line_9_8cut,1,yes_8
+61,vepjnhgge,video-button-response,yes_line_9_1cut,0,yes_1
+61,vepjnhgge,video-button-response,no_line_1_3cut,1,no_34
+61,vepjnhgge,video-button-response,yes_line_10_3cut,0,yes_34
+61,vepjnhgge,video-button-response,yes_line_10_8cut,0,yes_8
+61,vepjnhgge,video-button-response,yes_line_8_3cut,1,yes_34
+61,vepjnhgge,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""No problems or bugs for me. ""},{""name"":""age"",""value"":""32""},{""name"":""gender"",""value"":""male""},{""name"":""comments"",""value"":""Enjoyable study. Thank you. ""}]",debrief
+61,vepjnhgge,html-keyboard-response,"""", ,""""
+60,e53e2md38,preload,"""","""",""""
+60,e53e2md38,html-keyboard-response,"""", ,""""
+60,e53e2md38,html-keyboard-response,"""",y,""""
+60,e53e2md38,survey-text,"""","{""instructions1"":""To gather water and bring it back to wooden storage buckets. Each person needs to collect one bucket per level.""}",instructions
+60,e53e2md38,survey-text,"""","{""instructions2"":""When all 8 people collect water and then bring it to the wooden storage bucket.""}",instructions
+60,e53e2md38,survey-text,"""","{""instructions3"":""One. For each video, an image will be shown of the specific person I need to focus on.""}",instructions
+60,e53e2md38,video-button-response,yes_line_10_8cut,0,yes_8
+60,e53e2md38,video-button-response,no_line_3_1cut,0,no_1
+60,e53e2md38,video-button-response,yes_line_10_1cut,0,yes_1
+60,e53e2md38,video-button-response,yes_line_10_3cut,0,yes_34
+60,e53e2md38,video-button-response,yes_line_8_8cut,1,yes_8
+60,e53e2md38,video-button-response,yes_line_7_8cut,0,yes_8
+60,e53e2md38,video-button-response,yes_line_8_3cut,0,yes_34
+60,e53e2md38,video-button-response,no_line_2_8cut,1,no_8
+60,e53e2md38,video-button-response,no_line_1_3cut,1,no_34
+60,e53e2md38,video-button-response,no_line_1_1cut,0,no_1
+60,e53e2md38,video-button-response,yes_line_7_4cut,0,yes_34
+60,e53e2md38,video-button-response,yes_line_9_3cut,0,yes_34
+60,e53e2md38,video-button-response,no_line_1_8cut,1,no_8
+60,e53e2md38,video-button-response,yes_line_9_8cut,0,yes_8
+60,e53e2md38,video-button-response,no_line_3_8cut,1,no_8
+60,e53e2md38,video-button-response,yes_line_8_1cut,0,yes_1
+60,e53e2md38,video-button-response,no_line_3_3cut,1,no_34
+60,e53e2md38,video-button-response,yes_line_7_1cut,0,yes_1
+60,e53e2md38,video-button-response,no_line_2_1cut,1,no_1
+60,e53e2md38,video-button-response,yes_line_9_1cut,0,yes_1
+60,e53e2md38,video-button-response,no_line_2_4cut,1,no_34
+60,e53e2md38,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""I did not have any issues while taking this study.""},{""name"":""age"",""value"":""32""},{""name"":""gender"",""value"":""male""},{""name"":""comments"",""value"":""I generally frown on selfish behavior, and found that oftentimes players would earn more if they had simply stayed in line.""}]",debrief
+60,e53e2md38,html-keyboard-response,"""", ,""""
+59,qb0eevqqg,preload,"""","""",""""
+59,qb0eevqqg,html-keyboard-response,"""", ,""""
+59,qb0eevqqg,html-keyboard-response,"""",y,""""
+59,qb0eevqqg,survey-text,"""","{""instructions1"":""Collect one bucket of water for each level""}",instructions
+59,qb0eevqqg,survey-text,"""","{""instructions2"":""when all 8 people collect and store water""}",instructions
+59,qb0eevqqg,survey-text,"""","{""instructions3"":""1""}",instructions
+59,qb0eevqqg,video-button-response,yes_line_9_8cut,1,yes_8
+59,qb0eevqqg,video-button-response,no_line_2_1cut,1,no_1
+59,qb0eevqqg,video-button-response,no_line_3_8cut,1,no_8
+59,qb0eevqqg,video-button-response,yes_line_10_1cut,0,yes_1
+59,qb0eevqqg,video-button-response,yes_line_9_3cut,1,yes_34
+59,qb0eevqqg,video-button-response,yes_line_9_1cut,1,yes_1
+59,qb0eevqqg,video-button-response,yes_line_8_3cut,1,yes_34
+59,qb0eevqqg,video-button-response,yes_line_7_4cut,1,yes_34
+59,qb0eevqqg,video-button-response,yes_line_10_8cut,1,yes_8
+59,qb0eevqqg,video-button-response,no_line_1_8cut,1,no_8
+59,qb0eevqqg,video-button-response,no_line_2_8cut,1,no_8
+59,qb0eevqqg,video-button-response,no_line_3_1cut,1,no_1
+59,qb0eevqqg,video-button-response,yes_line_10_3cut,1,yes_34
+59,qb0eevqqg,video-button-response,yes_line_8_1cut,0,yes_1
+59,qb0eevqqg,video-button-response,yes_line_7_1cut,0,yes_1
+59,qb0eevqqg,video-button-response,no_line_1_1cut,1,no_1
+59,qb0eevqqg,video-button-response,no_line_1_3cut,1,no_34
+59,qb0eevqqg,video-button-response,yes_line_8_8cut,1,yes_8
+59,qb0eevqqg,video-button-response,yes_line_7_8cut,1,yes_8
+59,qb0eevqqg,video-button-response,no_line_2_4cut,1,no_34
+59,qb0eevqqg,video-button-response,no_line_3_3cut,1,no_34
+59,qb0eevqqg,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""I had no issues with the study.""},{""name"":""age"",""value"":""26""},{""name"":""gender"",""value"":""male""},{""name"":""comments"",""value"":""great pay for the task""}]",debrief
+59,qb0eevqqg,html-keyboard-response,"""", ,""""
+64,gjlzn266o,preload,"""","""",""""
+64,gjlzn266o,html-keyboard-response,"""", ,""""
+64,gjlzn266o,html-keyboard-response,"""",y,""""
+64,gjlzn266o,survey-text,"""","{""instructions1"":""Each person needs to collect one bucket of water for each level.""}",instructions
+64,gjlzn266o,survey-text,"""","{""instructions2"":""Each video will end when all 8 people collect water and store it in a wooden storage bucket.""}",instructions
+64,gjlzn266o,survey-text,"""","{""instructions3"":""One""}",instructions
+64,gjlzn266o,video-button-response,yes_line_10_8cut,0,yes_8
+64,gjlzn266o,video-button-response,yes_line_8_1cut,0,yes_1
+64,gjlzn266o,video-button-response,yes_line_9_1cut,0,yes_1
+64,gjlzn266o,video-button-response,no_line_3_1cut,1,no_1
+64,gjlzn266o,video-button-response,no_line_2_1cut,1,no_1
+64,gjlzn266o,video-button-response,yes_line_10_3cut,0,yes_34
+64,gjlzn266o,video-button-response,no_line_3_8cut,1,no_8
+64,gjlzn266o,video-button-response,no_line_1_1cut,1,no_1
+64,gjlzn266o,video-button-response,no_line_3_3cut,1,no_34
+64,gjlzn266o,video-button-response,yes_line_9_8cut,0,yes_8
+64,gjlzn266o,video-button-response,yes_line_8_8cut,1,yes_8
+64,gjlzn266o,video-button-response,no_line_1_3cut,1,no_34
+64,gjlzn266o,video-button-response,no_line_2_8cut,1,no_8
+64,gjlzn266o,video-button-response,yes_line_7_1cut,0,yes_1
+64,gjlzn266o,video-button-response,yes_line_9_3cut,0,yes_34
+64,gjlzn266o,video-button-response,yes_line_7_8cut,0,yes_8
+64,gjlzn266o,video-button-response,no_line_2_4cut,1,no_34
+64,gjlzn266o,video-button-response,no_line_1_8cut,1,no_8
+64,gjlzn266o,video-button-response,yes_line_7_4cut,0,yes_34
+64,gjlzn266o,video-button-response,yes_line_8_3cut,1,yes_34
+64,gjlzn266o,video-button-response,yes_line_10_1cut,0,yes_1
+64,gjlzn266o,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""All was fine.""},{""name"":""age"",""value"":""34""},{""name"":""gender"",""value"":""male""},{""name"":""comments"",""value"":""No.""}]",debrief
+64,gjlzn266o,html-keyboard-response,"""", ,""""
+65,f4pwnvfot,preload,"""","""",""""
+65,f4pwnvfot,html-keyboard-response,"""", ,""""
+65,f4pwnvfot,html-keyboard-response,"""",y,""""
+65,f4pwnvfot,survey-text,"""","{""instructions1"":""each person collect one bucket of water for each level, the faster you collect the more points""}",instructions
+65,f4pwnvfot,survey-text,"""","{""instructions2"":""when all 8 people collect water and store it in their bucket""}",instructions
+65,f4pwnvfot,survey-text,"""","{""instructions3"":""one""}",instructions
+65,f4pwnvfot,video-button-response,yes_line_10_3cut,1,yes_34
+65,f4pwnvfot,video-button-response,yes_line_7_4cut,0,yes_34
+65,f4pwnvfot,video-button-response,no_line_1_8cut,0,no_8
+65,f4pwnvfot,video-button-response,yes_line_9_8cut,1,yes_8
+65,f4pwnvfot,video-button-response,yes_line_10_1cut,0,yes_1
+65,f4pwnvfot,video-button-response,yes_line_7_8cut,0,yes_8
+65,f4pwnvfot,video-button-response,yes_line_8_1cut,0,yes_1
+65,f4pwnvfot,video-button-response,no_line_3_3cut,0,no_34
+65,f4pwnvfot,video-button-response,no_line_1_1cut,0,no_1
+65,f4pwnvfot,video-button-response,yes_line_9_1cut,0,yes_1
+65,f4pwnvfot,video-button-response,yes_line_7_1cut,0,yes_1
+65,f4pwnvfot,video-button-response,yes_line_9_3cut,1,yes_34
+65,f4pwnvfot,video-button-response,yes_line_8_8cut,1,yes_8
+65,f4pwnvfot,video-button-response,yes_line_8_3cut,0,yes_34
+65,f4pwnvfot,video-button-response,no_line_2_1cut,1,no_1
+65,f4pwnvfot,video-button-response,no_line_3_8cut,1,no_8
+65,f4pwnvfot,video-button-response,no_line_2_8cut,0,no_8
+65,f4pwnvfot,video-button-response,yes_line_10_8cut,0,yes_8
+65,f4pwnvfot,video-button-response,no_line_1_3cut,1,no_34
+65,f4pwnvfot,video-button-response,no_line_3_1cut,1,no_1
+65,f4pwnvfot,video-button-response,no_line_2_4cut,1,no_34
+65,f4pwnvfot,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""no""},{""name"":""age"",""value"":""28""},{""name"":""gender"",""value"":""female""},{""name"":""comments"",""value"":""}]",debrief
+65,f4pwnvfot,html-keyboard-response,"""", ,""""
+68,17tlx8euy,preload,"""","""",""""
+68,17tlx8euy,html-keyboard-response,"""", ,""""
+68,17tlx8euy,html-keyboard-response,"""",y,""""
+68,17tlx8euy,survey-text,"""","{""instructions1"":""Collect water and put it in water storage buckets quickly.""}",instructions
+68,17tlx8euy,survey-text,"""","{""instructions2"":""When all the people collect water and put it in the wooden storage bucket.""}",instructions
+68,17tlx8euy,survey-text,"""","{""instructions3"":""1""}",instructions
+68,17tlx8euy,video-button-response,yes_line_8_8cut,1,yes_8
+68,17tlx8euy,video-button-response,no_line_3_8cut,1,no_8
+68,17tlx8euy,video-button-response,yes_line_9_1cut,0,yes_1
+68,17tlx8euy,video-button-response,yes_line_10_8cut,1,yes_8
+68,17tlx8euy,video-button-response,yes_line_8_3cut,0,yes_34
+68,17tlx8euy,video-button-response,no_line_1_8cut,1,no_8
+68,17tlx8euy,video-button-response,yes_line_7_1cut,0,yes_1
+68,17tlx8euy,video-button-response,no_line_2_4cut,1,no_34
+68,17tlx8euy,video-button-response,yes_line_8_1cut,0,yes_1
+68,17tlx8euy,video-button-response,yes_line_7_4cut,0,yes_34
+68,17tlx8euy,video-button-response,yes_line_9_8cut,1,yes_8
+68,17tlx8euy,video-button-response,no_line_2_1cut,1,no_1
+68,17tlx8euy,video-button-response,no_line_3_3cut,1,no_34
+68,17tlx8euy,video-button-response,no_line_1_3cut,1,no_34
+68,17tlx8euy,video-button-response,no_line_1_1cut,1,no_1
+68,17tlx8euy,video-button-response,yes_line_10_1cut,0,yes_1
+68,17tlx8euy,video-button-response,no_line_3_1cut,1,no_1
+68,17tlx8euy,video-button-response,yes_line_7_8cut,0,yes_8
+68,17tlx8euy,video-button-response,yes_line_9_3cut,1,yes_34
+68,17tlx8euy,video-button-response,yes_line_10_3cut,0,yes_34
+68,17tlx8euy,video-button-response,no_line_2_8cut,1,no_8
+68,17tlx8euy,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""No, it seemed to go smoothly with no issues.""},{""name"":""age"",""value"":""30""},{""name"":""gender"",""value"":""female""},{""name"":""comments"",""value"":""}]",debrief
+68,17tlx8euy,html-keyboard-response,"""", ,""""
+71,wdb8vy4bl,preload,"""","""",""""
+71,wdb8vy4bl,html-keyboard-response,"""", ,""""
+71,wdb8vy4bl,html-keyboard-response,"""",y,""""
+71,wdb8vy4bl,survey-text,"""","{""instructions1"":""Everyone in the game is trying to collect water from a water source and bring it back to the wooden storage buckets as fast as possible""}",instructions
+71,wdb8vy4bl,survey-text,"""","{""instructions2"":""The video will end when all 8 people collect water and store it in a wooden storage bucket""}",instructions
+71,wdb8vy4bl,survey-text,"""","{""instructions3"":""1""}",instructions
+71,wdb8vy4bl,video-button-response,no_line_2_4cut,1,no_34
+71,wdb8vy4bl,video-button-response,yes_line_8_1cut,0,yes_1
+71,wdb8vy4bl,video-button-response,yes_line_10_1cut,0,yes_1
+71,wdb8vy4bl,video-button-response,yes_line_9_3cut,1,yes_34
+71,wdb8vy4bl,video-button-response,yes_line_8_8cut,1,yes_8
+71,wdb8vy4bl,video-button-response,yes_line_8_3cut,0,yes_34
+71,wdb8vy4bl,video-button-response,no_line_3_8cut,1,no_8
+71,wdb8vy4bl,video-button-response,no_line_1_3cut,1,no_34
+71,wdb8vy4bl,video-button-response,yes_line_7_8cut,1,yes_8
+71,wdb8vy4bl,video-button-response,yes_line_9_1cut,0,yes_1
+71,wdb8vy4bl,video-button-response,yes_line_9_8cut,1,yes_8
+71,wdb8vy4bl,video-button-response,no_line_1_1cut,0,no_1
+71,wdb8vy4bl,video-button-response,yes_line_10_3cut,0,yes_34
+71,wdb8vy4bl,video-button-response,no_line_2_1cut,1,no_1
+71,wdb8vy4bl,video-button-response,no_line_3_1cut,1,no_1
+71,wdb8vy4bl,video-button-response,yes_line_10_8cut,0,yes_8
+71,wdb8vy4bl,video-button-response,yes_line_7_4cut,0,yes_34
+71,wdb8vy4bl,video-button-response,yes_line_7_1cut,0,yes_1
+71,wdb8vy4bl,video-button-response,no_line_2_8cut,1,no_8
+71,wdb8vy4bl,video-button-response,no_line_1_8cut,1,no_8
+71,wdb8vy4bl,video-button-response,no_line_3_3cut,1,no_34
+71,wdb8vy4bl,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""no bugs""},{""name"":""age"",""value"":""39""},{""name"":""gender"",""value"":""male""},{""name"":""comments"",""value"":""This study seems interesting.""}]",debrief
+71,wdb8vy4bl,html-keyboard-response,"""", ,""""
+7,nsd1knl78,preload,"""","""",""""
+7,nsd1knl78,html-keyboard-response,"""", ,""""
+7,nsd1knl78,html-keyboard-response,"""",y,""""
+7,nsd1knl78,survey-text,"""","{""instructions1"":""collecting water""}",instructions
+7,nsd1knl78,survey-text,"""","{""instructions2"":""when all 8 people collect water and store it in a wooden storage bucket""}",instructions
+7,nsd1knl78,survey-text,"""","{""instructions3"":""just one""}",instructions
+7,nsd1knl78,video-button-response,no_line_2_4cut,1,no_34
+7,nsd1knl78,video-button-response,yes_line_9_1cut,1,yes_1
+7,nsd1knl78,video-button-response,yes_line_7_8cut,1,yes_8
+7,nsd1knl78,video-button-response,no_line_2_1cut,1,no_1
+7,nsd1knl78,video-button-response,no_line_1_1cut,1,no_1
+7,nsd1knl78,video-button-response,no_line_1_3cut,1,no_34
+7,nsd1knl78,video-button-response,yes_line_10_8cut,1,yes_8
+7,nsd1knl78,video-button-response,yes_line_10_3cut,1,yes_34
+7,nsd1knl78,video-button-response,yes_line_8_3cut,1,yes_34
+7,nsd1knl78,video-button-response,no_line_3_3cut,1,no_34
+7,nsd1knl78,video-button-response,yes_line_8_1cut,1,yes_1
+7,nsd1knl78,video-button-response,no_line_2_8cut,1,no_8
+7,nsd1knl78,video-button-response,no_line_3_8cut,1,no_8
+7,nsd1knl78,video-button-response,yes_line_8_8cut,1,yes_8
+7,nsd1knl78,video-button-response,no_line_3_1cut,1,no_1
+7,nsd1knl78,video-button-response,yes_line_10_1cut,0,yes_1
+7,nsd1knl78,video-button-response,yes_line_7_4cut,1,yes_34
+7,nsd1knl78,video-button-response,yes_line_7_1cut,0,yes_1
+7,nsd1knl78,video-button-response,yes_line_9_3cut,1,yes_34
+7,nsd1knl78,video-button-response,yes_line_9_8cut,1,yes_8
+7,nsd1knl78,video-button-response,no_line_1_8cut,1,no_8
+7,nsd1knl78,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""none""},{""name"":""age"",""value"":""56""},{""name"":""gender"",""value"":""male""},{""name"":""comments"",""value"":""no comments""}]",debrief
+7,nsd1knl78,html-keyboard-response,"""", ,""""
+67,9auoyb08j,preload,"""","""",""""
+67,9auoyb08j,html-keyboard-response,"""", ,""""
+67,9auoyb08j,html-keyboard-response,"""",y,""""
+67,9auoyb08j,survey-text,"""","{""instructions1"":""collect water from a water source and bring it back to the wooden storage buckets""}",instructions
+67,9auoyb08j,survey-text,"""","{""instructions2"":""when all 8 people collect water and store it in a wooden storage bucket""}",instructions
+67,9auoyb08j,survey-text,"""","{""instructions3"":""1""}",instructions
+67,9auoyb08j,video-button-response,yes_line_10_8cut,1,yes_8
+67,9auoyb08j,video-button-response,yes_line_8_3cut,1,yes_34
+67,9auoyb08j,video-button-response,no_line_2_4cut,1,no_34
+67,9auoyb08j,video-button-response,yes_line_8_8cut,0,yes_8
+67,9auoyb08j,video-button-response,no_line_1_1cut,1,no_1
+67,9auoyb08j,video-button-response,yes_line_9_1cut,1,yes_1
+67,9auoyb08j,video-button-response,yes_line_7_1cut,0,yes_1
+67,9auoyb08j,video-button-response,yes_line_10_1cut,0,yes_1
+67,9auoyb08j,video-button-response,yes_line_7_4cut,1,yes_34
+67,9auoyb08j,video-button-response,yes_line_7_8cut,1,yes_8
+67,9auoyb08j,video-button-response,yes_line_8_1cut,0,yes_1
+67,9auoyb08j,video-button-response,no_line_3_3cut,1,no_34
+67,9auoyb08j,video-button-response,no_line_1_8cut,1,no_8
+67,9auoyb08j,video-button-response,no_line_2_1cut,1,no_1
+67,9auoyb08j,video-button-response,no_line_1_3cut,1,no_34
+67,9auoyb08j,video-button-response,yes_line_9_8cut,0,yes_8
+67,9auoyb08j,video-button-response,yes_line_10_3cut,1,yes_34
+67,9auoyb08j,video-button-response,no_line_2_8cut,1,no_8
+67,9auoyb08j,video-button-response,yes_line_9_3cut,1,yes_34
+67,9auoyb08j,video-button-response,no_line_3_8cut,1,no_8
+67,9auoyb08j,video-button-response,no_line_3_1cut,1,no_1
+67,9auoyb08j,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""No""},{""name"":""age"",""value"":""31""},{""name"":""gender"",""value"":""male""},{""name"":""comments"",""value"":""no""}]",debrief
+67,9auoyb08j,html-keyboard-response,"""", ,""""
+75,rj0gpjcgn,preload,"""","""",""""
+75,rj0gpjcgn,html-keyboard-response,"""", ,""""
+75,rj0gpjcgn,html-keyboard-response,"""",y,""""
+75,rj0gpjcgn,survey-text,"""","{""instructions1"":""to collect water from a water source and bring it back to a storage bucket as quickly as they can in order to receive the most points""}",instructions
+75,rj0gpjcgn,survey-text,"""","{""instructions2"":""when all 8 people have collected water from the water source and have stored it in a wooden storage bucket""}",instructions
+75,rj0gpjcgn,survey-text,"""","{""instructions3"":""one""}",instructions
+75,rj0gpjcgn,video-button-response,yes_line_8_1cut,0,yes_1
+75,rj0gpjcgn,video-button-response,yes_line_8_8cut,1,yes_8
+75,rj0gpjcgn,video-button-response,no_line_1_8cut,1,no_8
+75,rj0gpjcgn,video-button-response,no_line_3_3cut,1,no_34
+75,rj0gpjcgn,video-button-response,yes_line_7_1cut,0,yes_1
+75,rj0gpjcgn,video-button-response,no_line_2_1cut,1,no_1
+75,rj0gpjcgn,video-button-response,no_line_1_1cut,1,no_1
+75,rj0gpjcgn,video-button-response,no_line_3_8cut,1,no_8
+75,rj0gpjcgn,video-button-response,yes_line_10_3cut,1,yes_34
+75,rj0gpjcgn,video-button-response,yes_line_10_8cut,1,yes_8
+75,rj0gpjcgn,video-button-response,yes_line_8_3cut,1,yes_34
+75,rj0gpjcgn,video-button-response,no_line_1_3cut,1,no_34
+75,rj0gpjcgn,video-button-response,yes_line_7_8cut,1,yes_8
+75,rj0gpjcgn,video-button-response,yes_line_10_1cut,0,yes_1
+75,rj0gpjcgn,video-button-response,no_line_2_4cut,1,no_34
+75,rj0gpjcgn,video-button-response,yes_line_9_1cut,0,yes_1
+75,rj0gpjcgn,video-button-response,no_line_2_8cut,1,no_8
+75,rj0gpjcgn,video-button-response,no_line_3_1cut,1,no_1
+75,rj0gpjcgn,video-button-response,yes_line_9_8cut,1,yes_8
+75,rj0gpjcgn,video-button-response,yes_line_9_3cut,1,yes_34
+75,rj0gpjcgn,video-button-response,yes_line_7_4cut,0,yes_34
+75,rj0gpjcgn,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""no""},{""name"":""age"",""value"":""48""},{""name"":""gender"",""value"":""male""},{""name"":""comments"",""value"":""some players were a combination of moral and immoral when looking at their specific moves""}]",debrief
+75,rj0gpjcgn,html-keyboard-response,"""", ,""""
+79,n599tr4zz,preload,"""","""",""""
+79,n599tr4zz,html-keyboard-response,"""", ,""""
+79,n599tr4zz,html-keyboard-response,"""",y,""""
+79,n599tr4zz,survey-text,"""","{""instructions1"":""Collect water and put it in the wooden storage bucket.""}",instructions
+79,n599tr4zz,survey-text,"""","{""instructions2"":""When all 8 players collect water and store it in the bucket.""}",instructions
+79,n599tr4zz,survey-text,"""","{""instructions3"":""1""}",instructions
+79,n599tr4zz,video-button-response,yes_line_8_1cut,0,yes_1
+79,n599tr4zz,video-button-response,yes_line_10_1cut,0,yes_1
+79,n599tr4zz,video-button-response,no_line_1_1cut,1,no_1
+79,n599tr4zz,video-button-response,yes_line_8_8cut,1,yes_8
+79,n599tr4zz,video-button-response,yes_line_9_8cut,1,yes_8
+79,n599tr4zz,video-button-response,no_line_3_8cut,1,no_8
+79,n599tr4zz,video-button-response,yes_line_9_1cut,0,yes_1
+79,n599tr4zz,video-button-response,yes_line_7_8cut,1,yes_8
+79,n599tr4zz,video-button-response,yes_line_7_1cut,0,yes_1
+79,n599tr4zz,video-button-response,no_line_1_3cut,1,no_34
+79,n599tr4zz,video-button-response,no_line_2_4cut,1,no_34
+79,n599tr4zz,video-button-response,no_line_3_1cut,1,no_1
+79,n599tr4zz,video-button-response,yes_line_8_3cut,0,yes_34
+79,n599tr4zz,video-button-response,yes_line_10_8cut,0,yes_8
+79,n599tr4zz,video-button-response,no_line_2_8cut,1,no_8
+79,n599tr4zz,video-button-response,yes_line_10_3cut,0,yes_34
+79,n599tr4zz,video-button-response,yes_line_7_4cut,0,yes_34
+79,n599tr4zz,video-button-response,no_line_1_8cut,1,no_8
+79,n599tr4zz,video-button-response,no_line_3_3cut,1,no_34
+79,n599tr4zz,video-button-response,no_line_2_1cut,1,no_1
+79,n599tr4zz,video-button-response,yes_line_9_3cut,1,yes_34
+79,n599tr4zz,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""No""},{""name"":""age"",""value"":""33""},{""name"":""gender"",""value"":""male""},{""name"":""comments"",""value"":""None""}]",debrief
+79,n599tr4zz,html-keyboard-response,"""", ,""""
+78,3fn8llwqo,preload,"""","""",""""
+78,3fn8llwqo,html-keyboard-response,"""", ,""""
+78,3fn8llwqo,html-keyboard-response,"""",y,""""
+78,3fn8llwqo,survey-text,"""","{""instructions1"":""to collect water from a water source and bring it back to a wooden storage bucket and do this fast as doing it faster results in more points.""}",instructions
+78,3fn8llwqo,survey-text,"""","{""instructions2"":""when all 8 people collect water and put it in a wooden storage bucket.""}",instructions
+78,3fn8llwqo,survey-text,"""","{""instructions3"":""I will focus on one person in each video.""}",instructions
+78,3fn8llwqo,video-button-response,yes_line_9_8cut,1,yes_8
+78,3fn8llwqo,video-button-response,yes_line_7_1cut,0,yes_1
+78,3fn8llwqo,video-button-response,yes_line_7_8cut,1,yes_8
+78,3fn8llwqo,video-button-response,no_line_3_3cut,1,no_34
+78,3fn8llwqo,video-button-response,yes_line_9_3cut,1,yes_34
+78,3fn8llwqo,video-button-response,yes_line_10_3cut,0,yes_34
+78,3fn8llwqo,video-button-response,yes_line_9_1cut,1,yes_1
+78,3fn8llwqo,video-button-response,no_line_2_4cut,1,no_34
+78,3fn8llwqo,video-button-response,no_line_1_1cut,1,no_1
+78,3fn8llwqo,video-button-response,yes_line_10_8cut,1,yes_8
+78,3fn8llwqo,video-button-response,yes_line_7_4cut,0,yes_34
+78,3fn8llwqo,video-button-response,yes_line_8_8cut,1,yes_8
+78,3fn8llwqo,video-button-response,no_line_1_8cut,1,no_8
+78,3fn8llwqo,video-button-response,no_line_3_8cut,1,no_8
+78,3fn8llwqo,video-button-response,no_line_1_3cut,1,no_34
+78,3fn8llwqo,video-button-response,no_line_2_8cut,0,no_8
+78,3fn8llwqo,video-button-response,yes_line_8_1cut,1,yes_1
+78,3fn8llwqo,video-button-response,no_line_2_1cut,1,no_1
+78,3fn8llwqo,video-button-response,yes_line_10_1cut,0,yes_1
+78,3fn8llwqo,video-button-response,yes_line_8_3cut,1,yes_34
+78,3fn8llwqo,video-button-response,no_line_3_1cut,1,no_1
+78,3fn8llwqo,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""i did not notice any bugs or problems.""},{""name"":""age"",""value"":""50""},{""name"":""gender"",""value"":""male""},{""name"":""comments"",""value"":""i think it would be helpful to put a highlight on the person to focus on at the start of each of the videos,  i had to watch each video multiple times as i had to figure out where my target person is and then watch again to see from the very beginning what my target person did.""}]",debrief
+78,3fn8llwqo,html-keyboard-response,"""", ,""""
+83,tv2ygq1yl,preload,"""","""",""""
+83,tv2ygq1yl,html-keyboard-response,"""", ,""""
+83,tv2ygq1yl,html-keyboard-response,"""",y,""""
+83,tv2ygq1yl,survey-text,"""","{""instructions1"":""Collecting water from a water source & bringing it back to storage buckets.""}",instructions
+83,tv2ygq1yl,survey-text,"""","{""instructions2"":""When all 8 people collect water & store it.""}",instructions
+83,tv2ygq1yl,survey-text,"""","{""instructions3"":""1""}",instructions
+83,tv2ygq1yl,video-button-response,yes_line_10_8cut,1,yes_8
+83,tv2ygq1yl,video-button-response,yes_line_9_8cut,1,yes_8
+83,tv2ygq1yl,video-button-response,no_line_2_4cut,1,no_34
+83,tv2ygq1yl,video-button-response,yes_line_7_1cut,0,yes_1
+83,tv2ygq1yl,video-button-response,no_line_2_1cut,1,no_1
+83,tv2ygq1yl,video-button-response,no_line_3_8cut,1,no_8
+83,tv2ygq1yl,video-button-response,yes_line_9_3cut,1,yes_34
+83,tv2ygq1yl,video-button-response,yes_line_7_8cut,1,yes_8
+83,tv2ygq1yl,video-button-response,yes_line_7_4cut,1,yes_34
+83,tv2ygq1yl,video-button-response,yes_line_10_3cut,1,yes_34
+83,tv2ygq1yl,video-button-response,yes_line_10_1cut,0,yes_1
+83,tv2ygq1yl,video-button-response,yes_line_8_8cut,1,yes_8
+83,tv2ygq1yl,video-button-response,no_line_1_3cut,1,no_34
+83,tv2ygq1yl,video-button-response,yes_line_8_3cut,1,yes_34
+83,tv2ygq1yl,video-button-response,no_line_3_1cut,1,no_1
+83,tv2ygq1yl,video-button-response,no_line_1_8cut,1,no_8
+83,tv2ygq1yl,video-button-response,no_line_3_3cut,1,no_34
+83,tv2ygq1yl,video-button-response,no_line_2_8cut,1,no_8
+83,tv2ygq1yl,video-button-response,no_line_1_1cut,1,no_1
+83,tv2ygq1yl,video-button-response,yes_line_9_1cut,0,yes_1
+83,tv2ygq1yl,video-button-response,yes_line_8_1cut,0,yes_1
+83,tv2ygq1yl,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""No.""},{""name"":""age"",""value"":""46""},{""name"":""gender"",""value"":""male""},{""name"":""comments"",""value"":""No.""}]",debrief
+83,tv2ygq1yl,html-keyboard-response,"""", ,""""
+82,skm3oc57n,preload,"""","""",""""
+82,skm3oc57n,html-keyboard-response,"""", ,""""
+82,skm3oc57n,html-keyboard-response,"""",y,""""
+82,skm3oc57n,survey-text,"""","{""instructions1"":""Collect water""}",instructions
+82,skm3oc57n,survey-text,"""","{""instructions2"":""8 people collect water ""}",instructions
+82,skm3oc57n,survey-text,"""","{""instructions3"":""1""}",instructions
+82,skm3oc57n,video-button-response,yes_line_7_4cut,0,yes_34
+82,skm3oc57n,video-button-response,no_line_2_4cut,1,no_34
+82,skm3oc57n,video-button-response,no_line_3_8cut,1,no_8
+82,skm3oc57n,video-button-response,yes_line_7_1cut,0,yes_1
+82,skm3oc57n,video-button-response,no_line_1_3cut,1,no_34
+82,skm3oc57n,video-button-response,yes_line_10_8cut,1,yes_8
+82,skm3oc57n,video-button-response,yes_line_8_8cut,1,yes_8
+82,skm3oc57n,video-button-response,no_line_1_8cut,1,no_8
+82,skm3oc57n,video-button-response,yes_line_8_3cut,1,yes_34
+82,skm3oc57n,video-button-response,yes_line_7_8cut,0,yes_8
+82,skm3oc57n,video-button-response,yes_line_10_3cut,1,yes_34
+82,skm3oc57n,video-button-response,no_line_2_1cut,1,no_1
+82,skm3oc57n,video-button-response,yes_line_9_8cut,1,yes_8
+82,skm3oc57n,video-button-response,yes_line_9_3cut,0,yes_34
+82,skm3oc57n,video-button-response,no_line_2_8cut,1,no_8
+82,skm3oc57n,video-button-response,no_line_3_3cut,1,no_34
+82,skm3oc57n,video-button-response,yes_line_10_1cut,1,yes_1
+82,skm3oc57n,video-button-response,yes_line_8_1cut,0,yes_1
+82,skm3oc57n,video-button-response,no_line_1_1cut,1,no_1
+82,skm3oc57n,video-button-response,yes_line_9_1cut,1,yes_1
+82,skm3oc57n,video-button-response,no_line_3_1cut,1,no_1
+82,skm3oc57n,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""No""},{""name"":""age"",""value"":""33""},{""name"":""gender"",""value"":""male""},{""name"":""comments"",""value"":""None""}]",debrief
+82,skm3oc57n,html-keyboard-response,"""", ,""""
+80,sw7l0q6lw,preload,"""","""",""""
+80,sw7l0q6lw,html-keyboard-response,"""", ,""""
+80,sw7l0q6lw,html-keyboard-response,"""",y,""""
+80,sw7l0q6lw,survey-text,"""","{""instructions1"":""collect water from a water source and bring it back to the wooden storage buckets""}",instructions
+80,sw7l0q6lw,survey-text,"""","{""instructions2"":""when all 8 people collect water and store it in a wooden storage bucket""}",instructions
+80,sw7l0q6lw,survey-text,"""","{""instructions3"":""1""}",instructions
+80,sw7l0q6lw,video-button-response,yes_line_10_8cut,1,yes_8
+80,sw7l0q6lw,video-button-response,no_line_2_8cut,1,no_8
+80,sw7l0q6lw,video-button-response,yes_line_9_1cut,1,yes_1
+80,sw7l0q6lw,video-button-response,yes_line_7_1cut,0,yes_1
+80,sw7l0q6lw,video-button-response,yes_line_9_3cut,1,yes_34
+80,sw7l0q6lw,video-button-response,yes_line_7_8cut,1,yes_8
+80,sw7l0q6lw,video-button-response,no_line_1_8cut,1,no_8
+80,sw7l0q6lw,video-button-response,no_line_1_3cut,1,no_34
+80,sw7l0q6lw,video-button-response,yes_line_8_3cut,1,yes_34
+80,sw7l0q6lw,video-button-response,yes_line_9_8cut,0,yes_8
+80,sw7l0q6lw,video-button-response,yes_line_7_4cut,0,yes_34
+80,sw7l0q6lw,video-button-response,yes_line_8_8cut,1,yes_8
+80,sw7l0q6lw,video-button-response,no_line_2_4cut,1,no_34
+80,sw7l0q6lw,video-button-response,no_line_3_3cut,1,no_34
+80,sw7l0q6lw,video-button-response,yes_line_10_3cut,1,yes_34
+80,sw7l0q6lw,video-button-response,no_line_3_1cut,1,no_1
+80,sw7l0q6lw,video-button-response,no_line_2_1cut,1,no_1
+80,sw7l0q6lw,video-button-response,yes_line_8_1cut,0,yes_1
+80,sw7l0q6lw,video-button-response,no_line_1_1cut,1,no_1
+80,sw7l0q6lw,video-button-response,no_line_3_8cut,1,no_8
+80,sw7l0q6lw,video-button-response,yes_line_10_1cut,0,yes_1
+80,sw7l0q6lw,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""There wre no problems or bugs.""},{""name"":""age"",""value"":""52""},{""name"":""gender"",""value"":""male""},{""name"":""comments"",""value"":""I do not have any comments to add.""}]",debrief
+80,sw7l0q6lw,html-keyboard-response,"""", ,""""
+84,9wcu2f5l3,preload,"""","""",""""
+84,9wcu2f5l3,html-keyboard-response,"""", ,""""
+84,9wcu2f5l3,html-keyboard-response,"""",y,""""
+84,9wcu2f5l3,survey-text,"""","{""instructions1"":""Each person needs to collect one bucket of water for each level. The faster a person collects the bucket of water, the more points they receive.""}",instructions
+84,9wcu2f5l3,survey-text,"""","{""instructions2"":""when all 8 people collect water and store it in a wooden storage bucket.""}",instructions
+84,9wcu2f5l3,survey-text,"""","{""instructions3"":""1""}",instructions
+84,9wcu2f5l3,video-button-response,no_line_1_1cut,0,no_1
+84,9wcu2f5l3,video-button-response,no_line_3_1cut,0,no_1
+84,9wcu2f5l3,video-button-response,yes_line_10_1cut,0,yes_1
+84,9wcu2f5l3,video-button-response,yes_line_9_3cut,1,yes_34
+84,9wcu2f5l3,video-button-response,no_line_1_3cut,0,no_34
+84,9wcu2f5l3,video-button-response,yes_line_9_1cut,0,yes_1
+84,9wcu2f5l3,video-button-response,no_line_2_4cut,1,no_34
+84,9wcu2f5l3,video-button-response,yes_line_10_8cut,1,yes_8
+84,9wcu2f5l3,video-button-response,yes_line_10_3cut,1,yes_34
+84,9wcu2f5l3,video-button-response,yes_line_8_1cut,0,yes_1
+84,9wcu2f5l3,video-button-response,yes_line_8_3cut,0,yes_34
+84,9wcu2f5l3,video-button-response,no_line_3_8cut,1,no_8
+84,9wcu2f5l3,video-button-response,yes_line_7_1cut,0,yes_1
+84,9wcu2f5l3,video-button-response,yes_line_7_8cut,1,yes_8
+84,9wcu2f5l3,video-button-response,no_line_2_8cut,1,no_8
+84,9wcu2f5l3,video-button-response,yes_line_8_8cut,1,yes_8
+84,9wcu2f5l3,video-button-response,yes_line_7_4cut,0,yes_34
+84,9wcu2f5l3,video-button-response,yes_line_9_8cut,1,yes_8
+84,9wcu2f5l3,video-button-response,no_line_1_8cut,1,no_8
+84,9wcu2f5l3,video-button-response,no_line_3_3cut,1,no_34
+84,9wcu2f5l3,video-button-response,no_line_2_1cut,1,no_1
+84,9wcu2f5l3,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""no""},{""name"":""age"",""value"":""33""},{""name"":""gender"",""value"":""male""},{""name"":""comments"",""value"":""Enjoyed!""}]",debrief
+84,9wcu2f5l3,html-keyboard-response,"""", ,""""
+85,9fc2sk09q,preload,"""","""",""""
+85,9fc2sk09q,html-keyboard-response,"""", ,""""
+85,9fc2sk09q,html-keyboard-response,"""",y,""""
+85,9fc2sk09q,survey-text,"""","{""instructions1"":""To collect water from a water source and bring it to wooden storage buckets. The faster to collect the more points. To collect one bucket of water for each level""}",instructions
+85,9fc2sk09q,survey-text,"""","{""instructions2"":""When all 8 people collect water and store it in a wooden storage bucket.""}",instructions
+85,9fc2sk09q,survey-text,"""","{""instructions3"":""one""}",instructions
+85,9fc2sk09q,video-button-response,no_line_2_4cut,1,no_34
+85,9fc2sk09q,video-button-response,no_line_3_1cut,0,no_1
+85,9fc2sk09q,video-button-response,yes_line_7_1cut,1,yes_1
+85,9fc2sk09q,video-button-response,no_line_2_8cut,1,no_8
+85,9fc2sk09q,video-button-response,yes_line_10_1cut,1,yes_1
+85,9fc2sk09q,video-button-response,yes_line_7_8cut,1,yes_8
+85,9fc2sk09q,video-button-response,no_line_1_3cut,0,no_34
+85,9fc2sk09q,video-button-response,yes_line_10_8cut,1,yes_8
+85,9fc2sk09q,video-button-response,yes_line_9_8cut,0,yes_8
+85,9fc2sk09q,video-button-response,yes_line_9_1cut,0,yes_1
+85,9fc2sk09q,video-button-response,no_line_3_3cut,0,no_34
+85,9fc2sk09q,video-button-response,yes_line_10_3cut,1,yes_34
+85,9fc2sk09q,video-button-response,yes_line_8_8cut,1,yes_8
+85,9fc2sk09q,video-button-response,no_line_2_1cut,0,no_1
+85,9fc2sk09q,video-button-response,no_line_1_8cut,0,no_8
+85,9fc2sk09q,video-button-response,no_line_3_8cut,0,no_8
+85,9fc2sk09q,video-button-response,yes_line_8_3cut,1,yes_34
+85,9fc2sk09q,video-button-response,yes_line_8_1cut,1,yes_1
+85,9fc2sk09q,video-button-response,no_line_1_1cut,1,no_1
+85,9fc2sk09q,video-button-response,yes_line_7_4cut,0,yes_34
+85,9fc2sk09q,video-button-response,yes_line_9_3cut,0,yes_34
+85,9fc2sk09q,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""No""},{""name"":""age"",""value"":""43""},{""name"":""gender"",""value"":""female""},{""name"":""comments"",""value"":""No""}]",debrief
+85,9fc2sk09q,html-keyboard-response,"""", ,""""
+86,qy5vr4ugm,preload,"""","""",""""
+86,qy5vr4ugm,html-keyboard-response,"""", ,""""
+86,qy5vr4ugm,html-keyboard-response,"""",y,""""
+86,qy5vr4ugm,survey-text,"""","{""instructions1"":""collect water""}",instructions
+86,qy5vr4ugm,survey-text,"""","{""instructions2"":""all 8 people collect and store water in a bucket""}",instructions
+86,qy5vr4ugm,survey-text,"""","{""instructions3"":""1""}",instructions
+86,qy5vr4ugm,video-button-response,no_line_3_1cut,1,no_1
+86,qy5vr4ugm,video-button-response,no_line_2_4cut,1,no_34
+86,qy5vr4ugm,video-button-response,yes_line_10_8cut,0,yes_8
+86,qy5vr4ugm,video-button-response,no_line_3_3cut,1,no_34
+86,qy5vr4ugm,video-button-response,no_line_1_1cut,1,no_1
+86,qy5vr4ugm,video-button-response,no_line_1_8cut,1,no_8
+86,qy5vr4ugm,video-button-response,yes_line_10_3cut,0,yes_34
+86,qy5vr4ugm,video-button-response,yes_line_9_8cut,1,yes_8
+86,qy5vr4ugm,video-button-response,yes_line_8_8cut,1,yes_8
+86,qy5vr4ugm,video-button-response,yes_line_7_1cut,0,yes_1
+86,qy5vr4ugm,video-button-response,yes_line_10_1cut,0,yes_1
+86,qy5vr4ugm,video-button-response,yes_line_9_1cut,0,yes_1
+86,qy5vr4ugm,video-button-response,yes_line_9_3cut,1,yes_34
+86,qy5vr4ugm,video-button-response,no_line_3_8cut,1,no_8
+86,qy5vr4ugm,video-button-response,no_line_1_3cut,1,no_34
+86,qy5vr4ugm,video-button-response,no_line_2_8cut,1,no_8
+86,qy5vr4ugm,video-button-response,no_line_2_1cut,1,no_1
+86,qy5vr4ugm,video-button-response,yes_line_8_1cut,0,yes_1
+86,qy5vr4ugm,video-button-response,yes_line_8_3cut,0,yes_34
+86,qy5vr4ugm,video-button-response,yes_line_7_4cut,0,yes_34
+86,qy5vr4ugm,video-button-response,yes_line_7_8cut,1,yes_8
+86,qy5vr4ugm,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""nope, all videos played smoothly""},{""name"":""age"",""value"":""27""},{""name"":""gender"",""value"":""female""},{""name"":""comments"",""value"":""i thought it was super interesting! it was also great to see the karma when people tried to cut but ended up becoming last in line haha. ""}]",debrief
+86,qy5vr4ugm,html-keyboard-response,"""", ,""""
+21,jpfqwmmyn,preload,"""","""",""""
+21,jpfqwmmyn,html-keyboard-response,"""", ,""""
+21,jpfqwmmyn,html-keyboard-response,"""",y,""""
+21,jpfqwmmyn,survey-text,"""","{""instructions1"":""collect bucket of water""}",instructions
+21,jpfqwmmyn,survey-text,"""","{""instructions2"":""when all 8 people collect water""}",instructions
+21,jpfqwmmyn,survey-text,"""","{""instructions3"":""1""}",instructions
+21,jpfqwmmyn,video-button-response,no_line_2_4cut,1,no_34
+21,jpfqwmmyn,video-button-response,yes_line_10_3cut,1,yes_34
+21,jpfqwmmyn,video-button-response,yes_line_10_1cut,0,yes_1
+21,jpfqwmmyn,video-button-response,yes_line_8_8cut,1,yes_8
+21,jpfqwmmyn,video-button-response,yes_line_7_1cut,0,yes_1
+21,jpfqwmmyn,video-button-response,yes_line_8_3cut,1,yes_34
+21,jpfqwmmyn,video-button-response,no_line_3_8cut,1,no_8
+21,jpfqwmmyn,video-button-response,yes_line_8_1cut,0,yes_1
+21,jpfqwmmyn,video-button-response,yes_line_9_1cut,0,yes_1
+21,jpfqwmmyn,video-button-response,no_line_1_3cut,1,no_34
+21,jpfqwmmyn,video-button-response,yes_line_7_8cut,1,yes_8
+21,jpfqwmmyn,video-button-response,no_line_1_1cut,0,no_1
+21,jpfqwmmyn,video-button-response,yes_line_7_4cut,0,yes_34
+21,jpfqwmmyn,video-button-response,no_line_2_8cut,1,no_8
+21,jpfqwmmyn,video-button-response,yes_line_9_3cut,1,yes_34
+21,jpfqwmmyn,video-button-response,yes_line_10_8cut,0,yes_8
+21,jpfqwmmyn,video-button-response,no_line_3_3cut,1,no_34
+21,jpfqwmmyn,video-button-response,yes_line_9_8cut,0,yes_8
+21,jpfqwmmyn,video-button-response,no_line_2_1cut,0,no_1
+21,jpfqwmmyn,video-button-response,no_line_1_8cut,1,no_8
+21,jpfqwmmyn,video-button-response,no_line_3_1cut,0,no_1
+22,5p6tp5uyx,preload,"""","""",""""
+22,5p6tp5uyx,html-keyboard-response,"""", ,""""
+22,5p6tp5uyx,html-keyboard-response,"""",y,""""
+22,5p6tp5uyx,survey-text,"""","{""instructions1"":""collect water""}",instructions
+22,5p6tp5uyx,survey-text,"""","{""instructions2"":""when all 8 people collect water and store it in a wooden storage bucket""}",instructions
+22,5p6tp5uyx,survey-text,"""","{""instructions3"":""1""}",instructions
+22,5p6tp5uyx,video-button-response,no_line_2_1cut,1,no_1
+22,5p6tp5uyx,video-button-response,no_line_3_8cut,1,no_8
+22,5p6tp5uyx,video-button-response,yes_line_8_1cut,1,yes_1
+22,5p6tp5uyx,video-button-response,yes_line_7_1cut,0,yes_1
+22,5p6tp5uyx,video-button-response,yes_line_7_8cut,1,yes_8
+22,5p6tp5uyx,video-button-response,no_line_1_1cut,1,no_1
+22,5p6tp5uyx,video-button-response,no_line_3_3cut,1,no_34
+22,5p6tp5uyx,video-button-response,yes_line_10_1cut,0,yes_1
+22,5p6tp5uyx,video-button-response,no_line_2_4cut,1,no_34
+22,5p6tp5uyx,video-button-response,yes_line_9_1cut,1,yes_1
+22,5p6tp5uyx,video-button-response,yes_line_7_4cut,0,yes_34
+22,5p6tp5uyx,video-button-response,yes_line_8_8cut,0,yes_8
+22,5p6tp5uyx,video-button-response,yes_line_8_3cut,0,yes_34
+22,5p6tp5uyx,video-button-response,yes_line_9_3cut,1,yes_34
+22,5p6tp5uyx,video-button-response,no_line_1_8cut,1,no_8
+22,5p6tp5uyx,video-button-response,yes_line_9_8cut,1,yes_8
+22,5p6tp5uyx,video-button-response,no_line_3_1cut,1,no_1
+22,5p6tp5uyx,video-button-response,yes_line_10_3cut,0,yes_34
+22,5p6tp5uyx,video-button-response,no_line_1_3cut,1,no_34
+22,5p6tp5uyx,video-button-response,no_line_2_8cut,1,no_8
+22,5p6tp5uyx,video-button-response,yes_line_10_8cut,0,yes_8
+22,5p6tp5uyx,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""no""},{""name"":""age"",""value"":""42""},{""name"":""gender"",""value"":""female""},{""name"":""comments"",""value"":""}]",debrief
+28,yegu5oerd,preload,"""","""",""""
+28,yegu5oerd,html-keyboard-response,"""", ,""""
+28,yegu5oerd,html-keyboard-response,"""",y,""""
+28,yegu5oerd,survey-text,"""","{""instructions1"":""bring back water to wooden storage buckets.""}",instructions
+28,yegu5oerd,survey-text,"""","{""instructions2"":""after all 8 people collect water and store it""}",instructions
+28,yegu5oerd,survey-text,"""","{""instructions3"":""1""}",instructions
+28,yegu5oerd,video-button-response,no_line_2_4cut,1,no_34
+28,yegu5oerd,video-button-response,no_line_2_1cut,1,no_1
+28,yegu5oerd,video-button-response,yes_line_10_1cut,0,yes_1
+28,yegu5oerd,video-button-response,yes_line_9_3cut,1,yes_34
+28,yegu5oerd,video-button-response,no_line_1_3cut,1,no_34
+28,yegu5oerd,video-button-response,no_line_2_8cut,1,no_8
+28,yegu5oerd,video-button-response,yes_line_9_1cut,0,yes_1
+28,yegu5oerd,video-button-response,no_line_1_1cut,1,no_1
+28,yegu5oerd,video-button-response,yes_line_7_1cut,0,yes_1
+28,yegu5oerd,video-button-response,yes_line_8_3cut,0,yes_34
+28,yegu5oerd,video-button-response,yes_line_7_8cut,0,yes_8
+28,yegu5oerd,video-button-response,no_line_3_1cut,1,no_1
+28,yegu5oerd,video-button-response,no_line_1_8cut,1,no_8
+28,yegu5oerd,video-button-response,no_line_3_3cut,1,no_34
+28,yegu5oerd,video-button-response,yes_line_10_3cut,0,yes_34
+28,yegu5oerd,video-button-response,yes_line_7_4cut,0,yes_34
+28,yegu5oerd,video-button-response,yes_line_10_8cut,0,yes_8
+28,yegu5oerd,video-button-response,yes_line_8_1cut,0,yes_1
+28,yegu5oerd,video-button-response,yes_line_9_8cut,1,yes_8
+28,yegu5oerd,video-button-response,no_line_3_8cut,1,no_8
+28,yegu5oerd,video-button-response,yes_line_8_8cut,1,yes_8
+29,q2518zzq7,preload,"""","""",""""
+29,q2518zzq7,html-keyboard-response,"""", ,""""
+29,q2518zzq7,html-keyboard-response,"""",y,""""
+29,q2518zzq7,survey-text,"""","{""instructions1"":""Collect water from a water source and bring it back to the wooden storage buckets.""}",instructions
+29,q2518zzq7,survey-text,"""","{""instructions2"":""When all 8 people collect water and store it in a wooden storage bucket.""}",instructions
+29,q2518zzq7,survey-text,"""","{""instructions3"":""1""}",instructions
+29,q2518zzq7,video-button-response,yes_line_7_8cut,1,yes_8
+29,q2518zzq7,video-button-response,yes_line_8_1cut,0,yes_1
+29,q2518zzq7,video-button-response,yes_line_10_1cut,0,yes_1
+29,q2518zzq7,video-button-response,no_line_3_8cut,1,no_8
+29,q2518zzq7,video-button-response,yes_line_9_8cut,1,yes_8
+29,q2518zzq7,video-button-response,no_line_3_1cut,1,no_1
+29,q2518zzq7,video-button-response,no_line_1_3cut,1,no_34
+29,q2518zzq7,video-button-response,no_line_2_8cut,1,no_8
+29,q2518zzq7,video-button-response,no_line_1_8cut,1,no_8
+29,q2518zzq7,video-button-response,yes_line_9_1cut,0,yes_1
+29,q2518zzq7,video-button-response,yes_line_8_3cut,0,yes_34
+29,q2518zzq7,video-button-response,yes_line_7_4cut,0,yes_34
+29,q2518zzq7,video-button-response,yes_line_7_1cut,0,yes_1
+29,q2518zzq7,video-button-response,no_line_2_1cut,1,no_1
+29,q2518zzq7,video-button-response,yes_line_10_3cut,0,yes_34
+29,q2518zzq7,video-button-response,no_line_1_1cut,1,no_1
+29,q2518zzq7,video-button-response,yes_line_8_8cut,1,yes_8
+29,q2518zzq7,video-button-response,no_line_2_4cut,1,no_34
+29,q2518zzq7,video-button-response,no_line_3_3cut,1,no_34
+29,q2518zzq7,video-button-response,yes_line_10_8cut,1,yes_8
+29,q2518zzq7,video-button-response,yes_line_9_3cut,1,yes_34
+24,8lrq3qvqy,preload,"""","""",""""
+24,8lrq3qvqy,html-keyboard-response,"""", ,""""
+24,8lrq3qvqy,html-keyboard-response,"""",y,""""
+24,8lrq3qvqy,survey-text,"""","{""instructions1"":""collecting buckets of water""}",instructions
+24,8lrq3qvqy,survey-text,"""","{""instructions2"":""when all 8 people have collected water""}",instructions
+24,8lrq3qvqy,survey-text,"""","{""instructions3"":""1""}",instructions
+24,8lrq3qvqy,video-button-response,no_line_2_1cut,1,no_1
+24,8lrq3qvqy,video-button-response,yes_line_8_1cut,0,yes_1
+24,8lrq3qvqy,video-button-response,yes_line_7_1cut,0,yes_1
+24,8lrq3qvqy,video-button-response,no_line_1_3cut,1,no_34
+24,8lrq3qvqy,video-button-response,yes_line_9_1cut,0,yes_1
+24,8lrq3qvqy,video-button-response,yes_line_9_8cut,1,yes_8
+24,8lrq3qvqy,video-button-response,yes_line_7_4cut,1,yes_34
+24,8lrq3qvqy,video-button-response,no_line_1_8cut,1,no_8
+24,8lrq3qvqy,video-button-response,no_line_3_3cut,1,no_34
+24,8lrq3qvqy,video-button-response,yes_line_10_8cut,1,yes_8
+24,8lrq3qvqy,video-button-response,no_line_3_8cut,1,no_8
+24,8lrq3qvqy,video-button-response,yes_line_8_8cut,1,yes_8
+24,8lrq3qvqy,video-button-response,yes_line_7_8cut,1,yes_8
+24,8lrq3qvqy,video-button-response,yes_line_8_3cut,0,yes_34
+24,8lrq3qvqy,video-button-response,no_line_2_8cut,1,no_8
+24,8lrq3qvqy,video-button-response,yes_line_10_3cut,1,yes_34
+24,8lrq3qvqy,video-button-response,no_line_1_1cut,1,no_1
+24,8lrq3qvqy,video-button-response,yes_line_10_1cut,0,yes_1
+24,8lrq3qvqy,video-button-response,no_line_2_4cut,1,no_34
+24,8lrq3qvqy,video-button-response,yes_line_9_3cut,1,yes_34
+24,8lrq3qvqy,video-button-response,no_line_3_1cut,1,no_1
+31,je1mosx10,preload,"""","""",""""
+31,je1mosx10,html-keyboard-response,"""", ,""""
+31,je1mosx10,html-keyboard-response,"""",y,""""
+31,je1mosx10,survey-text,"""","{""instructions1"":""To collect water from a water source and bring it back to the wooden storage buckets""}",instructions
+31,je1mosx10,survey-text,"""","{""instructions2"":""When all 8 people collect water and store it in a wooden storage bucket.""}",instructions
+31,je1mosx10,survey-text,"""","{""instructions3"":""1""}",instructions
+31,je1mosx10,video-button-response,yes_line_9_1cut,1,yes_1
+31,je1mosx10,video-button-response,yes_line_9_3cut,0,yes_34
+31,je1mosx10,video-button-response,yes_line_10_8cut,1,yes_8
+31,je1mosx10,video-button-response,no_line_2_4cut,1,no_34
+31,je1mosx10,video-button-response,no_line_1_1cut,1,no_1
+31,je1mosx10,video-button-response,no_line_3_1cut,1,no_1
+31,je1mosx10,video-button-response,no_line_1_3cut,1,no_34
+31,je1mosx10,video-button-response,yes_line_8_3cut,1,yes_34
+31,je1mosx10,video-button-response,yes_line_8_8cut,0,yes_8
+31,je1mosx10,video-button-response,yes_line_7_8cut,1,yes_8
+31,je1mosx10,video-button-response,no_line_2_1cut,1,no_1
+31,je1mosx10,video-button-response,yes_line_9_8cut,1,yes_8
+31,je1mosx10,video-button-response,yes_line_8_1cut,1,yes_1
+31,je1mosx10,video-button-response,yes_line_10_3cut,1,yes_34
+31,je1mosx10,video-button-response,yes_line_7_1cut,1,yes_1
+31,je1mosx10,video-button-response,no_line_1_8cut,1,no_8
+31,je1mosx10,video-button-response,no_line_3_8cut,1,no_8
+31,je1mosx10,video-button-response,no_line_3_3cut,1,no_34
+31,je1mosx10,video-button-response,yes_line_10_1cut,1,yes_1
+31,je1mosx10,video-button-response,no_line_2_8cut,1,no_8
+31,je1mosx10,video-button-response,yes_line_7_4cut,1,yes_34
+38,y1rr2w74j,preload,"""","""",""""
+38,y1rr2w74j,html-keyboard-response,"""", ,""""
+38,y1rr2w74j,html-keyboard-response,"""",y,""""
+38,y1rr2w74j,survey-text,"""","{""instructions1"":""collect one bucket of water for each level""}",instructions
+38,y1rr2w74j,survey-text,"""","{""instructions2"":""when all 8 people collect water in their storage buckets""}",instructions
+38,y1rr2w74j,survey-text,"""","{""instructions3"":""one""}",instructions
+38,y1rr2w74j,video-button-response,yes_line_9_1cut,0,yes_1
+38,y1rr2w74j,video-button-response,yes_line_10_1cut,0,yes_1
+38,y1rr2w74j,video-button-response,no_line_3_3cut,0,no_34
+38,y1rr2w74j,video-button-response,no_line_1_3cut,1,no_34
+38,y1rr2w74j,video-button-response,yes_line_10_8cut,1,yes_8
+38,y1rr2w74j,video-button-response,no_line_1_8cut,1,no_8
+38,y1rr2w74j,video-button-response,no_line_3_1cut,1,no_1
+38,y1rr2w74j,video-button-response,yes_line_10_3cut,0,yes_34
+38,y1rr2w74j,video-button-response,no_line_2_1cut,1,no_1
+38,y1rr2w74j,video-button-response,no_line_2_8cut,1,no_8
+38,y1rr2w74j,video-button-response,no_line_1_1cut,1,no_1
+38,y1rr2w74j,video-button-response,yes_line_8_1cut,0,yes_1
+38,y1rr2w74j,video-button-response,no_line_2_4cut,1,no_34
+38,y1rr2w74j,video-button-response,no_line_3_8cut,1,no_8
+38,y1rr2w74j,video-button-response,yes_line_7_8cut,1,yes_8
+38,y1rr2w74j,video-button-response,yes_line_9_8cut,1,yes_8
+38,y1rr2w74j,video-button-response,yes_line_8_8cut,1,yes_8
+38,y1rr2w74j,video-button-response,yes_line_8_3cut,0,yes_34
+38,y1rr2w74j,video-button-response,yes_line_9_3cut,1,yes_34
+38,y1rr2w74j,video-button-response,yes_line_7_1cut,0,yes_1
+38,y1rr2w74j,video-button-response,yes_line_7_4cut,0,yes_34
+41,7dd34xnph,preload,"""","""",""""
+41,7dd34xnph,html-keyboard-response,"""", ,""""
+41,7dd34xnph,html-keyboard-response,"""",y,""""
+41,7dd34xnph,survey-text,"""","{""instructions1"":""collect one bucket of water for each level""}",instructions
+41,7dd34xnph,survey-text,"""","{""instructions2"":""when all 8 people collect water and store it in a wooden storage bucket""}",instructions
+41,7dd34xnph,survey-text,"""","{""instructions3"":""one""}",instructions
+41,7dd34xnph,video-button-response,no_line_2_8cut,0,no_8
+41,7dd34xnph,video-button-response,no_line_3_8cut,1,no_8
+41,7dd34xnph,video-button-response,yes_line_7_4cut,0,yes_34
+41,7dd34xnph,video-button-response,no_line_2_1cut,0,no_1
+41,7dd34xnph,video-button-response,no_line_1_3cut,1,no_34
+41,7dd34xnph,video-button-response,yes_line_10_8cut,1,yes_8
+41,7dd34xnph,video-button-response,yes_line_7_8cut,1,yes_8
+41,7dd34xnph,video-button-response,yes_line_7_1cut,1,yes_1
+41,7dd34xnph,video-button-response,no_line_1_8cut,1,no_8
+41,7dd34xnph,video-button-response,yes_line_8_8cut,1,yes_8
+41,7dd34xnph,video-button-response,no_line_2_4cut,1,no_34
+41,7dd34xnph,video-button-response,yes_line_8_3cut,1,yes_34
+41,7dd34xnph,video-button-response,yes_line_10_3cut,1,yes_34
+41,7dd34xnph,video-button-response,no_line_3_3cut,1,no_34
+41,7dd34xnph,video-button-response,yes_line_9_1cut,1,yes_1
+41,7dd34xnph,video-button-response,no_line_3_1cut,1,no_1
+41,7dd34xnph,video-button-response,yes_line_9_3cut,1,yes_34
+41,7dd34xnph,video-button-response,yes_line_10_1cut,1,yes_1
+41,7dd34xnph,video-button-response,no_line_1_1cut,1,no_1
+41,7dd34xnph,video-button-response,yes_line_9_8cut,1,yes_8
+41,7dd34xnph,video-button-response,yes_line_8_1cut,1,yes_1
+43,s4vz1bsd8,preload,"""","""",""""
+43,s4vz1bsd8,html-keyboard-response,"""", ,""""
+43,s4vz1bsd8,html-keyboard-response,"""",y,""""
+43,s4vz1bsd8,survey-text,"""","{""instructions1"":""try to collect water from a water source and bring it back to the wooden storage buckets.""}",instructions
+43,s4vz1bsd8,survey-text,"""","{""instructions2"":""when 8 people collect water and store it in a wooden storage bucket""}",instructions
+43,s4vz1bsd8,survey-text,"""","{""instructions3"":""8 ""}",instructions
+43,s4vz1bsd8,video-button-response,no_line_3_8cut,0,no_8
+43,s4vz1bsd8,video-button-response,yes_line_9_1cut,1,yes_1
+43,s4vz1bsd8,video-button-response,no_line_2_4cut,1,no_34
+43,s4vz1bsd8,video-button-response,yes_line_10_8cut,1,yes_8
+43,s4vz1bsd8,video-button-response,yes_line_9_3cut,1,yes_34
+43,s4vz1bsd8,video-button-response,yes_line_9_8cut,1,yes_8
+43,s4vz1bsd8,video-button-response,no_line_1_8cut,1,no_8
+43,s4vz1bsd8,video-button-response,yes_line_8_8cut,1,yes_8
+43,s4vz1bsd8,video-button-response,no_line_3_1cut,1,no_1
+43,s4vz1bsd8,video-button-response,no_line_2_1cut,1,no_1
+43,s4vz1bsd8,video-button-response,yes_line_10_1cut,1,yes_1
+43,s4vz1bsd8,video-button-response,yes_line_7_4cut,1,yes_34
+43,s4vz1bsd8,video-button-response,no_line_1_3cut,1,no_34
+43,s4vz1bsd8,video-button-response,yes_line_7_8cut,1,yes_8
+43,s4vz1bsd8,video-button-response,yes_line_10_3cut,1,yes_34
+43,s4vz1bsd8,video-button-response,no_line_1_1cut,1,no_1
+43,s4vz1bsd8,video-button-response,yes_line_7_1cut,1,yes_1
+43,s4vz1bsd8,video-button-response,no_line_3_3cut,1,no_34
+43,s4vz1bsd8,video-button-response,no_line_2_8cut,1,no_8
+43,s4vz1bsd8,video-button-response,yes_line_8_1cut,1,yes_1
+43,s4vz1bsd8,video-button-response,yes_line_8_3cut,1,yes_34
+44,wqb83qlwv,preload,"""","""",""""
+44,wqb83qlwv,html-keyboard-response,"""", ,""""
+44,wqb83qlwv,html-keyboard-response,"""",y,""""
+44,wqb83qlwv,survey-text,"""","{""instructions1"":""To collect water from a water source and bring it back to the wooden storage buckets.""}",instructions
+44,wqb83qlwv,survey-text,"""","{""instructions2"":""All 8 people collect water and store it in a wooden storage bucket.""}",instructions
+44,wqb83qlwv,survey-text,"""","{""instructions3"":""One""}",instructions
+44,wqb83qlwv,video-button-response,yes_line_7_8cut,1,yes_8
+44,wqb83qlwv,video-button-response,no_line_3_1cut,0,no_1
+44,wqb83qlwv,video-button-response,no_line_1_8cut,0,no_8
+44,wqb83qlwv,video-button-response,yes_line_8_1cut,0,yes_1
+44,wqb83qlwv,video-button-response,yes_line_8_8cut,1,yes_8
+44,wqb83qlwv,video-button-response,yes_line_7_4cut,0,yes_34
+44,wqb83qlwv,video-button-response,yes_line_10_8cut,1,yes_8
+44,wqb83qlwv,video-button-response,yes_line_7_1cut,0,yes_1
+44,wqb83qlwv,video-button-response,no_line_1_1cut,1,no_1
+44,wqb83qlwv,video-button-response,no_line_2_8cut,1,no_8
+44,wqb83qlwv,video-button-response,yes_line_10_3cut,1,yes_34
+44,wqb83qlwv,video-button-response,yes_line_9_3cut,1,yes_34
+44,wqb83qlwv,video-button-response,no_line_3_3cut,1,no_34
+44,wqb83qlwv,video-button-response,yes_line_10_1cut,0,yes_1
+44,wqb83qlwv,video-button-response,no_line_3_8cut,1,no_8
+44,wqb83qlwv,video-button-response,yes_line_8_3cut,0,yes_34
+44,wqb83qlwv,video-button-response,no_line_2_4cut,1,no_34
+44,wqb83qlwv,video-button-response,no_line_1_3cut,1,no_34
+44,wqb83qlwv,video-button-response,yes_line_9_8cut,1,yes_8
+44,wqb83qlwv,video-button-response,no_line_2_1cut,1,no_1
+44,wqb83qlwv,video-button-response,yes_line_9_1cut,0,yes_1
+47,vomwsfvjk,preload,"""","""",""""
+47,vomwsfvjk,html-keyboard-response,"""", ,""""
+47,vomwsfvjk,html-keyboard-response,"""",y,""""
+47,vomwsfvjk,survey-text,"""","{""instructions1"":""To collect buckets of water""}",instructions
+47,vomwsfvjk,survey-text,"""","{""instructions2"":""When all 8 people collect water and store it in a wooden storage bucket""}",instructions
+47,vomwsfvjk,survey-text,"""","{""instructions3"":""1""}",instructions
+47,vomwsfvjk,video-button-response,no_line_2_4cut,1,no_34
+47,vomwsfvjk,video-button-response,yes_line_7_4cut,1,yes_34
+47,vomwsfvjk,video-button-response,no_line_3_1cut,1,no_1
+47,vomwsfvjk,video-button-response,no_line_1_3cut,1,no_34
+47,vomwsfvjk,video-button-response,yes_line_7_1cut,0,yes_1
+47,vomwsfvjk,video-button-response,no_line_3_8cut,1,no_8
+47,vomwsfvjk,video-button-response,yes_line_7_8cut,1,yes_8
+47,vomwsfvjk,video-button-response,no_line_1_8cut,1,no_8
+47,vomwsfvjk,video-button-response,yes_line_10_1cut,0,yes_1
+47,vomwsfvjk,video-button-response,no_line_3_3cut,1,no_34
+47,vomwsfvjk,video-button-response,yes_line_8_3cut,1,yes_34
+47,vomwsfvjk,video-button-response,yes_line_8_8cut,0,yes_8
+47,vomwsfvjk,video-button-response,yes_line_10_3cut,0,yes_34
+47,vomwsfvjk,video-button-response,yes_line_10_8cut,1,yes_8
+47,vomwsfvjk,video-button-response,no_line_1_1cut,1,no_1
+47,vomwsfvjk,video-button-response,yes_line_9_8cut,0,yes_8
+47,vomwsfvjk,video-button-response,no_line_2_8cut,1,no_8
+47,vomwsfvjk,video-button-response,yes_line_9_1cut,0,yes_1
+47,vomwsfvjk,video-button-response,no_line_2_1cut,1,no_1
+47,vomwsfvjk,video-button-response,yes_line_9_3cut,1,yes_34
+47,vomwsfvjk,video-button-response,yes_line_8_1cut,0,yes_1
+52,dhua8djp5,preload,"""","""",""""
+52,dhua8djp5,html-keyboard-response,"""", ,""""
+52,dhua8djp5,html-keyboard-response,"""",y,""""
+52,dhua8djp5,survey-text,"""","{""instructions1"":""collect water from a water source and bring it back to the wooden storage buckets""}",instructions
+52,dhua8djp5,survey-text,"""","{""instructions2"":""when all 8 people collect water and store it in a wooden storage bucket""}",instructions
+52,dhua8djp5,survey-text,"""","{""instructions3"":""1""}",instructions
+52,dhua8djp5,video-button-response,yes_line_8_1cut,0,yes_1
+52,dhua8djp5,video-button-response,no_line_1_3cut,1,no_34
+52,dhua8djp5,video-button-response,no_line_1_1cut,1,no_1
+52,dhua8djp5,video-button-response,yes_line_7_1cut,0,yes_1
+52,dhua8djp5,video-button-response,yes_line_10_8cut,1,yes_8
+52,dhua8djp5,video-button-response,yes_line_8_8cut,1,yes_8
+52,dhua8djp5,video-button-response,yes_line_7_4cut,0,yes_34
+52,dhua8djp5,video-button-response,yes_line_7_8cut,1,yes_8
+52,dhua8djp5,video-button-response,no_line_1_8cut,1,no_8
+52,dhua8djp5,video-button-response,no_line_3_8cut,1,no_8
+52,dhua8djp5,video-button-response,no_line_2_4cut,1,no_34
+52,dhua8djp5,video-button-response,yes_line_9_1cut,1,yes_1
+52,dhua8djp5,video-button-response,no_line_2_1cut,1,no_1
+52,dhua8djp5,video-button-response,yes_line_10_3cut,0,yes_34
+52,dhua8djp5,video-button-response,no_line_3_3cut,1,no_34
+52,dhua8djp5,video-button-response,yes_line_10_1cut,0,yes_1
+52,dhua8djp5,video-button-response,yes_line_9_3cut,1,yes_34
+52,dhua8djp5,video-button-response,yes_line_9_8cut,1,yes_8
+52,dhua8djp5,video-button-response,yes_line_8_3cut,1,yes_34
+52,dhua8djp5,video-button-response,no_line_2_8cut,1,no_8
+52,dhua8djp5,video-button-response,no_line_3_1cut,1,no_1
+54,pxnuzdra2,preload,"""","""",""""
+54,pxnuzdra2,html-keyboard-response,"""", ,""""
+54,pxnuzdra2,html-keyboard-response,"""",y,""""
+54,pxnuzdra2,survey-text,"""","{""instructions1"":""To collect buckets of water as fast as possible""}",instructions
+54,pxnuzdra2,survey-text,"""","{""instructions2"":""When all 8 people collect water and store it in the bucket.""}",instructions
+54,pxnuzdra2,survey-text,"""","{""instructions3"":""1""}",instructions
+54,pxnuzdra2,video-button-response,no_line_3_8cut,1,no_8
+54,pxnuzdra2,video-button-response,no_line_1_1cut,0,no_1
+54,pxnuzdra2,video-button-response,no_line_2_1cut,1,no_1
+54,pxnuzdra2,video-button-response,no_line_2_8cut,1,no_8
+54,pxnuzdra2,video-button-response,yes_line_8_8cut,1,yes_8
+54,pxnuzdra2,video-button-response,no_line_3_1cut,0,no_1
+54,pxnuzdra2,video-button-response,yes_line_9_8cut,0,yes_8
+54,pxnuzdra2,video-button-response,yes_line_7_4cut,0,yes_34
+54,pxnuzdra2,video-button-response,no_line_1_3cut,1,no_34
+54,pxnuzdra2,video-button-response,yes_line_10_3cut,1,yes_34
+54,pxnuzdra2,video-button-response,yes_line_7_1cut,0,yes_1
+54,pxnuzdra2,video-button-response,yes_line_9_1cut,0,yes_1
+54,pxnuzdra2,video-button-response,yes_line_10_8cut,1,yes_8
+54,pxnuzdra2,video-button-response,yes_line_9_3cut,1,yes_34
+54,pxnuzdra2,video-button-response,no_line_1_8cut,1,no_8
+54,pxnuzdra2,video-button-response,yes_line_8_1cut,0,yes_1
+54,pxnuzdra2,video-button-response,no_line_3_3cut,1,no_34
+54,pxnuzdra2,video-button-response,yes_line_7_8cut,1,yes_8
+54,pxnuzdra2,video-button-response,yes_line_10_1cut,0,yes_1
+54,pxnuzdra2,video-button-response,no_line_2_4cut,1,no_34
+54,pxnuzdra2,video-button-response,yes_line_8_3cut,0,yes_34
+70,4jnneonkh,preload,"""","""",""""
+70,4jnneonkh,html-keyboard-response,"""", ,""""
+70,4jnneonkh,html-keyboard-response,"""",y,""""
+70,4jnneonkh,survey-text,"""","{""instructions1"":""collect water""}",instructions
+70,4jnneonkh,survey-text,"""","{""instructions2"":""when all 8 people collect water""}",instructions
+70,4jnneonkh,survey-text,"""","{""instructions3"":""1""}",instructions
+70,4jnneonkh,video-button-response,yes_line_10_1cut,0,yes_1
+70,4jnneonkh,video-button-response,no_line_3_8cut,1,no_8
+70,4jnneonkh,video-button-response,yes_line_9_1cut,0,yes_1
+70,4jnneonkh,video-button-response,yes_line_10_3cut,0,yes_34
+70,4jnneonkh,video-button-response,yes_line_9_3cut,0,yes_34
+70,4jnneonkh,video-button-response,yes_line_7_4cut,0,yes_34
+70,4jnneonkh,video-button-response,yes_line_7_8cut,0,yes_8
+70,4jnneonkh,video-button-response,yes_line_9_8cut,1,yes_8
+70,4jnneonkh,video-button-response,no_line_1_1cut,1,no_1
+70,4jnneonkh,video-button-response,yes_line_7_1cut,0,yes_1
+70,4jnneonkh,video-button-response,yes_line_8_8cut,0,yes_8
+70,4jnneonkh,video-button-response,yes_line_8_1cut,0,yes_1
+70,4jnneonkh,video-button-response,no_line_2_1cut,1,no_1
+70,4jnneonkh,video-button-response,no_line_3_1cut,1,no_1
+70,4jnneonkh,video-button-response,yes_line_8_3cut,0,yes_34
+70,4jnneonkh,video-button-response,no_line_1_8cut,1,no_8
+70,4jnneonkh,video-button-response,no_line_3_3cut,1,no_34
+70,4jnneonkh,video-button-response,no_line_2_4cut,1,no_34
+70,4jnneonkh,video-button-response,no_line_2_8cut,1,no_8
+70,4jnneonkh,video-button-response,yes_line_10_8cut,0,yes_8
+70,4jnneonkh,video-button-response,no_line_1_3cut,1,no_34
+8,y5hgtq409,preload,"""","""",""""
+8,y5hgtq409,html-keyboard-response,"""", ,""""
+8,y5hgtq409,html-keyboard-response,"""",y,""""
+8,y5hgtq409,survey-text,"""","{""instructions1"":""For each person to collect one bucket of water as fast as possible.""}",instructions
+8,y5hgtq409,survey-text,"""","{""instructions2"":""When all 8 people collect water and store it in a wooden storage bucket.""}",instructions
+8,y5hgtq409,survey-text,"""","{""instructions3"":""1""}",instructions
+8,y5hgtq409,video-button-response,yes_line_10_8cut,1,yes_8
+8,y5hgtq409,video-button-response,yes_line_7_4cut,0,yes_34
+8,y5hgtq409,video-button-response,no_line_1_3cut,1,no_34
+8,y5hgtq409,video-button-response,yes_line_8_3cut,1,yes_34
+8,y5hgtq409,video-button-response,no_line_3_3cut,1,no_34
+8,y5hgtq409,video-button-response,no_line_2_8cut,1,no_8
+8,y5hgtq409,video-button-response,yes_line_9_3cut,1,yes_34
+8,y5hgtq409,video-button-response,yes_line_8_1cut,0,yes_1
+8,y5hgtq409,video-button-response,yes_line_10_3cut,1,yes_34
+8,y5hgtq409,video-button-response,yes_line_9_1cut,0,yes_1
+8,y5hgtq409,video-button-response,no_line_2_4cut,1,no_34
+8,y5hgtq409,video-button-response,yes_line_8_8cut,0,yes_8
+8,y5hgtq409,video-button-response,no_line_1_8cut,1,no_8
+8,y5hgtq409,video-button-response,yes_line_7_1cut,0,yes_1
+8,y5hgtq409,video-button-response,no_line_2_1cut,1,no_1
+8,y5hgtq409,video-button-response,no_line_1_1cut,1,no_1
+8,y5hgtq409,video-button-response,yes_line_9_8cut,1,yes_8
+8,y5hgtq409,video-button-response,yes_line_10_1cut,0,yes_1
+8,y5hgtq409,video-button-response,no_line_3_1cut,1,no_1
+8,y5hgtq409,video-button-response,yes_line_7_8cut,1,yes_8
+8,y5hgtq409,video-button-response,no_line_3_8cut,1,no_8
+81,x878jr7xj,preload,"""","""",""""
+81,x878jr7xj,html-keyboard-response,"""", ,""""
+81,x878jr7xj,html-keyboard-response,"""",y,""""
+81,x878jr7xj,survey-text,"""","{""instructions1"":""collect a bucket of water""}",instructions
+81,x878jr7xj,survey-text,"""","{""instructions2"":""When all 8 people collect water and store it in a wooden storage bucket.""}",instructions
+81,x878jr7xj,survey-text,"""","{""instructions3"":""One""}",instructions
+81,x878jr7xj,video-button-response,yes_line_8_3cut,1,yes_34
+81,x878jr7xj,video-button-response,no_line_3_3cut,1,no_34
+81,x878jr7xj,video-button-response,no_line_1_8cut,1,no_8
+81,x878jr7xj,video-button-response,no_line_2_4cut,1,no_34
+81,x878jr7xj,video-button-response,yes_line_9_1cut,1,yes_1
+81,x878jr7xj,video-button-response,yes_line_9_3cut,1,yes_34
+81,x878jr7xj,video-button-response,yes_line_10_1cut,0,yes_1
+81,x878jr7xj,video-button-response,no_line_1_3cut,1,no_34
+81,x878jr7xj,video-button-response,no_line_3_1cut,1,no_1
+81,x878jr7xj,video-button-response,no_line_1_1cut,1,no_1
+81,x878jr7xj,video-button-response,yes_line_8_1cut,1,yes_1
+81,x878jr7xj,video-button-response,yes_line_9_8cut,1,yes_8
+81,x878jr7xj,video-button-response,no_line_2_1cut,1,no_1
+81,x878jr7xj,video-button-response,no_line_3_8cut,1,no_8
+81,x878jr7xj,video-button-response,yes_line_7_8cut,0,yes_8
+81,x878jr7xj,video-button-response,no_line_2_8cut,1,no_8
+81,x878jr7xj,video-button-response,yes_line_10_3cut,0,yes_34
+81,x878jr7xj,video-button-response,yes_line_7_1cut,1,yes_1
+81,x878jr7xj,video-button-response,yes_line_8_8cut,1,yes_8
+81,x878jr7xj,video-button-response,yes_line_10_8cut,1,yes_8
+81,x878jr7xj,video-button-response,yes_line_7_4cut,1,yes_34
+9,ethsjhcgc,preload,"""","""",""""
+9,ethsjhcgc,html-keyboard-response,"""", ,""""
+9,ethsjhcgc,html-keyboard-response,"""",y,""""
+9,ethsjhcgc,survey-text,"""","{""instructions1"":""collect water ""}",instructions
+9,ethsjhcgc,survey-text,"""","{""instructions2"":""when all 8 people collect water and store it in a wooden storage bucket""}",instructions
+9,ethsjhcgc,survey-text,"""","{""instructions3"":""1""}",instructions
+9,ethsjhcgc,video-button-response,no_line_1_8cut,1,no_8
+9,ethsjhcgc,video-button-response,yes_line_10_1cut,0,yes_1
+9,ethsjhcgc,video-button-response,yes_line_9_1cut,1,yes_1
+9,ethsjhcgc,video-button-response,yes_line_9_3cut,1,yes_34
+9,ethsjhcgc,video-button-response,yes_line_7_8cut,0,yes_8
+9,ethsjhcgc,video-button-response,yes_line_10_8cut,0,yes_8
+9,ethsjhcgc,video-button-response,yes_line_7_4cut,0,yes_34
+9,ethsjhcgc,video-button-response,no_line_2_8cut,1,no_8
+9,ethsjhcgc,video-button-response,no_line_3_1cut,1,no_1
+9,ethsjhcgc,video-button-response,no_line_1_1cut,1,no_1
+9,ethsjhcgc,video-button-response,no_line_2_4cut,1,no_34
+9,ethsjhcgc,video-button-response,no_line_2_1cut,1,no_1
+9,ethsjhcgc,video-button-response,yes_line_8_8cut,0,yes_8
+9,ethsjhcgc,video-button-response,yes_line_10_3cut,0,yes_34
+9,ethsjhcgc,video-button-response,yes_line_8_1cut,0,yes_1
+9,ethsjhcgc,video-button-response,no_line_1_3cut,1,no_34
+9,ethsjhcgc,video-button-response,yes_line_8_3cut,0,yes_34
+9,ethsjhcgc,video-button-response,no_line_3_8cut,1,no_8
+9,ethsjhcgc,video-button-response,yes_line_9_8cut,1,yes_8
+9,ethsjhcgc,video-button-response,no_line_3_3cut,1,no_34
+9,ethsjhcgc,video-button-response,yes_line_7_1cut,0,yes_1

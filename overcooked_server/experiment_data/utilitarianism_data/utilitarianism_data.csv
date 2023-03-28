@@ -1,0 +1,1093 @@
+run_id,ID,trial_type,stimulus_name,response,trial_category
+11,x7qy5qm7b,preload,"""","""",""""
+11,x7qy5qm7b,html-keyboard-response,"""", ,""""
+11,x7qy5qm7b,html-keyboard-response,"""",y,""""
+11,x7qy5qm7b,survey-text,"""","{""instructions1"":""Collect water from a water source and bring it back to the wooden storage buckets.""}",instructions
+11,x7qy5qm7b,survey-text,"""","{""instructions2"":""one""}",instructions
+11,x7qy5qm7b,survey-text,"""","{""instructions3"":""Think about how everyone is slowed down because of a line cutter""}",instructions
+11,x7qy5qm7b,video-slider-response,yes_line_8_1cut,-12,yes_1
+11,x7qy5qm7b,video-slider-response,yes_line_9_1cut,0,yes_1
+11,x7qy5qm7b,video-slider-response,maybe_line_new_3_1cut,0,maybe_1
+11,x7qy5qm7b,video-slider-response,yes_line_10_1cut,-50,yes_1
+11,x7qy5qm7b,video-slider-response,maybe_line_new_5_1cut,-22,maybe_1
+11,x7qy5qm7b,video-slider-response,maybe_line_new_1_1cut,28,maybe_1
+11,x7qy5qm7b,video-slider-response,no_line_2_1cut,45,no_1
+11,x7qy5qm7b,video-slider-response,yes_line_7_1cut,0,yes_1
+11,x7qy5qm7b,video-slider-response,maybe_line_new_4_1cut,-10,maybe_1
+11,x7qy5qm7b,video-slider-response,no_line_3_1cut,31,no_1
+11,x7qy5qm7b,video-slider-response,maybe_line_new_6_1cut,-30,maybe_1
+11,x7qy5qm7b,video-slider-response,maybe_line_new_2_1cut,31,maybe_1
+11,x7qy5qm7b,video-slider-response,no_line_1_1cut,33,no_1
+11,x7qy5qm7b,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""No""},{""name"":""age"",""value"":""25""},{""name"":""gender"",""value"":""male""},{""name"":""comments"",""value"":""}]",debrief
+11,x7qy5qm7b,survey-text,"""","{""Q0"":""x7qy5qm7b""}",""""
+12,hvr4p6vlz,preload,"""","""",""""
+12,hvr4p6vlz,html-keyboard-response,"""", ,""""
+12,hvr4p6vlz,html-keyboard-response,"""",y,""""
+12,hvr4p6vlz,survey-text,"""","{""instructions1"":""how has everyone slowed down by someone leaving the line""}",instructions
+12,hvr4p6vlz,survey-text,"""","{""instructions2"":""1""}",instructions
+12,hvr4p6vlz,survey-text,"""","{""instructions3"":""people can stay in line or leave ""}",instructions
+12,hvr4p6vlz,video-slider-response,yes_line_8_1cut,3,yes_1
+12,hvr4p6vlz,video-slider-response,maybe_line_new_5_1cut,-9,maybe_1
+12,hvr4p6vlz,video-slider-response,maybe_line_new_3_1cut,40,maybe_1
+12,hvr4p6vlz,video-slider-response,no_line_1_1cut,8,no_1
+12,hvr4p6vlz,video-slider-response,maybe_line_new_6_1cut,19,maybe_1
+12,hvr4p6vlz,video-slider-response,yes_line_7_1cut,25,yes_1
+12,hvr4p6vlz,video-slider-response,no_line_2_1cut,41,no_1
+12,hvr4p6vlz,video-slider-response,yes_line_9_1cut,-17,yes_1
+12,hvr4p6vlz,video-slider-response,yes_line_10_1cut,-21,yes_1
+12,hvr4p6vlz,video-slider-response,no_line_3_1cut,-11,no_1
+12,hvr4p6vlz,video-slider-response,maybe_line_new_1_1cut,-6,maybe_1
+12,hvr4p6vlz,video-slider-response,maybe_line_new_2_1cut,-11,maybe_1
+12,hvr4p6vlz,video-slider-response,maybe_line_new_4_1cut,50,maybe_1
+12,hvr4p6vlz,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""none""},{""name"":""age"",""value"":""43""},{""name"":""gender"",""value"":""male""},{""name"":""comments"",""value"":""}]",debrief
+12,hvr4p6vlz,survey-text,"""","{""Q0"":""hvr4p6vlz""}",""""
+14,kxmw7xcrg,preload,"""","""",""""
+14,kxmw7xcrg,html-keyboard-response,"""", ,""""
+14,kxmw7xcrg,html-keyboard-response,"""",y,""""
+14,kxmw7xcrg,survey-text,"""","{""instructions1"":"" to collect water from a water source and bring it back to the wooden storage buckets""}",instructions
+14,kxmw7xcrg,survey-text,"""","{""instructions2"":""one""}",instructions
+14,kxmw7xcrg,survey-text,"""","{""instructions3"":"" how much everyone will be slowed down as a result of their decision to leave the line""}",instructions
+14,kxmw7xcrg,video-slider-response,maybe_line_new_4_1cut,-7,maybe_1
+14,kxmw7xcrg,video-slider-response,no_line_1_1cut,-9,no_1
+14,kxmw7xcrg,video-slider-response,maybe_line_new_3_1cut,-21,maybe_1
+14,kxmw7xcrg,video-slider-response,yes_line_7_1cut,-50,yes_1
+14,kxmw7xcrg,video-slider-response,maybe_line_new_6_1cut,9,maybe_1
+14,kxmw7xcrg,video-slider-response,maybe_line_new_5_1cut,-36,maybe_1
+14,kxmw7xcrg,video-slider-response,yes_line_9_1cut,8,yes_1
+14,kxmw7xcrg,video-slider-response,maybe_line_new_1_1cut,-10,maybe_1
+14,kxmw7xcrg,video-slider-response,yes_line_10_1cut,-50,yes_1
+14,kxmw7xcrg,video-slider-response,maybe_line_new_2_1cut,16,maybe_1
+14,kxmw7xcrg,video-slider-response,no_line_2_1cut,0,no_1
+14,kxmw7xcrg,video-slider-response,yes_line_8_1cut,13,yes_1
+14,kxmw7xcrg,video-slider-response,no_line_3_1cut,23,no_1
+14,kxmw7xcrg,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""No""},{""name"":""age"",""value"":""30""},{""name"":""gender"",""value"":""female""},{""name"":""comments"",""value"":""No""}]",debrief
+14,kxmw7xcrg,survey-text,"""","{""Q0"":""kxmw7xcrg""}",""""
+16,7as6f9c0k,preload,"""","""",""""
+16,7as6f9c0k,html-keyboard-response,"""", ,""""
+16,7as6f9c0k,html-keyboard-response,"""",y,""""
+16,7as6f9c0k,survey-text,"""","{""instructions1"":""collect one bucket of water for each level""}",instructions
+16,7as6f9c0k,survey-text,"""","{""instructions2"":""one""}",instructions
+16,7as6f9c0k,survey-text,"""","{""instructions3"":""how much everyone will be slowed down as a result of their decision""}",instructions
+16,7as6f9c0k,video-slider-response,no_line_1_1cut,0,no_1
+16,7as6f9c0k,video-slider-response,yes_line_8_1cut,-9,yes_1
+16,7as6f9c0k,video-slider-response,no_line_3_1cut,-35,no_1
+16,7as6f9c0k,video-slider-response,maybe_line_new_2_1cut,-10,maybe_1
+16,7as6f9c0k,video-slider-response,yes_line_9_1cut,-50,yes_1
+16,7as6f9c0k,video-slider-response,no_line_2_1cut,-29,no_1
+16,7as6f9c0k,video-slider-response,maybe_line_new_3_1cut,-50,maybe_1
+16,7as6f9c0k,video-slider-response,maybe_line_new_5_1cut,-8,maybe_1
+16,7as6f9c0k,video-slider-response,maybe_line_new_6_1cut,-50,maybe_1
+16,7as6f9c0k,video-slider-response,maybe_line_new_1_1cut,-50,maybe_1
+16,7as6f9c0k,video-slider-response,yes_line_10_1cut,-3,yes_1
+16,7as6f9c0k,video-slider-response,maybe_line_new_4_1cut,-50,maybe_1
+16,7as6f9c0k,video-slider-response,yes_line_7_1cut,0,yes_1
+16,7as6f9c0k,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""no""},{""name"":""age"",""value"":""55""},{""name"":""gender"",""value"":""female""},{""name"":""comments"",""value"":""thank you""}]",debrief
+16,7as6f9c0k,survey-text,"""","{""Q0"":""7as6f9c0k ""}",""""
+17,37785575c,preload,"""","""",""""
+17,37785575c,html-keyboard-response,"""", ,""""
+17,37785575c,html-keyboard-response,"""",y,""""
+17,37785575c,survey-text,"""","{""instructions1"":""To collect water from a water source and bring it back to the wooden storage buckets.""}",instructions
+17,37785575c,survey-text,"""","{""instructions2"":""one""}",instructions
+17,37785575c,survey-text,"""","{""instructions3"":""to think about how much everyone will be slowed down as a result of their decision. ""}",instructions
+17,37785575c,video-slider-response,maybe_line_new_3_1cut,0,maybe_1
+17,37785575c,video-slider-response,no_line_2_1cut,14,no_1
+17,37785575c,video-slider-response,yes_line_10_1cut,-28,yes_1
+17,37785575c,video-slider-response,maybe_line_new_4_1cut,0,maybe_1
+17,37785575c,video-slider-response,maybe_line_new_2_1cut,-28,maybe_1
+17,37785575c,video-slider-response,maybe_line_new_5_1cut,0,maybe_1
+17,37785575c,video-slider-response,no_line_1_1cut,8,no_1
+17,37785575c,video-slider-response,yes_line_7_1cut,3,yes_1
+17,37785575c,video-slider-response,yes_line_8_1cut,7,yes_1
+17,37785575c,video-slider-response,yes_line_9_1cut,8,yes_1
+17,37785575c,video-slider-response,maybe_line_new_1_1cut,-3,maybe_1
+17,37785575c,video-slider-response,no_line_3_1cut,-20,no_1
+17,37785575c,video-slider-response,maybe_line_new_6_1cut,7,maybe_1
+17,37785575c,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""N/A.""},{""name"":""age"",""value"":""35""},{""name"":""gender"",""value"":""male""},{""name"":""comments"",""value"":""I wasn't sure whether the character leaving the line was cutting line to take the water or simply leaving the line. I think the wording could be changed to make this less confusing for participants. Just my observation. ""}]",debrief
+17,37785575c,survey-text,"""","{""Q0"":""37785575c ""}",""""
+19,j3nl8qf6f,preload,"""","""",""""
+19,j3nl8qf6f,html-keyboard-response,"""", ,""""
+19,j3nl8qf6f,html-keyboard-response,"""",y,""""
+19,j3nl8qf6f,survey-text,"""","{""instructions1"":""They need to collect water water from water source in buckets and earn points. ""}",instructions
+19,j3nl8qf6f,survey-text,"""","{""instructions2"":""Each person can move one square per time step in one of the four cardinal directions.""}",instructions
+19,j3nl8qf6f,survey-text,"""","{""instructions3"":""I need to think about how much everyone will be slowed down as a result decision of other people leaving the line.""}",instructions
+19,j3nl8qf6f,video-slider-response,no_line_3_1cut,8,no_1
+19,j3nl8qf6f,video-slider-response,maybe_line_new_4_1cut,-14,maybe_1
+19,j3nl8qf6f,video-slider-response,maybe_line_new_6_1cut,7,maybe_1
+19,j3nl8qf6f,video-slider-response,yes_line_9_1cut,8,yes_1
+19,j3nl8qf6f,video-slider-response,yes_line_8_1cut,-10,yes_1
+19,j3nl8qf6f,video-slider-response,yes_line_10_1cut,-30,yes_1
+19,j3nl8qf6f,video-slider-response,no_line_1_1cut,-5,no_1
+19,j3nl8qf6f,video-slider-response,maybe_line_new_5_1cut,-33,maybe_1
+19,j3nl8qf6f,video-slider-response,maybe_line_new_2_1cut,-9,maybe_1
+19,j3nl8qf6f,video-slider-response,yes_line_7_1cut,-9,yes_1
+19,j3nl8qf6f,video-slider-response,no_line_2_1cut,7,no_1
+19,j3nl8qf6f,video-slider-response,maybe_line_new_1_1cut,8,maybe_1
+19,j3nl8qf6f,video-slider-response,maybe_line_new_3_1cut,9,maybe_1
+19,j3nl8qf6f,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""no""},{""name"":""age"",""value"":""40""},{""name"":""gender"",""value"":""male""},{""name"":""comments"",""value"":""Thank You""}]",debrief
+19,j3nl8qf6f,survey-text,"""","{""Q0"":""j3nl8qf6f""}",""""
+23,t2l51nme1,preload,"""","""",""""
+23,t2l51nme1,html-keyboard-response,"""", ,""""
+23,t2l51nme1,html-keyboard-response,"""",y,""""
+23,t2l51nme1,survey-text,"""","{""instructions1"":""Fill water storage with buckets""}",instructions
+23,t2l51nme1,survey-text,"""","{""instructions2"":""1""}",instructions
+23,t2l51nme1,survey-text,"""","{""instructions3"":""How much everyone was slowed down.""}",instructions
+23,t2l51nme1,video-slider-response,maybe_line_new_1_1cut,-3,maybe_1
+23,t2l51nme1,video-slider-response,maybe_line_new_3_1cut,5,maybe_1
+23,t2l51nme1,video-slider-response,yes_line_7_1cut,0,yes_1
+23,t2l51nme1,video-slider-response,yes_line_9_1cut,-14,yes_1
+23,t2l51nme1,video-slider-response,yes_line_8_1cut,0,yes_1
+23,t2l51nme1,video-slider-response,maybe_line_new_6_1cut,5,maybe_1
+23,t2l51nme1,video-slider-response,maybe_line_new_2_1cut,5,maybe_1
+23,t2l51nme1,video-slider-response,no_line_3_1cut,5,no_1
+23,t2l51nme1,video-slider-response,maybe_line_new_5_1cut,0,maybe_1
+23,t2l51nme1,video-slider-response,yes_line_10_1cut,-31,yes_1
+23,t2l51nme1,video-slider-response,no_line_2_1cut,46,no_1
+23,t2l51nme1,video-slider-response,no_line_1_1cut,15,no_1
+23,t2l51nme1,video-slider-response,maybe_line_new_4_1cut,12,maybe_1
+23,t2l51nme1,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""No""},{""name"":""age"",""value"":""39""},{""name"":""gender"",""value"":""female""},{""name"":""comments"",""value"":""}]",debrief
+23,t2l51nme1,survey-text,"""","{""Q0"":""t2l51nme1""}",""""
+22,hhnsf0nc4,preload,"""","""",""""
+22,hhnsf0nc4,html-keyboard-response,"""", ,""""
+22,hhnsf0nc4,html-keyboard-response,"""",y,""""
+22,hhnsf0nc4,survey-text,"""","{""instructions1"":""to bring water back to wooden storage buckets.""}",instructions
+22,hhnsf0nc4,survey-text,"""","{""instructions2"":""one""}",instructions
+22,hhnsf0nc4,survey-text,"""","{""instructions3"":""How much the rest of the people will be slowed down.""}",instructions
+22,hhnsf0nc4,video-slider-response,maybe_line_new_1_1cut,6,maybe_1
+22,hhnsf0nc4,video-slider-response,maybe_line_new_3_1cut,5,maybe_1
+22,hhnsf0nc4,video-slider-response,maybe_line_new_2_1cut,19,maybe_1
+22,hhnsf0nc4,video-slider-response,yes_line_9_1cut,3,yes_1
+22,hhnsf0nc4,video-slider-response,yes_line_10_1cut,6,yes_1
+22,hhnsf0nc4,video-slider-response,no_line_1_1cut,3,no_1
+22,hhnsf0nc4,video-slider-response,no_line_2_1cut,9,no_1
+22,hhnsf0nc4,video-slider-response,maybe_line_new_5_1cut,-3,maybe_1
+22,hhnsf0nc4,video-slider-response,no_line_3_1cut,4,no_1
+22,hhnsf0nc4,video-slider-response,yes_line_7_1cut,10,yes_1
+22,hhnsf0nc4,video-slider-response,maybe_line_new_6_1cut,19,maybe_1
+22,hhnsf0nc4,video-slider-response,maybe_line_new_4_1cut,11,maybe_1
+22,hhnsf0nc4,video-slider-response,yes_line_8_1cut,7,yes_1
+22,hhnsf0nc4,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""no""},{""name"":""age"",""value"":""47""},{""name"":""gender"",""value"":""female""},{""name"":""comments"",""value"":""}]",debrief
+22,hhnsf0nc4,survey-text,"""","{""Q0"":""hhnsf0nc4""}",""""
+21,dt1u24kg8,preload,"""","""",""""
+21,dt1u24kg8,html-keyboard-response,"""", ,""""
+21,dt1u24kg8,html-keyboard-response,"""",y,""""
+21,dt1u24kg8,survey-text,"""","{""instructions1"":""to collect water ""}",instructions
+21,dt1u24kg8,survey-text,"""","{""instructions2"":""one""}",instructions
+21,dt1u24kg8,survey-text,"""","{""instructions3"":""How much everyone will be slowed down as a result of someone leaving the line""}",instructions
+21,dt1u24kg8,video-slider-response,yes_line_10_1cut,-37,yes_1
+21,dt1u24kg8,video-slider-response,no_line_3_1cut,-10,no_1
+21,dt1u24kg8,video-slider-response,maybe_line_new_4_1cut,8,maybe_1
+21,dt1u24kg8,video-slider-response,maybe_line_new_2_1cut,-22,maybe_1
+21,dt1u24kg8,video-slider-response,maybe_line_new_1_1cut,-6,maybe_1
+21,dt1u24kg8,video-slider-response,no_line_2_1cut,14,no_1
+21,dt1u24kg8,video-slider-response,no_line_1_1cut,0,no_1
+21,dt1u24kg8,video-slider-response,maybe_line_new_5_1cut,-37,maybe_1
+21,dt1u24kg8,video-slider-response,maybe_line_new_3_1cut,0,maybe_1
+21,dt1u24kg8,video-slider-response,yes_line_9_1cut,1,yes_1
+21,dt1u24kg8,video-slider-response,yes_line_7_1cut,-7,yes_1
+21,dt1u24kg8,video-slider-response,maybe_line_new_6_1cut,35,maybe_1
+21,dt1u24kg8,video-slider-response,yes_line_8_1cut,0,yes_1
+21,dt1u24kg8,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""No""},{""name"":""age"",""value"":""31""},{""name"":""gender"",""value"":""female""},{""name"":""comments"",""value"":""No thank you""}]",debrief
+21,dt1u24kg8,survey-text,"""","{""Q0"":""dt1u24kg8""}",""""
+24,q9md6oxob,preload,"""","""",""""
+24,q9md6oxob,html-keyboard-response,"""", ,""""
+24,q9md6oxob,html-keyboard-response,"""",y,""""
+24,q9md6oxob,survey-text,"""","{""instructions1"":""collecting one bucket of water""}",instructions
+24,q9md6oxob,survey-text,"""","{""instructions2"":""1""}",instructions
+24,q9md6oxob,survey-text,"""","{""instructions3"":""how much they slowed down""}",instructions
+24,q9md6oxob,video-slider-response,yes_line_10_1cut,-23,yes_1
+24,q9md6oxob,video-slider-response,yes_line_8_1cut,14,yes_1
+24,q9md6oxob,video-slider-response,yes_line_9_1cut,6,yes_1
+24,q9md6oxob,video-slider-response,maybe_line_new_1_1cut,6,maybe_1
+24,q9md6oxob,video-slider-response,yes_line_7_1cut,-35,yes_1
+24,q9md6oxob,video-slider-response,maybe_line_new_3_1cut,-1,maybe_1
+24,q9md6oxob,video-slider-response,no_line_2_1cut,12,no_1
+24,q9md6oxob,video-slider-response,maybe_line_new_2_1cut,-2,maybe_1
+24,q9md6oxob,video-slider-response,maybe_line_new_5_1cut,-15,maybe_1
+24,q9md6oxob,video-slider-response,maybe_line_new_4_1cut,-30,maybe_1
+24,q9md6oxob,video-slider-response,maybe_line_new_6_1cut,-26,maybe_1
+24,q9md6oxob,video-slider-response,no_line_1_1cut,-22,no_1
+24,q9md6oxob,video-slider-response,no_line_3_1cut,-12,no_1
+24,q9md6oxob,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""no""},{""name"":""age"",""value"":""25""},{""name"":""gender"",""value"":""male""},{""name"":""comments"",""value"":""}]",debrief
+24,q9md6oxob,survey-text,"""","{""Q0"":""q9md6oxob ""}",""""
+25,bbtqskl24,preload,"""","""",""""
+25,bbtqskl24,html-keyboard-response,"""", ,""""
+25,bbtqskl24,html-keyboard-response,"""",y,""""
+25,bbtqskl24,survey-text,"""","{""instructions1"":""collect water""}",instructions
+25,bbtqskl24,survey-text,"""","{""instructions2"":""one""}",instructions
+25,bbtqskl24,survey-text,"""","{""instructions3"":""How much people will be slowed down when one person leaves the line to collect water                                 ""}",instructions
+25,bbtqskl24,video-slider-response,yes_line_8_1cut,0,yes_1
+25,bbtqskl24,video-slider-response,maybe_line_new_4_1cut,19,maybe_1
+25,bbtqskl24,video-slider-response,yes_line_7_1cut,0,yes_1
+25,bbtqskl24,video-slider-response,maybe_line_new_6_1cut,38,maybe_1
+25,bbtqskl24,video-slider-response,no_line_1_1cut,41,no_1
+25,bbtqskl24,video-slider-response,maybe_line_new_1_1cut,9,maybe_1
+25,bbtqskl24,video-slider-response,maybe_line_new_5_1cut,0,maybe_1
+25,bbtqskl24,video-slider-response,yes_line_9_1cut,-8,yes_1
+25,bbtqskl24,video-slider-response,maybe_line_new_3_1cut,9,maybe_1
+25,bbtqskl24,video-slider-response,maybe_line_new_2_1cut,39,maybe_1
+25,bbtqskl24,video-slider-response,no_line_2_1cut,50,no_1
+25,bbtqskl24,video-slider-response,yes_line_10_1cut,-27,yes_1
+25,bbtqskl24,video-slider-response,no_line_3_1cut,39,no_1
+25,bbtqskl24,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""no""},{""name"":""age"",""value"":""29""},{""name"":""gender"",""value"":""male""},{""name"":""comments"",""value"":""}]",debrief
+25,bbtqskl24,survey-text,"""","{""Q0"":""bbtqskl24""}",""""
+27,b8rngvax9,preload,"""","""",""""
+27,b8rngvax9,html-keyboard-response,"""", ,""""
+27,b8rngvax9,html-keyboard-response,"""",y,""""
+27,b8rngvax9,survey-text,"""","{""instructions1"":""collect one bucket of water""}",instructions
+27,b8rngvax9,survey-text,"""","{""instructions2"":""one""}",instructions
+27,b8rngvax9,survey-text,"""","{""instructions3"":""how much everyone will be slowed down""}",instructions
+27,b8rngvax9,video-slider-response,yes_line_9_1cut,0,yes_1
+27,b8rngvax9,video-slider-response,maybe_line_new_5_1cut,-4,maybe_1
+27,b8rngvax9,video-slider-response,yes_line_10_1cut,-50,yes_1
+27,b8rngvax9,video-slider-response,no_line_2_1cut,0,no_1
+27,b8rngvax9,video-slider-response,yes_line_7_1cut,-6,yes_1
+27,b8rngvax9,video-slider-response,no_line_1_1cut,-13,no_1
+27,b8rngvax9,video-slider-response,no_line_3_1cut,7,no_1
+27,b8rngvax9,video-slider-response,yes_line_8_1cut,-6,yes_1
+27,b8rngvax9,video-slider-response,maybe_line_new_1_1cut,8,maybe_1
+27,b8rngvax9,video-slider-response,maybe_line_new_6_1cut,-50,maybe_1
+27,b8rngvax9,video-slider-response,maybe_line_new_3_1cut,12,maybe_1
+27,b8rngvax9,video-slider-response,maybe_line_new_4_1cut,-34,maybe_1
+27,b8rngvax9,video-slider-response,maybe_line_new_2_1cut,10,maybe_1
+27,b8rngvax9,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""no""},{""name"":""age"",""value"":""46""},{""name"":""gender"",""value"":""female""},{""name"":""comments"",""value"":""none""}]",debrief
+27,b8rngvax9,survey-text,"""","{""Q0"":""b8rngvax9 ""}",""""
+28,3rxe270b0,preload,"""","""",""""
+28,3rxe270b0,html-keyboard-response,"""", ,""""
+28,3rxe270b0,html-keyboard-response,"""",y,""""
+28,3rxe270b0,survey-text,"""","{""instructions1"":""collect water from the source, and bring it back to the storage buckets.""}",instructions
+28,3rxe270b0,survey-text,"""","{""instructions2"":""1""}",instructions
+28,3rxe270b0,survey-text,"""","{""instructions3"":""how much everyone is slowed down by one person decision to leave the line.""}",instructions
+28,3rxe270b0,video-slider-response,maybe_line_new_2_1cut,-9,maybe_1
+28,3rxe270b0,video-slider-response,maybe_line_new_1_1cut,-7,maybe_1
+28,3rxe270b0,video-slider-response,yes_line_7_1cut,-9,yes_1
+28,3rxe270b0,video-slider-response,no_line_2_1cut,-8,no_1
+28,3rxe270b0,video-slider-response,maybe_line_new_5_1cut,-18,maybe_1
+28,3rxe270b0,video-slider-response,no_line_1_1cut,2,no_1
+28,3rxe270b0,video-slider-response,maybe_line_new_4_1cut,-11,maybe_1
+28,3rxe270b0,video-slider-response,yes_line_10_1cut,-9,yes_1
+28,3rxe270b0,video-slider-response,no_line_3_1cut,-10,no_1
+28,3rxe270b0,video-slider-response,yes_line_9_1cut,-14,yes_1
+28,3rxe270b0,video-slider-response,maybe_line_new_3_1cut,-11,maybe_1
+28,3rxe270b0,video-slider-response,maybe_line_new_6_1cut,-9,maybe_1
+28,3rxe270b0,video-slider-response,yes_line_8_1cut,-9,yes_1
+28,3rxe270b0,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""no""},{""name"":""age"",""value"":""55""},{""name"":""gender"",""value"":""male""},{""name"":""comments"",""value"":""Everything worked fine.""}]",debrief
+28,3rxe270b0,survey-text,"""","{""Q0"":""3rxe270b0 ""}",""""
+29,3cdphvkx8,preload,"""","""",""""
+29,3cdphvkx8,html-keyboard-response,"""", ,""""
+29,3cdphvkx8,html-keyboard-response,"""",y,""""
+29,3cdphvkx8,survey-text,"""","{""instructions1"":""Collect water from a water source and bring it to wooden storage buckets.""}",instructions
+29,3cdphvkx8,survey-text,"""","{""instructions2"":""one""}",instructions
+29,3cdphvkx8,survey-text,"""","{""instructions3"":""How much everyone will be slowed as a result of a character deciding to leave the line. ""}",instructions
+29,3cdphvkx8,video-slider-response,maybe_line_new_3_1cut,9,maybe_1
+29,3cdphvkx8,video-slider-response,no_line_2_1cut,2,no_1
+29,3cdphvkx8,video-slider-response,maybe_line_new_1_1cut,1,maybe_1
+29,3cdphvkx8,video-slider-response,yes_line_9_1cut,6,yes_1
+29,3cdphvkx8,video-slider-response,maybe_line_new_4_1cut,6,maybe_1
+29,3cdphvkx8,video-slider-response,yes_line_10_1cut,-18,yes_1
+29,3cdphvkx8,video-slider-response,no_line_1_1cut,-10,no_1
+29,3cdphvkx8,video-slider-response,yes_line_8_1cut,-8,yes_1
+29,3cdphvkx8,video-slider-response,no_line_3_1cut,1,no_1
+29,3cdphvkx8,video-slider-response,yes_line_7_1cut,6,yes_1
+29,3cdphvkx8,video-slider-response,maybe_line_new_5_1cut,-18,maybe_1
+29,3cdphvkx8,video-slider-response,maybe_line_new_6_1cut,-40,maybe_1
+29,3cdphvkx8,video-slider-response,maybe_line_new_2_1cut,4,maybe_1
+29,3cdphvkx8,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""Everything worked perfectly.""},{""name"":""age"",""value"":""28""},{""name"":""gender"",""value"":""male""},{""name"":""comments"",""value"":""}]",debrief
+29,3cdphvkx8,survey-text,"""","{""Q0"":""3cdphvkx8""}",""""
+3,tcrzaroyg,preload,"""","""",""""
+3,tcrzaroyg,html-keyboard-response,"""", ,""""
+3,tcrzaroyg,html-keyboard-response,"""",y,""""
+3,tcrzaroyg,survey-text,"""","{""instructions1"":""collect water""}",instructions
+3,tcrzaroyg,survey-text,"""","{""instructions2"":""1""}",instructions
+3,tcrzaroyg,survey-text,"""","{""instructions3"":""how everyone will be slowed down""}",instructions
+3,tcrzaroyg,video-slider-response,no_line_1_1cut,0,no_1
+3,tcrzaroyg,video-slider-response,maybe_line_new_5_1cut,-9,maybe_1
+3,tcrzaroyg,video-slider-response,maybe_line_new_4_1cut,-11,maybe_1
+3,tcrzaroyg,video-slider-response,maybe_line_new_3_1cut,-10,maybe_1
+3,tcrzaroyg,video-slider-response,yes_line_7_1cut,-17,yes_1
+3,tcrzaroyg,video-slider-response,yes_line_10_1cut,-27,yes_1
+3,tcrzaroyg,video-slider-response,maybe_line_new_1_1cut,0,maybe_1
+3,tcrzaroyg,video-slider-response,no_line_2_1cut,5,no_1
+3,tcrzaroyg,video-slider-response,maybe_line_new_6_1cut,0,maybe_1
+3,tcrzaroyg,video-slider-response,yes_line_9_1cut,-16,yes_1
+3,tcrzaroyg,video-slider-response,yes_line_8_1cut,-25,yes_1
+3,tcrzaroyg,video-slider-response,no_line_3_1cut,0,no_1
+3,tcrzaroyg,video-slider-response,maybe_line_new_2_1cut,0,maybe_1
+3,tcrzaroyg,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""no""},{""name"":""age"",""value"":""24""},{""name"":""gender"",""value"":""female""},{""name"":""comments"",""value"":""}]",debrief
+3,tcrzaroyg,survey-text,"""","{""Q0"":""tcrzaroyg""}",""""
+32,2qr3ojg2f,preload,"""","""",""""
+32,2qr3ojg2f,html-keyboard-response,"""", ,""""
+32,2qr3ojg2f,html-keyboard-response,"""",y,""""
+32,2qr3ojg2f,survey-text,"""","{""instructions1"":""Collect water and bring it to the wooden storage buckets.""}",instructions
+32,2qr3ojg2f,survey-text,"""","{""instructions2"":""One""}",instructions
+32,2qr3ojg2f,survey-text,"""","{""instructions3"":""How much everyone will be slowed down by one person leaving the line.""}",instructions
+32,2qr3ojg2f,video-slider-response,no_line_1_1cut,3,no_1
+32,2qr3ojg2f,video-slider-response,maybe_line_new_3_1cut,-8,maybe_1
+32,2qr3ojg2f,video-slider-response,maybe_line_new_5_1cut,-27,maybe_1
+32,2qr3ojg2f,video-slider-response,maybe_line_new_4_1cut,-40,maybe_1
+32,2qr3ojg2f,video-slider-response,yes_line_10_1cut,-23,yes_1
+32,2qr3ojg2f,video-slider-response,maybe_line_new_2_1cut,1,maybe_1
+32,2qr3ojg2f,video-slider-response,maybe_line_new_6_1cut,6,maybe_1
+32,2qr3ojg2f,video-slider-response,yes_line_9_1cut,6,yes_1
+32,2qr3ojg2f,video-slider-response,yes_line_7_1cut,-15,yes_1
+32,2qr3ojg2f,video-slider-response,no_line_2_1cut,14,no_1
+32,2qr3ojg2f,video-slider-response,maybe_line_new_1_1cut,-7,maybe_1
+32,2qr3ojg2f,video-slider-response,no_line_3_1cut,15,no_1
+32,2qr3ojg2f,video-slider-response,yes_line_8_1cut,-4,yes_1
+32,2qr3ojg2f,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""None.""},{""name"":""age"",""value"":""32""},{""name"":""gender"",""value"":""male""},{""name"":""comments"",""value"":""No comments.""}]",debrief
+32,2qr3ojg2f,survey-text,"""","{""Q0"":""2qr3ojg2f""}",""""
+30,msjp4aw9g,preload,"""","""",""""
+30,msjp4aw9g,html-keyboard-response,"""", ,""""
+30,msjp4aw9g,html-keyboard-response,"""",y,""""
+30,msjp4aw9g,survey-text,"""","{""instructions1"":""to collect water from a water source and bring it back to the wooden storage buckets""}",instructions
+30,msjp4aw9g,survey-text,"""","{""instructions2"":""1""}",instructions
+30,msjp4aw9g,survey-text,"""","{""instructions3"":""how much everyone will be slowed down as a result of their decision""}",instructions
+30,msjp4aw9g,video-slider-response,yes_line_7_1cut,-20,yes_1
+30,msjp4aw9g,video-slider-response,maybe_line_new_1_1cut,-26,maybe_1
+30,msjp4aw9g,video-slider-response,maybe_line_new_2_1cut,-36,maybe_1
+30,msjp4aw9g,video-slider-response,maybe_line_new_5_1cut,-14,maybe_1
+30,msjp4aw9g,video-slider-response,maybe_line_new_3_1cut,-25,maybe_1
+30,msjp4aw9g,video-slider-response,yes_line_8_1cut,-36,yes_1
+30,msjp4aw9g,video-slider-response,yes_line_9_1cut,-48,yes_1
+30,msjp4aw9g,video-slider-response,maybe_line_new_6_1cut,-21,maybe_1
+30,msjp4aw9g,video-slider-response,no_line_3_1cut,-14,no_1
+30,msjp4aw9g,video-slider-response,no_line_2_1cut,38,no_1
+30,msjp4aw9g,video-slider-response,no_line_1_1cut,13,no_1
+30,msjp4aw9g,video-slider-response,yes_line_10_1cut,-10,yes_1
+30,msjp4aw9g,video-slider-response,maybe_line_new_4_1cut,-30,maybe_1
+30,msjp4aw9g,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""No""},{""name"":""age"",""value"":""29""},{""name"":""gender"",""value"":""female""},{""name"":""comments"",""value"":""No""}]",debrief
+30,msjp4aw9g,survey-text,"""","{""Q0"":""msjp4aw9g""}",""""
+33,g74rpndpo,preload,"""","""",""""
+33,g74rpndpo,html-keyboard-response,"""", ,""""
+33,g74rpndpo,html-keyboard-response,"""",y,""""
+33,g74rpndpo,survey-text,"""","{""instructions1"":""To collect a bucket of water and take it to a wooden storage bucket.""}",instructions
+33,g74rpndpo,survey-text,"""","{""instructions2"":""1""}",instructions
+33,g74rpndpo,survey-text,"""","{""instructions3"":""About how much everyone is slowed down as a result of a decision to leave the line.""}",instructions
+33,g74rpndpo,video-slider-response,maybe_line_new_3_1cut,30,maybe_1
+33,g74rpndpo,video-slider-response,yes_line_7_1cut,-5,yes_1
+33,g74rpndpo,video-slider-response,maybe_line_new_2_1cut,0,maybe_1
+33,g74rpndpo,video-slider-response,maybe_line_new_6_1cut,12,maybe_1
+33,g74rpndpo,video-slider-response,maybe_line_new_5_1cut,-42,maybe_1
+33,g74rpndpo,video-slider-response,yes_line_9_1cut,15,yes_1
+33,g74rpndpo,video-slider-response,yes_line_10_1cut,-44,yes_1
+33,g74rpndpo,video-slider-response,maybe_line_new_4_1cut,-50,maybe_1
+33,g74rpndpo,video-slider-response,maybe_line_new_1_1cut,22,maybe_1
+33,g74rpndpo,video-slider-response,no_line_3_1cut,24,no_1
+33,g74rpndpo,video-slider-response,no_line_1_1cut,35,no_1
+33,g74rpndpo,video-slider-response,no_line_2_1cut,50,no_1
+33,g74rpndpo,video-slider-response,yes_line_8_1cut,0,yes_1
+33,g74rpndpo,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""Not that I saw""},{""name"":""age"",""value"":""43""},{""name"":""gender"",""value"":""female""},{""name"":""comments"",""value"":""}]",debrief
+33,g74rpndpo,survey-text,"""","{""Q0"":""g74rpndpo""}",""""
+34,ca80p4mmo,preload,"""","""",""""
+34,ca80p4mmo,html-keyboard-response,"""", ,""""
+34,ca80p4mmo,html-keyboard-response,"""",y,""""
+34,ca80p4mmo,survey-text,"""","{""instructions1"":""To collect water from a water source and bring it back to the wooden storage buckets.""}",instructions
+34,ca80p4mmo,survey-text,"""","{""instructions2"":""1""}",instructions
+34,ca80p4mmo,survey-text,"""","{""instructions3"":""How much everyone will be slowed down as a result of their decision.""}",instructions
+34,ca80p4mmo,video-slider-response,maybe_line_new_4_1cut,8,maybe_1
+34,ca80p4mmo,video-slider-response,yes_line_10_1cut,7,yes_1
+34,ca80p4mmo,video-slider-response,maybe_line_new_5_1cut,8,maybe_1
+34,ca80p4mmo,video-slider-response,no_line_2_1cut,5,no_1
+34,ca80p4mmo,video-slider-response,no_line_1_1cut,5,no_1
+34,ca80p4mmo,video-slider-response,maybe_line_new_1_1cut,4,maybe_1
+34,ca80p4mmo,video-slider-response,yes_line_9_1cut,5,yes_1
+34,ca80p4mmo,video-slider-response,no_line_3_1cut,3,no_1
+34,ca80p4mmo,video-slider-response,maybe_line_new_6_1cut,15,maybe_1
+34,ca80p4mmo,video-slider-response,yes_line_8_1cut,4,yes_1
+34,ca80p4mmo,video-slider-response,maybe_line_new_2_1cut,6,maybe_1
+34,ca80p4mmo,video-slider-response,yes_line_7_1cut,5,yes_1
+34,ca80p4mmo,video-slider-response,maybe_line_new_3_1cut,6,maybe_1
+34,ca80p4mmo,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""No""},{""name"":""age"",""value"":""40""},{""name"":""gender"",""value"":""male""},{""name"":""comments"",""value"":""It was hard to say how much faster it would have been for everyone. In most trials it didn't seem like it would affect anyone except for the last person in line, so I thought it would be slightly faster overall? The people who stopped seemed like they would be the ones who would make it slower for everyone.""}]",debrief
+34,ca80p4mmo,survey-text,"""","{""Q0"":""ca80p4mmo""}",""""
+37,ra32jcw2d,preload,"""","""",""""
+37,ra32jcw2d,html-keyboard-response,"""", ,""""
+37,ra32jcw2d,html-keyboard-response,"""",y,""""
+37,ra32jcw2d,survey-text,"""","{""instructions1"":""TO COLLECT A BUCKET OF WATER AS FAST AS YOU CAN""}",instructions
+37,ra32jcw2d,survey-text,"""","{""instructions2"":""1""}",instructions
+37,ra32jcw2d,survey-text,"""","{""instructions3"":""HOW MUCH EVERYONE WILL BE SLOWED DOWN""}",instructions
+37,ra32jcw2d,video-slider-response,maybe_line_new_4_1cut,-49,maybe_1
+37,ra32jcw2d,video-slider-response,maybe_line_new_1_1cut,16,maybe_1
+37,ra32jcw2d,video-slider-response,maybe_line_new_6_1cut,2,maybe_1
+37,ra32jcw2d,video-slider-response,yes_line_7_1cut,0,yes_1
+37,ra32jcw2d,video-slider-response,yes_line_9_1cut,1,yes_1
+37,ra32jcw2d,video-slider-response,no_line_3_1cut,13,no_1
+37,ra32jcw2d,video-slider-response,yes_line_10_1cut,1,yes_1
+37,ra32jcw2d,video-slider-response,maybe_line_new_3_1cut,3,maybe_1
+37,ra32jcw2d,video-slider-response,maybe_line_new_2_1cut,14,maybe_1
+37,ra32jcw2d,video-slider-response,maybe_line_new_5_1cut,-2,maybe_1
+37,ra32jcw2d,video-slider-response,no_line_2_1cut,0,no_1
+37,ra32jcw2d,video-slider-response,yes_line_8_1cut,4,yes_1
+37,ra32jcw2d,video-slider-response,no_line_1_1cut,10,no_1
+37,ra32jcw2d,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""NO""},{""name"":""age"",""value"":""39""},{""name"":""gender"",""value"":""female""},{""name"":""comments"",""value"":""}]",debrief
+37,ra32jcw2d,survey-text,"""","{""Q0"":""ra32jcw2d""}",""""
+49,stp3jd03x,preload,"""","""",""""
+49,stp3jd03x,html-keyboard-response,"""", ,""""
+49,stp3jd03x,html-keyboard-response,"""",y,""""
+49,stp3jd03x,survey-text,"""","{""instructions1"":""collect water for storage the fastest""}",instructions
+49,stp3jd03x,survey-text,"""","{""instructions2"":""one""}",instructions
+49,stp3jd03x,survey-text,"""","{""instructions3"":""how much everyone will be slowed based on their decision""}",instructions
+49,stp3jd03x,video-slider-response,yes_line_10_1cut,-21,yes_1
+49,stp3jd03x,video-slider-response,no_line_3_1cut,23,no_1
+49,stp3jd03x,video-slider-response,yes_line_7_1cut,29,yes_1
+49,stp3jd03x,video-slider-response,maybe_line_new_5_1cut,-27,maybe_1
+49,stp3jd03x,video-slider-response,maybe_line_new_6_1cut,-36,maybe_1
+49,stp3jd03x,video-slider-response,no_line_2_1cut,33,no_1
+49,stp3jd03x,video-slider-response,maybe_line_new_4_1cut,32,maybe_1
+49,stp3jd03x,video-slider-response,yes_line_8_1cut,-8,yes_1
+49,stp3jd03x,video-slider-response,maybe_line_new_1_1cut,7,maybe_1
+49,stp3jd03x,video-slider-response,yes_line_9_1cut,1,yes_1
+49,stp3jd03x,video-slider-response,no_line_1_1cut,0,no_1
+49,stp3jd03x,video-slider-response,maybe_line_new_2_1cut,4,maybe_1
+49,stp3jd03x,video-slider-response,maybe_line_new_3_1cut,44,maybe_1
+49,stp3jd03x,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""No""},{""name"":""age"",""value"":""43""},{""name"":""gender"",""value"":""male""},{""name"":""comments"",""value"":""}]",debrief
+49,stp3jd03x,survey-text,"""","{""Q0"":""stp3jd03x""}",""""
+38,xs3y7d1zp,preload,"""","""",""""
+38,xs3y7d1zp,html-keyboard-response,"""", ,""""
+38,xs3y7d1zp,html-keyboard-response,"""",y,""""
+38,xs3y7d1zp,survey-text,"""","{""instructions1"":""collect one bucket of water""}",instructions
+38,xs3y7d1zp,survey-text,"""","{""instructions2"":""1""}",instructions
+38,xs3y7d1zp,survey-text,"""","{""instructions3"":""How much everyone will be slowed""}",instructions
+38,xs3y7d1zp,video-slider-response,yes_line_8_1cut,-10,yes_1
+38,xs3y7d1zp,video-slider-response,yes_line_10_1cut,26,yes_1
+38,xs3y7d1zp,video-slider-response,maybe_line_new_4_1cut,-30,maybe_1
+38,xs3y7d1zp,video-slider-response,yes_line_9_1cut,50,yes_1
+38,xs3y7d1zp,video-slider-response,maybe_line_new_5_1cut,17,maybe_1
+38,xs3y7d1zp,video-slider-response,maybe_line_new_3_1cut,14,maybe_1
+38,xs3y7d1zp,video-slider-response,maybe_line_new_2_1cut,20,maybe_1
+38,xs3y7d1zp,video-slider-response,maybe_line_new_1_1cut,-18,maybe_1
+38,xs3y7d1zp,video-slider-response,no_line_2_1cut,48,no_1
+38,xs3y7d1zp,video-slider-response,no_line_1_1cut,-13,no_1
+38,xs3y7d1zp,video-slider-response,maybe_line_new_6_1cut,3,maybe_1
+38,xs3y7d1zp,video-slider-response,no_line_3_1cut,2,no_1
+38,xs3y7d1zp,video-slider-response,yes_line_7_1cut,-6,yes_1
+38,xs3y7d1zp,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""NO problems found everything worked well""},{""name"":""age"",""value"":""25""},{""name"":""gender"",""value"":""male""},{""name"":""comments"",""value"":""}]",debrief
+38,xs3y7d1zp,survey-text,"""","{""Q0"":""xs3y7d1zp""}",""""
+48,aw8b34c13,preload,"""","""",""""
+48,aw8b34c13,html-keyboard-response,"""", ,""""
+48,aw8b34c13,html-keyboard-response,"""",y,""""
+48,aw8b34c13,survey-text,"""","{""instructions1"":""collect water""}",instructions
+48,aw8b34c13,survey-text,"""","{""instructions2"":""1""}",instructions
+48,aw8b34c13,survey-text,"""","{""instructions3"":""how much everyone is slowed down by people leaving the line""}",instructions
+48,aw8b34c13,video-slider-response,maybe_line_new_1_1cut,8,maybe_1
+48,aw8b34c13,video-slider-response,yes_line_7_1cut,6,yes_1
+48,aw8b34c13,video-slider-response,no_line_2_1cut,14,no_1
+48,aw8b34c13,video-slider-response,maybe_line_new_2_1cut,-1,maybe_1
+48,aw8b34c13,video-slider-response,maybe_line_new_3_1cut,12,maybe_1
+48,aw8b34c13,video-slider-response,yes_line_9_1cut,-1,yes_1
+48,aw8b34c13,video-slider-response,no_line_3_1cut,0,no_1
+48,aw8b34c13,video-slider-response,yes_line_10_1cut,0,yes_1
+48,aw8b34c13,video-slider-response,no_line_1_1cut,0,no_1
+48,aw8b34c13,video-slider-response,maybe_line_new_6_1cut,0,maybe_1
+48,aw8b34c13,video-slider-response,maybe_line_new_5_1cut,0,maybe_1
+48,aw8b34c13,video-slider-response,maybe_line_new_4_1cut,-24,maybe_1
+48,aw8b34c13,video-slider-response,yes_line_8_1cut,-11,yes_1
+48,aw8b34c13,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""No""},{""name"":""age"",""value"":""24""},{""name"":""gender"",""value"":""female""},{""name"":""comments"",""value"":""}]",debrief
+48,aw8b34c13,survey-text,"""","{""Q0"":""aw8b34c13""}",""""
+45,wzn8hb7yv,preload,"""","""",""""
+45,wzn8hb7yv,html-keyboard-response,"""", ,""""
+45,wzn8hb7yv,html-keyboard-response,"""",y,""""
+45,wzn8hb7yv,survey-text,"""","{""instructions1"":""collect one bucket of water each""}",instructions
+45,wzn8hb7yv,survey-text,"""","{""instructions2"":""1""}",instructions
+45,wzn8hb7yv,survey-text,"""","{""instructions3"":""how much a person leaving the line slowed down the process""}",instructions
+45,wzn8hb7yv,video-slider-response,no_line_1_1cut,11,no_1
+45,wzn8hb7yv,video-slider-response,maybe_line_new_4_1cut,-17,maybe_1
+45,wzn8hb7yv,video-slider-response,maybe_line_new_6_1cut,5,maybe_1
+45,wzn8hb7yv,video-slider-response,maybe_line_new_3_1cut,-23,maybe_1
+45,wzn8hb7yv,video-slider-response,yes_line_8_1cut,-8,yes_1
+45,wzn8hb7yv,video-slider-response,maybe_line_new_1_1cut,1,maybe_1
+45,wzn8hb7yv,video-slider-response,yes_line_7_1cut,2,yes_1
+45,wzn8hb7yv,video-slider-response,no_line_2_1cut,26,no_1
+45,wzn8hb7yv,video-slider-response,yes_line_9_1cut,-26,yes_1
+45,wzn8hb7yv,video-slider-response,no_line_3_1cut,-7,no_1
+45,wzn8hb7yv,video-slider-response,yes_line_10_1cut,-21,yes_1
+45,wzn8hb7yv,video-slider-response,maybe_line_new_2_1cut,6,maybe_1
+45,wzn8hb7yv,video-slider-response,maybe_line_new_5_1cut,-6,maybe_1
+45,wzn8hb7yv,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""No""},{""name"":""age"",""value"":""37""},{""name"":""gender"",""value"":""female""},{""name"":""comments"",""value"":""}]",debrief
+45,wzn8hb7yv,survey-text,"""","{""Q0"":""wzn8hb7yv""}",""""
+42,z85b04guz,preload,"""","""",""""
+42,z85b04guz,html-keyboard-response,"""", ,""""
+42,z85b04guz,html-keyboard-response,"""",y,""""
+42,z85b04guz,survey-text,"""","{""instructions1"":""To collect water and bring it back to the storage buckets""}",instructions
+42,z85b04guz,survey-text,"""","{""instructions2"":""1""}",instructions
+42,z85b04guz,survey-text,"""","{""instructions3"":""If a person leaving the line slows everyone else down""}",instructions
+42,z85b04guz,video-slider-response,no_line_1_1cut,1,no_1
+42,z85b04guz,video-slider-response,maybe_line_new_1_1cut,-11,maybe_1
+42,z85b04guz,video-slider-response,yes_line_10_1cut,0,yes_1
+42,z85b04guz,video-slider-response,no_line_3_1cut,1,no_1
+42,z85b04guz,video-slider-response,maybe_line_new_4_1cut,16,maybe_1
+42,z85b04guz,video-slider-response,yes_line_8_1cut,-6,yes_1
+42,z85b04guz,video-slider-response,maybe_line_new_5_1cut,-7,maybe_1
+42,z85b04guz,video-slider-response,yes_line_9_1cut,12,yes_1
+42,z85b04guz,video-slider-response,maybe_line_new_3_1cut,-23,maybe_1
+42,z85b04guz,video-slider-response,no_line_2_1cut,11,no_1
+42,z85b04guz,video-slider-response,maybe_line_new_6_1cut,11,maybe_1
+42,z85b04guz,video-slider-response,maybe_line_new_2_1cut,-1,maybe_1
+42,z85b04guz,video-slider-response,yes_line_7_1cut,-3,yes_1
+42,z85b04guz,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""No""},{""name"":""age"",""value"":""46""},{""name"":""gender"",""value"":""female""},{""name"":""comments"",""value"":""It was hard to think about""}]",debrief
+42,z85b04guz,survey-text,"""","{""Q0"":""z85b04guz""}",""""
+50,zq24emlwm,preload,"""","""",""""
+50,zq24emlwm,html-keyboard-response,"""", ,""""
+50,zq24emlwm,html-keyboard-response,"""",y,""""
+50,zq24emlwm,survey-text,"""","{""instructions1"":""to collect water from a water source and bring it back to the wooden storage buckets""}",instructions
+50,zq24emlwm,survey-text,"""","{""instructions2"":""one""}",instructions
+50,zq24emlwm,survey-text,"""","{""instructions3"":""how much everyone will be slowed down as a result of the person's decision""}",instructions
+50,zq24emlwm,video-slider-response,yes_line_9_1cut,-13,yes_1
+50,zq24emlwm,video-slider-response,yes_line_8_1cut,-35,yes_1
+50,zq24emlwm,video-slider-response,maybe_line_new_1_1cut,-24,maybe_1
+50,zq24emlwm,video-slider-response,maybe_line_new_4_1cut,0,maybe_1
+50,zq24emlwm,video-slider-response,maybe_line_new_3_1cut,-19,maybe_1
+50,zq24emlwm,video-slider-response,maybe_line_new_5_1cut,-14,maybe_1
+50,zq24emlwm,video-slider-response,yes_line_10_1cut,-7,yes_1
+50,zq24emlwm,video-slider-response,maybe_line_new_6_1cut,-23,maybe_1
+50,zq24emlwm,video-slider-response,no_line_1_1cut,0,no_1
+50,zq24emlwm,video-slider-response,maybe_line_new_2_1cut,0,maybe_1
+50,zq24emlwm,video-slider-response,no_line_2_1cut,20,no_1
+50,zq24emlwm,video-slider-response,no_line_3_1cut,-16,no_1
+50,zq24emlwm,video-slider-response,yes_line_7_1cut,-6,yes_1
+50,zq24emlwm,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""No""},{""name"":""age"",""value"":""53""},{""name"":""gender"",""value"":""female""},{""name"":""comments"",""value"":""}]",debrief
+50,zq24emlwm,survey-text,"""","{""Q0"":""zq24emlwm""}",""""
+51,natuhg40p,preload,"""","""",""""
+51,natuhg40p,html-keyboard-response,"""", ,""""
+51,natuhg40p,html-keyboard-response,"""",y,""""
+51,natuhg40p,survey-text,"""","{""instructions1"":"" to collect water from a water source and bring it back to the wooden storage buckets""}",instructions
+51,natuhg40p,survey-text,"""","{""instructions2"":""1""}",instructions
+51,natuhg40p,survey-text,"""","{""instructions3"":""how much everyone will be slowed down as a result of a person leaving the line""}",instructions
+51,natuhg40p,video-slider-response,yes_line_10_1cut,-13,yes_1
+51,natuhg40p,video-slider-response,maybe_line_new_4_1cut,1,maybe_1
+51,natuhg40p,video-slider-response,no_line_1_1cut,17,no_1
+51,natuhg40p,video-slider-response,maybe_line_new_2_1cut,27,maybe_1
+51,natuhg40p,video-slider-response,no_line_3_1cut,13,no_1
+51,natuhg40p,video-slider-response,maybe_line_new_3_1cut,2,maybe_1
+51,natuhg40p,video-slider-response,maybe_line_new_1_1cut,15,maybe_1
+51,natuhg40p,video-slider-response,yes_line_8_1cut,-21,yes_1
+51,natuhg40p,video-slider-response,yes_line_7_1cut,-10,yes_1
+51,natuhg40p,video-slider-response,no_line_2_1cut,38,no_1
+51,natuhg40p,video-slider-response,maybe_line_new_5_1cut,-37,maybe_1
+51,natuhg40p,video-slider-response,yes_line_9_1cut,-16,yes_1
+51,natuhg40p,video-slider-response,maybe_line_new_6_1cut,8,maybe_1
+51,natuhg40p,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""no""},{""name"":""age"",""value"":""34""},{""name"":""gender"",""value"":""male""},{""name"":""comments"",""value"":""no""}]",debrief
+51,natuhg40p,survey-text,"""","{""Q0"":""natuhg40p""}",""""
+55,jl6d1a4dj,preload,"""","""",""""
+55,jl6d1a4dj,html-keyboard-response,"""", ,""""
+55,jl6d1a4dj,html-keyboard-response,"""",y,""""
+55,jl6d1a4dj,survey-text,"""","{""instructions1"":""collect water from a water source and bring it back to the buckets""}",instructions
+55,jl6d1a4dj,survey-text,"""","{""instructions2"":""1""}",instructions
+55,jl6d1a4dj,survey-text,"""","{""instructions3"":""How their decision slowed the others""}",instructions
+55,jl6d1a4dj,video-slider-response,yes_line_10_1cut,-39,yes_1
+55,jl6d1a4dj,video-slider-response,maybe_line_new_3_1cut,-14,maybe_1
+55,jl6d1a4dj,video-slider-response,yes_line_7_1cut,-7,yes_1
+55,jl6d1a4dj,video-slider-response,maybe_line_new_2_1cut,19,maybe_1
+55,jl6d1a4dj,video-slider-response,no_line_1_1cut,37,no_1
+55,jl6d1a4dj,video-slider-response,maybe_line_new_4_1cut,29,maybe_1
+55,jl6d1a4dj,video-slider-response,yes_line_9_1cut,-21,yes_1
+55,jl6d1a4dj,video-slider-response,yes_line_8_1cut,-27,yes_1
+55,jl6d1a4dj,video-slider-response,no_line_3_1cut,45,no_1
+55,jl6d1a4dj,video-slider-response,maybe_line_new_1_1cut,39,maybe_1
+55,jl6d1a4dj,video-slider-response,maybe_line_new_6_1cut,13,maybe_1
+55,jl6d1a4dj,video-slider-response,no_line_2_1cut,50,no_1
+55,jl6d1a4dj,video-slider-response,maybe_line_new_5_1cut,-37,maybe_1
+55,jl6d1a4dj,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""no""},{""name"":""age"",""value"":""26""},{""name"":""gender"",""value"":""female""},{""name"":""comments"",""value"":""}]",debrief
+55,jl6d1a4dj,survey-text,"""","{""Q0"":""jl6d1a4dj""}",""""
+5,vzh6vuvz3,preload,"""","""",""""
+5,vzh6vuvz3,html-keyboard-response,"""", ,""""
+5,vzh6vuvz3,html-keyboard-response,"""",y,""""
+5,vzh6vuvz3,survey-text,"""","{""instructions1"":""Each person must collect buckets of water to progress to gain points and progress to the next levels. ""}",instructions
+5,vzh6vuvz3,survey-text,"""","{""instructions2"":""1""}",instructions
+5,vzh6vuvz3,survey-text,"""","{""instructions3"":""I am answering on how much everyone will be slowed down as a result of their decision""}",instructions
+5,vzh6vuvz3,video-slider-response,no_line_3_1cut,15,no_1
+5,vzh6vuvz3,video-slider-response,no_line_2_1cut,-22,no_1
+5,vzh6vuvz3,video-slider-response,yes_line_10_1cut,14,yes_1
+5,vzh6vuvz3,video-slider-response,maybe_line_new_5_1cut,-6,maybe_1
+5,vzh6vuvz3,video-slider-response,yes_line_9_1cut,-7,yes_1
+5,vzh6vuvz3,video-slider-response,maybe_line_new_6_1cut,-8,maybe_1
+5,vzh6vuvz3,video-slider-response,yes_line_8_1cut,19,yes_1
+5,vzh6vuvz3,video-slider-response,maybe_line_new_1_1cut,-14,maybe_1
+5,vzh6vuvz3,video-slider-response,no_line_1_1cut,16,no_1
+5,vzh6vuvz3,video-slider-response,yes_line_7_1cut,0,yes_1
+5,vzh6vuvz3,video-slider-response,maybe_line_new_3_1cut,13,maybe_1
+5,vzh6vuvz3,video-slider-response,maybe_line_new_4_1cut,12,maybe_1
+5,vzh6vuvz3,video-slider-response,maybe_line_new_2_1cut,7,maybe_1
+5,vzh6vuvz3,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""There were no problems with the game, everything seemed fine and understandable.""},{""name"":""age"",""value"":""41""},{""name"":""gender"",""value"":""male""},{""name"":""comments"",""value"":""Thanks for allowing me to participate in this study. That was an interesting little game. I hope you found my data useful for your research purposes.   Have a wonderful day!""}]",debrief
+5,vzh6vuvz3,survey-text,"""","{""Q0"":""vzh6vuvz3 ""}",""""
+54,fz15v6jaf,preload,"""","""",""""
+54,fz15v6jaf,html-keyboard-response,"""", ,""""
+54,fz15v6jaf,html-keyboard-response,"""",y,""""
+54,fz15v6jaf,survey-text,"""","{""instructions1"":""To get one bucket of water to bring back to a storage container as fast as they can. ""}",instructions
+54,fz15v6jaf,survey-text,"""","{""instructions2"":""1""}",instructions
+54,fz15v6jaf,survey-text,"""","{""instructions3"":""To decide how much everyone is slowed down after one person leaves the line""}",instructions
+54,fz15v6jaf,video-slider-response,yes_line_10_1cut,-6,yes_1
+54,fz15v6jaf,video-slider-response,yes_line_9_1cut,-14,yes_1
+54,fz15v6jaf,video-slider-response,maybe_line_new_6_1cut,-7,maybe_1
+54,fz15v6jaf,video-slider-response,maybe_line_new_3_1cut,0,maybe_1
+54,fz15v6jaf,video-slider-response,no_line_2_1cut,9,no_1
+54,fz15v6jaf,video-slider-response,maybe_line_new_5_1cut,-4,maybe_1
+54,fz15v6jaf,video-slider-response,no_line_3_1cut,9,no_1
+54,fz15v6jaf,video-slider-response,no_line_1_1cut,14,no_1
+54,fz15v6jaf,video-slider-response,yes_line_7_1cut,0,yes_1
+54,fz15v6jaf,video-slider-response,maybe_line_new_4_1cut,-3,maybe_1
+54,fz15v6jaf,video-slider-response,maybe_line_new_2_1cut,4,maybe_1
+54,fz15v6jaf,video-slider-response,yes_line_8_1cut,-16,yes_1
+54,fz15v6jaf,video-slider-response,maybe_line_new_1_1cut,4,maybe_1
+54,fz15v6jaf,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""no""},{""name"":""age"",""value"":""57""},{""name"":""gender"",""value"":""female""},{""name"":""comments"",""value"":""Thanks""}]",debrief
+54,fz15v6jaf,survey-text,"""","{""Q0"":""fz15v6jaf""}",""""
+52,f9abrwztl,preload,"""","""",""""
+52,f9abrwztl,html-keyboard-response,"""", ,""""
+52,f9abrwztl,html-keyboard-response,"""",y,""""
+52,f9abrwztl,survey-text,"""","{""instructions1"":""The people are collecting water for points.""}",instructions
+52,f9abrwztl,survey-text,"""","{""instructions2"":""1""}",instructions
+52,f9abrwztl,survey-text,"""","{""instructions3"":""To think about how much everyone will be slowed down because of their decision""}",instructions
+52,f9abrwztl,video-slider-response,maybe_line_new_2_1cut,12,maybe_1
+52,f9abrwztl,video-slider-response,no_line_2_1cut,35,no_1
+52,f9abrwztl,video-slider-response,yes_line_10_1cut,-20,yes_1
+52,f9abrwztl,video-slider-response,yes_line_7_1cut,-39,yes_1
+52,f9abrwztl,video-slider-response,yes_line_8_1cut,-30,yes_1
+52,f9abrwztl,video-slider-response,maybe_line_new_6_1cut,9,maybe_1
+52,f9abrwztl,video-slider-response,maybe_line_new_5_1cut,-39,maybe_1
+52,f9abrwztl,video-slider-response,maybe_line_new_4_1cut,-7,maybe_1
+52,f9abrwztl,video-slider-response,maybe_line_new_1_1cut,15,maybe_1
+52,f9abrwztl,video-slider-response,maybe_line_new_3_1cut,-10,maybe_1
+52,f9abrwztl,video-slider-response,no_line_3_1cut,19,no_1
+52,f9abrwztl,video-slider-response,yes_line_9_1cut,-27,yes_1
+52,f9abrwztl,video-slider-response,no_line_1_1cut,44,no_1
+52,f9abrwztl,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""No issues""},{""name"":""age"",""value"":""23""},{""name"":""gender"",""value"":""male""},{""name"":""comments"",""value"":""Thanks for the unique survey, I hope I could provide useful information. Have a great day.""}]",debrief
+52,f9abrwztl,survey-text,"""","{""Q0"":""f9abrwztl""}",""""
+57,0jvqkjblv,preload,"""","""",""""
+57,0jvqkjblv,html-keyboard-response,"""", ,""""
+57,0jvqkjblv,html-keyboard-response,"""",y,""""
+57,0jvqkjblv,survey-text,"""","{""instructions1"":""To collect water from a water source and bring it back to the wooden storage buckets.""}",instructions
+57,0jvqkjblv,survey-text,"""","{""instructions2"":""Each person can move one square per time step in one of the four cardinal directions (up, down, left, right).""}",instructions
+57,0jvqkjblv,survey-text,"""","{""instructions3"":""To think about how much everyone will be slowed down as a result of their decision.""}",instructions
+57,0jvqkjblv,video-slider-response,maybe_line_new_3_1cut,21,maybe_1
+57,0jvqkjblv,video-slider-response,yes_line_7_1cut,14,yes_1
+57,0jvqkjblv,video-slider-response,no_line_3_1cut,26,no_1
+57,0jvqkjblv,video-slider-response,maybe_line_new_1_1cut,28,maybe_1
+57,0jvqkjblv,video-slider-response,yes_line_9_1cut,22,yes_1
+57,0jvqkjblv,video-slider-response,maybe_line_new_4_1cut,18,maybe_1
+57,0jvqkjblv,video-slider-response,no_line_1_1cut,21,no_1
+57,0jvqkjblv,video-slider-response,maybe_line_new_5_1cut,6,maybe_1
+57,0jvqkjblv,video-slider-response,no_line_2_1cut,36,no_1
+57,0jvqkjblv,video-slider-response,maybe_line_new_6_1cut,27,maybe_1
+57,0jvqkjblv,video-slider-response,yes_line_10_1cut,26,yes_1
+57,0jvqkjblv,video-slider-response,maybe_line_new_2_1cut,27,maybe_1
+57,0jvqkjblv,video-slider-response,yes_line_8_1cut,22,yes_1
+57,0jvqkjblv,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""None""},{""name"":""age"",""value"":""27""},{""name"":""gender"",""value"":""male""},{""name"":""comments"",""value"":""}]",debrief
+57,0jvqkjblv,survey-text,"""","{""Q0"":""0jvqkjblv""}",""""
+56,2u95bv93d,preload,"""","""",""""
+56,2u95bv93d,html-keyboard-response,"""", ,""""
+56,2u95bv93d,html-keyboard-response,"""",y,""""
+56,2u95bv93d,survey-text,"""","{""instructions1"":""collects the bucket of water""}",instructions
+56,2u95bv93d,survey-text,"""","{""instructions2"":""1""}",instructions
+56,2u95bv93d,survey-text,"""","{""instructions3"":""judgments""}",instructions
+56,2u95bv93d,video-slider-response,no_line_2_1cut,23,no_1
+56,2u95bv93d,video-slider-response,yes_line_8_1cut,28,yes_1
+56,2u95bv93d,video-slider-response,no_line_3_1cut,28,no_1
+56,2u95bv93d,video-slider-response,maybe_line_new_1_1cut,4,maybe_1
+56,2u95bv93d,video-slider-response,no_line_1_1cut,17,no_1
+56,2u95bv93d,video-slider-response,maybe_line_new_4_1cut,9,maybe_1
+56,2u95bv93d,video-slider-response,yes_line_7_1cut,26,yes_1
+56,2u95bv93d,video-slider-response,yes_line_9_1cut,27,yes_1
+56,2u95bv93d,video-slider-response,maybe_line_new_2_1cut,22,maybe_1
+56,2u95bv93d,video-slider-response,maybe_line_new_5_1cut,14,maybe_1
+56,2u95bv93d,video-slider-response,maybe_line_new_6_1cut,25,maybe_1
+56,2u95bv93d,video-slider-response,yes_line_10_1cut,16,yes_1
+56,2u95bv93d,video-slider-response,maybe_line_new_3_1cut,17,maybe_1
+56,2u95bv93d,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""None""},{""name"":""age"",""value"":""25""},{""name"":""gender"",""value"":""male""},{""name"":""comments"",""value"":""None""}]",debrief
+56,2u95bv93d,survey-text,"""","{""Q0"":""2u95bv93d""}",""""
+59,fd512wzb7,preload,"""","""",""""
+59,fd512wzb7,html-keyboard-response,"""", ,""""
+59,fd512wzb7,html-keyboard-response,"""",y,""""
+59,fd512wzb7,survey-text,"""","{""instructions1"":""collect water from a source and store it on wooden buckets. ""}",instructions
+59,fd512wzb7,survey-text,"""","{""instructions2"":""one""}",instructions
+59,fd512wzb7,survey-text,"""","{""instructions3"":""how much everyone will be slowed down thanks to the decision of the targeted person ""}",instructions
+59,fd512wzb7,video-slider-response,maybe_line_new_4_1cut,16,maybe_1
+59,fd512wzb7,video-slider-response,maybe_line_new_2_1cut,-11,maybe_1
+59,fd512wzb7,video-slider-response,no_line_2_1cut,14,no_1
+59,fd512wzb7,video-slider-response,yes_line_10_1cut,-36,yes_1
+59,fd512wzb7,video-slider-response,maybe_line_new_5_1cut,-15,maybe_1
+59,fd512wzb7,video-slider-response,yes_line_7_1cut,-8,yes_1
+59,fd512wzb7,video-slider-response,maybe_line_new_1_1cut,7,maybe_1
+59,fd512wzb7,video-slider-response,yes_line_9_1cut,13,yes_1
+59,fd512wzb7,video-slider-response,maybe_line_new_3_1cut,-26,maybe_1
+59,fd512wzb7,video-slider-response,maybe_line_new_6_1cut,-20,maybe_1
+59,fd512wzb7,video-slider-response,yes_line_8_1cut,-19,yes_1
+59,fd512wzb7,video-slider-response,no_line_1_1cut,0,no_1
+59,fd512wzb7,video-slider-response,no_line_3_1cut,13,no_1
+59,fd512wzb7,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""no""},{""name"":""age"",""value"":""30""},{""name"":""gender"",""value"":""female""},{""name"":""comments"",""value"":""}]",debrief
+59,fd512wzb7,survey-text,"""","{""Q0"":""fd512wzb7 ""}",""""
+58,p81gaqkst,preload,"""","""",""""
+58,p81gaqkst,html-keyboard-response,"""", ,""""
+58,p81gaqkst,html-keyboard-response,"""",y,""""
+58,p81gaqkst,survey-text,"""","{""instructions1"":""to collect buckets of water""}",instructions
+58,p81gaqkst,survey-text,"""","{""instructions2"":""1""}",instructions
+58,p81gaqkst,survey-text,"""","{""instructions3"":""How much slower the other people will be due to the person that left the line.""}",instructions
+58,p81gaqkst,video-slider-response,maybe_line_new_6_1cut,19,maybe_1
+58,p81gaqkst,video-slider-response,maybe_line_new_4_1cut,-2,maybe_1
+58,p81gaqkst,video-slider-response,yes_line_9_1cut,0,yes_1
+58,p81gaqkst,video-slider-response,maybe_line_new_5_1cut,-21,maybe_1
+58,p81gaqkst,video-slider-response,no_line_3_1cut,5,no_1
+58,p81gaqkst,video-slider-response,maybe_line_new_2_1cut,-10,maybe_1
+58,p81gaqkst,video-slider-response,maybe_line_new_3_1cut,14,maybe_1
+58,p81gaqkst,video-slider-response,maybe_line_new_1_1cut,-20,maybe_1
+58,p81gaqkst,video-slider-response,yes_line_7_1cut,0,yes_1
+58,p81gaqkst,video-slider-response,no_line_1_1cut,-16,no_1
+58,p81gaqkst,video-slider-response,yes_line_8_1cut,-50,yes_1
+58,p81gaqkst,video-slider-response,yes_line_10_1cut,-46,yes_1
+58,p81gaqkst,video-slider-response,no_line_2_1cut,43,no_1
+58,p81gaqkst,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""No issues at all, the videos loaded super fast""},{""name"":""age"",""value"":""43""},{""name"":""gender"",""value"":""female""},{""name"":""comments"",""value"":""}]",debrief
+58,p81gaqkst,survey-text,"""","{""Q0"":""p81gaqkst ""}",""""
+65,5cwnhhmha,preload,"""","""",""""
+65,5cwnhhmha,html-keyboard-response,"""", ,""""
+65,5cwnhhmha,html-keyboard-response,"""",y,""""
+65,5cwnhhmha,survey-text,"""","{""instructions1"":""collect water""}",instructions
+65,5cwnhhmha,survey-text,"""","{""instructions2"":""one""}",instructions
+65,5cwnhhmha,survey-text,"""","{""instructions3"":""how everyone will be slowed down""}",instructions
+65,5cwnhhmha,video-slider-response,maybe_line_new_2_1cut,0,maybe_1
+65,5cwnhhmha,video-slider-response,no_line_3_1cut,0,no_1
+65,5cwnhhmha,video-slider-response,maybe_line_new_3_1cut,-50,maybe_1
+65,5cwnhhmha,video-slider-response,yes_line_9_1cut,-50,yes_1
+65,5cwnhhmha,video-slider-response,yes_line_8_1cut,-19,yes_1
+65,5cwnhhmha,video-slider-response,maybe_line_new_5_1cut,-9,maybe_1
+65,5cwnhhmha,video-slider-response,no_line_1_1cut,0,no_1
+65,5cwnhhmha,video-slider-response,yes_line_7_1cut,-28,yes_1
+65,5cwnhhmha,video-slider-response,no_line_2_1cut,0,no_1
+65,5cwnhhmha,video-slider-response,yes_line_10_1cut,-50,yes_1
+65,5cwnhhmha,video-slider-response,maybe_line_new_6_1cut,-20,maybe_1
+65,5cwnhhmha,video-slider-response,maybe_line_new_4_1cut,11,maybe_1
+65,5cwnhhmha,video-slider-response,maybe_line_new_1_1cut,0,maybe_1
+65,5cwnhhmha,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""No""},{""name"":""age"",""value"":""47""},{""name"":""gender"",""value"":""male""},{""name"":""comments"",""value"":""}]",debrief
+65,5cwnhhmha,survey-text,"""","{""Q0"":""5cwnhhmha""}",""""
+6,ho1npadmn,preload,"""","""",""""
+6,ho1npadmn,html-keyboard-response,"""", ,""""
+6,ho1npadmn,html-keyboard-response,"""",y,""""
+6,ho1npadmn,survey-text,"""","{""instructions1"":""collects the bucket of water fast""}",instructions
+6,ho1npadmn,survey-text,"""","{""instructions2"":""1""}",instructions
+6,ho1npadmn,survey-text,"""","{""instructions3"":""think about how much everyone will be slowed down as a result of their decision""}",instructions
+6,ho1npadmn,video-slider-response,no_line_3_1cut,2,no_1
+6,ho1npadmn,video-slider-response,maybe_line_new_4_1cut,14,maybe_1
+6,ho1npadmn,video-slider-response,yes_line_9_1cut,12,yes_1
+6,ho1npadmn,video-slider-response,maybe_line_new_2_1cut,17,maybe_1
+6,ho1npadmn,video-slider-response,maybe_line_new_5_1cut,-1,maybe_1
+6,ho1npadmn,video-slider-response,yes_line_10_1cut,2,yes_1
+6,ho1npadmn,video-slider-response,no_line_2_1cut,5,no_1
+6,ho1npadmn,video-slider-response,yes_line_8_1cut,6,yes_1
+6,ho1npadmn,video-slider-response,maybe_line_new_3_1cut,8,maybe_1
+6,ho1npadmn,video-slider-response,maybe_line_new_1_1cut,17,maybe_1
+6,ho1npadmn,video-slider-response,maybe_line_new_6_1cut,36,maybe_1
+6,ho1npadmn,video-slider-response,yes_line_7_1cut,7,yes_1
+6,ho1npadmn,video-slider-response,no_line_1_1cut,0,no_1
+6,ho1npadmn,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""no""},{""name"":""age"",""value"":""31""},{""name"":""gender"",""value"":""female""},{""name"":""comments"",""value"":""no""}]",debrief
+6,ho1npadmn,survey-text,"""","{""Q0"":""ho1npadmn ""}",""""
+63,ocnww8f5o,preload,"""","""",""""
+63,ocnww8f5o,html-keyboard-response,"""", ,""""
+63,ocnww8f5o,html-keyboard-response,"""",y,""""
+63,ocnww8f5o,survey-text,"""","{""instructions1"":""Collecting a bucket of water from a source and bringing it back to a wooden storage bucket.""}",instructions
+63,ocnww8f5o,survey-text,"""","{""instructions2"":""one""}",instructions
+63,ocnww8f5o,survey-text,"""","{""instructions3"":""I am determining how much everyone else is slowed down if a player cuts the line and does not wait for their turn to collect water. ""}",instructions
+63,ocnww8f5o,video-slider-response,maybe_line_new_2_1cut,-12,maybe_1
+63,ocnww8f5o,video-slider-response,yes_line_7_1cut,-11,yes_1
+63,ocnww8f5o,video-slider-response,maybe_line_new_5_1cut,-31,maybe_1
+63,ocnww8f5o,video-slider-response,yes_line_8_1cut,-20,yes_1
+63,ocnww8f5o,video-slider-response,no_line_3_1cut,0,no_1
+63,ocnww8f5o,video-slider-response,yes_line_10_1cut,-23,yes_1
+63,ocnww8f5o,video-slider-response,no_line_2_1cut,0,no_1
+63,ocnww8f5o,video-slider-response,maybe_line_new_3_1cut,7,maybe_1
+63,ocnww8f5o,video-slider-response,no_line_1_1cut,-17,no_1
+63,ocnww8f5o,video-slider-response,maybe_line_new_6_1cut,-6,maybe_1
+63,ocnww8f5o,video-slider-response,yes_line_9_1cut,-21,yes_1
+63,ocnww8f5o,video-slider-response,maybe_line_new_1_1cut,-6,maybe_1
+63,ocnww8f5o,video-slider-response,maybe_line_new_4_1cut,0,maybe_1
+63,ocnww8f5o,survey-html-form,,,
+63,ocnww8f5o,survey-text,"""","{""Q0"":""ocnww8f5o""}",""""
+67,nflevz68v,preload,"""","""",""""
+67,nflevz68v,html-keyboard-response,"""", ,""""
+67,nflevz68v,html-keyboard-response,"""",y,""""
+67,nflevz68v,survey-text,"""","{""instructions1"":""Everyone in the game is trying to collect water from a water source and bring it back to the wooden storage buckets""}",instructions
+67,nflevz68v,survey-text,"""","{""instructions2"":""1""}",instructions
+67,nflevz68v,survey-text,"""","{""instructions3"":""think about how much everyone will be slowed down as a result of their decision""}",instructions
+67,nflevz68v,video-slider-response,maybe_line_new_4_1cut,0,maybe_1
+67,nflevz68v,video-slider-response,yes_line_9_1cut,0,yes_1
+67,nflevz68v,video-slider-response,no_line_3_1cut,1,no_1
+67,nflevz68v,video-slider-response,maybe_line_new_1_1cut,7,maybe_1
+67,nflevz68v,video-slider-response,maybe_line_new_2_1cut,7,maybe_1
+67,nflevz68v,video-slider-response,no_line_2_1cut,10,no_1
+67,nflevz68v,video-slider-response,yes_line_8_1cut,6,yes_1
+67,nflevz68v,video-slider-response,yes_line_7_1cut,7,yes_1
+67,nflevz68v,video-slider-response,maybe_line_new_5_1cut,5,maybe_1
+67,nflevz68v,video-slider-response,maybe_line_new_6_1cut,9,maybe_1
+67,nflevz68v,video-slider-response,no_line_1_1cut,7,no_1
+67,nflevz68v,video-slider-response,maybe_line_new_3_1cut,6,maybe_1
+67,nflevz68v,video-slider-response,yes_line_10_1cut,-5,yes_1
+67,nflevz68v,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""no""},{""name"":""age"",""value"":""37""},{""name"":""gender"",""value"":""female""},{""name"":""comments"",""value"":""}]",debrief
+67,nflevz68v,survey-text,"""","{""Q0"":""nflevz68v ""}",""""
+66,svvb3cftc,preload,"""","""",""""
+66,svvb3cftc,html-keyboard-response,"""", ,""""
+66,svvb3cftc,html-keyboard-response,"""",y,""""
+66,svvb3cftc,survey-text,"""","{""instructions1"":""collect one bucket of water for each level""}",instructions
+66,svvb3cftc,survey-text,"""","{""instructions2"":""one""}",instructions
+66,svvb3cftc,survey-text,"""","{""instructions3"":""to think about how much everyone will be slowed down as a result of their decision to leave the line""}",instructions
+66,svvb3cftc,video-slider-response,no_line_3_1cut,-5,no_1
+66,svvb3cftc,video-slider-response,maybe_line_new_1_1cut,-28,maybe_1
+66,svvb3cftc,video-slider-response,maybe_line_new_2_1cut,4,maybe_1
+66,svvb3cftc,video-slider-response,yes_line_8_1cut,-8,yes_1
+66,svvb3cftc,video-slider-response,maybe_line_new_3_1cut,-40,maybe_1
+66,svvb3cftc,video-slider-response,maybe_line_new_5_1cut,7,maybe_1
+66,svvb3cftc,video-slider-response,yes_line_9_1cut,-10,yes_1
+66,svvb3cftc,video-slider-response,maybe_line_new_4_1cut,-37,maybe_1
+66,svvb3cftc,video-slider-response,maybe_line_new_6_1cut,15,maybe_1
+66,svvb3cftc,video-slider-response,no_line_1_1cut,6,no_1
+66,svvb3cftc,video-slider-response,yes_line_7_1cut,-12,yes_1
+66,svvb3cftc,video-slider-response,yes_line_10_1cut,-31,yes_1
+66,svvb3cftc,video-slider-response,no_line_2_1cut,48,no_1
+66,svvb3cftc,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""no""},{""name"":""age"",""value"":""49""},{""name"":""gender"",""value"":""female""},{""name"":""comments"",""value"":""}]",debrief
+66,svvb3cftc,survey-text,"""","{""Q0"":""svvb3cftc""}",""""
+7,54up6p19q,preload,"""","""",""""
+7,54up6p19q,html-keyboard-response,"""", ,""""
+7,54up6p19q,html-keyboard-response,"""",y,""""
+7,54up6p19q,survey-text,"""","{""instructions1"":""Collect water from a water source as quickly as possible""}",instructions
+7,54up6p19q,survey-text,"""","{""instructions2"":""1""}",instructions
+7,54up6p19q,survey-text,"""","{""instructions3"":""How much everyone is slowed down when a character leaves the line.""}",instructions
+7,54up6p19q,video-slider-response,no_line_1_1cut,20,no_1
+7,54up6p19q,video-slider-response,yes_line_10_1cut,20,yes_1
+7,54up6p19q,video-slider-response,no_line_3_1cut,29,no_1
+7,54up6p19q,video-slider-response,yes_line_7_1cut,5,yes_1
+7,54up6p19q,video-slider-response,no_line_2_1cut,18,no_1
+7,54up6p19q,video-slider-response,maybe_line_new_1_1cut,1,maybe_1
+7,54up6p19q,video-slider-response,maybe_line_new_5_1cut,-11,maybe_1
+7,54up6p19q,video-slider-response,maybe_line_new_2_1cut,32,maybe_1
+7,54up6p19q,video-slider-response,maybe_line_new_4_1cut,39,maybe_1
+7,54up6p19q,video-slider-response,yes_line_8_1cut,0,yes_1
+7,54up6p19q,video-slider-response,maybe_line_new_6_1cut,-13,maybe_1
+7,54up6p19q,video-slider-response,yes_line_9_1cut,-38,yes_1
+7,54up6p19q,video-slider-response,maybe_line_new_3_1cut,-49,maybe_1
+7,54up6p19q,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""No problems.""},{""name"":""age"",""value"":""64""},{""name"":""gender"",""value"":""male""},{""name"":""comments"",""value"":""Creative study.""}]",debrief
+7,54up6p19q,survey-text,"""","{""Q0"":""54up6p19q""}",""""
+70,wr20ufgjs,preload,"""","""",""""
+70,wr20ufgjs,html-keyboard-response,"""", ,""""
+70,wr20ufgjs,html-keyboard-response,"""",y,""""
+70,wr20ufgjs,survey-text,"""","{""instructions1"":""To collect one bucket of water at the water source and bring it back.""}",instructions
+70,wr20ufgjs,survey-text,"""","{""instructions2"":""One""}",instructions
+70,wr20ufgjs,survey-text,"""","{""instructions3"":""Think about how everyone will be slowed by the decision of the line cutter.""}",instructions
+70,wr20ufgjs,video-slider-response,maybe_line_new_6_1cut,-27,maybe_1
+70,wr20ufgjs,video-slider-response,maybe_line_new_2_1cut,17,maybe_1
+70,wr20ufgjs,video-slider-response,maybe_line_new_4_1cut,-50,maybe_1
+70,wr20ufgjs,video-slider-response,maybe_line_new_1_1cut,-16,maybe_1
+70,wr20ufgjs,video-slider-response,yes_line_9_1cut,-50,yes_1
+70,wr20ufgjs,video-slider-response,no_line_1_1cut,-16,no_1
+70,wr20ufgjs,video-slider-response,yes_line_7_1cut,-11,yes_1
+70,wr20ufgjs,video-slider-response,maybe_line_new_3_1cut,-50,maybe_1
+70,wr20ufgjs,video-slider-response,maybe_line_new_5_1cut,-50,maybe_1
+70,wr20ufgjs,video-slider-response,no_line_2_1cut,18,no_1
+70,wr20ufgjs,video-slider-response,yes_line_10_1cut,-50,yes_1
+70,wr20ufgjs,video-slider-response,yes_line_8_1cut,-50,yes_1
+70,wr20ufgjs,video-slider-response,no_line_3_1cut,16,no_1
+70,wr20ufgjs,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""No issues.""},{""name"":""age"",""value"":""38""},{""name"":""gender"",""value"":""male""},{""name"":""comments"",""value"":""Seems that most of the time, it was slower, or very slow, especially if there was a bottle neck created. ""}]",debrief
+70,wr20ufgjs,survey-text,"""","{""Q0"":""wr20ufgjs""}",""""
+71,ws3uhq781,preload,"""","""",""""
+71,ws3uhq781,html-keyboard-response,"""", ,""""
+71,ws3uhq781,html-keyboard-response,"""",y,""""
+71,ws3uhq781,survey-text,"""","{""instructions1"":""to collect water from a water source and bring it to wooden storage buckets""}",instructions
+71,ws3uhq781,survey-text,"""","{""instructions2"":""one""}",instructions
+71,ws3uhq781,survey-text,"""","{""instructions3"":""how much everyone will be slowed down""}",instructions
+71,ws3uhq781,video-slider-response,yes_line_10_1cut,-22,yes_1
+71,ws3uhq781,video-slider-response,maybe_line_new_2_1cut,-3,maybe_1
+71,ws3uhq781,video-slider-response,yes_line_7_1cut,-5,yes_1
+71,ws3uhq781,video-slider-response,yes_line_8_1cut,-21,yes_1
+71,ws3uhq781,video-slider-response,no_line_2_1cut,5,no_1
+71,ws3uhq781,video-slider-response,yes_line_9_1cut,-19,yes_1
+71,ws3uhq781,video-slider-response,maybe_line_new_3_1cut,10,maybe_1
+71,ws3uhq781,video-slider-response,no_line_3_1cut,8,no_1
+71,ws3uhq781,video-slider-response,maybe_line_new_6_1cut,-11,maybe_1
+71,ws3uhq781,video-slider-response,no_line_1_1cut,6,no_1
+71,ws3uhq781,video-slider-response,maybe_line_new_5_1cut,-16,maybe_1
+71,ws3uhq781,video-slider-response,maybe_line_new_4_1cut,-12,maybe_1
+71,ws3uhq781,video-slider-response,maybe_line_new_1_1cut,10,maybe_1
+71,ws3uhq781,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""no""},{""name"":""age"",""value"":""44""},{""name"":""gender"",""value"":""male""},{""name"":""comments"",""value"":""}]",debrief
+71,ws3uhq781,survey-text,"""","{""Q0"":""ws3uhq781""}",""""
+77,smr723q2r,preload,"""","""",""""
+77,smr723q2r,html-keyboard-response,"""", ,""""
+77,smr723q2r,html-keyboard-response,"""",y,""""
+77,smr723q2r,survey-text,"""","{""instructions1"":""needs to collect one bucket of water""}",instructions
+77,smr723q2r,survey-text,"""","{""instructions2"":""one""}",instructions
+77,smr723q2r,survey-text,"""","{""instructions3"":""how much everyone will be slowed down as a result of their decision.""}",instructions
+77,smr723q2r,video-slider-response,yes_line_8_1cut,46,yes_1
+77,smr723q2r,video-slider-response,maybe_line_new_1_1cut,10,maybe_1
+77,smr723q2r,video-slider-response,no_line_3_1cut,-16,no_1
+77,smr723q2r,video-slider-response,maybe_line_new_6_1cut,32,maybe_1
+77,smr723q2r,video-slider-response,yes_line_9_1cut,50,yes_1
+77,smr723q2r,video-slider-response,maybe_line_new_5_1cut,48,maybe_1
+77,smr723q2r,video-slider-response,yes_line_10_1cut,48,yes_1
+77,smr723q2r,video-slider-response,maybe_line_new_4_1cut,-36,maybe_1
+77,smr723q2r,video-slider-response,maybe_line_new_3_1cut,47,maybe_1
+77,smr723q2r,video-slider-response,maybe_line_new_2_1cut,-24,maybe_1
+77,smr723q2r,video-slider-response,no_line_1_1cut,0,no_1
+77,smr723q2r,video-slider-response,yes_line_7_1cut,0,yes_1
+77,smr723q2r,video-slider-response,no_line_2_1cut,50,no_1
+77,smr723q2r,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""no""},{""name"":""age"",""value"":""31""},{""name"":""gender"",""value"":""male""},{""name"":""comments"",""value"":""}]",debrief
+77,smr723q2r,survey-text,"""","{""Q0"":""smr723q2r""}",""""
+78,ker8tty4a,preload,"""","""",""""
+78,ker8tty4a,html-keyboard-response,"""", ,""""
+78,ker8tty4a,html-keyboard-response,"""",y,""""
+78,ker8tty4a,survey-text,"""","{""instructions1"":""collect water from a water source and bring it back to the wooden storage buckets""}",instructions
+78,ker8tty4a,survey-text,"""","{""instructions2"":""1""}",instructions
+78,ker8tty4a,survey-text,"""","{""instructions3"":""think about how much everyone will be slowed down as a result of their decision""}",instructions
+78,ker8tty4a,video-slider-response,maybe_line_new_3_1cut,-22,maybe_1
+78,ker8tty4a,video-slider-response,yes_line_7_1cut,-3,yes_1
+78,ker8tty4a,video-slider-response,no_line_1_1cut,10,no_1
+78,ker8tty4a,video-slider-response,maybe_line_new_6_1cut,17,maybe_1
+78,ker8tty4a,video-slider-response,yes_line_10_1cut,-41,yes_1
+78,ker8tty4a,video-slider-response,maybe_line_new_2_1cut,-4,maybe_1
+78,ker8tty4a,video-slider-response,maybe_line_new_4_1cut,-8,maybe_1
+78,ker8tty4a,video-slider-response,maybe_line_new_5_1cut,-5,maybe_1
+78,ker8tty4a,video-slider-response,yes_line_9_1cut,-20,yes_1
+78,ker8tty4a,video-slider-response,no_line_2_1cut,24,no_1
+78,ker8tty4a,video-slider-response,maybe_line_new_1_1cut,17,maybe_1
+78,ker8tty4a,video-slider-response,no_line_3_1cut,1,no_1
+78,ker8tty4a,video-slider-response,yes_line_8_1cut,-6,yes_1
+78,ker8tty4a,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""none""},{""name"":""age"",""value"":""39""},{""name"":""gender"",""value"":""male""},{""name"":""comments"",""value"":""none""}]",debrief
+78,ker8tty4a,survey-text,"""","{""Q0"":""ker8tty4a""}",""""
+74,etfsl06f2,preload,"""","""",""""
+74,etfsl06f2,html-keyboard-response,"""", ,""""
+74,etfsl06f2,html-keyboard-response,"""",y,""""
+74,etfsl06f2,survey-text,"""","{""instructions1"":""collect water""}",instructions
+74,etfsl06f2,survey-text,"""","{""instructions2"":""1""}",instructions
+74,etfsl06f2,survey-text,"""","{""instructions3"":""How much everyone will be slowed down""}",instructions
+74,etfsl06f2,video-slider-response,no_line_2_1cut,1,no_1
+74,etfsl06f2,video-slider-response,maybe_line_new_4_1cut,-1,maybe_1
+74,etfsl06f2,video-slider-response,yes_line_10_1cut,2,yes_1
+74,etfsl06f2,video-slider-response,no_line_1_1cut,3,no_1
+74,etfsl06f2,video-slider-response,no_line_3_1cut,10,no_1
+74,etfsl06f2,video-slider-response,maybe_line_new_3_1cut,9,maybe_1
+74,etfsl06f2,video-slider-response,yes_line_7_1cut,8,yes_1
+74,etfsl06f2,video-slider-response,yes_line_9_1cut,-1,yes_1
+74,etfsl06f2,video-slider-response,maybe_line_new_5_1cut,-4,maybe_1
+74,etfsl06f2,video-slider-response,maybe_line_new_2_1cut,10,maybe_1
+74,etfsl06f2,video-slider-response,yes_line_8_1cut,-7,yes_1
+74,etfsl06f2,video-slider-response,maybe_line_new_1_1cut,8,maybe_1
+74,etfsl06f2,video-slider-response,maybe_line_new_6_1cut,21,maybe_1
+74,etfsl06f2,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""No issues that I saw!""},{""name"":""age"",""value"":""36""},{""name"":""gender"",""value"":""male""},{""name"":""comments"",""value"":""Thank you, this was fun!""}]",debrief
+74,etfsl06f2,survey-text,"""","{""Q0"":""etfsl06f2""}",""""
+79,s8sq08qpp,preload,"""","""",""""
+79,s8sq08qpp,html-keyboard-response,"""", ,""""
+79,s8sq08qpp,html-keyboard-response,"""",y,""""
+79,s8sq08qpp,survey-text,"""","{""instructions1"":""Watch videos of a video game""}",instructions
+79,s8sq08qpp,survey-text,"""","{""instructions2"":""one""}",instructions
+79,s8sq08qpp,survey-text,"""","{""instructions3"":""Think about how much everyone will be slowed down as a result of their decision.""}",instructions
+79,s8sq08qpp,video-slider-response,maybe_line_new_4_1cut,37,maybe_1
+79,s8sq08qpp,video-slider-response,no_line_3_1cut,25,no_1
+79,s8sq08qpp,video-slider-response,yes_line_9_1cut,-13,yes_1
+79,s8sq08qpp,video-slider-response,no_line_2_1cut,15,no_1
+79,s8sq08qpp,video-slider-response,maybe_line_new_3_1cut,11,maybe_1
+79,s8sq08qpp,video-slider-response,no_line_1_1cut,22,no_1
+79,s8sq08qpp,video-slider-response,yes_line_7_1cut,23,yes_1
+79,s8sq08qpp,video-slider-response,yes_line_8_1cut,28,yes_1
+79,s8sq08qpp,video-slider-response,maybe_line_new_2_1cut,-24,maybe_1
+79,s8sq08qpp,video-slider-response,maybe_line_new_5_1cut,32,maybe_1
+79,s8sq08qpp,video-slider-response,maybe_line_new_6_1cut,-17,maybe_1
+79,s8sq08qpp,video-slider-response,yes_line_10_1cut,13,yes_1
+79,s8sq08qpp,video-slider-response,maybe_line_new_1_1cut,17,maybe_1
+79,s8sq08qpp,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""No""},{""name"":""age"",""value"":""32""},{""name"":""gender"",""value"":""male""},{""name"":""comments"",""value"":""Nice""}]",debrief
+79,s8sq08qpp,survey-text,"""","{""Q0"":""s8sq08qpp""}",""""
+73,osxsqxoh5,preload,"""","""",""""
+73,osxsqxoh5,html-keyboard-response,"""", ,""""
+73,osxsqxoh5,html-keyboard-response,"""",y,""""
+73,osxsqxoh5,survey-text,"""","{""instructions1"":""Collect water from a water source and bring it back to the wooden storage buckets""}",instructions
+73,osxsqxoh5,survey-text,"""","{""instructions2"":""one""}",instructions
+73,osxsqxoh5,survey-text,"""","{""instructions3"":""how much everyone will be slowed down as a result of their decision""}",instructions
+73,osxsqxoh5,video-slider-response,no_line_3_1cut,16,no_1
+73,osxsqxoh5,video-slider-response,yes_line_8_1cut,-26,yes_1
+73,osxsqxoh5,video-slider-response,no_line_1_1cut,-20,no_1
+73,osxsqxoh5,video-slider-response,maybe_line_new_2_1cut,-50,maybe_1
+73,osxsqxoh5,video-slider-response,maybe_line_new_6_1cut,0,maybe_1
+73,osxsqxoh5,video-slider-response,yes_line_7_1cut,-24,yes_1
+73,osxsqxoh5,video-slider-response,maybe_line_new_4_1cut,50,maybe_1
+73,osxsqxoh5,video-slider-response,maybe_line_new_1_1cut,0,maybe_1
+73,osxsqxoh5,video-slider-response,maybe_line_new_3_1cut,14,maybe_1
+73,osxsqxoh5,video-slider-response,yes_line_9_1cut,50,yes_1
+73,osxsqxoh5,video-slider-response,maybe_line_new_5_1cut,-50,maybe_1
+73,osxsqxoh5,video-slider-response,no_line_2_1cut,0,no_1
+73,osxsqxoh5,video-slider-response,yes_line_10_1cut,-50,yes_1
+73,osxsqxoh5,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""n0""},{""name"":""age"",""value"":""30""},{""name"":""gender"",""value"":""male""},{""name"":""comments"",""value"":""}]",debrief
+73,osxsqxoh5,survey-text,"""","{""Q0"":""osxsqxoh5 ""}",""""
+75,y0t9841nu,preload,"""","""",""""
+75,y0t9841nu,html-keyboard-response,"""", ,""""
+75,y0t9841nu,html-keyboard-response,"""",y,""""
+75,y0t9841nu,survey-text,"""","{""instructions1"":""People need to collect buckets of water and they earn points for each bucket.""}",instructions
+75,y0t9841nu,survey-text,"""","{""instructions2"":""1""}",instructions
+75,y0t9841nu,survey-text,"""","{""instructions3"":""How much everyone is slowed down by one character choosing to leave the line.""}",instructions
+75,y0t9841nu,video-slider-response,maybe_line_new_3_1cut,10,maybe_1
+75,y0t9841nu,video-slider-response,maybe_line_new_6_1cut,10,maybe_1
+75,y0t9841nu,video-slider-response,no_line_2_1cut,2,no_1
+75,y0t9841nu,video-slider-response,yes_line_8_1cut,-3,yes_1
+75,y0t9841nu,video-slider-response,maybe_line_new_4_1cut,5,maybe_1
+75,y0t9841nu,video-slider-response,maybe_line_new_1_1cut,10,maybe_1
+75,y0t9841nu,video-slider-response,yes_line_9_1cut,11,yes_1
+75,y0t9841nu,video-slider-response,yes_line_7_1cut,3,yes_1
+75,y0t9841nu,video-slider-response,maybe_line_new_2_1cut,-5,maybe_1
+75,y0t9841nu,video-slider-response,yes_line_10_1cut,-21,yes_1
+75,y0t9841nu,video-slider-response,no_line_3_1cut,4,no_1
+75,y0t9841nu,video-slider-response,no_line_1_1cut,-3,no_1
+75,y0t9841nu,video-slider-response,maybe_line_new_5_1cut,-13,maybe_1
+75,y0t9841nu,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""No, no issues.""},{""name"":""age"",""value"":""38""},{""name"":""gender"",""value"":""female""},{""name"":""comments"",""value"":""}]",debrief
+75,y0t9841nu,survey-text,"""","{""Q0"":""y0t9841nu""}",""""
+8,0olb06fd9,preload,"""","""",""""
+8,0olb06fd9,html-keyboard-response,"""", ,""""
+8,0olb06fd9,html-keyboard-response,"""",y,""""
+8,0olb06fd9,survey-text,"""","{""instructions1"":""How much people are slowed by someone leaving the line.""}",instructions
+8,0olb06fd9,survey-text,"""","{""instructions2"":""One square at a time.""}",instructions
+8,0olb06fd9,survey-text,"""","{""instructions3"":""How much others are slowed due to someone leaving the line""}",instructions
+8,0olb06fd9,video-slider-response,maybe_line_new_2_1cut,5,maybe_1
+8,0olb06fd9,video-slider-response,yes_line_10_1cut,-31,yes_1
+8,0olb06fd9,video-slider-response,no_line_3_1cut,6,no_1
+8,0olb06fd9,video-slider-response,maybe_line_new_4_1cut,8,maybe_1
+8,0olb06fd9,video-slider-response,maybe_line_new_3_1cut,-17,maybe_1
+8,0olb06fd9,video-slider-response,maybe_line_new_5_1cut,-25,maybe_1
+8,0olb06fd9,video-slider-response,yes_line_7_1cut,1,yes_1
+8,0olb06fd9,video-slider-response,yes_line_9_1cut,-23,yes_1
+8,0olb06fd9,video-slider-response,no_line_2_1cut,8,no_1
+8,0olb06fd9,video-slider-response,no_line_1_1cut,-7,no_1
+8,0olb06fd9,video-slider-response,yes_line_8_1cut,-27,yes_1
+8,0olb06fd9,video-slider-response,maybe_line_new_6_1cut,0,maybe_1
+8,0olb06fd9,video-slider-response,maybe_line_new_1_1cut,1,maybe_1
+8,0olb06fd9,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""none""},{""name"":""age"",""value"":""50""},{""name"":""gender"",""value"":""male""},{""name"":""comments"",""value"":""With the videos stopping before we could see exactly where the person was leaving the line was heading it was not easy to know how they would impact others.""}]",debrief
+8,0olb06fd9,survey-text,"""","{""Q0"":""0olb06fd9""}",""""
+81,14hnapn4h,preload,"""","""",""""
+81,14hnapn4h,html-keyboard-response,"""", ,""""
+81,14hnapn4h,html-keyboard-response,"""",y,""""
+81,14hnapn4h,survey-text,"""","{""instructions1"":""I am going to analyze how much everyone in the line is slowed down by one person leaving it in favor of getting water for themselves faster.""}",instructions
+81,14hnapn4h,survey-text,"""","{""instructions2"":""Players can move one square during each time step.""}",instructions
+81,14hnapn4h,survey-text,"""","{""instructions3"":""I am going to consider how one player leaving the line impacts the other 7 players in the game with their goal to obtain water.""}",instructions
+81,14hnapn4h,video-slider-response,yes_line_9_1cut,-22,yes_1
+81,14hnapn4h,video-slider-response,maybe_line_new_3_1cut,-39,maybe_1
+81,14hnapn4h,video-slider-response,maybe_line_new_5_1cut,-50,maybe_1
+81,14hnapn4h,video-slider-response,maybe_line_new_2_1cut,11,maybe_1
+81,14hnapn4h,video-slider-response,yes_line_10_1cut,-34,yes_1
+81,14hnapn4h,video-slider-response,no_line_1_1cut,6,no_1
+81,14hnapn4h,video-slider-response,maybe_line_new_6_1cut,-8,maybe_1
+81,14hnapn4h,video-slider-response,yes_line_8_1cut,-50,yes_1
+81,14hnapn4h,video-slider-response,no_line_2_1cut,49,no_1
+81,14hnapn4h,video-slider-response,no_line_3_1cut,15,no_1
+81,14hnapn4h,video-slider-response,yes_line_7_1cut,-19,yes_1
+81,14hnapn4h,video-slider-response,maybe_line_new_4_1cut,-50,maybe_1
+81,14hnapn4h,video-slider-response,maybe_line_new_1_1cut,0,maybe_1
+81,14hnapn4h,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""Everything went smoothly for me.""},{""name"":""age"",""value"":""34""},{""name"":""gender"",""value"":""male""},{""name"":""comments"",""value"":""Good luck with your research.""}]",debrief
+81,14hnapn4h,survey-text,"""","{""Q0"":""14hnapn4h""}",""""
+9,tabb84xap,preload,"""","""",""""
+9,tabb84xap,html-keyboard-response,"""", ,""""
+9,tabb84xap,html-keyboard-response,"""",y,""""
+9,tabb84xap,survey-text,"""","{""instructions1"":""To collect water from a water source and bring it back to the wooden storage buckets.""}",instructions
+9,tabb84xap,survey-text,"""","{""instructions2"":""one""}",instructions
+9,tabb84xap,survey-text,"""","{""instructions3"":""How much everyone else in line is slowed down by the decision of one person to leave the line.""}",instructions
+9,tabb84xap,video-slider-response,no_line_2_1cut,0,no_1
+9,tabb84xap,video-slider-response,maybe_line_new_1_1cut,-17,maybe_1
+9,tabb84xap,video-slider-response,maybe_line_new_6_1cut,-25,maybe_1
+9,tabb84xap,video-slider-response,maybe_line_new_5_1cut,-41,maybe_1
+9,tabb84xap,video-slider-response,yes_line_9_1cut,-45,yes_1
+9,tabb84xap,video-slider-response,yes_line_7_1cut,8,yes_1
+9,tabb84xap,video-slider-response,maybe_line_new_3_1cut,-45,maybe_1
+9,tabb84xap,video-slider-response,yes_line_10_1cut,-48,yes_1
+9,tabb84xap,video-slider-response,no_line_3_1cut,14,no_1
+9,tabb84xap,video-slider-response,maybe_line_new_2_1cut,17,maybe_1
+9,tabb84xap,video-slider-response,no_line_1_1cut,11,no_1
+9,tabb84xap,video-slider-response,yes_line_8_1cut,-43,yes_1
+9,tabb84xap,video-slider-response,maybe_line_new_4_1cut,32,maybe_1
+9,tabb84xap,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""None.""},{""name"":""age"",""value"":""71""},{""name"":""gender"",""value"":""male""},{""name"":""comments"",""value"":""None, thanks!""}]",debrief
+9,tabb84xap,survey-text,"""","{""Q0"":""tabb84xap""}",""""

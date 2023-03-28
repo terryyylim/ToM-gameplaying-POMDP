@@ -1,0 +1,779 @@
+run_id,ID,trial_type,stimulus_name,response,trial_category
+12,ek64c2hy2,preload,"""","""",""""
+12,ek64c2hy2,html-keyboard-response,"""", ,""""
+12,ek64c2hy2,html-keyboard-response,"""",y,""""
+12,ek64c2hy2,survey-text,"""","{""instructions1"":""collect water from a water source and bring it back to the wooden storage buckets""}",instructions
+12,ek64c2hy2,survey-text,"""","{""instructions2"":""when all 8 people collect water and store it in a wooden storage bucket.""}",instructions
+12,ek64c2hy2,survey-text,"""","{""instructions3"":""decide whether they will definitely stay in line or take opportunities to leave the line and head directly for the water source""}",instructions
+12,ek64c2hy2,survey-text,"""","{""instructions4"":""This is the only person who didn’t have to decide their strategy ahead of time""}",instructions
+12,ek64c2hy2,video-button-response,yes_line_7_1cut,1,yes_1
+12,ek64c2hy2,video-button-response,no_line_1_1cut,1,no_1
+12,ek64c2hy2,video-button-response,no_line_1_0cut,1,no_0
+12,ek64c2hy2,video-button-response,yes_line_7_0cut,1,yes_0
+12,ek64c2hy2,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""none""},{""name"":""age"",""value"":""51""},{""name"":""gender"",""value"":""male""},{""name"":""comments"",""value"":""no""}]",debrief
+12,ek64c2hy2,survey-text,"""","{""Q0"":""ek64c2hy2""}",""""
+16,663sel4nw,preload,"""","""",""""
+16,663sel4nw,html-keyboard-response,"""", ,""""
+16,663sel4nw,html-keyboard-response,"""",y,""""
+16,663sel4nw,survey-text,"""","{""instructions1"":""bring water from the source to the storage""}",instructions
+16,663sel4nw,survey-text,"""","{""instructions2"":""when 8 people have brought water from source to the storage""}",instructions
+16,663sel4nw,survey-text,"""","{""instructions3"":""they have to decide to wait in line or head right for the source""}",instructions
+16,663sel4nw,survey-text,"""","{""instructions4"":""they didn't have to decide before hand what they are going to do""}",instructions
+16,663sel4nw,video-button-response,yes_line_7_1cut,1,yes_1
+16,663sel4nw,video-button-response,no_line_1_0cut,1,no_0
+16,663sel4nw,video-button-response,no_line_1_1cut,1,no_1
+16,663sel4nw,video-button-response,yes_line_7_0cut,1,yes_0
+16,663sel4nw,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""none""},{""name"":""age"",""value"":""42""},{""name"":""gender"",""value"":""male""},{""name"":""comments"",""value"":""}]",debrief
+16,663sel4nw,survey-text,"""","{""Q0"":""663sel4nw ""}",""""
+18,6k95upfm1,preload,"""","""",""""
+18,6k95upfm1,html-keyboard-response,"""", ,""""
+18,6k95upfm1,html-keyboard-response,"""",y,""""
+18,6k95upfm1,survey-text,"""","{""instructions1"":""The goal is for each person to collect water from the source and bring it back to the wooden storage buckets.""}",instructions
+18,6k95upfm1,survey-text,"""","{""instructions2"":""When all eight people collect water and store it in the wooden storage bucket.""}",instructions
+18,6k95upfm1,survey-text,"""","{""instructions3"":""Whether to wait in line or to leave it and head directly for the water source no matter where they were in the line.""}",instructions
+18,6k95upfm1,survey-text,"""","{""instructions4"":""That person has the freedom of choice between staying in line or leaving it during the game, unlike the rest who have to choose before the game and cannot change their mind once the game starts.""}",instructions
+18,6k95upfm1,video-button-response,yes_line_7_0cut,1,yes_0
+18,6k95upfm1,video-button-response,yes_line_7_1cut,0,yes_1
+18,6k95upfm1,video-button-response,no_line_1_0cut,1,no_0
+18,6k95upfm1,video-button-response,no_line_1_1cut,1,no_1
+18,6k95upfm1,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""No problems are bugs.""},{""name"":""age"",""value"":""36""},{""name"":""gender"",""value"":""male""},{""name"":""comments"",""value"":""}]",debrief
+18,6k95upfm1,survey-text,"""","{""Q0"":""6k95upfm1""}",""""
+2,tmc4xgmf3,preload,"""","""",""""
+2,tmc4xgmf3,html-keyboard-response,"""", ,""""
+2,tmc4xgmf3,html-keyboard-response,"""",y,""""
+2,tmc4xgmf3,survey-text,"""","{""instructions1"":""Collect water from a water source and bring it back to the wooden storage buckets.""}",instructions
+2,tmc4xgmf3,survey-text,"""","{""instructions2"":""When all 8 people collect water and store it in a wooden storage bucket.""}",instructions
+2,tmc4xgmf3,survey-text,"""","{""instructions3"":""Decide whether they will definitely stay in line or take opportunities to leave the line and head directly for the water source.""}",instructions
+2,tmc4xgmf3,survey-text,"""","{""instructions4"":""They didn’t have to decide their strategy ahead of time.""}",instructions
+2,tmc4xgmf3,video-button-response,no_line_1_1cut,1,no_1
+2,tmc4xgmf3,video-button-response,yes_line_7_0cut,1,yes_0
+2,tmc4xgmf3,video-button-response,yes_line_7_1cut,0,yes_1
+2,tmc4xgmf3,video-button-response,no_line_1_0cut,1,no_0
+2,tmc4xgmf3,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""none""},{""name"":""age"",""value"":""32""},{""name"":""gender"",""value"":""male""},{""name"":""comments"",""value"":""none""}]",debrief
+2,tmc4xgmf3,survey-text,"""","{""Q0"":""tmc4xgmf3""}",""""
+19,lvj8psxbz,preload,"""","""",""""
+19,lvj8psxbz,html-keyboard-response,"""", ,""""
+19,lvj8psxbz,html-keyboard-response,"""",y,""""
+19,lvj8psxbz,survey-text,"""","{""instructions1"":""Everyone in the game is trying to collect water from a water source and bring it back to the wooden storage buckets. Each person needs to collect one bucket of water for each level.""}",instructions
+19,lvj8psxbz,survey-text,"""","{""instructions2"":""Each video will end when all 8 people collect water and store it in a wooden storage bucket.""}",instructions
+19,lvj8psxbz,survey-text,"""","{""instructions3"":""Players have to make a decision (without talking to each other) about how they will behave in that scene .Each player has to decide whether they will definitely stay in line or take opportunities to leave the line and head directly for the water source.""}",instructions
+19,lvj8psxbz,survey-text,"""","{""instructions4"":""This is the person whose actions you will judge as morally acceptable or morally unacceptable.""}",instructions
+19,lvj8psxbz,video-button-response,yes_line_7_0cut,1,yes_0
+19,lvj8psxbz,video-button-response,no_line_1_0cut,1,no_0
+19,lvj8psxbz,video-button-response,yes_line_7_1cut,0,yes_1
+19,lvj8psxbz,video-button-response,no_line_1_1cut,1,no_1
+19,lvj8psxbz,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""Bo""},{""name"":""age"",""value"":""47""},{""name"":""gender"",""value"":""male""},{""name"":""comments"",""value"":""A3FGT6EU39C6S4""}]",debrief
+19,lvj8psxbz,survey-text,"""","{""Q0"":""lvj8psxbz""}",""""
+14,5uufhvv91,preload,"""","""",""""
+14,5uufhvv91,html-keyboard-response,"""", ,""""
+14,5uufhvv91,html-keyboard-response,"""",y,""""
+14,5uufhvv91,survey-text,"""","{""instructions1"":"" collect water from a water source and bring it back to the wooden storage buckets.""}",instructions
+14,5uufhvv91,survey-text,"""","{""instructions2"":""when all 8 people collect water and store it in a wooden storage bucket.""}",instructions
+14,5uufhvv91,survey-text,"""","{""instructions3"":""whether they will definitely stay in line or take opportunities to leave the line and head directly for the water source.""}",instructions
+14,5uufhvv91,survey-text,"""","{""instructions4"":""This is the only person who didn’t have to decide their strategy ahead of time.""}",instructions
+14,5uufhvv91,video-button-response,no_line_1_0cut,1,no_0
+14,5uufhvv91,video-button-response,yes_line_7_1cut,0,yes_1
+14,5uufhvv91,video-button-response,yes_line_7_0cut,1,yes_0
+14,5uufhvv91,video-button-response,no_line_1_1cut,1,no_1
+14,5uufhvv91,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""No""},{""name"":""age"",""value"":""40""},{""name"":""gender"",""value"":""male""},{""name"":""comments"",""value"":""}]",debrief
+14,5uufhvv91,survey-text,"""","{""Q0"":""5uufhvv91""}",""""
+17,mqhc38c42,preload,"""","""",""""
+17,mqhc38c42,html-keyboard-response,"""", ,""""
+17,mqhc38c42,html-keyboard-response,"""",y,""""
+17,mqhc38c42,survey-text,"""","{""instructions1"":""get water from a source""}",instructions
+17,mqhc38c42,survey-text,"""","{""instructions2"":""when all people collect water""}",instructions
+17,mqhc38c42,survey-text,"""","{""instructions3"":""whether they stay in line and wait their turn or move out of turn""}",instructions
+17,mqhc38c42,survey-text,"""","{""instructions4"":""the person won't have to make a choice to move ahead of time""}",instructions
+17,mqhc38c42,video-button-response,yes_line_7_0cut,1,yes_0
+17,mqhc38c42,video-button-response,no_line_1_1cut,1,no_1
+17,mqhc38c42,video-button-response,no_line_1_0cut,1,no_0
+17,mqhc38c42,video-button-response,yes_line_7_1cut,0,yes_1
+17,mqhc38c42,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""no""},{""name"":""age"",""value"":""38""},{""name"":""gender"",""value"":""male""},{""name"":""comments"",""value"":""}]",debrief
+17,mqhc38c42,survey-text,"""","{""Q0"":""mqhc38c42 ""}",""""
+27,30zrqguf1,preload,"""","""",""""
+27,30zrqguf1,html-keyboard-response,"""", ,""""
+27,30zrqguf1,html-keyboard-response,"""",y,""""
+27,30zrqguf1,survey-text,"""","{""instructions1"":""collect water from a water source and bring it back to wooden storage buckets""}",instructions
+27,30zrqguf1,survey-text,"""","{""instructions2"":""when 8 people collect water and store it in a wooden storage bucket""}",instructions
+27,30zrqguf1,survey-text,"""","{""instructions3"":""whether to definitely stay in line or leave the line""}",instructions
+27,30zrqguf1,survey-text,"""","{""instructions4"":""They didn't have to decide their strategy ahead of time""}",instructions
+27,30zrqguf1,video-button-response,no_line_1_0cut,0,no_0
+27,30zrqguf1,video-button-response,yes_line_7_1cut,0,yes_1
+27,30zrqguf1,video-button-response,no_line_1_1cut,0,no_1
+27,30zrqguf1,video-button-response,yes_line_7_0cut,0,yes_0
+27,30zrqguf1,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""none""},{""name"":""age"",""value"":""52""},{""name"":""gender"",""value"":""female""},{""name"":""comments"",""value"":""}]",debrief
+27,30zrqguf1,survey-text,"""","{""Q0"":""30zrqguf1""}",""""
+20,sh23w66pd,preload,"""","""",""""
+20,sh23w66pd,html-keyboard-response,"""", ,""""
+20,sh23w66pd,html-keyboard-response,"""",y,""""
+20,sh23w66pd,survey-text,"""","{""instructions1"":""Every person needs to collect one bucket of water everly level and the faster a person collects the bucket of water the more points they will get""}",instructions
+20,sh23w66pd,survey-text,"""","{""instructions2"":""After all 8 people collect their water and store it in a wooden storage bucket""}",instructions
+20,sh23w66pd,survey-text,"""","{""instructions3"":""The players have to decide whether they will definitely stay in line or take opportunities to leave the line and head straight to the water source""}",instructions
+20,sh23w66pd,survey-text,"""","{""instructions4"":""they are the only person who did not have to decide their strategy ahead of time""}",instructions
+20,sh23w66pd,video-button-response,yes_line_7_1cut,0,yes_1
+20,sh23w66pd,video-button-response,no_line_1_1cut,0,no_1
+20,sh23w66pd,video-button-response,yes_line_7_0cut,1,yes_0
+20,sh23w66pd,video-button-response,no_line_1_0cut,1,no_0
+20,sh23w66pd,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""nope everything worked well""},{""name"":""age"",""value"":""39""},{""name"":""gender"",""value"":""male""},{""name"":""comments"",""value"":""}]",debrief
+20,sh23w66pd,survey-text,"""","{""Q0"":""sh23w66pd""}",""""
+26,rnblfnnuw,preload,"""","""",""""
+26,rnblfnnuw,html-keyboard-response,"""", ,""""
+26,rnblfnnuw,html-keyboard-response,"""",y,""""
+26,rnblfnnuw,survey-text,"""","{""instructions1"":""collect water and bring it back to the bucket""}",instructions
+26,rnblfnnuw,survey-text,"""","{""instructions2"":""when all 8 people collect water and store it in the bucket""}",instructions
+26,rnblfnnuw,survey-text,"""","{""instructions3"":""if they want to stay in line or leave directly for the water""}",instructions
+26,rnblfnnuw,survey-text,"""","{""instructions4"":""that he does not have to decide ahead of time""}",instructions
+26,rnblfnnuw,video-button-response,yes_line_7_1cut,1,yes_1
+26,rnblfnnuw,video-button-response,yes_line_7_0cut,1,yes_0
+26,rnblfnnuw,video-button-response,no_line_1_0cut,1,no_0
+26,rnblfnnuw,video-button-response,no_line_1_1cut,0,no_1
+26,rnblfnnuw,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""no""},{""name"":""age"",""value"":""40""},{""name"":""gender"",""value"":""male""},{""name"":""comments"",""value"":""thank you""}]",debrief
+26,rnblfnnuw,survey-text,"""","{""Q0"":""rnblfnnuw""}",""""
+23,q4289yfx0,preload,"""","""",""""
+23,q4289yfx0,html-keyboard-response,"""", ,""""
+23,q4289yfx0,html-keyboard-response,"""",y,""""
+23,q4289yfx0,survey-text,"""","{""instructions1"":""collect water""}",instructions
+23,q4289yfx0,survey-text,"""","{""instructions2"":""when everyone collects  water and stores it""}",instructions
+23,q4289yfx0,survey-text,"""","{""instructions3"":""how they will behave""}",instructions
+23,q4289yfx0,survey-text,"""","{""instructions4"":""didnt decide strategy ahead of time""}",instructions
+23,q4289yfx0,video-button-response,yes_line_7_0cut,1,yes_0
+23,q4289yfx0,video-button-response,no_line_1_0cut,1,no_0
+23,q4289yfx0,video-button-response,yes_line_7_1cut,0,yes_1
+23,q4289yfx0,video-button-response,no_line_1_1cut,1,no_1
+23,q4289yfx0,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""no""},{""name"":""age"",""value"":""39""},{""name"":""gender"",""value"":""female""},{""name"":""comments"",""value"":""no""}]",debrief
+23,q4289yfx0,survey-text,"""","{""Q0"":""q4289yfx0""}",""""
+21,fzfrwfxm6,preload,"""","""",""""
+21,fzfrwfxm6,html-keyboard-response,"""", ,""""
+21,fzfrwfxm6,html-keyboard-response,"""",y,""""
+21,fzfrwfxm6,survey-text,"""","{""instructions1"":""To collect water and bring it back to wooden storage buckets the fastest.""}",instructions
+21,fzfrwfxm6,survey-text,"""","{""instructions2"":""When all 8 people collect water and store it in a bucket.""}",instructions
+21,fzfrwfxm6,survey-text,"""","{""instructions3"":""Whether to stay in line or head straight for the water.""}",instructions
+21,fzfrwfxm6,survey-text,"""","{""instructions4"":""They have not decided their strategy yet.""}",instructions
+21,fzfrwfxm6,video-button-response,yes_line_7_0cut,0,yes_0
+21,fzfrwfxm6,video-button-response,no_line_1_0cut,1,no_0
+21,fzfrwfxm6,video-button-response,yes_line_7_1cut,0,yes_1
+21,fzfrwfxm6,video-button-response,no_line_1_1cut,0,no_1
+21,fzfrwfxm6,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""None""},{""name"":""age"",""value"":""35""},{""name"":""gender"",""value"":""male""},{""name"":""comments"",""value"":""}]",debrief
+21,fzfrwfxm6,survey-text,"""","{""Q0"":""fzfrwfxm6""}",""""
+30,vobf9gh42,preload,"""","""",""""
+30,vobf9gh42,html-keyboard-response,"""", ,""""
+30,vobf9gh42,html-keyboard-response,"""",y,""""
+30,vobf9gh42,survey-text,"""","{""instructions1"":""The people are collecting water as fast as they can in order to get more points.""}",instructions
+30,vobf9gh42,survey-text,"""","{""instructions2"":""The video will end when all 8 people collect some water and store it""}",instructions
+30,vobf9gh42,survey-text,"""","{""instructions3"":""The player decides if the people will stay in line or take an opportunity to leave the line and go directly to the water""}",instructions
+30,vobf9gh42,survey-text,"""","{""instructions4"":""the one person doesn't have to decide ahead of time and gets to look at the map to decide what they do when the game starts. Me the player, has to judge them as morally acceptable or unacceptable. ""}",instructions
+30,vobf9gh42,video-button-response,yes_line_7_0cut,0,yes_0
+30,vobf9gh42,video-button-response,no_line_1_1cut,1,no_1
+30,vobf9gh42,video-button-response,yes_line_7_1cut,0,yes_1
+30,vobf9gh42,video-button-response,no_line_1_0cut,1,no_0
+30,vobf9gh42,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""With the very first video, I accidentally hit morally unacceptable rather than my actual choice of morally acceptable. My apologies, I wanted to be honest.""},{""name"":""age"",""value"":""23""},{""name"":""gender"",""value"":""male""},{""name"":""comments"",""value"":""Thank you for the survey, I hope you have a wonderful day.""}]",debrief
+30,vobf9gh42,survey-text,"""","{""Q0"":""vobf9gh42""}",""""
+29,4c22peprj,preload,"""","""",""""
+29,4c22peprj,html-keyboard-response,"""", ,""""
+29,4c22peprj,html-keyboard-response,"""",y,""""
+29,4c22peprj,survey-text,"""","{""instructions1"":""To collect water from a water source and bring it back to the wooden storage buckets fast, in order to score more points""}",instructions
+29,4c22peprj,survey-text,"""","{""instructions2"":""After all 8 people collect water and store it in a wooden storage bucket.""}",instructions
+29,4c22peprj,survey-text,"""","{""instructions3"":""Whether they will definitely stay in line or take opportunities to leave the line and head directly for the water source.""}",instructions
+29,4c22peprj,survey-text,"""","{""instructions4"":""They didn’t have to decide their strategy ahead of time, as they are allowed to decide after the game starts.""}",instructions
+29,4c22peprj,video-button-response,yes_line_7_0cut,1,yes_0
+29,4c22peprj,video-button-response,yes_line_7_1cut,0,yes_1
+29,4c22peprj,video-button-response,no_line_1_1cut,1,no_1
+29,4c22peprj,video-button-response,no_line_1_0cut,1,no_0
+29,4c22peprj,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""None""},{""name"":""age"",""value"":""39""},{""name"":""gender"",""value"":""male""},{""name"":""comments"",""value"":""No""}]",debrief
+29,4c22peprj,survey-text,"""","{""Q0"":""4c22peprj""}",""""
+35,clystl8d0,preload,"""","""",""""
+35,clystl8d0,html-keyboard-response,"""", ,""""
+35,clystl8d0,html-keyboard-response,"""",y,""""
+35,clystl8d0,survey-text,"""","{""instructions1"":""To collect water in a bucket""}",instructions
+35,clystl8d0,survey-text,"""","{""instructions2"":""When all 8 people collect water and store it in a wooden storage bucket""}",instructions
+35,clystl8d0,survey-text,"""","{""instructions3"":""Whether they will stay in line or head directly for the water source""}",instructions
+35,clystl8d0,survey-text,"""","{""instructions4"":""They don't have to decide beforehand what their strategy will be. They can decide once the game starts.""}",instructions
+35,clystl8d0,video-button-response,yes_line_7_0cut,1,yes_0
+35,clystl8d0,video-button-response,no_line_1_1cut,1,no_1
+35,clystl8d0,video-button-response,yes_line_7_1cut,0,yes_1
+35,clystl8d0,video-button-response,no_line_1_0cut,1,no_0
+35,clystl8d0,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""No""},{""name"":""age"",""value"":""40""},{""name"":""gender"",""value"":""female""},{""name"":""comments"",""value"":""No""}]",debrief
+35,clystl8d0,survey-text,"""","{""Q0"":""clystl8d0""}",""""
+37,m1br55d4q,preload,"""","""",""""
+37,m1br55d4q,html-keyboard-response,"""", ,""""
+37,m1br55d4q,html-keyboard-response,"""",y,""""
+37,m1br55d4q,survey-text,"""","{""instructions1"":""Collect one bucket of water and bring it back to the wooden storage buckets""}",instructions
+37,m1br55d4q,survey-text,"""","{""instructions2"":""When all 8 people collect water and store it in a wooden storage bucket""}",instructions
+37,m1br55d4q,survey-text,"""","{""instructions3"":""Whether to remain in line or take an opportunity to leave the line and go right to the water source""}",instructions
+37,m1br55d4q,survey-text,"""","{""instructions4"":""He/she is the only person who didn't have to decide his/her strategy ahead of time""}",instructions
+37,m1br55d4q,video-button-response,no_line_1_0cut,1,no_0
+37,m1br55d4q,video-button-response,yes_line_7_1cut,0,yes_1
+37,m1br55d4q,video-button-response,yes_line_7_0cut,1,yes_0
+37,m1br55d4q,video-button-response,no_line_1_1cut,1,no_1
+37,m1br55d4q,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""No issues""},{""name"":""age"",""value"":""35""},{""name"":""gender"",""value"":""male""},{""name"":""comments"",""value"":""}]",debrief
+37,m1br55d4q,survey-text,"""","{""Q0"":""m1br55d4q""}",""""
+33,hwunkdlae,preload,"""","""",""""
+33,hwunkdlae,html-keyboard-response,"""", ,""""
+33,hwunkdlae,html-keyboard-response,"""",y,""""
+33,hwunkdlae,survey-text,"""","{""instructions1"":""collect the bucket of water""}",instructions
+33,hwunkdlae,survey-text,"""","{""instructions2"":""everyone has collected the water""}",instructions
+33,hwunkdlae,survey-text,"""","{""instructions3"":""stay in line or not""}",instructions
+33,hwunkdlae,survey-text,"""","{""instructions4"":""they are the one I judge""}",instructions
+33,hwunkdlae,video-button-response,no_line_1_0cut,1,no_0
+33,hwunkdlae,video-button-response,no_line_1_1cut,1,no_1
+33,hwunkdlae,video-button-response,yes_line_7_0cut,1,yes_0
+33,hwunkdlae,video-button-response,yes_line_7_1cut,0,yes_1
+33,hwunkdlae,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""no""},{""name"":""age"",""value"":""32""},{""name"":""gender"",""value"":""male""},{""name"":""comments"",""value"":""no""}]",debrief
+33,hwunkdlae,survey-text,"""","{""Q0"":""hwunkdlae""}",""""
+34,641lvw69s,preload,"""","""",""""
+34,641lvw69s,html-keyboard-response,"""", ,""""
+34,641lvw69s,html-keyboard-response,"""",y,""""
+34,641lvw69s,survey-text,"""","{""instructions1"":""To collect water from a water source and bring it back to the wooden storage buckets.""}",instructions
+34,641lvw69s,survey-text,"""","{""instructions2"":""All 8 people collect water and store it in a wooden storage bucket.""}",instructions
+34,641lvw69s,survey-text,"""","{""instructions3"":""Decide whether they will definitely stay in line or take opportunities to leave the line and head directly for the water source.""}",instructions
+34,641lvw69s,survey-text,"""","{""instructions4"":""They get to look at the map and decide once the game starts what they will do.""}",instructions
+34,641lvw69s,video-button-response,no_line_1_0cut,1,no_0
+34,641lvw69s,video-button-response,yes_line_7_1cut,0,yes_1
+34,641lvw69s,video-button-response,yes_line_7_0cut,1,yes_0
+34,641lvw69s,video-button-response,no_line_1_1cut,0,no_1
+34,641lvw69s,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""No""},{""name"":""age"",""value"":""27""},{""name"":""gender"",""value"":""male""},{""name"":""comments"",""value"":""}]",debrief
+34,641lvw69s,survey-text,"""","{""Q0"":""641lvw69s""}",""""
+4,57v1xo7u1,preload,"""","""",""""
+4,57v1xo7u1,html-keyboard-response,"""", ,""""
+4,57v1xo7u1,html-keyboard-response,"""",y,""""
+4,57v1xo7u1,survey-text,"""","{""instructions1"":""To collect water from a water source and bring it back to the wooden storage buckets.""}",instructions
+4,57v1xo7u1,survey-text,"""","{""instructions2"":""Each video will end when all 8 people collect water and store it in a wooden storage bucket.""}",instructions
+4,57v1xo7u1,survey-text,"""","{""instructions3"":""About how they will behave in that scene.""}",instructions
+4,57v1xo7u1,survey-text,"""","{""instructions4"":""The only person who didn’t have to decide their strategy ahead of time.""}",instructions
+4,57v1xo7u1,video-button-response,yes_line_7_0cut,1,yes_0
+4,57v1xo7u1,video-button-response,yes_line_7_1cut,0,yes_1
+4,57v1xo7u1,video-button-response,no_line_1_0cut,1,no_0
+4,57v1xo7u1,video-button-response,no_line_1_1cut,1,no_1
+4,57v1xo7u1,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""No.""},{""name"":""age"",""value"":""31""},{""name"":""gender"",""value"":""male""},{""name"":""comments"",""value"":""}]",debrief
+4,57v1xo7u1,survey-text,"""","{""Q0"":""57v1xo7u1""}",""""
+40,vm3fb72qx,preload,"""","""",""""
+40,vm3fb72qx,html-keyboard-response,"""", ,""""
+40,vm3fb72qx,html-keyboard-response,"""",y,""""
+40,vm3fb72qx,survey-text,"""","{""instructions1"":""collect water from a water source and bring it back to the wooden storage buckets""}",instructions
+40,vm3fb72qx,survey-text,"""","{""instructions2"":""when all 8 people collect water and store it in a wooden storage bucket""}",instructions
+40,vm3fb72qx,survey-text,"""","{""instructions3"":""whether they will definitely stay in line or take opportunities to leave the line and head directly for the water source""}",instructions
+40,vm3fb72qx,survey-text,"""","{""instructions4"":""This is the only person who didn’t have to decide their strategy ahead of time""}",instructions
+40,vm3fb72qx,video-button-response,no_line_1_0cut,1,no_0
+40,vm3fb72qx,video-button-response,yes_line_7_1cut,0,yes_1
+40,vm3fb72qx,video-button-response,yes_line_7_0cut,1,yes_0
+40,vm3fb72qx,video-button-response,no_line_1_1cut,1,no_1
+40,vm3fb72qx,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""No""},{""name"":""age"",""value"":""52""},{""name"":""gender"",""value"":""male""},{""name"":""comments"",""value"":""}]",debrief
+40,vm3fb72qx,survey-text,"""","{""Q0"":""vm3fb72qx""}",""""
+42,zjl6sshw0,preload,"""","""",""""
+42,zjl6sshw0,html-keyboard-response,"""", ,""""
+42,zjl6sshw0,html-keyboard-response,"""",y,""""
+42,zjl6sshw0,survey-text,"""","{""instructions1"":""Collect water from water source and bring it back to wooden storage""}",instructions
+42,zjl6sshw0,survey-text,"""","{""instructions2"":""When all 8 people collect water and store it in a wooden storage bucket""}",instructions
+42,zjl6sshw0,survey-text,"""","{""instructions3"":""Player have to make decision about how will they behave in a scene before each scene begins""}",instructions
+42,zjl6sshw0,survey-text,"""","{""instructions4"":""The person who did not have to decide their strategy ahead of time.""}",instructions
+42,zjl6sshw0,video-button-response,yes_line_7_0cut,1,yes_0
+42,zjl6sshw0,video-button-response,no_line_1_1cut,0,no_1
+42,zjl6sshw0,video-button-response,yes_line_7_1cut,0,yes_1
+42,zjl6sshw0,video-button-response,no_line_1_0cut,1,no_0
+42,zjl6sshw0,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""No""},{""name"":""age"",""value"":""20""},{""name"":""gender"",""value"":""male""},{""name"":""comments"",""value"":""}]",debrief
+42,zjl6sshw0,survey-text,"""","{""Q0"":""zjl6sshw0""}",""""
+41,4jogh827a,preload,"""","""",""""
+41,4jogh827a,html-keyboard-response,"""", ,""""
+41,4jogh827a,html-keyboard-response,"""",y,""""
+41,4jogh827a,survey-text,"""","{""instructions1"":"" Each person needs to collect one bucket of water for each level""}",instructions
+41,4jogh827a,survey-text,"""","{""instructions2"":""when all 8 people collect water and store it in a wooden storage bucket""}",instructions
+41,4jogh827a,survey-text,"""","{""instructions3"":""about how they will behave in that scene""}",instructions
+41,4jogh827a,survey-text,"""","{""instructions4"":""the only person who didn’t have to decide their strategy ahead of time""}",instructions
+41,4jogh827a,video-button-response,no_line_1_0cut,1,no_0
+41,4jogh827a,video-button-response,yes_line_7_0cut,1,yes_0
+41,4jogh827a,video-button-response,yes_line_7_1cut,0,yes_1
+41,4jogh827a,video-button-response,no_line_1_1cut,0,no_1
+41,4jogh827a,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""none""},{""name"":""age"",""value"":""23""},{""name"":""gender"",""value"":""male""},{""name"":""comments"",""value"":""}]",debrief
+41,4jogh827a,survey-text,"""","{""Q0"":""4jogh827a""}",""""
+43,c9d4qrx8c,preload,"""","""",""""
+43,c9d4qrx8c,html-keyboard-response,"""", ,""""
+43,c9d4qrx8c,html-keyboard-response,"""",y,""""
+43,c9d4qrx8c,survey-text,"""","{""instructions1"":""To collect water from a water source and bring it back to a wooden storage bucket.""}",instructions
+43,c9d4qrx8c,survey-text,"""","{""instructions2"":""When all 8 people collect water and store it in a wooden storage bucket. ""}",instructions
+43,c9d4qrx8c,survey-text,"""","{""instructions3"":""Whether they will stay in line or leave the line and head for the water source.""}",instructions
+43,c9d4qrx8c,survey-text,"""","{""instructions4"":""They don't have to decide their strategy ahead of time.""}",instructions
+43,c9d4qrx8c,video-button-response,no_line_1_0cut,1,no_0
+43,c9d4qrx8c,video-button-response,no_line_1_1cut,0,no_1
+43,c9d4qrx8c,video-button-response,yes_line_7_0cut,1,yes_0
+43,c9d4qrx8c,video-button-response,yes_line_7_1cut,0,yes_1
+43,c9d4qrx8c,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""No, there were not any problems.""},{""name"":""age"",""value"":""48""},{""name"":""gender"",""value"":""female""},{""name"":""comments"",""value"":""I enjoyed taking part, thank you.""}]",debrief
+43,c9d4qrx8c,survey-text,"""","{""Q0"":""c9d4qrx8c""}",""""
+44,ksjv9gfb7,preload,"""","""",""""
+44,ksjv9gfb7,html-keyboard-response,"""", ,""""
+44,ksjv9gfb7,html-keyboard-response,"""",y,""""
+44,ksjv9gfb7,survey-text,"""","{""instructions1"":""Everyone in the game is trying to collect water from a water source and bring it back to the wooden storage buckets.""}",instructions
+44,ksjv9gfb7,survey-text,"""","{""instructions2"":""each video will end when all 8 people collect water and store it in a wooden storage bucket.""}",instructions
+44,ksjv9gfb7,survey-text,"""","{""instructions3"":""how they will behave in that scene""}",instructions
+44,ksjv9gfb7,survey-text,"""","{""instructions4"":""the only person who didn’t have to decide their strategy ahead of time""}",instructions
+44,ksjv9gfb7,video-button-response,no_line_1_1cut,0,no_1
+44,ksjv9gfb7,video-button-response,no_line_1_0cut,1,no_0
+44,ksjv9gfb7,video-button-response,yes_line_7_1cut,0,yes_1
+44,ksjv9gfb7,video-button-response,yes_line_7_0cut,1,yes_0
+44,ksjv9gfb7,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""no issues""},{""name"":""age"",""value"":""28""},{""name"":""gender"",""value"":""male""},{""name"":""comments"",""value"":""no""}]",debrief
+44,ksjv9gfb7,survey-text,"""","{""Q0"":""ksjv9gfb7""}",""""
+45,z58nyos4r,preload,"""","""",""""
+45,z58nyos4r,html-keyboard-response,"""", ,""""
+45,z58nyos4r,html-keyboard-response,"""",y,""""
+45,z58nyos4r,survey-text,"""","{""instructions1"":""Collect water and bring it back to the buckets.""}",instructions
+45,z58nyos4r,survey-text,"""","{""instructions2"":""When all 8 people collect water and store it in a bucket.""}",instructions
+45,z58nyos4r,survey-text,"""","{""instructions3"":""Whether they will stay in line or leave the line and head directly for the water source.""}",instructions
+45,z58nyos4r,survey-text,"""","{""instructions4"":""They didn't have to decide their strategy ahead of time.""}",instructions
+45,z58nyos4r,video-button-response,yes_line_7_1cut,0,yes_1
+45,z58nyos4r,video-button-response,no_line_1_0cut,1,no_0
+45,z58nyos4r,video-button-response,yes_line_7_0cut,1,yes_0
+45,z58nyos4r,video-button-response,no_line_1_1cut,1,no_1
+45,z58nyos4r,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""No""},{""name"":""age"",""value"":""27""},{""name"":""gender"",""value"":""male""},{""name"":""comments"",""value"":""No""}]",debrief
+45,z58nyos4r,survey-text,"""","{""Q0"":""z58nyos4r""}",""""
+46,s9ybspkj5,preload,"""","""",""""
+46,s9ybspkj5,html-keyboard-response,"""", ,""""
+46,s9ybspkj5,html-keyboard-response,"""",y,""""
+46,s9ybspkj5,survey-text,"""","{""instructions1"":""collect water""}",instructions
+46,s9ybspkj5,survey-text,"""","{""instructions2"":""all 8 people get water""}",instructions
+46,s9ybspkj5,survey-text,"""","{""instructions3"":""how to behave""}",instructions
+46,s9ybspkj5,survey-text,"""","{""instructions4"":""did not have to decide strategy prior to move""}",instructions
+46,s9ybspkj5,video-button-response,no_line_1_0cut,1,no_0
+46,s9ybspkj5,video-button-response,yes_line_7_0cut,1,yes_0
+46,s9ybspkj5,video-button-response,no_line_1_1cut,1,no_1
+46,s9ybspkj5,video-button-response,yes_line_7_1cut,0,yes_1
+46,s9ybspkj5,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""no""},{""name"":""age"",""value"":""70""},{""name"":""gender"",""value"":""male""},{""name"":""comments"",""value"":""na""}]",debrief
+46,s9ybspkj5,survey-text,"""","{""Q0"":""s9ybspkj5""}",""""
+49,mwap397fx,preload,"""","""",""""
+49,mwap397fx,html-keyboard-response,"""", ,""""
+49,mwap397fx,html-keyboard-response,"""",y,""""
+49,mwap397fx,survey-text,"""","{""instructions1"":""collect buckets of water""}",instructions
+49,mwap397fx,survey-text,"""","{""instructions2"":""when each person has transported their water""}",instructions
+49,mwap397fx,survey-text,"""","{""instructions3"":""whether to wait in the line or not""}",instructions
+49,mwap397fx,survey-text,"""","{""instructions4"":""they are the only person who didn't have to decide a strategy""}",instructions
+49,mwap397fx,video-button-response,yes_line_7_1cut,0,yes_1
+49,mwap397fx,video-button-response,no_line_1_1cut,0,no_1
+49,mwap397fx,video-button-response,yes_line_7_0cut,1,yes_0
+49,mwap397fx,video-button-response,no_line_1_0cut,1,no_0
+49,mwap397fx,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""none""},{""name"":""age"",""value"":""30""},{""name"":""gender"",""value"":""male""},{""name"":""comments"",""value"":""}]",debrief
+49,mwap397fx,survey-text,"""","{""Q0"":""mwap397fx""}",""""
+48,cab9etn5f,preload,"""","""",""""
+48,cab9etn5f,html-keyboard-response,"""", ,""""
+48,cab9etn5f,html-keyboard-response,"""",y,""""
+48,cab9etn5f,survey-text,"""","{""instructions1"":""To collect water from a water source and bring it back to the storage buckets.""}",instructions
+48,cab9etn5f,survey-text,"""","{""instructions2"":""After all 8 people collect their water and put it in the storage buckets.""}",instructions
+48,cab9etn5f,survey-text,"""","{""instructions3"":""Whether they will stay in line or head directly to the water source. They lock in their choices before it starts.""}",instructions
+48,cab9etn5f,survey-text,"""","{""instructions4"":""That person didn't have to decide and lock in their decision/strategy.""}",instructions
+48,cab9etn5f,video-button-response,no_line_1_1cut,1,no_1
+48,cab9etn5f,video-button-response,yes_line_7_0cut,1,yes_0
+48,cab9etn5f,video-button-response,yes_line_7_1cut,0,yes_1
+48,cab9etn5f,video-button-response,no_line_1_0cut,1,no_0
+48,cab9etn5f,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""none""},{""name"":""age"",""value"":""54""},{""name"":""gender"",""value"":""female""},{""name"":""comments"",""value"":""no comments""}]",debrief
+48,cab9etn5f,survey-text,"""","{""Q0"":""cab9etn5f""}",""""
+5,l49wf4o31,preload,"""","""",""""
+5,l49wf4o31,html-keyboard-response,"""", ,""""
+5,l49wf4o31,html-keyboard-response,"""",y,""""
+5,l49wf4o31,survey-text,"""","{""instructions1"":""To watch one person and judge whether their actions were morally acceptable or not.""}",instructions
+5,l49wf4o31,survey-text,"""","{""instructions2"":""When all 8 people collect water and store it.""}",instructions
+5,l49wf4o31,survey-text,"""","{""instructions3"":""Whether they will stay in line or try to leave the line to go straight to the water.""}",instructions
+5,l49wf4o31,survey-text,"""","{""instructions4"":""They did not have to decide what they were doing ahead of time.""}",instructions
+5,l49wf4o31,video-button-response,no_line_1_0cut,0,no_0
+5,l49wf4o31,video-button-response,yes_line_7_0cut,1,yes_0
+5,l49wf4o31,video-button-response,no_line_1_1cut,1,no_1
+5,l49wf4o31,video-button-response,yes_line_7_1cut,0,yes_1
+5,l49wf4o31,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""I clicked the wrong button after making my judgement on the first scenario, and it automatically advanced so I didn't have a chance to correct it. I clicked morally unacceptable, but I meant to click morally acceptable.""},{""name"":""age"",""value"":""32""},{""name"":""gender"",""value"":""male""},{""name"":""comments"",""value"":""I generally judged an action as morally acceptable as long as they didn't slow anyone down by cutting in line or getting in the way of others in some way.""}]",debrief
+5,l49wf4o31,survey-text,"""","{""Q0"":""l49wf4o31""}",""""
+50,wk9lz1olp,preload,"""","""",""""
+50,wk9lz1olp,html-keyboard-response,"""", ,""""
+50,wk9lz1olp,html-keyboard-response,"""",y,""""
+50,wk9lz1olp,survey-text,"""","{""instructions1"":""They need to collect water and bring it to a storage bucket.""}",instructions
+50,wk9lz1olp,survey-text,"""","{""instructions2"":""When all 8 people collect water and store it in a wooden storage bucket.""}",instructions
+50,wk9lz1olp,survey-text,"""","{""instructions3"":""Whether they will stay in like or take opportunities to love the line and go to the water.""}",instructions
+50,wk9lz1olp,survey-text,"""","{""instructions4"":""They didn't have to decide their strategy ahead of time.""}",instructions
+50,wk9lz1olp,video-button-response,yes_line_7_1cut,0,yes_1
+50,wk9lz1olp,video-button-response,yes_line_7_0cut,1,yes_0
+50,wk9lz1olp,video-button-response,no_line_1_1cut,1,no_1
+50,wk9lz1olp,video-button-response,no_line_1_0cut,1,no_0
+50,wk9lz1olp,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""None""},{""name"":""age"",""value"":""32""},{""name"":""gender"",""value"":""male""},{""name"":""comments"",""value"":""No comments.""}]",debrief
+50,wk9lz1olp,survey-text,"""","{""Q0"":""wk9lz1olp""}",""""
+51,02lxlbwov,preload,"""","""",""""
+51,02lxlbwov,html-keyboard-response,"""", ,""""
+51,02lxlbwov,html-keyboard-response,"""",y,""""
+51,02lxlbwov,survey-text,"""","{""instructions1"":""To collect water and put it in a bucket""}",instructions
+51,02lxlbwov,survey-text,"""","{""instructions2"":""when everyone puts water into a bucket""}",instructions
+51,02lxlbwov,survey-text,"""","{""instructions3"":""Whether they will stay in line or leave the line and head directly for the water""}",instructions
+51,02lxlbwov,survey-text,"""","{""instructions4"":""They can decide their strategy for each map instead of deciding beforehand""}",instructions
+51,02lxlbwov,video-button-response,no_line_1_0cut,1,no_0
+51,02lxlbwov,video-button-response,yes_line_7_0cut,1,yes_0
+51,02lxlbwov,video-button-response,yes_line_7_1cut,0,yes_1
+51,02lxlbwov,video-button-response,no_line_1_1cut,0,no_1
+51,02lxlbwov,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""Nope""},{""name"":""age"",""value"":""26""},{""name"":""gender"",""value"":""male""},{""name"":""comments"",""value"":""I accidentally chose unacceptable for the very last video""}]",debrief
+51,02lxlbwov,survey-text,"""","{""Q0"":""02lxlbwov""}",""""
+52,afymguj72,preload,"""","""",""""
+52,afymguj72,html-keyboard-response,"""", ,""""
+52,afymguj72,html-keyboard-response,"""",y,""""
+52,afymguj72,survey-text,"""","{""instructions1"":""to collect one bucket of water for each level""}",instructions
+52,afymguj72,survey-text,"""","{""instructions2"":""when all 8 people collect water and store it in a wooden storage bucket""}",instructions
+52,afymguj72,survey-text,"""","{""instructions3"":""how they will behave in that scene""}",instructions
+52,afymguj72,survey-text,"""","{""instructions4"":""they didn't have to decide their strategy ahead of time""}",instructions
+52,afymguj72,video-button-response,no_line_1_1cut,1,no_1
+52,afymguj72,video-button-response,no_line_1_0cut,1,no_0
+52,afymguj72,video-button-response,yes_line_7_0cut,1,yes_0
+52,afymguj72,video-button-response,yes_line_7_1cut,0,yes_1
+52,afymguj72,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""no""},{""name"":""age"",""value"":""52""},{""name"":""gender"",""value"":""female""},{""name"":""comments"",""value"":""Enjoyable study!""}]",debrief
+52,afymguj72,survey-text,"""","{""Q0"":""afymguj72""}",""""
+53,8p44a0yu6,preload,"""","""",""""
+53,8p44a0yu6,html-keyboard-response,"""", ,""""
+53,8p44a0yu6,html-keyboard-response,"""",y,""""
+53,8p44a0yu6,survey-text,"""","{""instructions1"":""To collect a bucket of water for each level as and bring it to the storage buckets as quickly as possible.""}",instructions
+53,8p44a0yu6,survey-text,"""","{""instructions2"":""When all eight people have collected water and stored it in the buckets.""}",instructions
+53,8p44a0yu6,survey-text,"""","{""instructions3"":""Determine if they will wait their turn and stay in their current line or take opportunities to leave and head for the water source. ""}",instructions
+53,8p44a0yu6,survey-text,"""","{""instructions4"":""They can make their decision after the game starts.""}",instructions
+53,8p44a0yu6,video-button-response,yes_line_7_0cut,1,yes_0
+53,8p44a0yu6,video-button-response,yes_line_7_1cut,1,yes_1
+53,8p44a0yu6,video-button-response,no_line_1_0cut,1,no_0
+53,8p44a0yu6,video-button-response,no_line_1_1cut,1,no_1
+53,8p44a0yu6,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""no""},{""name"":""age"",""value"":""41""},{""name"":""gender"",""value"":""female""},{""name"":""comments"",""value"":""}]",debrief
+53,8p44a0yu6,survey-text,"""","{""Q0"":""8p44a0yu6""}",""""
+54,2u65qqz4r,preload,"""","""",""""
+54,2u65qqz4r,html-keyboard-response,"""", ,""""
+54,2u65qqz4r,html-keyboard-response,"""",y,""""
+54,2u65qqz4r,survey-text,"""","{""instructions1"":""collect water and bring it back in buckets""}",instructions
+54,2u65qqz4r,survey-text,"""","{""instructions2"":""when all 8 people collect water and store in the bucket""}",instructions
+54,2u65qqz4r,survey-text,"""","{""instructions3"":""waiting their turn or leave the line and head straight for the water""}",instructions
+54,2u65qqz4r,survey-text,"""","{""instructions4"":""only person who didnt decide their strategy ahead of time""}",instructions
+54,2u65qqz4r,video-button-response,no_line_1_1cut,0,no_1
+54,2u65qqz4r,video-button-response,no_line_1_0cut,1,no_0
+54,2u65qqz4r,video-button-response,yes_line_7_0cut,1,yes_0
+54,2u65qqz4r,video-button-response,yes_line_7_1cut,1,yes_1
+54,2u65qqz4r,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""no""},{""name"":""age"",""value"":""30""},{""name"":""gender"",""value"":""male""},{""name"":""comments"",""value"":""}]",debrief
+54,2u65qqz4r,survey-text,"""","{""Q0"":"" 2u65qqz4r""}",""""
+55,k5ablpldw,preload,"""","""",""""
+55,k5ablpldw,html-keyboard-response,"""", ,""""
+55,k5ablpldw,html-keyboard-response,"""",y,""""
+55,k5ablpldw,survey-text,"""","{""instructions1"":""Everyone in the game is trying to collect water from a water source and bring it back to the wooden storage bucket. Each person must collect one bucket of water in each level.""}",instructions
+55,k5ablpldw,survey-text,"""","{""instructions2"":""Each video will end when all 8 people collect water and store it in a wooden storage bucket.""}",instructions
+55,k5ablpldw,survey-text,"""","{""instructions3"":""the players have to make decision about how they will behave in that scene""}",instructions
+55,k5ablpldw,survey-text,"""","{""instructions4"":""This is the only person who didn't have to decide their strategy ahead of time.""}",instructions
+55,k5ablpldw,video-button-response,yes_line_7_1cut,0,yes_1
+55,k5ablpldw,video-button-response,no_line_1_0cut,1,no_0
+55,k5ablpldw,video-button-response,no_line_1_1cut,1,no_1
+55,k5ablpldw,video-button-response,yes_line_7_0cut,1,yes_0
+55,k5ablpldw,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""No.""},{""name"":""age"",""value"":""41""},{""name"":""gender"",""value"":""female""},{""name"":""comments"",""value"":""This study was interesting.""}]",debrief
+55,k5ablpldw,survey-text,"""","{""Q0"":""k5ablpldw""}",""""
+57,2z57zne8n,preload,"""","""",""""
+57,2z57zne8n,html-keyboard-response,"""", ,""""
+57,2z57zne8n,html-keyboard-response,"""",y,""""
+57,2z57zne8n,survey-text,"""","{""instructions1"":""The goal is to collect water from a source and bring it back to wooden storage buckets.""}",instructions
+57,2z57zne8n,survey-text,"""","{""instructions2"":""When all 8 people collect water and store it in a wooden storage bucket.""}",instructions
+57,2z57zne8n,survey-text,"""","{""instructions3"":""Whether they will stay in line or take opportunities to head directly to the water source.""}",instructions
+57,2z57zne8n,survey-text,"""","{""instructions4"":""This person doesn't have to decide their strategy ahead of time.""}",instructions
+57,2z57zne8n,video-button-response,no_line_1_0cut,1,no_0
+57,2z57zne8n,video-button-response,yes_line_7_1cut,0,yes_1
+57,2z57zne8n,video-button-response,no_line_1_1cut,0,no_1
+57,2z57zne8n,video-button-response,yes_line_7_0cut,1,yes_0
+57,2z57zne8n,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""It seemed to function properly to me.""},{""name"":""age"",""value"":""58""},{""name"":""gender"",""value"":""male""},{""name"":""comments"",""value"":""}]",debrief
+57,2z57zne8n,survey-text,"""","{""Q0"":""2z57zne8n""}",""""
+56,fwzdqvdbc,preload,"""","""",""""
+56,fwzdqvdbc,html-keyboard-response,"""", ,""""
+56,fwzdqvdbc,html-keyboard-response,"""",y,""""
+56,fwzdqvdbc,survey-text,"""","{""instructions1"":""Each person needs to collect one bucket of water for each level. The faster a person collects the bucket of water, the more points they receive.""}",instructions
+56,fwzdqvdbc,survey-text,"""","{""instructions2"":""each video will end when all 8 people collect water and store it in a wooden storage bucket""}",instructions
+56,fwzdqvdbc,survey-text,"""","{""instructions3"":""Each player has to decide whether they will definitely stay in line or take opportunities to leave the line and head directly for the water source""}",instructions
+56,fwzdqvdbc,survey-text,"""","{""instructions4"":""the only person who didn’t have to decide their strategy ahead of time""}",instructions
+56,fwzdqvdbc,video-button-response,yes_line_7_0cut,1,yes_0
+56,fwzdqvdbc,video-button-response,no_line_1_1cut,1,no_1
+56,fwzdqvdbc,video-button-response,no_line_1_0cut,1,no_0
+56,fwzdqvdbc,video-button-response,yes_line_7_1cut,0,yes_1
+56,fwzdqvdbc,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""no""},{""name"":""age"",""value"":""42""},{""name"":""gender"",""value"":""male""},{""name"":""comments"",""value"":""}]",debrief
+56,fwzdqvdbc,survey-text,"""","{""Q0"":""fwzdqvdbc""}",""""
+58,093646h29,preload,"""","""",""""
+58,093646h29,html-keyboard-response,"""", ,""""
+58,093646h29,html-keyboard-response,"""",y,""""
+58,093646h29,survey-text,"""","{""instructions1"":""collect water and store it as fast as possible""}",instructions
+58,093646h29,survey-text,"""","{""instructions2"":""when everyone stores water""}",instructions
+58,093646h29,survey-text,"""","{""instructions3"":""to stay in line or not""}",instructions
+58,093646h29,survey-text,"""","{""instructions4"":""they can decide when the game starts what to do""}",instructions
+58,093646h29,video-button-response,yes_line_7_0cut,1,yes_0
+58,093646h29,video-button-response,no_line_1_1cut,1,no_1
+58,093646h29,video-button-response,yes_line_7_1cut,0,yes_1
+58,093646h29,video-button-response,no_line_1_0cut,1,no_0
+58,093646h29,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""no""},{""name"":""age"",""value"":""35""},{""name"":""gender"",""value"":""male""},{""name"":""comments"",""value"":""}]",debrief
+58,093646h29,survey-text,"""","{""Q0"":""093646h29""}",""""
+59,dsdf24477,preload,"""","""",""""
+59,dsdf24477,html-keyboard-response,"""", ,""""
+59,dsdf24477,html-keyboard-response,"""",y,""""
+59,dsdf24477,survey-text,"""","{""instructions1"":""get more points by collecting water from a source and bringing it back to the storage buckets""}",instructions
+59,dsdf24477,survey-text,"""","{""instructions2"":""When all 8 people collect water and store it in a bucket.""}",instructions
+59,dsdf24477,survey-text,"""","{""instructions3"":""Whether to stay in line or leave it and head directly for the water source.""}",instructions
+59,dsdf24477,survey-text,"""","{""instructions4"":""They didn't have to decide their strategy ahead of time""}",instructions
+59,dsdf24477,video-button-response,no_line_1_1cut,1,no_1
+59,dsdf24477,video-button-response,yes_line_7_0cut,1,yes_0
+59,dsdf24477,video-button-response,yes_line_7_1cut,1,yes_1
+59,dsdf24477,video-button-response,no_line_1_0cut,1,no_0
+59,dsdf24477,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""nope""},{""name"":""age"",""value"":""38""},{""name"":""gender"",""value"":""male""},{""name"":""comments"",""value"":""}]",debrief
+59,dsdf24477,survey-text,"""","{""Q0"":""dsdf24477""}",""""
+6,b6xcpk5jt,preload,"""","""",""""
+6,b6xcpk5jt,html-keyboard-response,"""", ,""""
+6,b6xcpk5jt,html-keyboard-response,"""",y,""""
+6,b6xcpk5jt,survey-text,"""","{""instructions1"":""to collect water and bring it to storage buckets""}",instructions
+6,b6xcpk5jt,survey-text,"""","{""instructions2"":""when all 8 people collect water and store it in the bucket""}",instructions
+6,b6xcpk5jt,survey-text,"""","{""instructions3"":""whether they will stay in line or leave the line""}",instructions
+6,b6xcpk5jt,survey-text,"""","{""instructions4"":""they didn't decide their strategy ahead of time""}",instructions
+6,b6xcpk5jt,video-button-response,no_line_1_1cut,1,no_1
+6,b6xcpk5jt,video-button-response,yes_line_7_1cut,0,yes_1
+6,b6xcpk5jt,video-button-response,yes_line_7_0cut,1,yes_0
+6,b6xcpk5jt,video-button-response,no_line_1_0cut,1,no_0
+6,b6xcpk5jt,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""none that I saw""},{""name"":""age"",""value"":""48""},{""name"":""gender"",""value"":""female""},{""name"":""comments"",""value"":""}]",debrief
+6,b6xcpk5jt,survey-text,"""","{""Q0"":""b6xcpk5jt""}",""""
+62,2cha015bt,preload,"""","""",""""
+62,2cha015bt,html-keyboard-response,"""", ,""""
+62,2cha015bt,html-keyboard-response,"""",y,""""
+62,2cha015bt,survey-text,"""","{""instructions1"":""To collect water and place it in the wooden storage bucket.""}",instructions
+62,2cha015bt,survey-text,"""","{""instructions2"":""When all 8 players have stored water in the buckets.""}",instructions
+62,2cha015bt,survey-text,"""","{""instructions3"":""Whether to stay in line or leave the line and go to the water source.""}",instructions
+62,2cha015bt,survey-text,"""","{""instructions4"":""They didn't decide their strategy beforehand like the others.""}",instructions
+62,2cha015bt,video-button-response,yes_line_7_1cut,0,yes_1
+62,2cha015bt,video-button-response,yes_line_7_0cut,1,yes_0
+62,2cha015bt,video-button-response,no_line_1_0cut,1,no_0
+62,2cha015bt,video-button-response,no_line_1_1cut,1,no_1
+62,2cha015bt,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""No""},{""name"":""age"",""value"":""33""},{""name"":""gender"",""value"":""male""},{""name"":""comments"",""value"":""No""}]",debrief
+62,2cha015bt,survey-text,"""","{""Q0"":""2cha015bt""}",""""
+64,58w28rb33,preload,"""","""",""""
+64,58w28rb33,html-keyboard-response,"""", ,""""
+64,58w28rb33,html-keyboard-response,"""",y,""""
+64,58w28rb33,survey-text,"""","{""instructions1"":""collect water from a water source and bring it back to the wooden storage buckets""}",instructions
+64,58w28rb33,survey-text,"""","{""instructions2"":""when all 8 people collect water and store it in a wooden storage bucket""}",instructions
+64,58w28rb33,survey-text,"""","{""instructions3"":""decide whether they will definitely stay in line or take opportunities to leave the line""}",instructions
+64,58w28rb33,survey-text,"""","{""instructions4"":""didn’t have to decide their strategy ahead of time""}",instructions
+64,58w28rb33,video-button-response,yes_line_7_0cut,1,yes_0
+64,58w28rb33,video-button-response,yes_line_7_1cut,0,yes_1
+64,58w28rb33,video-button-response,no_line_1_1cut,1,no_1
+64,58w28rb33,video-button-response,no_line_1_0cut,1,no_0
+64,58w28rb33,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""No""},{""name"":""age"",""value"":""35""},{""name"":""gender"",""value"":""male""},{""name"":""comments"",""value"":""No""}]",debrief
+64,58w28rb33,survey-text,"""","{""Q0"":""58w28rb33""}",""""
+66,a3q3ldy5r,preload,"""","""",""""
+66,a3q3ldy5r,html-keyboard-response,"""", ,""""
+66,a3q3ldy5r,html-keyboard-response,"""",y,""""
+66,a3q3ldy5r,survey-text,"""","{""instructions1"":""collect water and bring it to a storage bucket""}",instructions
+66,a3q3ldy5r,survey-text,"""","{""instructions2"":""when all 8 people collect water and put in bucket""}",instructions
+66,a3q3ldy5r,survey-text,"""","{""instructions3"":""whether to stay in line or decide to leave the line""}",instructions
+66,a3q3ldy5r,survey-text,"""","{""instructions4"":""they did not have to decide their strategy ahead of time""}",instructions
+66,a3q3ldy5r,video-button-response,yes_line_7_0cut,1,yes_0
+66,a3q3ldy5r,video-button-response,no_line_1_1cut,1,no_1
+66,a3q3ldy5r,video-button-response,no_line_1_0cut,1,no_0
+66,a3q3ldy5r,video-button-response,yes_line_7_1cut,0,yes_1
+66,a3q3ldy5r,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""No issues.""},{""name"":""age"",""value"":""34""},{""name"":""gender"",""value"":""female""},{""name"":""comments"",""value"":""I think it's fine for a person to leave the line if there's plenty of water (like an entire river). It's not okay to cut in line if there's only one water source.""}]",debrief
+66,a3q3ldy5r,survey-text,"""","{""Q0"":""a3q3ldy5r""}",""""
+67,kjjtegwst,preload,"""","""",""""
+67,kjjtegwst,html-keyboard-response,"""", ,""""
+67,kjjtegwst,html-keyboard-response,"""",y,""""
+67,kjjtegwst,survey-text,"""","{""instructions1"":""collect water from a water source and bring it back to the storage bucket""}",instructions
+67,kjjtegwst,survey-text,"""","{""instructions2"":""after all 8 people collect water and store it in a storage bucket""}",instructions
+67,kjjtegwst,survey-text,"""","{""instructions3"":""about how they will behave in that scene""}",instructions
+67,kjjtegwst,survey-text,"""","{""instructions4"":""the only person who didn’t have to decide their strategy ahead of time""}",instructions
+67,kjjtegwst,video-button-response,yes_line_7_0cut,1,yes_0
+67,kjjtegwst,video-button-response,no_line_1_1cut,0,no_1
+67,kjjtegwst,video-button-response,no_line_1_0cut,1,no_0
+67,kjjtegwst,video-button-response,yes_line_7_1cut,0,yes_1
+67,kjjtegwst,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""no""},{""name"":""age"",""value"":""24""},{""name"":""gender"",""value"":""female""},{""name"":""comments"",""value"":""}]",debrief
+67,kjjtegwst,survey-text,"""","{""Q0"":""kjjtegwst""}",""""
+69,vh08xd23b,preload,"""","""",""""
+69,vh08xd23b,html-keyboard-response,"""", ,""""
+69,vh08xd23b,html-keyboard-response,"""",y,""""
+69,vh08xd23b,survey-text,"""","{""instructions1"":""collect water from a water source and bring it back to wooden storage buckets""}",instructions
+69,vh08xd23b,survey-text,"""","{""instructions2"":""when all 8 people collect water and store it in a wooden storage bucket.""}",instructions
+69,vh08xd23b,survey-text,"""","{""instructions3"":""how they will behave in that scene""}",instructions
+69,vh08xd23b,survey-text,"""","{""instructions4"":""they are the only person who didn't have to decide their strategy ahead of time""}",instructions
+69,vh08xd23b,video-button-response,no_line_1_1cut,1,no_1
+69,vh08xd23b,video-button-response,yes_line_7_0cut,1,yes_0
+69,vh08xd23b,video-button-response,yes_line_7_1cut,0,yes_1
+69,vh08xd23b,video-button-response,no_line_1_0cut,1,no_0
+69,vh08xd23b,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""no""},{""name"":""age"",""value"":""43""},{""name"":""gender"",""value"":""female""},{""name"":""comments"",""value"":""}]",debrief
+69,vh08xd23b,survey-text,"""","{""Q0"":""vh08xd23b""}",""""
+70,801amc6dt,preload,"""","""",""""
+70,801amc6dt,html-keyboard-response,"""", ,""""
+70,801amc6dt,html-keyboard-response,"""",y,""""
+70,801amc6dt,survey-text,"""","{""instructions1"":""Collect water as fast as possible""}",instructions
+70,801amc6dt,survey-text,"""","{""instructions2"":""When all 8 people collect water and store in a bucket""}",instructions
+70,801amc6dt,survey-text,"""","{""instructions3"":""Whether to stay in line or leave directly for a water source""}",instructions
+70,801amc6dt,survey-text,"""","{""instructions4"":""They are the only person who didn't decide their strategy ahead of time""}",instructions
+70,801amc6dt,video-button-response,yes_line_7_0cut,1,yes_0
+70,801amc6dt,video-button-response,no_line_1_1cut,1,no_1
+70,801amc6dt,video-button-response,no_line_1_0cut,1,no_0
+70,801amc6dt,video-button-response,yes_line_7_1cut,1,yes_1
+70,801amc6dt,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""None""},{""name"":""age"",""value"":""29""},{""name"":""gender"",""value"":""male""},{""name"":""comments"",""value"":""}]",debrief
+70,801amc6dt,survey-text,"""","{""Q0"":""801amc6dt ""}",""""
+77,pn22g2y7g,preload,"""","""",""""
+77,pn22g2y7g,html-keyboard-response,"""", ,""""
+77,pn22g2y7g,html-keyboard-response,"""",y,""""
+77,pn22g2y7g,survey-text,"""","{""instructions1"":""Everyone in the game is trying to collect water from a water source and bring it back to the wooden storage buckets""}",instructions
+77,pn22g2y7g,survey-text,"""","{""instructions2"":""when all 8 people collect water and store it in a wooden storage bucket""}",instructions
+77,pn22g2y7g,survey-text,"""","{""instructions3"":""Whether they will definitely stay in line or take opportunities to leave the line and head directly for the water source""}",instructions
+77,pn22g2y7g,survey-text,"""","{""instructions4"":""This is the only person who didn’t have to decide their strategy ahead of time.""}",instructions
+77,pn22g2y7g,video-button-response,no_line_1_0cut,1,no_0
+77,pn22g2y7g,video-button-response,yes_line_7_0cut,1,yes_0
+77,pn22g2y7g,video-button-response,yes_line_7_1cut,0,yes_1
+77,pn22g2y7g,video-button-response,no_line_1_1cut,0,no_1
+77,pn22g2y7g,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""no bugs detected""},{""name"":""age"",""value"":""39""},{""name"":""gender"",""value"":""male""},{""name"":""comments"",""value"":""Interesting and unique study. ""}]",debrief
+77,pn22g2y7g,survey-text,"""","{""Q0"":""pn22g2y7g""}",""""
+81,ccv0awqqa,preload,"""","""",""""
+81,ccv0awqqa,html-keyboard-response,"""", ,""""
+81,ccv0awqqa,html-keyboard-response,"""",y,""""
+81,ccv0awqqa,survey-text,"""","{""instructions1"":""collect water from a water source and bring it back to the wooden storage buckets""}",instructions
+81,ccv0awqqa,survey-text,"""","{""instructions2"":""when all 8 people collect water and store it in a wooden storage bucket""}",instructions
+81,ccv0awqqa,survey-text,"""","{""instructions3"":""whether they will stay in line or leave the line to head directly for the water source""}",instructions
+81,ccv0awqqa,survey-text,"""","{""instructions4"":""This is the only person who didn't have to decide their strategy ahead of time""}",instructions
+81,ccv0awqqa,video-button-response,yes_line_7_0cut,1,yes_0
+81,ccv0awqqa,video-button-response,no_line_1_0cut,1,no_0
+81,ccv0awqqa,video-button-response,no_line_1_1cut,1,no_1
+81,ccv0awqqa,video-button-response,yes_line_7_1cut,0,yes_1
+81,ccv0awqqa,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""no problems or bugs""},{""name"":""age"",""value"":""51""},{""name"":""gender"",""value"":""female""},{""name"":""comments"",""value"":""}]",debrief
+81,ccv0awqqa,survey-text,"""","{""Q0"":""ccv0awqqa""}",""""
+76,zyxww8eth,preload,"""","""",""""
+76,zyxww8eth,html-keyboard-response,"""", ,""""
+76,zyxww8eth,html-keyboard-response,"""",y,""""
+76,zyxww8eth,survey-text,"""","{""instructions1"":""to collect water""}",instructions
+76,zyxww8eth,survey-text,"""","{""instructions2"":""when all 8 people collect water and store it in a wooden storage bucket""}",instructions
+76,zyxww8eth,survey-text,"""","{""instructions3"":""how they will behave in that scene""}",instructions
+76,zyxww8eth,survey-text,"""","{""instructions4"":""didn’t have to decide their strategy ahead of time""}",instructions
+76,zyxww8eth,video-button-response,no_line_1_1cut,1,no_1
+76,zyxww8eth,video-button-response,yes_line_7_1cut,0,yes_1
+76,zyxww8eth,video-button-response,no_line_1_0cut,1,no_0
+76,zyxww8eth,video-button-response,yes_line_7_0cut,1,yes_0
+76,zyxww8eth,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""no""},{""name"":""age"",""value"":""27""},{""name"":""gender"",""value"":""male""},{""name"":""comments"",""value"":""no""}]",debrief
+76,zyxww8eth,survey-text,"""","{""Q0"":""zyxww8eth""}",""""
+84,r0h12mcke,preload,"""","""",""""
+84,r0h12mcke,html-keyboard-response,"""", ,""""
+84,r0h12mcke,html-keyboard-response,"""",y,""""
+84,r0h12mcke,survey-text,"""","{""instructions1"":""collect a bucket of water""}",instructions
+84,r0h12mcke,survey-text,"""","{""instructions2"":""when all 8 people collect water and store it in a wooden storage bucket""}",instructions
+84,r0h12mcke,survey-text,"""","{""instructions3"":""how they will behave in that scene""}",instructions
+84,r0h12mcke,survey-text,"""","{""instructions4"":""They didn't pick their strategy ahead of time ""}",instructions
+84,r0h12mcke,video-button-response,no_line_1_0cut,1,no_0
+84,r0h12mcke,video-button-response,yes_line_7_0cut,1,yes_0
+84,r0h12mcke,video-button-response,no_line_1_1cut,0,no_1
+84,r0h12mcke,video-button-response,yes_line_7_1cut,1,yes_1
+84,r0h12mcke,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""None""},{""name"":""age"",""value"":""36""},{""name"":""gender"",""value"":""male""},{""name"":""comments"",""value"":""To be honest, when it comes to this basic sort of competition, I appreciate the ones pushing the boundries.""}]",debrief
+84,r0h12mcke,survey-text,"""","{""Q0"":""r0h12mcke""}",""""
+86,0cnle530h,preload,"""","""",""""
+86,0cnle530h,html-keyboard-response,"""", ,""""
+86,0cnle530h,html-keyboard-response,"""",y,""""
+86,0cnle530h,survey-text,"""","{""instructions1"":""The goal is for each person to collect buckets of water for the highest number of points.""}",instructions
+86,0cnle530h,survey-text,"""","{""instructions2"":""When 8 people collect and store water. ""}",instructions
+86,0cnle530h,survey-text,"""","{""instructions3"":""They have to decide how they will behave in that scene.""}",instructions
+86,0cnle530h,survey-text,"""","{""instructions4"":""They get to look at the map and decide what they will do bc they didnt have to decide a strategy.""}",instructions
+86,0cnle530h,video-button-response,no_line_1_1cut,1,no_1
+86,0cnle530h,video-button-response,no_line_1_0cut,1,no_0
+86,0cnle530h,video-button-response,yes_line_7_1cut,0,yes_1
+86,0cnle530h,video-button-response,yes_line_7_0cut,1,yes_0
+86,0cnle530h,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""no""},{""name"":""age"",""value"":""43""},{""name"":""gender"",""value"":""male""},{""name"":""comments"",""value"":""}]",debrief
+86,0cnle530h,survey-text,"""","{""Q0"":""0cnle530h""}",""""
+88,4x5gsjzy0,preload,"""","""",""""
+88,4x5gsjzy0,html-keyboard-response,"""", ,""""
+88,4x5gsjzy0,html-keyboard-response,"""",y,""""
+88,4x5gsjzy0,survey-text,"""","{""instructions1"":""collect water""}",instructions
+88,4x5gsjzy0,survey-text,"""","{""instructions2"":""when all 8 collect water""}",instructions
+88,4x5gsjzy0,survey-text,"""","{""instructions3"":""stay in line or leave the line""}",instructions
+88,4x5gsjzy0,survey-text,"""","{""instructions4"":""they don't have to decide strategy in advance""}",instructions
+88,4x5gsjzy0,video-button-response,yes_line_7_0cut,1,yes_0
+88,4x5gsjzy0,video-button-response,yes_line_7_1cut,1,yes_1
+88,4x5gsjzy0,video-button-response,no_line_1_1cut,0,no_1
+88,4x5gsjzy0,video-button-response,no_line_1_0cut,1,no_0
+88,4x5gsjzy0,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""No""},{""name"":""age"",""value"":""35""},{""name"":""gender"",""value"":""male""},{""name"":""comments"",""value"":""No""}]",debrief
+88,4x5gsjzy0,survey-text,"""","{""Q0"":""4x5gsjzy0""}",""""
+90,c4tfepvu7,preload,"""","""",""""
+90,c4tfepvu7,html-keyboard-response,"""", ,""""
+90,c4tfepvu7,html-keyboard-response,"""",y,""""
+90,c4tfepvu7,survey-text,"""","{""instructions1"":""to collect water from a source and bring it to storage buckets""}",instructions
+90,c4tfepvu7,survey-text,"""","{""instructions2"":""when all 8 people collect water to store in the buckets""}",instructions
+90,c4tfepvu7,survey-text,"""","{""instructions3"":""how to behave, whether to stay in line or head directly for the water source""}",instructions
+90,c4tfepvu7,survey-text,"""","{""instructions4"":""the person didn't have time to decide their strategy ahead of time""}",instructions
+90,c4tfepvu7,video-button-response,no_line_1_1cut,1,no_1
+90,c4tfepvu7,video-button-response,yes_line_7_0cut,1,yes_0
+90,c4tfepvu7,video-button-response,yes_line_7_1cut,0,yes_1
+90,c4tfepvu7,video-button-response,no_line_1_0cut,1,no_0
+90,c4tfepvu7,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""No.""},{""name"":""age"",""value"":""33""},{""name"":""gender"",""value"":""male""},{""name"":""comments"",""value"":""}]",debrief
+90,c4tfepvu7,survey-text,"""","{""Q0"":""c4tfepvu7""}",""""
+87,bs1ydlscw,preload,"""","""",""""
+87,bs1ydlscw,html-keyboard-response,"""", ,""""
+87,bs1ydlscw,html-keyboard-response,"""",y,""""
+87,bs1ydlscw,survey-text,"""","{""instructions1"":""Each person in the game needs to collect one bucket of water in each level, and the faster the person collects the bucket of water, the more points they can receive""}",instructions
+87,bs1ydlscw,survey-text,"""","{""instructions2"":""The video will end when all 8 people collect water and store it in a wooden storage bucket""}",instructions
+87,bs1ydlscw,survey-text,"""","{""instructions3"":""The players have to make a decision without communicating with each other about how they will behave in the scene.  Players are able to see what the game map looks like and where the line forms, but are not able to view which position in line they will occupy.  Each player has to decide if they will stay in line or take an opportunity to get ahead to go directly to the water source.""}",instructions
+87,bs1ydlscw,survey-text,"""","{""instructions4"":""They are the only person who didn't have to decide their strategy ahead of time""}",instructions
+87,bs1ydlscw,video-button-response,no_line_1_1cut,1,no_1
+87,bs1ydlscw,video-button-response,yes_line_7_1cut,0,yes_1
+87,bs1ydlscw,video-button-response,yes_line_7_0cut,1,yes_0
+87,bs1ydlscw,video-button-response,no_line_1_0cut,1,no_0
+87,bs1ydlscw,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""No, everything worked fine""},{""name"":""age"",""value"":""37""},{""name"":""gender"",""value"":""male""},{""name"":""comments"",""value"":""I made many of my moral choices based upon their ability to follow the line, but also on the size of the source of water they were taking water from""}]",debrief
+87,bs1ydlscw,survey-text,"""","{""Q0"":""bs1ydlscw""}",""""
+89,vdz3hpxtp,preload,"""","""",""""
+89,vdz3hpxtp,html-keyboard-response,"""", ,""""
+89,vdz3hpxtp,html-keyboard-response,"""",y,""""
+89,vdz3hpxtp,survey-text,"""","{""instructions1"":""To collect one bucket of water as quickly as possible.""}",instructions
+89,vdz3hpxtp,survey-text,"""","{""instructions2"":""When all 8 people collect water and store it in the wooden storage bucket.""}",instructions
+89,vdz3hpxtp,survey-text,"""","{""instructions3"":""How they will go about getting water, either by waiting in line or heading directly for the water source.""}",instructions
+89,vdz3hpxtp,survey-text,"""","{""instructions4"":""They haven't decided ahead of time how they will behave.""}",instructions
+89,vdz3hpxtp,video-button-response,no_line_1_0cut,1,no_0
+89,vdz3hpxtp,video-button-response,yes_line_7_1cut,0,yes_1
+89,vdz3hpxtp,video-button-response,no_line_1_1cut,1,no_1
+89,vdz3hpxtp,video-button-response,yes_line_7_0cut,1,yes_0
+89,vdz3hpxtp,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""None.""},{""name"":""age"",""value"":""37""},{""name"":""gender"",""value"":""male""},{""name"":""comments"",""value"":""Nope, but thanks!  I hope my small contribution helps.""}]",debrief
+89,vdz3hpxtp,survey-text,"""","{""Q0"":""vdz3hpxtp""}",""""
+92,6kd3v3gaq,preload,"""","""",""""
+92,6kd3v3gaq,html-keyboard-response,"""", ,""""
+92,6kd3v3gaq,html-keyboard-response,"""",y,""""
+92,6kd3v3gaq,survey-text,"""","{""instructions1"":""collect water""}",instructions
+92,6kd3v3gaq,survey-text,"""","{""instructions2"":""when all 8 people collect water and store it""}",instructions
+92,6kd3v3gaq,survey-text,"""","{""instructions3"":""about how they will behave in that scene""}",instructions
+92,6kd3v3gaq,survey-text,"""","{""instructions4"":""They didn't have to decide their strategy ahead of time""}",instructions
+92,6kd3v3gaq,video-button-response,no_line_1_0cut,1,no_0
+92,6kd3v3gaq,video-button-response,no_line_1_1cut,1,no_1
+92,6kd3v3gaq,video-button-response,yes_line_7_1cut,1,yes_1
+92,6kd3v3gaq,video-button-response,yes_line_7_0cut,1,yes_0
+92,6kd3v3gaq,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""none""},{""name"":""age"",""value"":""22""},{""name"":""gender"",""value"":""male""},{""name"":""comments"",""value"":""}]",debrief
+92,6kd3v3gaq,survey-text,"""","{""Q0"":""6kd3v3gaq ""}",""""
+91,0gl2f4u1x,preload,"""","""",""""
+91,0gl2f4u1x,html-keyboard-response,"""", ,""""
+91,0gl2f4u1x,html-keyboard-response,"""",y,""""
+91,0gl2f4u1x,survey-text,"""","{""instructions1"":""Each person needs to collect one bucket of water for each level.""}",instructions
+91,0gl2f4u1x,survey-text,"""","{""instructions2"":"" when all 8 people collect water and store it in a wooden storage bucket.""}",instructions
+91,0gl2f4u1x,survey-text,"""","{""instructions3"":""about how they will behave in that scene.""}",instructions
+91,0gl2f4u1x,survey-text,"""","{""instructions4"":""didn’t have to decide their strategy ahead of time.""}",instructions
+91,0gl2f4u1x,video-button-response,yes_line_7_0cut,1,yes_0
+91,0gl2f4u1x,video-button-response,no_line_1_1cut,1,no_1
+91,0gl2f4u1x,video-button-response,no_line_1_0cut,1,no_0
+91,0gl2f4u1x,video-button-response,yes_line_7_1cut,0,yes_1
+91,0gl2f4u1x,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""n/a""},{""name"":""age"",""value"":""31""},{""name"":""gender"",""value"":""male""},{""name"":""comments"",""value"":""}]",debrief
+91,0gl2f4u1x,survey-text,"""","{""Q0"":""0gl2f4u1x""}",""""
+93,un4tzcbyz,preload,"""","""",""""
+93,un4tzcbyz,html-keyboard-response,"""", ,""""
+93,un4tzcbyz,html-keyboard-response,"""",y,""""
+93,un4tzcbyz,survey-text,"""","{""instructions1"":""collect water from a water source and bring it to storage buckets""}",instructions
+93,un4tzcbyz,survey-text,"""","{""instructions2"":""When all 8 people collect water and store it.""}",instructions
+93,un4tzcbyz,survey-text,"""","{""instructions3"":""About how they will behave and maneuver in the game world.""}",instructions
+93,un4tzcbyz,survey-text,"""","{""instructions4"":""They did not have to decide their strategy before the game started.""}",instructions
+93,un4tzcbyz,video-button-response,yes_line_7_1cut,1,yes_1
+93,un4tzcbyz,video-button-response,yes_line_7_0cut,1,yes_0
+93,un4tzcbyz,video-button-response,no_line_1_0cut,1,no_0
+93,un4tzcbyz,video-button-response,no_line_1_1cut,1,no_1
+93,un4tzcbyz,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""None.""},{""name"":""age"",""value"":""32""},{""name"":""gender"",""value"":""male""},{""name"":""comments"",""value"":""}]",debrief
+93,un4tzcbyz,survey-text,"""","{""Q0"":""un4tzcbyz""}",""""
+94,yz5b27q3d,preload,"""","""",""""
+94,yz5b27q3d,html-keyboard-response,"""", ,""""
+94,yz5b27q3d,html-keyboard-response,"""",y,""""
+94,yz5b27q3d,survey-text,"""","{""instructions1"":""collect water and bring it to the storage bucket""}",instructions
+94,yz5b27q3d,survey-text,"""","{""instructions2"":""when all 8 people have collected the water and put it in the storage bucket""}",instructions
+94,yz5b27q3d,survey-text,"""","{""instructions3"":""a strategy""}",instructions
+94,yz5b27q3d,survey-text,"""","{""instructions4"":""they didn't have a strategy ahead of time""}",instructions
+94,yz5b27q3d,video-button-response,no_line_1_0cut,1,no_0
+94,yz5b27q3d,video-button-response,no_line_1_1cut,1,no_1
+94,yz5b27q3d,video-button-response,yes_line_7_0cut,1,yes_0
+94,yz5b27q3d,video-button-response,yes_line_7_1cut,1,yes_1
+94,yz5b27q3d,survey-html-form,"""","[{""name"":""understand"",""value"":""yes""},{""name"":""problems"",""value"":""No""},{""name"":""age"",""value"":""23""},{""name"":""gender"",""value"":""female""},{""name"":""comments"",""value"":""Just a comment - the people who cut in line didn't really hurt anyone or stop anyone from getting water. Everyone got water and everyone's goal was reached, so it doesn't matter. It's kind of like cutting someone off on the road only to end up at the same red light. ""}]",debrief
+94,yz5b27q3d,survey-text,"""","{""Q0"":""yz5b27q3d""}",""""
+47,l7tkscl98,preload,"""","""",""""
+47,l7tkscl98,html-keyboard-response,"""", ,""""
+47,l7tkscl98,html-keyboard-response,"""",y,""""
+47,l7tkscl98,survey-text,"""","{""instructions1"":""to collect water and bring it to the wooden bucket""}",instructions
+47,l7tkscl98,survey-text,"""","{""instructions2"":""when all 8 people bring their water to the wooden bucket""}",instructions
+47,l7tkscl98,survey-text,"""","{""instructions3"":""whether they will stay in line and take opportunities to leave the line""}",instructions
+47,l7tkscl98,survey-text,"""","{""instructions4"":""they get to look at the scene/map before making their decision""}",instructions
+47,l7tkscl98,video-button-response,no_line_1_1cut,1,no_1
+47,l7tkscl98,video-button-response,no_line_1_0cut,1,no_0
+47,l7tkscl98,video-button-response,yes_line_7_0cut,1,yes_0
+47,l7tkscl98,video-button-response,yes_line_7_1cut,0,yes_1
